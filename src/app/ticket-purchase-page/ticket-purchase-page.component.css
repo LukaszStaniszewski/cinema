@@ -1,0 +1,16 @@
+.purchase-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+input {
+  outline: none;
+}
+
+.purchase-input > .ng-dirty.ng-invalid {
+  border: 1px solid red;
+}
+
+.purchase-input > .ng-dirty.ng-valid {
+  border: 1px solid green;
+}

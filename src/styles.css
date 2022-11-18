@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-border: #c9c9c9;
+  --color-bg-button: #f0f0f0;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+link {
+  text-decoration: none;
+}
+
+.button {
+  background-color: var(--color-bg-button);
+  border: 1px solid var(--color-border);
+  text-align: center;
+  border-radius: 10px;
+  padding: 0.1rem 1rem;
+  height: 2.5rem;
+  width: 6rem;
+  line-height: 2.5rem;
+  min-width: max-content;
+}

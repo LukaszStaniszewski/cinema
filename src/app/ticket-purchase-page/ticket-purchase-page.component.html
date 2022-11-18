@@ -1,1 +1,85 @@
-<p>ticket-purchase-page works!</p>
+<section class="purchase-page-container">
+  <div>
+    <span>Title, </span>
+    <span>Date, </span>
+    <span>Hour</span>
+  </div>
+  <!-- <label for="name">Name: </label> -->
+
+  <form
+    class="purchase-form"
+    [formGroup]="userCredentials"
+    (ngSubmit)="onSubmit()"
+  >
+    <div>
+      <div class="purchase-input">
+        <input
+          (ngModelChange)="onChange($event)"
+          placeholder="Imię*"
+          formControlName="name"
+          type="text"
+        />
+        <span
+          *ngIf="
+            userCredentials.controls.name.invalid &&
+            userCredentials.controls.name.dirty
+          "
+          >Imię jest wymagane {{ message }}</span
+        >
+      </div>
+      <div class="purchase-input">
+        <input placeholder="Nazwisko*" formControlName="surname" type="text" />
+        <span
+          *ngIf="
+            userCredentials.controls.surname.invalid &&
+            userCredentials.controls.surname.dirty
+          "
+          >Nazwisko jest wymagane</span
+        >
+      </div>
+    </div>
+    <input
+      placeholder="Numer telefonu"
+      formControlName="phoneNumber"
+      type="number"
+    />
+    <div class="purchase-input">
+      <input placeholder="Adres e-mail*" formControlName="email" type="email" />
+      <span
+        *ngIf="
+          userCredentials.controls.email.invalid &&
+          userCredentials.controls.email.dirty
+        "
+        >Email jest wymagany</span
+      >
+    </div>
+    <!-- <p>Value: {{ userCredentials.status }}</p> -->
+    <input
+      placeholder="Powtórz adres e-mail*"
+      formControlName="confirmEmail"
+      type="text"
+    />
+    <p>Complete the form to enable button.</p>
+    <button type="submit" [disabled]="!userCredentials.valid">Submit</button>
+  </form>
+  <!-- <form>
+    <input formControlName="userCredentials" type="text" />
+  </form>
+  <input
+    id="name"
+    class="form-control"
+    formControlName="userCredentials"
+    required
+  />
+
+  <div
+    *ngIf="name.invalid && (name.dirty || name.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="name.errors.required">Name is required.</div>
+    <div *ngIf="name.errors.minlength">
+      Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="name.errors.forbiddenName">Name cannot be Bob.</div>
+  </div> -->
+</section>
