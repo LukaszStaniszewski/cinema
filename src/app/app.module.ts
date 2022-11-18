@@ -7,6 +7,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketPurchasePageComponent } from './ticket-purchase-page/ticket-purchase-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CardComponent } from './card/card.component';
+import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { AppRoutingModule } from './app-routing.module';
     DashboardComponent,
     TicketPurchasePageComponent,
     NavbarComponent,
+    CardComponent,
+    ReservationPageComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],
