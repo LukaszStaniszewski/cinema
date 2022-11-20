@@ -4,6 +4,8 @@
     <div class="navbar-cart button">
       <img src="assets/svg/cart.svg" alt="" />
     </div>
-    <div class="button button--navbar">Zaloguj</div>
+    <div (click)="login()" class="button button--navbar">
+      {{ this.state.currentUser ? this.state.currentUser.name : "Zaloguj się" }}
+    </div>
   </div>
 </nav>

@@ -19,6 +19,7 @@ h1 {
 .navbar-buttons-wrapper {
   display: flex;
   column-gap: 1rem;
+  z-index: 2;
 }
 
 .navbar-cart > img {
@@ -26,5 +27,6 @@ h1 {
 }
 
 .button--navbar {
+  cursor: pointer;
   line-height: 2rem;
 }
