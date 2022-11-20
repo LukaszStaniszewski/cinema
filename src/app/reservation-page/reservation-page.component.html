@@ -1,5 +1,10 @@
 <div class="screening-room">
-  <div *ngFor="let seat of seatsNum">
-    <div class="seat">{{ seat }}</div>
+  <div *ngFor="let seat of seatsNum; let i = index">
+    <div *ngFor="let row of seatsChar">
+      <div *ngIf="i === 0">
+        <div class="seat">{{ row }}{{ seat }}</div>
+      </div>
+      <div class="seat">{{ seat }}</div>
+    </div>
   </div>
 </div>
