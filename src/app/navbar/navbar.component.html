@@ -4,8 +4,22 @@
     <div class="navbar-cart button">
       <img src="assets/svg/cart.svg" alt="" />
     </div>
-    <div (click)="login()" class="button button--navbar">
+    <div
+      (click)="toggleDropdown()"
+      (click)="login()"
+      class="button button--navbar"
+    >
       {{ this.state.currentUser ? this.state.currentUser.name : "Zaloguj się" }}
+    </div>
+    <div
+      (mouseleave)="fun($event)"
+      [class.hidden]="hide"
+      class="dropdown dropdown--navbar"
+    >
+      <div>Moje bilety</div>
+      <div>Chcę obejrzeć</div>
+      <div>Ustawienia</div>
+      <div (click)="logout()">Wyloguj</div>
     </div>
   </div>
 </nav>

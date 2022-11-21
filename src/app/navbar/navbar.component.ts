@@ -8,6 +8,7 @@ import { StateService } from 'src/services/state.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  hide = true;
   constructor(private apiService: ApiService, public state: StateService) {}
 
   ngOnInit(): void {
@@ -17,9 +18,27 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
+    // if(this,s)
     this.apiService.getUser('lukasz').subscribe((user) => {
       this.state.currentUser = user;
       localStorage.setItem('currentUser', JSON.stringify(user));
     });
+  }
+  fun(event: MouseEvent) {
+    console.log(event);
+    if (event.screenY < 150) return;
+
+    this.hide = true;
+  }
+
+  toggleDropdown() {
+    if (!this.state.currentUser) return;
+    this.hide = !this.hide;
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.state.currentUser = null;
+    this.hide = true;
   }
 }
