@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
+import { FilmDatesComponent } from './film-dates/film-dates.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
     NavbarComponent,
     CardComponent,
     ReservationPageComponent,
+    FilmDatesComponent,
   ],
   imports: [
     BrowserModule,

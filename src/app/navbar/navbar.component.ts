@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     });
   }
   fun(event: MouseEvent) {
+    // let target = event.relatedTarget?.parentNode;
     console.log(event);
     if (event.screenY < 150) return;
 
