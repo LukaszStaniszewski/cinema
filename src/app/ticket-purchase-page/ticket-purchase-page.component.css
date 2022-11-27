@@ -14,3 +14,31 @@ input {
 .purchase-input > .ng-dirty.ng-valid {
   border: 1px solid green;
 }
+
+.purchase-input {
+  margin: 0.2rem 0;
+}
+
+.purchase-input > input {
+  padding: 0.2rem 0.3rem;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.name-surname-wrapper {
+  display: flex;
+  gap: 3rem;
+}
+
+.button--purchase-form {
+  margin: 0 auto;
+  height: 2rem;
+  line-height: 1.8rem;
+}
+
+.purchase-input--email,
+.purchase-input--conrifm-email {
+  width: 60%;
+}

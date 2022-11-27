@@ -13,15 +13,18 @@ import {
   styleUrls: ['./ticket-purchase-page.component.css'],
 })
 export class TicketPurchasePageComponent implements OnInit {
+  errorMessage: string | null = null;
+  regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   userCredentials = this.fb.group({
-    name: [
-      '',
-      [Validators.required, Validators.maxLength(50), Validators.minLength(3)],
-    ],
+    name: ['', Validators.required],
     surname: ['', Validators.required],
-    phoneNumber: ['', [Validators.minLength(9), Validators.maxLength(9)]],
-    email: ['', Validators.required],
-    confirmEmail: ['', Validators.required],
+    phoneNumber: [
+      '',
+      [Validators.max(999999999), Validators.pattern(/[0-9]{9}/g)],
+    ],
+    email: ['', [Validators.required, Validators.pattern(this.regex)]],
+    confirmEmail: ['', [Validators.required, Validators.pattern(this.regex)]],
   });
   message: ValidationErrors | null;
   constructor(private fb: FormBuilder) {
@@ -31,15 +34,24 @@ export class TicketPurchasePageComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    const { email, confirmEmail } = this.userCredentials.controls;
+    if (email.value !== confirmEmail.value) {
+      this.errorMessage = 'Adresy email nie są jednakowe';
+      return;
+    }
     // TODO: Use EventEmitter with form value
     console.warn(this.userCredentials.value);
-    const { name, surname } = this.userCredentials.value;
-    if (name !== surname) return;
   }
   onChange(event: Event) {
+    const { email, confirmEmail } = this.userCredentials.controls;
+    if (email.value !== confirmEmail.value) {
+      this.userCredentials.controls.confirmEmail.invalid;
+      this.errorMessage = 'Adresy email nie są jednakowe';
+      return;
+    }
     console.log('hi', event);
     //@ts-ignore
-    this.message = this.userCredentials.controls.name.errors['minLength'];
-    console.warn(this.userCredentials.controls.name.errors);
+    // this.message = this.userCredentials.controls.name.errors['minLength'];
+    // console.warn(this.userCredentials.controls.name.errors);
   }
 }
