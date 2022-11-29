@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { fromEvent, windowToggle } from 'rxjs';
+import { CustomerService } from 'src/app/user/customer.service';
 import { ApiService, User } from 'src/services/api.service';
 import { StateService } from 'src/services/state.service';
 
@@ -9,9 +10,8 @@ import { StateService } from 'src/services/state.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  dashboard = document.getElementById('dashboard') as HTMLElement;
   hide = true;
-  constructor(private apiService: ApiService, public state: StateService) {}
+  constructor(private customer: CustomerService, public state: StateService) {}
 
   ngOnInit(): void {
     const logedUser = localStorage.getItem('currentUser');
@@ -25,8 +25,8 @@ export class NavbarComponent implements OnInit {
 
   login() {
     // if(this,s)
-    this.apiService.getUser('lukasz').subscribe((user) => {
-      this.state.currentUser = user;
+    this.customer.login().subscribe((user) => {
+      this.customer.currentUser = user;
       localStorage.setItem('currentUser', JSON.stringify(user));
     });
   }
@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('currentUser');
-    this.state.currentUser = null;
+    this.customer.currentUser = null;
     this.hide = true;
   }
 }
