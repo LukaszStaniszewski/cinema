@@ -19,13 +19,16 @@
           formControlName="name"
           type="text"
         />
-        <span
+        <div
           *ngIf="
             userCredentials.controls.name.invalid &&
-            userCredentials.controls.name.dirty
+              userCredentials.controls.name.dirty;
+            else emptyDiv
           "
-          >Imię jest wymagane {{ message }}</span
         >
+          Imię jest wymagane {{ message }}
+        </div>
+        <ng-template #emptyDiv> <div></div></ng-template>
       </div>
       <div class="purchase-input">
         <input placeholder="Nazwisko*" formControlName="surname" type="text" />

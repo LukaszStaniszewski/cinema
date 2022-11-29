@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StateService } from 'src/services/state.service';
 
 const HEROES = [
   { id: 1, name: 'Superman' },

@@ -8,7 +8,7 @@ type Maybe<T> = T | null | undefined;
 })
 export class StateService {
   currentUser: Maybe<User>;
-  toggleDropdown = true;
+  toggleNavbarDropdown = true;
   constructor() {
     this.currentUser = null;
   }

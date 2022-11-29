@@ -1,4 +1,4 @@
-<nav>
+<nav clickOutside (clickOutside)="clickedOutside()">
   <h1>Ale Kino!</h1>
   <div class="navbar-buttons-wrapper">
     <div class="navbar-cart button">
@@ -11,11 +11,7 @@
     >
       {{ this.state.currentUser ? this.state.currentUser.name : "Zaloguj się" }}
     </div>
-    <div
-      (mouseleave)="fun($event)"
-      [class.hidden]="hide"
-      class="dropdown dropdown--navbar"
-    >
+    <div [class.hidden]="hide" class="dropdown dropdown--navbar">
       <div>Moje bilety</div>
       <div>Chcę obejrzeć</div>
       <div>Ustawienia</div>

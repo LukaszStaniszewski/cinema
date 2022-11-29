@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
 import { FilmDatesComponent } from './film-dates/film-dates.component';
+import { ClickOutsideDirective } from './directives/ClickOutside.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FilmDatesComponent } from './film-dates/film-dates.component';
     CardComponent,
     ReservationPageComponent,
     FilmDatesComponent,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,

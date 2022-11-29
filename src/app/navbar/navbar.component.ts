@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { fromEvent, windowToggle } from 'rxjs';
 import { ApiService, User } from 'src/services/api.service';
 import { StateService } from 'src/services/state.service';
 
@@ -8,6 +9,7 @@ import { StateService } from 'src/services/state.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  dashboard = document.getElementById('dashboard') as HTMLElement;
   hide = true;
   constructor(private apiService: ApiService, public state: StateService) {}
 
@@ -17,6 +19,10 @@ export class NavbarComponent implements OnInit {
     this.state.currentUser = JSON.parse(logedUser);
   }
 
+  clickedOutside() {
+    this.hide = true;
+  }
+
   login() {
     // if(this,s)
     this.apiService.getUser('lukasz').subscribe((user) => {
@@ -24,17 +30,11 @@ export class NavbarComponent implements OnInit {
       localStorage.setItem('currentUser', JSON.stringify(user));
     });
   }
-  fun(event: MouseEvent) {
-    // let target = event.relatedTarget?.parentNode;
-    console.log(event);
-    if (event.screenY < 150) return;
-
-    this.hide = true;
-  }
 
   toggleDropdown() {
     if (!this.state.currentUser) return;
     this.hide = !this.hide;
+    this.state.toggleNavbarDropdown = this.hide;
   }
 
   logout() {
