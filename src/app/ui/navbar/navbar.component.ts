@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService } from 'src/app/user/user.service';
-import { ApiService, User } from 'src/services/api.service';
-import { StateService } from 'src/services/state.service';
+import { User, UserService } from 'src/app/user/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,12 +9,12 @@ import { StateService } from 'src/services/state.service';
 })
 export class NavbarComponent implements OnInit {
   hide = true;
-  constructor(private user: UserService, public state: StateService) {}
+  constructor(public user: UserService) {}
 
   ngOnInit(): void {
     const logedUser = localStorage.getItem('currentUser');
     if (!logedUser) return;
-    this.state.currentUser = JSON.parse(logedUser);
+    this.user.currentUser$$.next(JSON.parse(logedUser));
   }
 
   clickedOutside() {
@@ -24,21 +22,27 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    this.user.login().subscribe((user) => {
-      this.user.currentUser = user;
+    if (this.user.currentUser$$.value) return;
+    // this.user.login().subscribe((user) => {
+    //   this.user.currentUser = user;
+    //   localStorage.setItem('currentUser', JSON.stringify(user));
+    // });
+    this.user.login();
+
+    this.user.currentUser$$.subscribe((user) => {
+      // kiedy to sie wywoluje, czy gdy tylko funkcja jest wywolana, czy tez gdy zmienia sie wartosc subjecta
+      console.log(user);
       localStorage.setItem('currentUser', JSON.stringify(user));
     });
   }
 
   toggleDropdown() {
-    if (!this.state.currentUser) return;
+    if (!this.user.currentUser$$) return;
     this.hide = !this.hide;
-    this.state.toggleNavbarDropdown = this.hide;
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    this.user.currentUser = null;
+    this.user.logout();
     this.hide = true;
   }
 }

@@ -12,7 +12,7 @@ import { HandleUserErrorService } from '../user/handle-user-error.service';
 
 @Injectable()
 export class CustomHttpInterceptor implements HttpInterceptor {
-  baseUrl = 'http://localhost:3000';
+  readonly baseUrl = 'http://localhost:3000';
   constructor(private handleError: HandleUserErrorService) {}
 
   intercept(
@@ -22,6 +22,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     let clone = request.clone({
       url: `${this.baseUrl}${request.url}`,
     });
+
     return next.handle(clone).pipe(
       catchError((error: HttpErrorResponse) => {
         this.handleError.handleError(error);

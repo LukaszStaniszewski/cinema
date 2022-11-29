@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { retry } from 'rxjs';
+import { BehaviorSubject, retry } from 'rxjs';
 import { API } from 'src/environments/constants';
 import { Ticket } from '../ticket/ticket.service';
 
 export type Maybe<T> = T | undefined | null;
 
-export interface IUser {
+export interface User {
   id: number;
   name: string;
   role: 'customer' | 'admin';
@@ -15,7 +15,8 @@ export interface IUser {
   wantToSee: [];
 }
 
-export interface Customer extends IUser {}
+export interface Customer extends User {}
+export interface Admin extends User {}
 
 export type Credentials = {};
 
@@ -23,15 +24,19 @@ export type Credentials = {};
   providedIn: 'root',
 })
 export class UserService {
-  currentUser: Maybe<IUser>;
+  currentUser$$ = new BehaviorSubject<Maybe<User>>(null);
+  // currentUser: Maybe<User>;
   constructor(protected http: HttpClient) {}
 
   login() {
-    return this.http.get<IUser>(`${API.LOGIN}`).pipe(retry(2));
+    this.http.get<User>(`${API.LOGIN}`).subscribe((user) => {
+      this.currentUser$$.next(user);
+    });
   }
 
   logout() {
-    this.currentUser = undefined;
+    localStorage.removeItem('currentUser');
+    this.currentUser$$.next(null);
   }
 
   updateCredentials() {}

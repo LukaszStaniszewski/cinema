@@ -4,12 +4,13 @@
   </div>
   <main class="card-main">
     <div>
-      <div class="card-title">Apokawixa</div>
-      <div>Horror | 120 minut | PG-12</div>
-      <span class="card-description"
-        >Lorem ipsum dolor sit amet, alii rebum postea eam ex. Et mei laoreet
-        officiis, summo sensibus id mei.</span
-      >
+      <div class="card-title">{{ movie?.title | titlecase }}</div>
+      <div>
+        {{ movie?.genre | titlecase }} |{{ movie?.length }} minut | PG-{{
+          movie?.pg
+        }}
+      </div>
+      <span class="card-description">{{ movie?.description }}</span>
     </div>
     <div class="card-details">
       <a routerLink="/">Więcej</a>
@@ -21,7 +22,7 @@
     </div>
   </main>
   <div class="card-rating">
-    <p>8 / 10</p>
+    <p>{{ movie?.rating }}/ 10</p>
     <a class="button button--card" routerLink="/">Oceń ten film!</a>
     <a class="button button--card" routerLink="/">Chcę zobaczyć</a>
   </div>

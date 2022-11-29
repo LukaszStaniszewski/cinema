@@ -15,18 +15,23 @@ const HEROES = [
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  isLoading = false;
+  isLoading = true;
 
   constructor(public movies: MovieService) {}
 
   ngOnInit(): void {
-    this.isLoading = true;
+    // this.isLoading = true;
     // this.movies.fetchMovies();
     // this.isLoading = false;
+    // this.movies.fetchMovies();
   }
   ngAfterContentInit() {
     // this.isLoading = true;
     this.movies.fetchMovies();
-    this.isLoading = false;
+  }
+  ngOnChanges() {
+    if (this.movies.movies) {
+      this.isLoading = false;
+    }
   }
 }

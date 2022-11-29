@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie/movie.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Movie, MovieService } from '../movie/movie.service';
+import { Maybe } from '../user/user.service';
 
 @Component({
   selector: 'Card',
@@ -8,17 +9,7 @@ import { MovieService } from '../movie/movie.service';
 })
 export class CardComponent {
   isLoading = false;
+  @Input() movie: Maybe<Movie> = undefined;
 
-  constructor(public movies: MovieService) {}
-
-  // ngOnInit(): void {
-  //   this.isLoading = true;
-  //   // this.movies.fetchMovies();
-  //   // this.isLoading = false;
-  // }
-  // ngAfterContentInit() {
-  //   // this.isLoading = true;
-  //   this.movies.fetchMovies();
-  //   this.isLoading = false;
-  // }
+  constructor() {}
 }
