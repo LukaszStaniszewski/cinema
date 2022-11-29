@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { retry } from 'rxjs';
 import { API } from 'src/environments/constants';
 
@@ -13,9 +14,12 @@ export type IUser = {
 
 export type Credentials = {};
 
-export class User {
+@Injectable({
+  providedIn: 'root',
+})
+export class UserService {
   currentUser: Maybe<IUser>;
-  constructor(private http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
   login() {
     return this.http.get<IUser>(`${API.LOGIN}`).pipe(retry(2));
@@ -24,4 +28,10 @@ export class User {
   logout() {
     this.currentUser = undefined;
   }
+
+  updateCredentials() {}
+
+  addTicketToCart() {}
+
+  submitOrder() {}
 }
