@@ -8,5 +8,10 @@ import { StateService } from 'src/services/state.service';
 })
 export class AppComponent {
   title = 'cinema';
-  constructor() {}
+  constructor(private state: StateService) {}
+
+  // clickedOutside() {
+  //   console.log('click', this.state.toggleNavbarDropdown);
+  //   this.state.toggleNavbarDropdown = false;
+  // }
 }

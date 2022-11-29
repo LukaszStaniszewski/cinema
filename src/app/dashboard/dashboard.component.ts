@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StateService } from 'src/services/state.service';
+import { MovieService } from '../movie/movie.service';
 
 const HEROES = [
   { id: 1, name: 'Superman' },
@@ -12,11 +14,19 @@ const HEROES = [
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
-  heroes: any;
-  constructor() {
-    this.heroes = HEROES;
-  }
+export class DashboardComponent {
+  isLoading = false;
 
-  ngOnInit(): void {}
+  constructor(public movies: MovieService) {}
+
+  ngOnInit(): void {
+    this.isLoading = true;
+    // this.movies.fetchMovies();
+    // this.isLoading = false;
+  }
+  ngAfterContentInit() {
+    // this.isLoading = true;
+    this.movies.fetchMovies();
+    this.isLoading = false;
+  }
 }
