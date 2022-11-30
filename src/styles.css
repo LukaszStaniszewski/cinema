@@ -2,6 +2,9 @@
 :root {
   --color-border: #c9c9c9;
   --color-bg-button: #f0f0f0;
+  --text-m: 1rem;
+  --text-lg: 1.3rem;
+  --text-XL: 1.6rem;
 }
 
 html:focus-within {
