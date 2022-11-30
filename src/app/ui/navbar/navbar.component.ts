@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User, UserService } from 'src/app/user/user.service';
-
+import { Customer } from 'src/app/user/customer';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, retry } from 'rxjs';
 import { API } from 'src/environments/constants';
 import { Ticket } from '../ticket/ticket.service';
+import { Admin } from './admin';
+import { Customer } from './customer';
 
 export type Maybe<T> = T | undefined | null;
 
@@ -10,15 +12,9 @@ export interface User {
   id: number;
   name: string;
   role: 'customer' | 'admin';
-  credentials?: Credentials;
-  tickets: Ticket[];
-  wantToSee: [];
 }
 
-export interface Customer extends User {}
-export interface Admin extends User {}
-
-export type Credentials = {};
+// export interface Admin extends User {}
 
 @Injectable({
   providedIn: 'root',
@@ -35,6 +31,12 @@ export class UserService {
       return;
     }
     this.currentUser$$ = new BehaviorSubject<Maybe<User>>(null);
+
+    if (this.currentUser$$.value?.role === 'admin') {
+      // new Admin(this.currentUser$$);
+    } else {
+      new Customer(this.currentUser$$);
+    }
   }
 
   login() {
@@ -54,9 +56,9 @@ export class UserService {
     return !!this.currentUser$$.value;
   }
 
-  updateCredentials() {}
+  // updateCredentials() {}
 
-  addTicketToCart() {}
+  // addTicketToCart() {}
 
-  submitOrder() {}
+  // submitOrder() {}
 }
