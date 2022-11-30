@@ -13,11 +13,12 @@ export interface ICustomer extends User {
 export type Credentials = {};
 
 export class Customer {
-  customer$$: BehaviorSubject<Maybe<ICustomer>>;
+  test = 'works';
+  // customer$$: BehaviorSubject<Maybe<ICustomer>>;
 
-  constructor(public user: BehaviorSubject<Maybe<ICustomer>>) {
-    this.customer$$ = this.user;
-    this.customer$$.subscribe();
+  constructor() {
+    // this.customer$$ = this.user;
+    // this.customer$$.subscribe();
   }
 
   updateCredentials() {}
