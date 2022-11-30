@@ -11,6 +11,7 @@ export type Movie = {
   description: string;
   rating: number;
   pg: number;
+  screenings: string[];
 };
 
 @Injectable({
@@ -25,11 +26,13 @@ export class MovieService {
     // return this.http.get<Movie[]>(API.MOVIES);
     this.http.get<Movie[] | undefined>(API.MOVIES).subscribe((movies) => {
       this.movies = movies;
+      console.log(movies);
       this.isLoading = false;
     });
   }
 
   addToFavorites() {
-    // post request
+    // if user logged in post request
+    // else add to local storage
   }
 }

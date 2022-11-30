@@ -24,19 +24,34 @@ export type Credentials = {};
   providedIn: 'root',
 })
 export class UserService {
-  currentUser$$ = new BehaviorSubject<Maybe<User>>(null);
+  currentUser$$: BehaviorSubject<Maybe<User>>;
   // currentUser: Maybe<User>;
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) {
+    const logedUser = localStorage.getItem('currentUser');
+    if (logedUser) {
+      this.currentUser$$ = new BehaviorSubject<Maybe<User>>(
+        JSON.parse(logedUser)
+      );
+      return;
+    }
+    this.currentUser$$ = new BehaviorSubject<Maybe<User>>(null);
+  }
 
   login() {
+    if (this.isUserLoggedIn()) return;
     this.http.get<User>(`${API.LOGIN}`).subscribe((user) => {
       this.currentUser$$.next(user);
+      localStorage.setItem('currentUser', JSON.stringify(user));
     });
   }
 
   logout() {
+    if (!this.isUserLoggedIn()) return;
     localStorage.removeItem('currentUser');
     this.currentUser$$.next(null);
+  }
+  private isUserLoggedIn() {
+    return !!this.currentUser$$.value;
   }
 
   updateCredentials() {}

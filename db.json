@@ -12,7 +12,7 @@
       "description": "Lorem ipsum dolor sit amet, alii rebum postea eam ex. Et mei laoreet officiis, summo sensibus id mei.",
       "rating": 8,
       "pg": 18,
-      "hours": ["11:00", "15:00", "20:00"]
+      "screenings": ["11:00", "15:00", "20:00"]
     }
   ]
 }

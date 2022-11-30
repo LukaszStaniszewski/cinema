@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -13,6 +13,7 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
 import { FilmDatesComponent } from './film-dates/film-dates.component';
 import { ClickOutsideDirective } from './ui/directives/clickOutside.directive';
 import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
+import { UserService } from './user/user.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,13 @@ import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
       useClass: CustomHttpInterceptor,
       multi: true,
     },
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useValue: (userService: UserService) => {
+
+    //   },
+    //   deps: [UserService]
+    // }
   ],
   bootstrap: [AppComponent],
 })

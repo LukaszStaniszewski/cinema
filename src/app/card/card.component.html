@@ -16,9 +16,12 @@
       <a routerLink="/">Więcej</a>
     </div>
     <div class="card-hours">
-      <a class="button" routerLink="/">12:00</a>
-      <a class="button" routerLink="/">15:00</a>
-      <a class="button" routerLink="/">18:00</a>
+      <a
+        *ngFor="let screening of this.movie?.screenings"
+        class="button"
+        routerLink="/reservation"
+        >{{ screening }}</a
+      >
     </div>
   </main>
   <div class="card-rating">
