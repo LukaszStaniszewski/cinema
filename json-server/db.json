@@ -1,0 +1,36 @@
+{
+  "user": { "id": 1, "name": "lukasz", "role": "customer" },
+  "movies": [
+    {
+      "id": 1,
+      "title": "apokawixa",
+      "genre": "horror",
+      "length": 120,
+      "description": "Lorem ipsum dolor sit amet, alii rebum postea eam ex. Et mei laoreet officiis, summo sensibus id mei.",
+      "rating": 8,
+      "pg": 18,
+      "screenings": ["11:00", "15:00", "20:00"]
+    },
+    {
+      "id": 2,
+      "title": "apokawixa",
+      "genre": "comedy",
+      "length": 120,
+      "description": "Lorem ipsum dolor sit amet, alii rebum postea eam ex. Et mei laoreet officiis, summo sensibus id mei.",
+      "rating": 8,
+      "pg": 18,
+      "screenings": ["11:00", "15:00", "20:00"]
+    },
+    {
+      "id": 3,
+      "title": "Avatar: Istota Wody",
+      "genre": "Sci-Fi",
+      "length": 190,
+      "description": "Lorem ipsum dolor sit amet, alii rebum postea eam ex. Et mei laoreet officiis, summo sensibus id mei.",
+      "rating": 8,
+      "pg": 18,
+      "screenings": ["11:00", "13:15", "17:30", "20:45"]
+    }
+  ],
+  "tickets": []
+}
