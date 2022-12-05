@@ -1,5 +1,7 @@
 <div class="film-dates">
   <div *ngFor="let date of next7Days">
-    <div class="film-dates__date">{{ date }}</div>
+    <div (click)="redirectToDate(date)" class="film-dates__date">
+      {{ date.slice(0, 5) }}
+    </div>
   </div>
 </div>

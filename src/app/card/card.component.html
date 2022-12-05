@@ -1,27 +1,24 @@
 <section class="card-wrapper">
   <div class="card-image">
-    <img src="assets/popcorn.png" alt="" />
+    <img src="{{ movie?.image }}" alt="movie" />
   </div>
   <main class="card-main">
     <div>
       <div class="card-title">{{ movie?.title | titlecase }}</div>
       <div>
-        {{ movie?.genre | titlecase }} |{{ movie?.length }} minut | PG-{{
+        {{ movie?.genre | titlecase }} |{{ movie?.runTime }} minut | PG-{{
           movie?.pg
         }}
       </div>
-      <span class="card-description">{{ movie?.description }}</span>
+      <span class="card-description">{{ movie?.descriptionShort }}</span>
     </div>
     <div class="card-details">
       <a routerLink="/">Więcej</a>
     </div>
     <div class="card-hours">
-      <a
-        *ngFor="let screening of this.movie?.screenings"
-        class="button"
-        routerLink="/reservation"
-        >{{ screening }}</a
-      >
+      <a class="button" routerLink="/showing/{{ showing?.id }}">{{
+        showing?.date?.time
+      }}</a>
     </div>
   </main>
   <div class="card-rating">

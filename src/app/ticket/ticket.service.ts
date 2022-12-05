@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Maybe } from '../user/user.service';
+import { Maybe, User } from '../user/authentication.service';
 
 export type Ticket = {
   id: number;
@@ -8,6 +8,7 @@ export type Ticket = {
   seat: string;
   date: string;
   movieTitle: string;
+  owner: User['id'];
 };
 
 type TicketType = 'normal' | 'concessionary' | 'family' | 'voucher';
@@ -17,17 +18,17 @@ type TicketType = 'normal' | 'concessionary' | 'family' | 'voucher';
 })
 export class TicketService {
   ticket: Maybe<Ticket>;
-  price: number;
+  price = 0;
 
   constructor() {
     this.price = this.ticket?.price || 0;
   }
 
-  add() {}
-
   delete() {}
 
   update() {}
+
+  addTicketToCart() {}
 
   calculatePrice() {
     switch (this.ticket?.type) {

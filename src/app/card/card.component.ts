@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Movie, MovieService } from '../movie/movie.service';
-import { Maybe } from '../user/user.service';
+import { MovieService, Showing } from '../movie/movie.service';
+import { Maybe } from '../user/authentication.service';
 
 @Component({
   selector: 'Card',
@@ -9,7 +9,15 @@ import { Maybe } from '../user/user.service';
 })
 export class CardComponent {
   isLoading = false;
-  @Input() movie: Maybe<Movie> = undefined;
+  @Input() showing: Maybe<Showing> = undefined;
 
-  constructor() {}
+  get movie() {
+    return this.showing?.movie;
+  }
 }
+
+// interface Showing {
+//   id: string,
+//   date: Date,
+//   time: [{cinemaRoomId: "cinema-room-1", time: "13:00"}, {cinemaRoomId: "cinema-room-2", time: "13:00"}]
+// }

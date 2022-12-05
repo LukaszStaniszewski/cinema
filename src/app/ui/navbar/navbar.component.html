@@ -10,8 +10,8 @@
       class="button button--navbar"
     >
       {{
-        this.user.currentUser$$.value
-          ? this.user.currentUser$$.value.name
+        this.auth.customer$$.value?.customer?.name
+          ? this.auth.customer$$.value?.customer?.name
           : "Zaloguj się"
       }}
       <!-- zaloguj sie -->
