@@ -35,35 +35,3 @@ export class FilmDatesComponent implements OnInit {
     this.showing.fetchShowings(adjustedDate);
   }
 }
-
-//repertoire/12-12-2022 => [{movieid: string, hours: string[]}, {}]
-interface Repertoire {
-  movieId: number;
-  date: Date[]; // day and hour
-}
-[];
-
-interface Showing {
-  id: string;
-  cinemaRoomId: string;
-  date: Date;
-  movie: Movie;
-}
-[];
-
-interface Movie {
-  id: string;
-  title: string;
-  image: string;
-  genre: string;
-  pg: string;
-  descriptionShort: string;
-  descriptionLong: string;
-  descriptionExtra: {
-    actors: string[];
-  };
-  rating: string;
-  votesNumber: number;
-  premiere: boolean;
-  runTime: number;
-}

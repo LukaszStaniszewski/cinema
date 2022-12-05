@@ -8,22 +8,15 @@
 
   <form
     class="purchase-form"
-    [formGroup]="userCredentials"
+    [formGroup]="userCredentialsForm"
     (ngSubmit)="onSubmit()"
   >
     <div class="name-surname-wrapper">
       <div class="purchase-input">
-        <input
-          (ngModelChange)="onChange($event)"
-          placeholder="Imię*"
-          formControlName="name"
-          type="text"
-        />
+        <input placeholder="Imię*" formControlName="name" type="text" />
         <p
           [ngClass]="{
-            hidden:
-              userCredentials.controls.name.pristine ||
-              userCredentials.controls.name.valid
+            hidden: controls.name.pristine || controls.name.valid
           }"
         >
           Imię jest wymagane {{ message }}
@@ -33,9 +26,7 @@
         <input placeholder="Nazwisko*" formControlName="surname" type="text" />
         <p
           [ngClass]="{
-            hidden:
-              userCredentials.controls.surname.pristine ||
-              userCredentials.controls.surname.valid
+            hidden: controls.surname.pristine || controls.surname.valid
           }"
         >
           Nazwisko jest wymagane
@@ -50,9 +41,7 @@
       />
       <p
         [ngClass]="{
-          hidden:
-            userCredentials.controls.phoneNumber.pristine ||
-            userCredentials.controls.phoneNumber.valid
+          hidden: controls.phoneNumber.pristine || controls.phoneNumber.valid
         }"
       >
         Numer telefonu musi składać się z 9 cyfr
@@ -61,16 +50,13 @@
     <div class="purchase-input">
       <input
         class="purchase-input--email"
-        (change)="onChange($event)"
         placeholder="Adres e-mail*"
         formControlName="email"
         type="email"
       />
       <p
         [ngClass]="{
-          hidden:
-            userCredentials.controls.email.pristine ||
-            userCredentials.controls.email.valid
+          hidden: controls.email.pristine || controls.email.valid
         }"
       >
         Wpisz prawidłowy adres email
@@ -83,9 +69,20 @@
         placeholder="Powtórz adres e-mail*"
         formControlName="confirmEmail"
         type="email"
-        (ngModelChange)="onChange($event)"
       />
-      <p
+      <ng-container
+        *ngIf="userCredentialsForm.controls.confirmEmail.errors as errors"
+      >
+        <ng-container *ngIf="userCredentialsForm.controls.confirmEmail.touched">
+          <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+          <p *ngIf="errors['minlength'] as milLength">
+            Podałeś {{ milLength.actualLength }} znaki, minimum to
+            {{ milLength.requiredLength }}
+          </p>
+          <p *ngIf="errors['emailMatch']">Emaile nie są identyczne</p>
+        </ng-container>
+      </ng-container>
+      <!-- <p
         [ngClass]="{
           hidden:
             userCredentials.controls.confirmEmail.pristine ||
@@ -93,12 +90,13 @@
         }"
       >
         {{ errorMessage ? errorMessage : "Wpisz prawidłowy adres email" }}
-      </p>
+      </p> -->
+      {{ controls.confirmEmail.errors | json }}
     </div>
     <button
       class="button button--purchase-form"
-      type="submit"
-      [disabled]="!userCredentials.valid"
+      type="button"
+      [disabled]="!userCredentialsForm.valid"
     >
       Zamawiam!
     </button>

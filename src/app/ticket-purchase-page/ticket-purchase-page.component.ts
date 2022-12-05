@@ -5,6 +5,9 @@ import {
   FormBuilder,
   Validators,
   ValidationErrors,
+  NonNullableFormBuilder,
+  ValidatorFn,
+  AbstractControl,
 } from '@angular/forms';
 
 @Component({
@@ -17,42 +20,56 @@ export class TicketPurchasePageComponent implements OnInit {
   regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
-  userCredentials = this.fb.group({
-    name: ['', Validators.required],
-    surname: ['', Validators.required],
-    phoneNumber: [
-      '',
-      [Validators.max(999999999), Validators.pattern(/[0-9]{9}/g)],
-    ],
-    email: ['', [Validators.required, Validators.pattern(this.regex)]],
-    confirmEmail: ['', [Validators.required, Validators.pattern(this.regex)]],
-  });
+  userCredentialsForm = this.createForm();
+
   message: ValidationErrors | null;
-  constructor(private fb: FormBuilder) {
+  constructor(private builder: NonNullableFormBuilder) {
     this.message = null;
+    this.userCredentialsForm.valueChanges.subscribe(console.log);
   }
 
   ngOnInit(): void {}
 
-  onSubmit() {
-    const { email, confirmEmail } = this.userCredentials.controls;
-    if (email.value !== confirmEmail.value) {
-      this.errorMessage = 'Adresy email nie są jednakowe';
-      return;
-    }
-    // TODO: Use EventEmitter with form value
-    console.warn(this.userCredentials.value);
+  private createForm() {
+    return this.builder.group({
+      name: this.builder.control('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+        ],
+      }),
+      surname: this.builder.control('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+        ],
+      }),
+      phoneNumber: this.builder.control(''),
+      email: this.builder.control('', {
+        validators: [Validators.required, Validators.pattern(this.regex)],
+      }),
+      confirmEmail: this.builder.control('', {
+        validators: [Validators.required, Validators.minLength(5)],
+      }),
+    });
   }
-  onChange(event: Event) {
-    const { email, confirmEmail } = this.userCredentials.controls;
-    if (email.value !== confirmEmail.value) {
-      this.userCredentials.controls.confirmEmail.invalid;
-      this.errorMessage = 'Adresy email nie są jednakowe';
-      return;
-    }
-    console.log('hi', event);
-    //@ts-ignore
-    // this.message = this.userCredentials.controls.name.errors['minLength'];
-    // console.warn(this.userCredentials.controls.name.errors);
+
+  get controls() {
+    return this.userCredentialsForm.controls;
+  }
+
+  private confirmEmailValidator(
+    control: AbstractControl
+  ): ValidationErrors | null {
+    return control.value === this.userCredentialsForm.controls.email
+      ? { emailMatch: true }
+      : null;
+  }
+
+  onSubmit() {
+    this.userCredentialsForm.markAllAsTouched();
+    if (this.userCredentialsForm.invalid) return;
   }
 }

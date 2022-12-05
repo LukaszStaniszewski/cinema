@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Admin } from 'src/app/user/Admin';
-import { Customer } from 'src/app/user/Customer';
 
 import {
   AuthenticationService,

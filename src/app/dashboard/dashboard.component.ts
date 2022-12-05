@@ -37,16 +37,3 @@ export class DashboardComponent {
     }
   }
 }
-
-const repertoire = {
-  '5-12-2022': [
-    {
-      movieId: 'movie-7493-11ed-89ed-499bb1f405dc',
-      hours: ['13:00', '15:00', '18:00'],
-    },
-    {
-      movieId: 'movie-7493-11ed-89ed-499bb1f405dc',
-      hours: ['16:00', '19:00', '21:00'],
-    },
-  ],
-};

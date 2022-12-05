@@ -15,9 +15,3 @@ export class CardComponent {
     return this.showing?.movie;
   }
 }
-
-// interface Showing {
-//   id: string,
-//   date: Date,
-//   time: [{cinemaRoomId: "cinema-room-1", time: "13:00"}, {cinemaRoomId: "cinema-room-2", time: "13:00"}]
-// }
