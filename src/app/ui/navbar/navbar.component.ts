@@ -15,9 +15,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.currentUser$$.subscribe((user) => {
-      if (typeof user?.optional === typeof Customer) {
-        // console.log(user?.optional?.test);
-      }
+      // if (typeof user?.optional === typeof Customer) {
+      //   // console.log(user?.optional?.test);
+      // }
+      // this.user.customer?.customer$$.
     });
     // console.log(this.user.currentUser$$.value?.optional?.test);
   }

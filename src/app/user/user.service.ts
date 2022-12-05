@@ -8,11 +8,10 @@ import { Customer } from './Customer';
 
 export type Maybe<T> = T | undefined | null;
 
-export interface User<T extends Customer | Admin = Customer> {
+export interface User {
   id: number;
   name: string;
   role: 'customer' | 'admin';
-  optional?: T;
 }
 
 // export interface Admin extends User {}
@@ -21,19 +20,19 @@ export interface User<T extends Customer | Admin = Customer> {
   providedIn: 'root',
 })
 export class UserService {
-  currentUser$$: BehaviorSubject<Maybe<User<Customer | Admin>>>;
+  currentUser$$: BehaviorSubject<Maybe<User>>;
   // currentUser: Maybe<User>;
+  customer: Maybe<Customer>;
+  admin: Maybe<Admin>;
   constructor(protected http: HttpClient) {
     const logedUser = localStorage.getItem('currentUser');
     if (logedUser) {
-      this.currentUser$$ = new BehaviorSubject<Maybe<User<Customer | Admin>>>(
+      this.currentUser$$ = new BehaviorSubject<Maybe<User>>(
         JSON.parse(logedUser)
       );
       return;
     }
-    this.currentUser$$ = new BehaviorSubject<Maybe<User<Customer | Admin>>>(
-      null
-    );
+    this.currentUser$$ = new BehaviorSubject<Maybe<User>>(null);
 
     // if (this.currentUser$$.value?.role === 'admin') {
     //   // new Admin(this.currentUser$$);
@@ -49,7 +48,10 @@ export class UserService {
     if (this.isUserLoggedIn()) return;
     this.http.get<User>(`${API.LOGIN}`).subscribe((user) => {
       if (user.role === 'customer') {
-        this.currentUser$$.next({ ...user, optional: new Customer() });
+        // this.currentUser$$.next({ ...user, optional: new Customer() });
+        this.customer = new Customer(user);
+      } else {
+        this.admin = new Admin(user);
       }
       localStorage.setItem('currentUser', JSON.stringify(user));
     });

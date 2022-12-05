@@ -14,9 +14,10 @@ export type Credentials = {};
 
 export class Customer {
   test = 'works';
-  // customer$$: BehaviorSubject<Maybe<ICustomer>>;
+  customer$$: BehaviorSubject<ICustomer>;
 
-  constructor() {
+  constructor(user: ICustomer) {
+    this.customer$$ = new BehaviorSubject(user);
     // this.customer$$ = this.user;
     // this.customer$$.subscribe();
   }
