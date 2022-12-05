@@ -1,7 +1,10 @@
 <section>
   <FilmDates></FilmDates>
-  <div *ngIf="!this.movies.isLoading; else spinner">
-    <Card *ngFor="let movie of this.movies.movies" [movie]="movie"></Card>
+  <div *ngIf="!this.showings.isLoading; else spinner">
+    <Card
+      *ngFor="let showing of this.showings.showings$$.value"
+      [showing]="showing"
+    ></Card>
   </div>
   <ng-template #spinner><h1>...Loading</h1></ng-template>
 </section>

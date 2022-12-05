@@ -2,25 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { Admin } from 'src/app/user/Admin';
 import { Customer } from 'src/app/user/Customer';
 
-import { User, UserService } from 'src/app/user/user.service';
-
+import {
+  AuthenticationService,
+  Maybe,
+} from 'src/app/user/authentication.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   hide = true;
-  constructor(public user: UserService) {}
+  userName: Maybe<string>;
 
-  ngOnInit(): void {
-    this.user.currentUser$$.subscribe((user) => {
-      // if (typeof user?.optional === typeof Customer) {
-      //   // console.log(user?.optional?.test);
-      // }
-      // this.user.customer?.customer$$.
-    });
-    // console.log(this.user.currentUser$$.value?.optional?.test);
+  getUserName = () => null;
+  constructor(public auth: AuthenticationService) {}
+
+  ngOnChange(): void {
+    this.userName = this.auth.customer$$.value?.customer.name;
+    console.log(this.userName);
   }
 
   clickedOutside() {
@@ -28,17 +28,16 @@ export class NavbarComponent implements OnInit {
   }
 
   login() {
-    this.user.login();
-    // console.log(this.user.currentUser$$.value?.optional?.test);
+    this.auth.login();
   }
 
   toggleDropdown() {
-    if (!this.user.currentUser$$) return;
+    if (!this.auth.admin$$ && !this.auth.customer$$) return;
     this.hide = !this.hide;
   }
 
   logout() {
-    this.user.logout();
+    this.auth.logout();
     this.hide = true;
   }
 }

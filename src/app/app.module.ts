@@ -13,7 +13,8 @@ import { ReservationPageComponent } from './reservation-page/reservation-page.co
 import { FilmDatesComponent } from './film-dates/film-dates.component';
 import { ClickOutsideDirective } from './ui/directives/clickOutside.directive';
 import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
-import { UserService } from './user/user.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// import { UserService } from './user/user.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { UserService } from './user/user.service';
     ReservationPageComponent,
     FilmDatesComponent,
     ClickOutsideDirective,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

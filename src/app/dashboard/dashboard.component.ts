@@ -17,7 +17,7 @@ const HEROES = [
 export class DashboardComponent {
   isLoading = true;
 
-  constructor(public movies: MovieService) {}
+  constructor(public showings: MovieService) {}
 
   ngOnInit(): void {
     // this.isLoading = true;
@@ -27,11 +27,26 @@ export class DashboardComponent {
   }
   ngAfterContentInit() {
     // this.isLoading = true;
-    this.movies.fetchMovies();
+    this.showings.fetchShowings('');
   }
   ngOnChanges() {
-    if (this.movies.movies) {
+    if (this.showings.movies) {
+      this.showings.fetchShowings('');
+      console.log(this.showings.movies);
       this.isLoading = false;
     }
   }
 }
+
+const repertoire = {
+  '5-12-2022': [
+    {
+      movieId: 'movie-7493-11ed-89ed-499bb1f405dc',
+      hours: ['13:00', '15:00', '18:00'],
+    },
+    {
+      movieId: 'movie-7493-11ed-89ed-499bb1f405dc',
+      hours: ['16:00', '19:00', '21:00'],
+    },
+  ],
+};

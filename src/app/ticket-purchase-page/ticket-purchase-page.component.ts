@@ -16,6 +16,7 @@ export class TicketPurchasePageComponent implements OnInit {
   errorMessage: string | null = null;
   regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
   userCredentials = this.fb.group({
     name: ['', Validators.required],
     surname: ['', Validators.required],
