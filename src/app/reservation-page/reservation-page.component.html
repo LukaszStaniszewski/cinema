@@ -2,22 +2,14 @@
   <!-- <div class="reservation-page__info">
     <span>19/11/2022, </span>
     <span>godz. {{ params?.time }}</span>
-  </div>
+  </div> -->
   <div class="reservation-page__screen">Ekran</div>
   <div class="screening-room">
-    <div *ngFor="let seat of seatsNum; let i = index; let first = first">
-      <div *ngFor="let row of seatsChar">
-        <div class="seats" *ngIf="first; else numbers">
-          <div class="seat">{{ row }}</div>
-          <div class="seat">{{ seat }}</div>
-        </div>
-        <ng-template #numbers>
-          <div class="seat">{{ seat }}</div>
-        </ng-template>
-      </div>
+    <div *ngFor="let seat of seats">
+      {{ seat.position.row }}
     </div>
   </div>
-
+  <--
   <div class="reservation-page__ticket-details">
     <span>Rrząd E Miejsce 6</span>
     <select class="select-bilet-type" name="" id="">

@@ -7,13 +7,23 @@ import { Maybe } from '../user/authentication.service';
 export interface Showing {
   id: string;
   cinemaRoomId: string;
-  date: {
-    day: 'string';
-    time: 'string';
-  };
-  movie: Movie;
+  movieTitle: string;
+  takenSeats: {
+    position: { column: 'A'; row: 1 };
+    isBusy: boolean;
+  }[];
 }
-[];
+
+export type CinemaRoom = {
+  id: string;
+  seats: Seat[];
+};
+
+export type Seat = {
+  position: { column: string; row: string };
+  isBusy: boolean;
+  status: 'standard' | 'vip';
+};
 
 interface Movie {
   id: string;
@@ -52,12 +62,14 @@ export class MovieService {
   isLoading = true;
   movies: Maybe<Showing[]>;
   movie$$: BehaviorSubject<Maybe<Showing>>;
-  showings$$: BehaviorSubject<Maybe<Showing[]>>;
+  showing$$: BehaviorSubject<Maybe<Showing>>;
   reperoire$$: BehaviorSubject<Maybe<Reperoire[]>>;
+  cinemaRoom$$: BehaviorSubject<Maybe<CinemaRoom>>;
   constructor(private http: HttpClient) {
     this.movie$$ = new BehaviorSubject<Maybe<Showing>>(null);
-    this.showings$$ = new BehaviorSubject<Maybe<Showing[]>>(null);
+    this.showing$$ = new BehaviorSubject<Maybe<Showing>>(null);
     this.reperoire$$ = new BehaviorSubject<Maybe<Reperoire[]>>(null);
+    this.cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
   }
 
   fetchMovies() {
@@ -78,15 +90,32 @@ export class MovieService {
   //     });
   // }
 
-  fetchShowings(id: string | number) {
+  fetchShowing(id: string | number) {
+    // this.http
+    //   .get<Showing | undefined>(`${API.SHOWINGS}/${id}`)
+    //   .subscribe((showing) => {
+    //     this.showing$$.next(showing);
+    //     console.log(showing);
+    //     this.isLoading = false;
+    //   });
+    // combineLatest([
+    //   this.http.get<Maybe<CinemaRoom>>(`${API.CINEMAROOMS}/${id}`),
+    //   this.http.get<Maybe<Showing>>(`${API.SHOWINGS}/${id}`),
+    // ]);
     this.http
-      .get<Showing[] | undefined>(`${API.SHOWINGS}/${id}`)
+      .get<Maybe<Showing>>(`${API.SHOWINGS}/${id}`)
       .subscribe((showing) => {
-        this.showings$$.next(showing);
-        console.log(showing);
-        this.isLoading = false;
+        this.showing$$.next(showing);
+        this.http
+          .get<Maybe<CinemaRoom>>(
+            `${API.CINEMAROOMS}?id=${showing?.cinemaRoomId}`
+          )
+          .subscribe((cinemaRoom) => {
+            this.cinemaRoom$$.next(cinemaRoom);
+          });
       });
   }
+
   fetchReperoire(date: string | number) {
     this.http
       .get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`)
