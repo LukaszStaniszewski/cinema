@@ -5,12 +5,20 @@
   </div> -->
   <div class="reservation-page__screen">Ekran</div>
   <div class="screening-room">
-    <div *ngFor="let seat of seats">
-      {{ seat.position.row }}
+    <div *ngFor="let seatColumns of seats; let first = first">
+      <div *ngFor="let seatRow of seatColumns">
+        <div class="seat" *ngIf="first; else restOfSeats">
+          {{ seatRow.position.column }}
+          {{ seatRow.position.row }}
+        </div>
+        <ng-template #restOfSeats>
+          <div class="seat">{{ seatRow.position.row }}</div>
+        </ng-template>
+      </div>
     </div>
   </div>
-  <--
-  <div class="reservation-page__ticket-details">
+
+  <!-- <div class="reservation-page__ticket-details">
     <span>Rrząd E Miejsce 6</span>
     <select class="select-bilet-type" name="" id="">
       <option value="">bilet normalny</option>
@@ -20,5 +28,5 @@
     </select>
     <span>22 PLN</span>
   </div>
-  <a [routerLink]="['/purchase']">Przejdź do zamówienia</a> -->
+  <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>  -->
 </section>

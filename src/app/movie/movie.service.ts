@@ -16,7 +16,7 @@ export interface Showing {
 
 export type CinemaRoom = {
   id: string;
-  seats: Seat[];
+  seats: Seat[][];
 };
 
 export type Seat = {

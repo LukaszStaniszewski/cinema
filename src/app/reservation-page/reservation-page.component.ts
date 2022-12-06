@@ -19,7 +19,7 @@ export class ReservationPageComponent {
   // seatsNum: typeof seatsCol;
   // seatsChar: typeof seatsRow;
   params: Maybe<ReservationParams>;
-  seats: Maybe<Seat[]>;
+  seats: Maybe<Seat[][]>;
 
   constructor(
     private route: ActivatedRoute,
