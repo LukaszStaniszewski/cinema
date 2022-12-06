@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { StateService } from 'src/services/state.service';
+import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../movie/movie.service';
 
-const HEROES = [
-  { id: 1, name: 'Superman' },
-  { id: 2, name: 'Batman' },
-  { id: 5, name: 'BatGirl' },
-  { id: 3, name: 'Robin' },
-  { id: 4, name: 'Flash' },
-];
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,23 +10,21 @@ const HEROES = [
 export class DashboardComponent {
   isLoading = true;
 
-  constructor(public showings: MovieService) {}
+  constructor(public movie: MovieService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    // this.isLoading = true;
-    // this.movies.fetchMovies();
-    // this.isLoading = false;
-    // this.movies.fetchMovies();
+    this.route.params.subscribe((params) => {
+      if (!params['date']) {
+        return this.showDefaultPage();
+      }
+      const adjustedDate = params['date'].replaceAll('/', '-');
+      this.movie.fetchReperoire(adjustedDate);
+    });
+
+    this.isLoading = false;
   }
-  ngAfterContentInit() {
-    // this.isLoading = true;
-    this.showings.fetchShowings('');
-  }
-  ngOnChanges() {
-    if (this.showings.movies) {
-      this.showings.fetchShowings('');
-      console.log(this.showings.movies);
-      this.isLoading = false;
-    }
+
+  private showDefaultPage() {
+    this.movie.fetchReperoire('06-12-2022');
   }
 }

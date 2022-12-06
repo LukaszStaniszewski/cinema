@@ -16,9 +16,12 @@
       <a routerLink="/">Więcej</a>
     </div>
     <div class="card-hours">
-      <a class="button" routerLink="/showing/{{ showing?.id }}">{{
-        showing?.date?.time
-      }}</a>
+      <a
+        class="button"
+        *ngFor="let hour of hours"
+        routerLink="/showing/{{ hour.showingId }}"
+        >{{ hour.time }}</a
+      >
     </div>
   </main>
   <div class="card-rating">
@@ -27,4 +30,3 @@
     <a class="button button--card" routerLink="/">Chcę zobaczyć</a>
   </div>
 </section>
-``

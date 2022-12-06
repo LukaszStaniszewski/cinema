@@ -28,6 +28,7 @@ const guard: CanActivateChildFn = () => {
 };
 
 const routes: Routes = [
+  { path: ':date', component: DashboardComponent, title: 'Home Page' },
   { path: '', component: DashboardComponent, title: 'Home Page' },
   {
     path: 'purchase',

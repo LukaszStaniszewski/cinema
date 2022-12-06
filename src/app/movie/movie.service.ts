@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, pipe, ReplaySubject } from 'rxjs';
 import { API } from 'src/environments/constants';
 import { Maybe } from '../user/authentication.service';
 
@@ -32,6 +32,19 @@ interface Movie {
   runTime: number;
 }
 
+export type Reperoire = {
+  movie: Movie;
+  // movieId: 'string';
+  day: '06-12-2022';
+  hours: [
+    { time: string; cinemaRoomId: RoomId; showingId: string },
+    { time: string; cinemaRoomId: RoomId; showingId: string },
+    { time: string; cinemaRoomId: RoomId; showingId: string }
+  ];
+};
+
+type RoomId = 'room-a' | 'room-b' | 'room-c';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -40,9 +53,11 @@ export class MovieService {
   movies: Maybe<Showing[]>;
   movie$$: BehaviorSubject<Maybe<Showing>>;
   showings$$: BehaviorSubject<Maybe<Showing[]>>;
+  reperoire$$: BehaviorSubject<Maybe<Reperoire[]>>;
   constructor(private http: HttpClient) {
     this.movie$$ = new BehaviorSubject<Maybe<Showing>>(null);
     this.showings$$ = new BehaviorSubject<Maybe<Showing[]>>(null);
+    this.reperoire$$ = new BehaviorSubject<Maybe<Reperoire[]>>(null);
   }
 
   fetchMovies() {
@@ -70,6 +85,40 @@ export class MovieService {
         this.showings$$.next(showing);
         this.isLoading = false;
       });
+  }
+  fetchReperoire(date: string | number) {
+    this.http
+      .get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`)
+      .subscribe((reporoire) => {
+        this.reperoire$$.next(reporoire);
+        this.isLoading = false;
+      });
+    console.log(this.reperoire$$.value);
+    // this.http
+    //   .get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`)
+    //   .subscribe((reporoires) => {
+    //     if (!reporoires) return;
+    //     for (let reporoire of reporoires) {
+    //       this.http
+    //         .get<Movie | undefined>(`${API.MOVIES}/${reporoire?.movieId}`)
+    //         .pipe(map((movie) => ({ movie, ...reporoire })))
+    //         .subscribe((movie) => {
+    //           this.reperoire$$.next([{ ...movie, ...reporoire }]);
+    //           console.log(movie);
+    //         });
+    //       // this.reperoire$$.closed();
+    //       console.log(this.reperoire$$.subscribe(console.log));
+    //     }
+    //     // this.reperoire$$.next(reporoire);
+    //     this.isLoading = false;
+    //     // console.log(this.reperoire$$.value);
+    //   });
+    // combineLatest([
+    //   this.http.get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`),
+    //   this.http.get<Movie[] | undefined>(`${API.MOVIES}`),
+    // ])
+    //   .pipe(map((event) => ))
+    //   .subscribe();
   }
   addToFavorites() {
     // if user logged in post request

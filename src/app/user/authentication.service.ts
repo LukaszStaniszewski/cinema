@@ -42,8 +42,6 @@ export class AuthenticationService {
       this.isGivenUserLoggedIn(this.admin$$.value)
     )
       return;
-    console.log('login');
-
     this.http.get<User>(`${API.LOGIN}`).subscribe((user) => {
       localStorage.setItem('currentUser', JSON.stringify(user));
       if (user.role === 'customer') {
@@ -60,7 +58,6 @@ export class AuthenticationService {
       !this.isGivenUserLoggedIn(this.admin$$)
     )
       return;
-    console.log('logout');
     localStorage.removeItem('currentUser');
     if (this.customer$$) {
       this.customer$$.next(null);

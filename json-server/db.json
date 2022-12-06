@@ -6,7 +6,44 @@
     "hours": ["13:00", "15:00", "18:00"],
     "day": "06-12-2022"
   },
-
+  "movies": [
+    {
+      "id": "movie-avatar-way-of-water-123",
+      "title": "Avatar: Istota Wody",
+      "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+      "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+      "rating": 8,
+      "votesNumber": 432,
+      "premiere": true,
+      "runTime": 192,
+      "pg": 13,
+      "genre": "Sci-Fi"
+    },
+    {
+      "id": "movie-darkKnight-123",
+      "title": "The Dark Knight",
+      "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+      "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+      "rating": 9,
+      "votesNumber": 132,
+      "premiere": false,
+      "runTime": 140,
+      "pg": 13,
+      "genre": "Action"
+    },
+    {
+      "id": "movie-Dune-134",
+      "title": "Dune",
+      "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+      "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+      "rating": 9,
+      "votesNumber": 260,
+      "premiere": false,
+      "runTime": 155,
+      "pg": 16,
+      "genre": "Action"
+    }
+  ],
   "showings": [
     {
       "id": "showing-7492-11ed-89ed-499bb1f405dc",
@@ -16,7 +53,7 @@
         "time": "13:00"
       },
       "movie": {
-        "id": "movie-7493-11ed-89ed-499bb1f405dc",
+        "id": "movie-avatar-way-of-water-123",
         "title": "Avatar: Istota Wody",
         "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
         "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
@@ -36,7 +73,7 @@
         "time": "15:00"
       },
       "movie": {
-        "id": "movie-7493-11ed-89ed-499bb1f405dc",
+        "id": "movie-darkKnight-123",
         "title": "The Dark Knight",
         "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
         "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
@@ -56,7 +93,7 @@
         "time": "15:00"
       },
       "movie": {
-        "id": "movie-7493-11ed-89ed-499bb1f405dc",
+        "id": "movie-Dune-134",
         "title": "Dune",
         "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
         "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
@@ -67,6 +104,130 @@
         "pg": 16,
         "genre": "Action"
       }
+    }
+  ],
+  "reperoire": [
+    {
+      "movie": {
+        "id": "movie-avatar-way-of-water-123",
+        "title": "Avatar: Istota Wody",
+        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+        "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+        "rating": 8,
+        "votesNumber": 432,
+        "premiere": true,
+        "runTime": 192,
+        "pg": 13,
+        "genre": "Sci-Fi"
+      },
+      "day": "06-12-2022",
+      "hours": [
+        { "time": "15:00", "cinemaRoomId": "room-a", "showingId": "06-15-a" },
+        { "time": "17:00", "cinemaRoomId": "room-a", "showingId": "06-17-a" },
+        { "time": "20:00", "cinemaRoomId": "room-b", "showingId": "06-20-b" }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-darkKnight-123",
+        "title": "The Dark Knight",
+        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "rating": 9,
+        "votesNumber": 132,
+        "premiere": false,
+        "runTime": 140,
+        "pg": 13,
+        "genre": "Action"
+      },
+      "day": "06-12-2022",
+      "hours": [
+        { "time": "15:00", "cinemaRoomId": "room-b", "showingId": "06-15-b" },
+        { "time": "17:00", "cinemaRoomId": "room-c", "showingId": "06-17-c" },
+        { "time": "20:00", "cinemaRoomId": "room-a", "showingId": "06-20-a" }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-Dune-134",
+        "title": "Dune",
+        "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "rating": 9,
+        "votesNumber": 260,
+        "premiere": false,
+        "runTime": 155,
+        "pg": 16,
+        "genre": "Action"
+      },
+      "day": "06-12-2022",
+      "hours": [
+        { "time": "12:00", "cinemaRoomId": "room-a", "showingId": "06-12-a" },
+        { "time": "14:00", "cinemaRoomId": "room-c", "showingId": "06-14-c" },
+        { "time": "17:00", "cinemaRoomId": "room-b", "showingId": "06-17-b" },
+        { "time": "20:00", "cinemaRoomId": "room-c", "showingId": "06-20-c" }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-Dune-134",
+        "title": "Dune",
+        "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "rating": 9,
+        "votesNumber": 260,
+        "premiere": false,
+        "runTime": 155,
+        "pg": 16,
+        "genre": "Action"
+      },
+      "day": "07-12-2022",
+      "hours": [
+        { "time": "15:00", "cinemaRoomId": "room-a", "showingId": "07-15-a" },
+        { "time": "17:00", "cinemaRoomId": "room-a", "showingId": "07-17-a" },
+        { "time": "20:00", "cinemaRoomId": "room-b", "showingId": "07-20-b" }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-darkKnight-123",
+        "title": "The Dark Knight",
+        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "rating": 9,
+        "votesNumber": 132,
+        "premiere": false,
+        "runTime": 140,
+        "pg": 13,
+        "genre": "Action"
+      },
+      "day": "07-12-2022",
+      "hours": [
+        { "time": "15:00", "cinemaRoomId": "room-b", "showingId": "07-15-b" },
+        { "time": "17:00", "cinemaRoomId": "room-c", "showingId": "07-17-c" },
+        { "time": "20:00", "cinemaRoomId": "room-a", "showingId": "07-20-a" }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-avatar-way-of-water-123",
+        "title": "Avatar: Istota Wody",
+        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+        "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+        "rating": 8,
+        "votesNumber": 432,
+        "premiere": true,
+        "runTime": 192,
+        "pg": 13,
+        "genre": "Sci-Fi"
+      },
+      "day": "07-12-2022",
+      "hours": [
+        { "time": "12:00", "cinemaRoomId": "room-a", "showingId": "07-12-a" },
+        { "time": "14:00", "cinemaRoomId": "room-c", "showingId": "07-14-c" },
+        { "time": "17:00", "cinemaRoomId": "room-b", "showingId": "07-17-b" },
+        { "time": "20:00", "cinemaRoomId": "room-c", "showingId": "07-20-c" }
+      ]
     }
   ]
 }

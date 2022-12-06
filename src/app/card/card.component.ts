@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MovieService, Showing } from '../movie/movie.service';
+import { Component, Input } from '@angular/core';
+import { Reperoire } from '../movie/movie.service';
 import { Maybe } from '../user/authentication.service';
 
 @Component({
@@ -9,9 +9,16 @@ import { Maybe } from '../user/authentication.service';
 })
 export class CardComponent {
   isLoading = false;
-  @Input() showing: Maybe<Showing> = undefined;
+  @Input() reperoire: Maybe<Reperoire> = undefined;
+
+  constructor() {
+    console.log(this.reperoire);
+  }
 
   get movie() {
-    return this.showing?.movie;
+    return this.reperoire?.movie;
+  }
+  get hours() {
+    return this.reperoire?.hours;
   }
 }

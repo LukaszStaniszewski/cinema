@@ -1,7 +1,7 @@
 <div class="film-dates">
   <div *ngFor="let date of next7Days">
-    <div (click)="redirectToDate(date)" class="film-dates__date">
+    <a routerLink="/{{ date.replaceAll('/', '-') }}" class="film-dates__date">
       {{ date.slice(0, 5) }}
-    </div>
+    </a>
   </div>
 </div>
