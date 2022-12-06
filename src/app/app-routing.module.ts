@@ -35,11 +35,11 @@ const routes: Routes = [
     component: TicketPurchasePageComponent,
     title: 'Purchase Ticket Page',
   },
-  // {
-  //   path: 'reservation/:id/:time',
-  //   component: ReservationPageComponent,
-  //   title: 'Reservation Page',
-  // },
+  {
+    path: 'reservation/:id',
+    component: ReservationPageComponent,
+    title: 'Reservation Page',
+  },
   { path: '**', component: PageNotFoundComponent, title: 'Page Not Fount' },
 ];
 @NgModule({

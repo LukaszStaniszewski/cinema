@@ -78,11 +78,12 @@ export class MovieService {
   //     });
   // }
 
-  fetchShowings(date: string | number) {
+  fetchShowings(id: string | number) {
     this.http
-      .get<Showing[] | undefined>(`${API.SHOWINGS}?date.day=${date}`)
+      .get<Showing[] | undefined>(`${API.SHOWINGS}/${id}`)
       .subscribe((showing) => {
         this.showings$$.next(showing);
+        console.log(showing);
         this.isLoading = false;
       });
   }

@@ -9,7 +9,6 @@ const seatsRow = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J'];
 
 type ReservationParams = {
   id: string;
-  time: string;
 };
 @Component({
   selector: 'app-reservation-page',
@@ -25,9 +24,6 @@ export class ReservationPageComponent {
     private route: ActivatedRoute,
     private movieService: MovieService
   ) {
-    this.route.params.subscribe((params) => {
-      this.params = params as ReservationParams;
-    });
     // console.log(this.route.snapshot.params['id']);
 
     // console.log(this.route.data);
@@ -41,6 +37,12 @@ export class ReservationPageComponent {
   }
 
   ngOnInit(): void {
+    console.log('hit');
+    this.route.params.subscribe((params) => {
+      this.params = params as ReservationParams;
+      this.movieService.fetchShowings(this.params.id);
+      console.log(params);
+    });
     // if (!this.params) return;
     // this.movieService.fetchMovie(this.params?.id);
   }
