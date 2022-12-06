@@ -28,19 +28,13 @@ const guard: CanActivateChildFn = () => {
 };
 
 const routes: Routes = [
-  { path: ':date', component: DashboardComponent, title: 'Home Page' },
-  { path: '', component: DashboardComponent, title: 'Home Page' },
   {
     path: 'purchase',
     component: TicketPurchasePageComponent,
     title: 'Purchase Ticket Page',
   },
-  {
-    path: 'reservation/:id',
-    component: ReservationPageComponent,
-    title: 'Reservation Page',
-  },
-  { path: '**', component: PageNotFoundComponent, title: 'Page Not Fount' },
+
+  { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' },
 ];
 @NgModule({
   declarations: [],

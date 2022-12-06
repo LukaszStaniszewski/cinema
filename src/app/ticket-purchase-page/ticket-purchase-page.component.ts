@@ -1,15 +1,12 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
   Validators,
   ValidationErrors,
   NonNullableFormBuilder,
-  ValidatorFn,
   AbstractControl,
 } from '@angular/forms';
 
+import { CustomValidators } from '../shared/custom-validators';
 @Component({
   selector: 'app-ticket-purchase-page',
   templateUrl: './ticket-purchase-page.component.html',
@@ -17,15 +14,14 @@ import {
 })
 export class TicketPurchasePageComponent implements OnInit {
   errorMessage: string | null = null;
-  regex =
-    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  // regex =
 
   userCredentialsForm = this.createForm();
 
   message: ValidationErrors | null;
   constructor(private builder: NonNullableFormBuilder) {
     this.message = null;
-    this.userCredentialsForm.valueChanges.subscribe(console.log);
+    console.log(this.userCredentialsForm.errors);
   }
 
   ngOnInit(): void {}
@@ -48,10 +44,16 @@ export class TicketPurchasePageComponent implements OnInit {
       }),
       phoneNumber: this.builder.control(''),
       email: this.builder.control('', {
-        validators: [Validators.required, Validators.pattern(this.regex)],
+        validators: [
+          Validators.required,
+          CustomValidators.emailPatternValidator(),
+        ],
       }),
       confirmEmail: this.builder.control('', {
-        validators: [Validators.required, Validators.minLength(5)],
+        validators: [
+          Validators.required,
+          CustomValidators.emailPatternValidator(),
+        ],
       }),
     });
   }
