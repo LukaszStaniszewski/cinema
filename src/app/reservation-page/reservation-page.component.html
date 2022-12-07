@@ -4,15 +4,25 @@
     <span>godz. {{ params?.time }}</span>
   </div> -->
   <div class="reservation-page__screen">Ekran</div>
-  <div class="screening-room">
+  <div (click)="cinemaRoom($event)" class="screening-room">
     <div *ngFor="let seatColumns of seats; let first = first">
       <div *ngFor="let seatRow of seatColumns">
-        <div class="seat" *ngIf="first; else restOfSeats">
-          {{ seatRow.position.column }}
-          {{ seatRow.position.row }}
+        <div class="testt" *ngIf="first; else restOfSeats">
+          <div class="seat">
+            {{ seatRow.position.row }}
+          </div>
+          <div [ngClass]="{ reservedSeat: seatRow.isBusy }" class="seat">
+            {{ seatRow.position.column }}
+          </div>
         </div>
         <ng-template #restOfSeats>
-          <div class="seat">{{ seatRow.position.row }}</div>
+          <div
+            id="{{ seatRow.position.column + seatRow.position.row }}"
+            class="seat"
+            [ngClass]="{ reservedSeat: seatRow.isBusy }"
+          >
+            {{ seatRow.position.column }}
+          </div>
         </ng-template>
       </div>
     </div>

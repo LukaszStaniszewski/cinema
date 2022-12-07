@@ -237,7 +237,15 @@
       "cinemaRoomId": "room-a",
       "takenSeats": [
         {
-          "position": { "column": "A", "row": "1" },
+          "position": { "row": "E", "column": "6" },
+          "isBusy": true
+        },
+        {
+          "position": { "row": "E", "column": "7" },
+          "isBusy": true
+        },
+        {
+          "position": { "row": "H", "column": "9" },
           "isBusy": true
         }
       ]
@@ -248,188 +256,188 @@
     "seats": [
       [
         {
-          "position": { "column": "A", "row": "1" },
+          "position": { "row": "A", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "1" },
+          "position": { "row": "B", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "1" },
+          "position": { "row": "C", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "1" },
+          "position": { "row": "D", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "1" },
+          "position": { "row": "E", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "1" },
+          "position": { "row": "F", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "1" },
+          "position": { "row": "G", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "1" },
+          "position": { "row": "H", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "1" },
+          "position": { "row": "J", "column": "1" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "2" },
+          "position": { "row": "A", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "2" },
+          "position": { "row": "B", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "2" },
+          "position": { "row": "C", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "2" },
+          "position": { "row": "D", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "1" },
+          "position": { "row": "E", "column": "1" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "2" },
+          "position": { "row": "F", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "2" },
+          "position": { "row": "G", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "2" },
+          "position": { "row": "H", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "3" },
+          "position": { "row": "J", "column": "3" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "3" },
+          "position": { "row": "A", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "3" },
+          "position": { "row": "B", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "3" },
+          "position": { "row": "C", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "3" },
+          "position": { "row": "D", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "3" },
+          "position": { "row": "E", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "3" },
+          "position": { "row": "F", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "3" },
+          "position": { "row": "G", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "3" },
+          "position": { "row": "H", "column": "3" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "3" },
+          "position": { "row": "J", "column": "3" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "4" },
+          "position": { "row": "A", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "4" },
+          "position": { "row": "B", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "4" },
+          "position": { "row": "C", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "4" },
+          "position": { "row": "D", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "4" },
+          "position": { "row": "E", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "4" },
+          "position": { "row": "F", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "4" },
+          "position": { "row": "G", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "4" },
+          "position": { "row": "H", "column": "4" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "4" },
+          "position": { "row": "J", "column": "4" },
           "isBusy": false,
           "status": "standard"
         }
@@ -437,564 +445,564 @@
 
       [
         {
-          "position": { "column": "A", "row": "5" },
+          "position": { "row": "A", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "5" },
+          "position": { "row": "B", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "5" },
+          "position": { "row": "C", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "5" },
+          "position": { "row": "D", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "5" },
+          "position": { "row": "E", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "5" },
+          "position": { "row": "F", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "5" },
+          "position": { "row": "G", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "5" },
+          "position": { "row": "H", "column": "5" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "5" },
-          "isBusy": false,
-          "status": "standard"
-        }
-      ],
-      [
-        {
-          "position": { "column": "A", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "B", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "C", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "D", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "E", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "F", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "G", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "H", "row": "6" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "J", "row": "6" },
+          "position": { "row": "J", "column": "5" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "7" },
+          "position": { "row": "A", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "7" },
+          "position": { "row": "B", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "7" },
+          "position": { "row": "C", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "7" },
+          "position": { "row": "D", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "7" },
+          "position": { "row": "E", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "7" },
+          "position": { "row": "F", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "7" },
+          "position": { "row": "G", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "7" },
+          "position": { "row": "H", "column": "6" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "7" },
-          "isBusy": false,
-          "status": "standard"
-        }
-      ],
-      [
-        {
-          "position": { "column": "A", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "B", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "C", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "D", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "E", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "F", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "G", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "H", "row": "8" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "J", "row": "9" },
+          "position": { "row": "J", "column": "6" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "9" },
+          "position": { "row": "A", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "9" },
+          "position": { "row": "B", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "9" },
+          "position": { "row": "C", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "9" },
+          "position": { "row": "D", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "9" },
+          "position": { "row": "E", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "9" },
+          "position": { "row": "F", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "9" },
+          "position": { "row": "G", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "9" },
+          "position": { "row": "H", "column": "7" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "9" },
-          "isBusy": false,
-          "status": "standard"
-        }
-      ],
-      [
-        {
-          "position": { "column": "A", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "B", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "C", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "D", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "E", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "F", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "G", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "H", "row": "10" },
-          "isBusy": false,
-          "status": "standard"
-        },
-        {
-          "position": { "column": "J", "row": "10" },
+          "position": { "row": "J", "column": "7" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "11" },
+          "position": { "row": "A", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "11" },
+          "position": { "row": "B", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "11" },
+          "position": { "row": "C", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "11" },
+          "position": { "row": "D", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "11" },
+          "position": { "row": "E", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "11" },
+          "position": { "row": "F", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "11" },
+          "position": { "row": "G", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "11" },
+          "position": { "row": "H", "column": "8" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "11" },
+          "position": { "row": "J", "column": "9" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "12" },
+          "position": { "row": "A", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "12" },
+          "position": { "row": "B", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "12" },
+          "position": { "row": "C", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "12" },
+          "position": { "row": "D", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "12" },
+          "position": { "row": "E", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "12" },
+          "position": { "row": "F", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "12" },
+          "position": { "row": "G", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "12" },
+          "position": { "row": "H", "column": "9" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "12" },
+          "position": { "row": "J", "column": "9" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "13" },
+          "position": { "row": "A", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "13" },
+          "position": { "row": "B", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "13" },
+          "position": { "row": "C", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "13" },
+          "position": { "row": "D", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "13" },
+          "position": { "row": "E", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "13" },
+          "position": { "row": "F", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "13" },
+          "position": { "row": "G", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "13" },
+          "position": { "row": "H", "column": "10" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "13" },
+          "position": { "row": "J", "column": "10" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "14" },
+          "position": { "row": "A", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "14" },
+          "position": { "row": "B", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "14" },
+          "position": { "row": "C", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "14" },
+          "position": { "row": "D", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "14" },
+          "position": { "row": "E", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "14" },
+          "position": { "row": "F", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "14" },
+          "position": { "row": "G", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "14" },
+          "position": { "row": "H", "column": "11" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "14" },
+          "position": { "row": "J", "column": "11" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "15" },
+          "position": { "row": "A", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "15" },
+          "position": { "row": "B", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "15" },
+          "position": { "row": "C", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "15" },
+          "position": { "row": "D", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "15" },
+          "position": { "row": "E", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "15" },
+          "position": { "row": "F", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "15" },
+          "position": { "row": "G", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "15" },
+          "position": { "row": "H", "column": "12" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "15" },
+          "position": { "row": "J", "column": "12" },
           "isBusy": false,
           "status": "standard"
         }
       ],
       [
         {
-          "position": { "column": "A", "row": "16" },
+          "position": { "row": "A", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "B", "row": "16" },
+          "position": { "row": "B", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "C", "row": "16" },
+          "position": { "row": "C", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "D", "row": "16" },
+          "position": { "row": "D", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "E", "row": "16" },
+          "position": { "row": "E", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "F", "row": "16" },
+          "position": { "row": "F", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "G", "row": "16" },
+          "position": { "row": "G", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "H", "row": "16" },
+          "position": { "row": "H", "column": "13" },
           "isBusy": false,
           "status": "standard"
         },
         {
-          "position": { "column": "J", "row": "16" },
+          "position": { "row": "J", "column": "13" },
+          "isBusy": false,
+          "status": "standard"
+        }
+      ],
+      [
+        {
+          "position": { "row": "A", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "B", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "C", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "D", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "E", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "F", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "G", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "H", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "J", "column": "14" },
+          "isBusy": false,
+          "status": "standard"
+        }
+      ],
+      [
+        {
+          "position": { "row": "A", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "B", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "C", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "D", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "E", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "F", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "G", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "H", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "J", "column": "15" },
+          "isBusy": false,
+          "status": "standard"
+        }
+      ],
+      [
+        {
+          "position": { "row": "A", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "B", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "C", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "D", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "E", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "F", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "G", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "H", "column": "16" },
+          "isBusy": false,
+          "status": "standard"
+        },
+        {
+          "position": { "row": "J", "column": "16" },
           "isBusy": false,
           "status": "standard"
         }

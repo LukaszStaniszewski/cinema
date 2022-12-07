@@ -62,14 +62,6 @@ export class TicketPurchasePageComponent implements OnInit {
     return this.userCredentialsForm.controls;
   }
 
-  private confirmEmailValidator(
-    control: AbstractControl
-  ): ValidationErrors | null {
-    return control.value === this.userCredentialsForm.controls.email
-      ? { emailMatch: true }
-      : null;
-  }
-
   onSubmit() {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;

@@ -8,10 +8,7 @@ export interface Showing {
   id: string;
   cinemaRoomId: string;
   movieTitle: string;
-  takenSeats: {
-    position: { column: 'A'; row: 1 };
-    isBusy: boolean;
-  }[];
+  takenSeats: Seat[];
 }
 
 export type CinemaRoom = {
@@ -111,9 +108,43 @@ export class MovieService {
             `${API.CINEMAROOMS}?id=${showing?.cinemaRoomId}`
           )
           .subscribe((cinemaRoom) => {
-            this.cinemaRoom$$.next(cinemaRoom);
+            const updatedCinemaRoom = this.updateCinemaRoom(
+              cinemaRoom,
+              showing?.takenSeats
+            );
+            // console.log(updatedCinemaRoom);
+            if (updatedCinemaRoom) {
+              this.cinemaRoom$$.next(updatedCinemaRoom);
+            } else {
+              this.cinemaRoom$$.next(cinemaRoom);
+            }
           });
       });
+  }
+  private updateCinemaRoom(
+    cinemaRoom: Maybe<CinemaRoom>,
+    seatsToUpdate: Maybe<Seat[]>
+  ) {
+    if (!cinemaRoom || !seatsToUpdate) return;
+    const takenSeats = seatsToUpdate;
+    let updatedCinemaRoom = cinemaRoom;
+
+    for (let row = 0; row < cinemaRoom.seats.length; row++) {
+      for (let column = 0; column < cinemaRoom.seats[row].length; column++) {
+        console.log(takenSeats[row]);
+        if (
+          cinemaRoom.seats[row][column].position.row ===
+            takenSeats[row]?.position.row &&
+          cinemaRoom.seats[row][column].position.column ===
+            takenSeats[row]?.position.column
+        ) {
+          console.log('hit', updatedCinemaRoom.seats[row][column]);
+          updatedCinemaRoom.seats[row][column] = takenSeats[row];
+        }
+      }
+    }
+
+    return updatedCinemaRoom;
   }
 
   fetchReperoire(date: string | number) {
@@ -123,7 +154,7 @@ export class MovieService {
         this.reperoire$$.next(reporoire);
         this.isLoading = false;
       });
-    console.log(this.reperoire$$.value);
+    // console.log(this.reperoire$$.value);
     // this.http
     //   .get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`)
     //   .subscribe((reporoires) => {

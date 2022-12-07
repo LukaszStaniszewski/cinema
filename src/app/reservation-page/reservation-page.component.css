@@ -44,3 +44,11 @@
 .reservation-page__ticket-details .select-bilet-type {
   margin: 0rem 3rem;
 }
+
+.testt {
+  display: flex;
+}
+
+.reservedSeat {
+  background-color: grey;
+}

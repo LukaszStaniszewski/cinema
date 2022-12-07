@@ -7,10 +7,19 @@ export class CustomValidators {
 
   static emailPatternValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      if (this.regex.test(control.value)) {
+      if (this.regPattern.test(control.value)) {
         return null;
       }
       return { emailValidation: 'Incorect Email;' };
+    };
+  }
+  static emailMatcherValidator() {
+    return (control: AbstractControl): ValidationErrors | null => {
+      console.log('control', control);
+      if (this.regPattern.test(control.value)) {
+        return null;
+      }
+      return { emailValidation: 'ssss;' };
     };
   }
 }

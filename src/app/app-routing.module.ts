@@ -33,6 +33,11 @@ const routes: Routes = [
     component: TicketPurchasePageComponent,
     title: 'Purchase Ticket Page',
   },
+  {
+    path: 'reservation/:id',
+    component: ReservationPageComponent,
+    title: 'Reservation Page',
+  },
 
   { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' },
 ];
