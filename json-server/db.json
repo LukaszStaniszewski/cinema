@@ -323,7 +323,7 @@
           "status": "standard"
         },
         {
-          "position": { "row": "E", "column": "1" },
+          "position": { "row": "E", "column": "2" },
           "isBusy": false,
           "status": "standard"
         },
@@ -343,7 +343,7 @@
           "status": "standard"
         },
         {
-          "position": { "row": "J", "column": "3" },
+          "position": { "row": "J", "column": "2" },
           "isBusy": false,
           "status": "standard"
         }
@@ -626,7 +626,7 @@
           "status": "standard"
         },
         {
-          "position": { "row": "J", "column": "9" },
+          "position": { "row": "J", "column": "8" },
           "isBusy": false,
           "status": "standard"
         }

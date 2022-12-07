@@ -121,6 +121,7 @@ export class MovieService {
           });
       });
   }
+
   private updateCinemaRoom(
     cinemaRoom: Maybe<CinemaRoom>,
     seatsToUpdate: Maybe<Seat[]>
@@ -129,20 +130,23 @@ export class MovieService {
     const takenSeats = seatsToUpdate;
     let updatedCinemaRoom = cinemaRoom;
 
-    for (let row = 0; row < cinemaRoom.seats.length; row++) {
-      for (let column = 0; column < cinemaRoom.seats[row].length; column++) {
-        console.log(takenSeats[row]);
+    cinemaRoom.seats.map((column) => {
+      column.forEach((row, rowIndex, array) => {
         if (
-          cinemaRoom.seats[row][column].position.row ===
-            takenSeats[row]?.position.row &&
-          cinemaRoom.seats[row][column].position.column ===
-            takenSeats[row]?.position.column
+          takenSeats.find(
+            (seat) =>
+              seat?.position?.column === row?.position?.column &&
+              seat?.position?.row === row?.position?.row
+          )
         ) {
-          console.log('hit', updatedCinemaRoom.seats[row][column]);
-          updatedCinemaRoom.seats[row][column] = takenSeats[row];
+          array[rowIndex] = takenSeats.find(
+            (seat) =>
+              seat.position?.column === row.position?.column &&
+              seat.position?.row === row.position?.row
+          ) as Seat;
         }
-      }
-    }
+      });
+    });
 
     return updatedCinemaRoom;
   }
