@@ -14,6 +14,7 @@ import { FilmDatesComponent } from './film-dates/film-dates.component';
 import { ClickOutsideDirective } from './ui/directives/clickOutside.directive';
 import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CinemaRoomComponent } from './cinema-room/cinema-room.component';
 // import { UserService } from './user/user.service';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FilmDatesComponent,
     ClickOutsideDirective,
     PageNotFoundComponent,
+    CinemaRoomComponent,
   ],
   imports: [
     BrowserModule,

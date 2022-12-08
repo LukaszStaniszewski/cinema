@@ -1,0 +1,24 @@
+<div class="screening-room">
+  <div *ngFor="let seatColumns of seats; let first = first">
+    <div *ngFor="let seat of seatColumns">
+      <div class="testt" *ngIf="first; else restOfSeats">
+        <div class="seat">
+          {{ seat.position.row }}
+        </div>
+        <div [ngClass]="{ reservedSeat: seat.isBusy }" class="seat">
+          {{ seat.position.column }}
+        </div>
+      </div>
+      <ng-template #restOfSeats>
+        <div
+          (click)="setSeat(seat)"
+          id="{{ seat.position.column + seat.position.row }}"
+          class="seat"
+          [ngClass]="{ reservedSeat: seat.isBusy }"
+        >
+          {{ seat.position.column }}
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

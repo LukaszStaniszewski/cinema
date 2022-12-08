@@ -61,14 +61,16 @@ export class MovieService {
   movie$$: BehaviorSubject<Maybe<Showing>>;
   showing$$: BehaviorSubject<Maybe<Showing>>;
   reperoire$$: BehaviorSubject<Maybe<Reperoire[]>>;
-  cinemaRoom$$: BehaviorSubject<Maybe<CinemaRoom>>;
+  private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
   constructor(private http: HttpClient) {
     this.movie$$ = new BehaviorSubject<Maybe<Showing>>(null);
     this.showing$$ = new BehaviorSubject<Maybe<Showing>>(null);
     this.reperoire$$ = new BehaviorSubject<Maybe<Reperoire[]>>(null);
-    this.cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
   }
 
+  get cinemaRoom$() {
+    return this.cinemaRoom$$.asObservable();
+  }
   fetchMovies() {
     // return this.http.get<Movie[]>(API.MOVIES);
     this.http.get<Showing[] | undefined>(API.SHOWINGS).subscribe((movies) => {
@@ -77,15 +79,6 @@ export class MovieService {
       this.isLoading = false;
     });
   }
-
-  // fetchMovie(id: string | number) {
-  //   this.http
-  //     .get<Movie | undefined>(`${API.SHOWINGS}/${id}`)
-  //     .subscribe((movie) => {
-  //       this.movie$$.next(movie);
-  //       this.isLoading = false;
-  //     });
-  // }
 
   fetchShowing(id: string | number) {
     // this.http
@@ -108,7 +101,8 @@ export class MovieService {
             `${API.CINEMAROOMS}?id=${showing?.cinemaRoomId}`
           )
           .subscribe((cinemaRoom) => {
-            const updatedCinemaRoom = this.updateCinemaRoom(
+            if (!cinemaRoom || !showing) return;
+            const updatedCinemaRoom = this.mapCinemaRoomSeats(
               cinemaRoom,
               showing?.takenSeats
             );
@@ -122,11 +116,15 @@ export class MovieService {
       });
   }
 
-  private updateCinemaRoom(
-    cinemaRoom: Maybe<CinemaRoom>,
-    seatsToUpdate: Maybe<Seat[]>
-  ) {
-    if (!cinemaRoom || !seatsToUpdate) return;
+  updateSeats(seatsToUpdate: Seat) {
+    const adjustSeat = [{ ...seatsToUpdate, isBusy: true }];
+    const cinemaRoom = this.cinemaRoom$$.value;
+    if (!cinemaRoom) return;
+    const updatedCinemaRoom = this.mapCinemaRoomSeats(cinemaRoom, adjustSeat);
+    this.cinemaRoom$$.next(updatedCinemaRoom);
+  }
+
+  private mapCinemaRoomSeats(cinemaRoom: CinemaRoom, seatsToUpdate: Seat[]) {
     const takenSeats = seatsToUpdate;
     let updatedCinemaRoom = cinemaRoom;
 

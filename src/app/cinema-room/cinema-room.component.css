@@ -1,23 +1,21 @@
-.reservation-page {
+.screening-room {
+  /* width: 100vw; */
   display: flex;
-  flex-direction: column;
   /* justify-content: center; */
-  align-items: center;
+  /* margin-top: 1rem; */
 }
 
-.reservation-page__screen {
-  border-top: 1px solid var(--color-border);
-  width: 35%;
+.seat {
+  /* padding: 0.2rem 0.4rem; */
+  width: 32px;
   text-align: center;
-  padding: 0.5rem 0 1rem 0;
-  /* margin-top: 2rem; */
+  background-color: var(--color-bg-button);
+  border: 1px solid var(--color-border);
 }
 
-.reservation-page__info {
-  font-size: var(--text-lg);
-  padding: 1.5rem 0;
+.seats {
+  display: flex;
 }
-
 .screening-room {
   /* width: 100vw; */
   display: flex;
@@ -37,12 +35,8 @@
   display: flex;
 }
 
-.reservation-page__ticket-details {
-  margin: 1rem 0;
-}
-
-.reservation-page__ticket-details .select-bilet-type {
-  margin: 0rem 3rem;
+.testt {
+  display: flex;
 }
 
 .reservedSeat {
