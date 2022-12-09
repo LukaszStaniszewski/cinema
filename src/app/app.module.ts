@@ -15,6 +15,7 @@ import { ClickOutsideDirective } from './ui/directives/clickOutside.directive';
 import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CinemaRoomComponent } from './cinema-room/cinema-room.component';
+import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 // import { UserService } from './user/user.service';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CinemaRoomComponent } from './cinema-room/cinema-room.component';
     ClickOutsideDirective,
     PageNotFoundComponent,
     CinemaRoomComponent,
+    TicketDetailsComponent,
   ],
   imports: [
     BrowserModule,

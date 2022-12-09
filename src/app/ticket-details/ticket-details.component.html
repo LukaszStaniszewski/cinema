@@ -1,0 +1,17 @@
+<section class="ticket-details">
+  <ng-template ngIf="seats">
+    <span *ngFor="let seat of seats">{{ seat }}</span>
+  </ng-template>
+  <select
+    #biletInfo
+    (change)="selected(biletInfo.value)"
+    class="select-bilet-type"
+    name=""
+    id=""
+  >
+    <option *ngFor="let ticketInfo of ticketsInfo" value="{{ ticketInfo }}">
+      {{ ticketInfo.type }}
+    </option>
+  </select>
+  <span>22 PLN</span>
+</section>

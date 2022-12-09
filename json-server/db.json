@@ -6,6 +6,11 @@
     "hours": ["13:00", "15:00", "18:00"],
     "day": "06-12-2022"
   },
+  "ticketInfo": [
+    { "type": "normal", "price": 20 },
+    { "type": "concessionary", "price": 12 },
+    { "type": "family", "price": 16 }
+  ],
   "movies": [
     {
       "id": "movie-avatar-way-of-water-123",
@@ -44,68 +49,7 @@
       "genre": "Action"
     }
   ],
-  "showings2": [
-    {
-      "id": "showing-7492-11ed-89ed-499bb1f405dc",
-      "cinemaRoomId": "cinema-room-1",
-      "date": {
-        "day": "06-12-2022",
-        "time": "13:00"
-      },
-      "movie": {
-        "id": "movie-avatar-way-of-water-123",
-        "title": "Avatar: Istota Wody",
-        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-        "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
-        "rating": 8,
-        "votesNumber": 432,
-        "premiere": true,
-        "runTime": 192,
-        "pg": 13,
-        "genre": "Sci-Fi"
-      }
-    },
-    {
-      "id": "showing-4354-89kl-89ed-499bb1f405dc",
-      "cinemaRoomId": "cinema-room-2",
-      "date": {
-        "day": "06-12-2022",
-        "time": "15:00"
-      },
-      "movie": {
-        "id": "movie-darkKnight-123",
-        "title": "The Dark Knight",
-        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
-        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
-        "rating": 9,
-        "votesNumber": 132,
-        "premiere": false,
-        "runTime": 140,
-        "pg": 13,
-        "genre": "Action"
-      }
-    },
-    {
-      "id": "showing-4354-89kl-89ed-dfdsfds6767",
-      "cinemaRoomId": "cinema-room-2",
-      "date": {
-        "day": "05-12-2022",
-        "time": "15:00"
-      },
-      "movie": {
-        "id": "movie-Dune-134",
-        "title": "Dune",
-        "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
-        "rating": 9,
-        "votesNumber": 260,
-        "premiere": false,
-        "runTime": 155,
-        "pg": 16,
-        "genre": "Action"
-      }
-    }
-  ],
+
   "reperoire": [
     {
       "movie": {

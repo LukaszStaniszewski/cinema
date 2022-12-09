@@ -6,4 +6,5 @@ export enum API {
   REPEROIRE = '/api/reperoire',
   MOVIES = '/api/movies',
   CINEMAROOMS = '/api/cinemarooms',
+  TICKET_INFO = '/api/ticketInfo',
 }

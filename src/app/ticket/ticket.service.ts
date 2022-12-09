@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { API } from 'src/environments/constants';
 import { Maybe, User } from '../user/authentication.service';
 
 export type Ticket = {
@@ -11,17 +14,24 @@ export type Ticket = {
   owner: User['id'];
 };
 
+export type TicketInfo = {
+  type: string;
+  price: number;
+};
+
 type TicketType = 'normal' | 'concessionary' | 'family' | 'voucher';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
-  ticket: Maybe<Ticket>;
+  private ticket$$ = new BehaviorSubject<TicketInfo[]>([]);
   price = 0;
 
-  constructor() {
-    this.price = this.ticket?.price || 0;
+  constructor(private http: HttpClient) {}
+
+  get ticketInfo$() {
+    return this.ticket$$.asObservable();
   }
 
   delete() {}
@@ -30,24 +40,30 @@ export class TicketService {
 
   addTicketToCart() {}
 
-  calculatePrice() {
-    switch (this.ticket?.type) {
-      case 'concessionary':
-        return this.concessionaryTicket(this.price);
-      case 'family':
-        return this.familyTicket(this.price);
-      default:
-        return this.price;
-    }
+  getTicketInfo() {
+    this.http.get<TicketInfo[]>(API.TICKET_INFO).subscribe((ticketInfo) => {
+      this.ticket$$.next(ticketInfo);
+    });
   }
 
-  private concessionaryTicket(price: number) {
-    return price / 2;
-  }
-  private familyTicket(price: number) {
-    return price / 1.5;
-  }
-  private voucher(price: number) {
-    return price;
-  }
+  // calculatePrice() {
+  //   switch (this.ticket?.type) {
+  //     case 'concessionary':
+  //       return this.concessionaryTicket(this.price);
+  //     case 'family':
+  //       return this.familyTicket(this.price);
+  //     default:
+  //       return this.price;
+  //   }
+  // }
+
+  // private concessionaryTicket(price: number) {
+  //   return price / 2;
+  // }
+  // private familyTicket(price: number) {
+  //   return price / 1.5;
+  // }
+  // private voucher(price: number) {
+  //   return price;
+  // }
 }
