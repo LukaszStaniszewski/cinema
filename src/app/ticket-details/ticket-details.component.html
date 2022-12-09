@@ -2,9 +2,26 @@
   <ng-template ngIf="seats">
     <span *ngFor="let seat of seats">{{ seat }}</span>
   </ng-template>
-  <select
+  <!-- <div>
+    {{ ticketsInfo[0].type }}
+    <div *ngFor="let ticketInfo of ticketsInfo">{{ ticketInfo.type }}</div>
+  </div> -->
+  <div class="dropdown">
+    <div class="display">{{ ticketType }}</div>
+    <div [class.hidden]="hide" class="options-wrapper">
+      <div
+        class="dropdown__option"
+        (click)="getSelectedTicketValues(ticketInfo)"
+        *ngFor="let ticketInfo of ticketsInfo"
+      >
+        {{ ticketInfo.type }}
+      </div>
+    </div>
+  </div>
+  <div>{{ price }}</div>
+  <!-- <select
     #biletInfo
-    (change)="selected(biletInfo.value)"
+    (select)="selected(biletInfo)"
     class="select-bilet-type"
     name=""
     id=""
@@ -12,6 +29,6 @@
     <option *ngFor="let ticketInfo of ticketsInfo" value="{{ ticketInfo }}">
       {{ ticketInfo.type }}
     </option>
-  </select>
-  <span>22 PLN</span>
+  </select> -->
+  <!-- <span>{{ price }}</span> -->
 </section>

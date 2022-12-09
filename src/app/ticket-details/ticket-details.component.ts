@@ -10,6 +10,9 @@ import { Maybe } from '../user/authentication.service';
 })
 export class TicketDetailsComponent implements OnInit {
   ticketsInfo!: TicketInfo[];
+  hide = true;
+  ticketType!: string;
+  price!: number;
   @Input() seats: Maybe<Seat[]>;
 
   constructor(private ticketService: TicketService) {}
@@ -17,16 +20,21 @@ export class TicketDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.ticketService.getTicketInfo();
     this.ticketService.ticketInfo$.subscribe((ticketInfo) => {
-      // this.biletTypes = ticketInfo.map(info => info.type)
       this.ticketsInfo = ticketInfo;
+      if (!ticketInfo[0]) return;
+      this.mapDefaultValues(ticketInfo);
     });
   }
 
-  selected(biletInfo: any) {
-    console.log(biletInfo);
+  private mapDefaultValues(ticket: TicketInfo[]) {
+    const { price, type } = ticket[0];
+    this.price = price;
+    this.ticketType = type;
   }
-  // mapTicketData(ticketInfo: TicketInfo[]) {
-  //   const type = ticketInfo.map(info => info.type)
-  //   const currentPrice = ticketInfo.filter(info => info.price === )
-  // }
+
+  getSelectedTicketValues(biletInfo: TicketInfo) {
+    if (biletInfo.type === this.ticketType) return;
+    this.price = biletInfo.price;
+    this.ticketType = biletInfo.type;
+  }
 }
