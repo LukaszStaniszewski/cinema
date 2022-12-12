@@ -8,3 +8,7 @@ export enum API {
   CINEMAROOMS = '/api/cinemarooms',
   TICKET_INFO = '/api/ticketInfo',
 }
+
+export enum SET_UP {
+  MAX_TICKETS_AMOUT_PER_USER = 10,
+}

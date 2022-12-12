@@ -14,7 +14,7 @@ type ReservationParams = {
 export class ReservationPageComponent {
   params: Maybe<ReservationParams>;
   seats: Maybe<Seat[][]>;
-
+  selectedSeat: Maybe<Seat>;
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService
@@ -28,6 +28,7 @@ export class ReservationPageComponent {
     return this.movieService.movie$$.value;
   }
   updateCinemaRoom(seat: Seat) {
+    this.selectedSeat = seat;
     this.movieService.updateSeats(seat);
   }
   // ngOnDestroy() {

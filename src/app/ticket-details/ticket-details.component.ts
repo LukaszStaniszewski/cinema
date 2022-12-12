@@ -13,11 +13,16 @@ export class TicketDetailsComponent implements OnInit {
   hide = true;
   ticketType!: string;
   price!: number;
-  @Input() seats: Maybe<Seat[]>;
+  @Input() selectedSeat: Maybe<Seat>;
 
   constructor(private ticketService: TicketService) {}
 
+  get seatPosition() {
+    return this.selectedSeat?.position;
+  }
+
   ngOnInit(): void {
+    console.log(this.seatPosition);
     this.ticketService.getTicketInfo();
     this.ticketService.ticketInfo$.subscribe((ticketInfo) => {
       this.ticketsInfo = ticketInfo;

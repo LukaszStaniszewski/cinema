@@ -11,7 +11,7 @@
       </div>
       <ng-template #restOfSeats>
         <div
-          (click)="setSeat(seat)"
+          (click)="setSelectedSeat(seat)"
           id="{{ seat.position.column + seat.position.row }}"
           class="seat"
           [ngClass]="{ reservedSeat: seat.isBusy }"

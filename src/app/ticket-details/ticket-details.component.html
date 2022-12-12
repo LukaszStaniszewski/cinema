@@ -1,9 +1,13 @@
 <section class="ticket-details">
-  <ng-template ngIf="seats">
+  <!-- <ng-template ngIf="seats">
     <span *ngFor="let seat of seats">{{ seat }}</span>
-  </ng-template>
+  </ng-template> -->
+  <div *ngIf="seatPosition" else emptySpace>
+    Rząd: {{ seatPosition.row }} Miejsce: {{ seatPosition.column }}
+  </div>
+  <ng-template #emptySpace><p>works</p></ng-template>
   <!-- <div>
-    {{ ticketsInfo[0].type }}
+    {{ ticketsInfo[0].type }
     <div *ngFor="let ticketInfo of ticketsInfo">{{ ticketInfo.type }}</div>
   </div> -->
   <div class="dropdown">

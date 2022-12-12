@@ -12,7 +12,7 @@ export class CinemaRoomComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  setSeat(seat: Seat) {
+  setSelectedSeat(seat: Seat) {
     this.seatToUpdate.emit(seat);
   }
 }
