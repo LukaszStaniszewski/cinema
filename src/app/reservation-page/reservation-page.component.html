@@ -5,7 +5,7 @@
   </div> -->
   <div class="reservation-page__screen">Ekran</div>
   <app-cinema-room
-    (seatToUpdate)="updateCinemaRoom($event)"
+    (seatToUpdate)="reserveSeat($event)"
     *ngIf="seats; else Spinner"
     [seats]="seats"
   ></app-cinema-room>
@@ -22,6 +22,9 @@
     <span>22 PLN</span>
   </div>
  -->
-  <app-ticket-details></app-ticket-details>
+  <div>
+    <!-- <app-ticket-details></app-ticket-details> -->
+    <app-ticket-details2></app-ticket-details2>
+  </div>
   <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>
 </section>

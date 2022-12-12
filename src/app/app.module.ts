@@ -16,6 +16,7 @@ import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CinemaRoomComponent } from './cinema-room/cinema-room.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
+import { TicketDetails2Component } from './ticket-details2/ticket-details2.component';
 // import { UserService } from './user/user.service';
 
 @NgModule({
@@ -31,6 +32,7 @@ import { TicketDetailsComponent } from './ticket-details/ticket-details.componen
     PageNotFoundComponent,
     CinemaRoomComponent,
     TicketDetailsComponent,
+    TicketDetails2Component,
   ],
   imports: [
     BrowserModule,

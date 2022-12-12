@@ -6,6 +6,7 @@
     {{ ticketsInfo[0].type }}
     <div *ngFor="let ticketInfo of ticketsInfo">{{ ticketInfo.type }}</div>
   </div> -->
+
   <div class="dropdown">
     <div class="display">{{ ticketType }}</div>
     <div [class.hidden]="hide" class="options-wrapper">

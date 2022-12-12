@@ -34,6 +34,7 @@ export class TicketDetailsComponent implements OnInit {
 
   getSelectedTicketValues(biletInfo: TicketInfo) {
     if (biletInfo.type === this.ticketType) return;
+    // this.ticketsInfo.push(biletInfo);s
     this.price = biletInfo.price;
     this.ticketType = biletInfo.type;
   }

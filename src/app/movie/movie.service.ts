@@ -62,6 +62,7 @@ export class MovieService {
   showing$$: BehaviorSubject<Maybe<Showing>>;
   reperoire$$: BehaviorSubject<Maybe<Reperoire[]>>;
   private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
+  private reservedSeats$$ = new BehaviorSubject<Maybe<Seat>>(null);
   constructor(private http: HttpClient) {
     this.movie$$ = new BehaviorSubject<Maybe<Showing>>(null);
     this.showing$$ = new BehaviorSubject<Maybe<Showing>>(null);

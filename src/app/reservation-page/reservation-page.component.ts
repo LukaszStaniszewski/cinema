@@ -27,6 +27,10 @@ export class ReservationPageComponent {
   get movie() {
     return this.movieService.movie$$.value;
   }
+  reserveSeat(seat: Seat) {
+    this.movieService.updateSeats(seat);
+  }
+
   updateCinemaRoom(seat: Seat) {
     this.movieService.updateSeats(seat);
   }

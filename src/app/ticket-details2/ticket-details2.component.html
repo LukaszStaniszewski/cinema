@@ -1,0 +1,33 @@
+<section class="dropdown-wrapper">
+  <div *ngFor="let ticketInfo of ticketsInfo">
+    <div>{{ ticketInfo.type }}</div>
+
+    <div
+      (click)="toggleDropdown()"
+      *ngIf="
+        selectedTickets && selectedTickets[ticketInfo.type];
+        else defaultValue
+      "
+    >
+      {{ selectedTickets[ticketInfo.type] }}
+    </div>
+    <ng-template #defaultValue>
+      <div (click)="toggleDropdown()">Ilość ↓</div>
+    </ng-template>
+
+    <div [class.hidden]="hide">
+      <div
+        (click)="setSelectedTicket({ amount: option, type: ticketInfo.type })"
+        *ngFor="let option of options"
+      >
+        {{ option }}
+      </div>
+    </div>
+    <div>{{ ticketInfo.price }} zł</div>
+  </div>
+  <div>
+    <span>Suma:</span>
+    <span>{{ totalPrice }}</span>
+  </div>
+  <!-- <div>{{ selectedTickets | json }}</div> -->
+</section>
