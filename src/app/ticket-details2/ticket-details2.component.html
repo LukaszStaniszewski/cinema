@@ -1,23 +1,44 @@
-<section>
-  <div>Wprowadź kod voucher'a</div>
+<section class="ticket-details">
+  <p>Wprowadź kod voucher'a</p>
   <p>
-    W naszym kinie obowiązują różne typy biletów. Cena biletu zależy od jego
-    typu
+    W naszym kinie obowiązują ponizsze rodzaje biletów. Cena biletu zalezy od
+    wybranej znizki
   </p>
-  <div class="dropdowns-wrapper">
-    <div *ngFor="let ticket of ticketsInfo">
-      <div>{{ ticket.type }}</div>
-      <div [class.hidden]="hide">
-        <div>{{ options }}</div>
+  <div class="dropdown-wrapper">
+    <div *ngFor="let ticketInfo of ticketsInfo">
+      <div class="dropdown__ticket-type">{{ ticketInfo.type }}</div>
+
+      <div
+        class="dropwdown__display-selected"
+        (click)="toggleDropdown()"
+        *ngIf="
+          selectedTickets && selectedTickets[ticketInfo.type];
+          else defaultValue
+        "
+      >
+        {{ selectedTickets[ticketInfo.type] }}
+      </div>
+      <ng-template #defaultValue>
+        <div class="dropwdown__display-selected" (click)="toggleDropdown()">
+          Ilość ↓
+        </div>
+      </ng-template>
+
+      <div [class.hidden]="hide" class="dropdown__options">
         <div
-          (click)="selectOnChange({ value: option, type: ticket.type })"
+          (click)="setSelectedTicket({ amount: option, type: ticketInfo.type })"
           *ngFor="let option of options"
         >
           {{ option }}
         </div>
       </div>
-      <div>{{ ticket.price }}</div>
+      <div>{{ ticketInfo.price }} zł</div>
     </div>
+
+    <!-- <div>{{ selectedTickets | json }}</div> -->
   </div>
-  <button>Zatwierdz</button>
+  <div>
+    <span>Suma:</span>
+    <span>{{ totalPrice }}</span>
+  </div>
 </section>
