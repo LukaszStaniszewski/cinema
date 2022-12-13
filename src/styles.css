@@ -1,10 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* @font-face {
+  font-family: "RobotoCondensed";
+  src: local("RobotoCondensed"),
+    url(./assets/fonts/RobotoCondensed-Regular.ttf) format("truetype");
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap");
 :root {
-  --color-border: #c9c9c9;
+  --color-border: #00bff9;
+  --background-secondary: #ffffff;
+  --background-tertiary: #f1f5f9;
   --color-bg-button: #f0f0f0;
   --text-m: 1rem;
   --text-lg: 1.3rem;
   --text-XL: 1.6rem;
+  --gradient-blue: linear-gradient(
+    90deg,
+    #2b74b9 0%,
+    #00ced1 50%,
+    #4682b4 100%
+  );
+  --color-text: #00bff9;
 }
 
 html:focus-within {
@@ -12,10 +29,10 @@ html:focus-within {
 }
 
 body {
+  font-family: "Roboto Condensed", sans-serif;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.4;
-  font-family: sans-serif;
   /* overflow-x: hidden; */
 }
 

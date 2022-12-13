@@ -41,7 +41,6 @@ export class TicketDetails2Component implements OnInit {
 
   getSelectedTicketValues(biletInfo: TicketInfo) {
     if (biletInfo.type === this.ticketType) return;
-    // this.ticketsInfo.push(biletInfo);s
     this.price = biletInfo.price;
     this.ticketType = biletInfo.type;
   }
@@ -51,19 +50,11 @@ export class TicketDetails2Component implements OnInit {
     this.hide = !this.hide;
   }
 
-  setSelectedTicket({ amount, type }: { amount: number; type: string }) {
+  getSelectedOption({ amount, type }: { amount: number; type: string }) {
     console.log('hit');
 
     this.selectedTickets = { ...this.selectedTickets, [type]: amount };
-    // for (let ticketInfo of this.ticketsInfo) {
-    //   if (ticketInfo.type === type) {
-    //     holder += amount * ticketInfo.price;
-    //   }
-    // }
-    // this.totalPrice = holder;
-    // console.log(this.selectedTickets);
-    // console.log(this.selectedTickets);
-    // console.log({ amount, type });
+
     this.calculateTotalPrice();
   }
 

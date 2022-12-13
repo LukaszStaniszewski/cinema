@@ -7,9 +7,9 @@
     "day": "06-12-2022"
   },
   "ticketInfo": [
-    { "type": "normal", "price": 20 },
-    { "type": "concessionary", "price": 12 },
-    { "type": "family", "price": 16 }
+    { "type": "normalny", "price": 20 },
+    { "type": "ulgowy", "price": 12 },
+    { "type": "rodzinny", "price": 16 }
   ],
   "movies": [
     {
