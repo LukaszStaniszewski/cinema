@@ -53,7 +53,7 @@ export class TicketDetails2Component implements OnInit {
 
   setSelectedTicket({ amount, type }: { amount: number; type: string }) {
     console.log('hit');
-    let holder = 0;
+
     this.selectedTickets = { ...this.selectedTickets, [type]: amount };
     // for (let ticketInfo of this.ticketsInfo) {
     //   if (ticketInfo.type === type) {
