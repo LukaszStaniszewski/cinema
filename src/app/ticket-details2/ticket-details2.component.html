@@ -4,15 +4,20 @@
     W naszym kinie obowiązują różne typy biletów. Cena biletu zależy od jego
     typu
   </p>
-  <form [formGroup]="ticketForm" (ngSubmit)="submitForm()">
-    <select
-      *ngFor="let ticket of ticketsInfo"
-      formControlName="{{ ticket.type }}"
-    >
-      <option value="{{ option }}" *ngFor="let option of options">
-        {{ option }}
-      </option>
-    </select>
-    <button type="submit">Zatwierdz</button>
-  </form>
+  <div class="dropdowns-wrapper">
+    <div *ngFor="let ticket of ticketsInfo">
+      <div>{{ ticket.type }}</div>
+      <div [class.hidden]="hide">
+        <div>{{ options }}</div>
+        <div
+          (click)="selectOnChange({ value: option, type: ticket.type })"
+          *ngFor="let option of options"
+        >
+          {{ option }}
+        </div>
+      </div>
+      <div>{{ ticket.price }}</div>
+    </div>
+  </div>
+  <button>Zatwierdz</button>
 </section>

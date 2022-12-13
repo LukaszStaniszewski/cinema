@@ -1,0 +1,7 @@
+.dropdowns-wrapper {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
