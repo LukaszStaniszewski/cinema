@@ -1,11 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ContentChild,
+  TemplateRef,
+} from '@angular/core';
 import { Seat } from '../movie/movie.service';
 import { Ticket, TicketInfo, TicketService } from '../ticket/ticket.service';
 import { Maybe } from '../user/authentication.service';
+import { Option } from '../ui/dropdown/dropdown.component';
 
 type Cos = {
   [key: string]: number;
 };
+
 @Component({
   selector: 'app-ticket-details2',
   templateUrl: './ticket-details2.component.html',
@@ -15,6 +23,7 @@ export class TicketDetails2Component implements OnInit {
   ticketsInfo!: TicketInfo[];
   hide = true;
   options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  option: Option | null = null;
   ticketType!: string;
   price!: number;
   totalPrice = 0;
@@ -28,6 +37,7 @@ export class TicketDetails2Component implements OnInit {
     this.ticketService.getTicketInfo();
     this.ticketService.ticketInfo$.subscribe((ticketInfo) => {
       this.ticketsInfo = ticketInfo;
+
       if (!ticketInfo[0]) return;
       this.mapDefaultValues(ticketInfo);
     });
@@ -50,12 +60,24 @@ export class TicketDetails2Component implements OnInit {
     this.hide = !this.hide;
   }
 
-  getSelectedOption({ amount, type }: { amount: number; type: string }) {
+  getSelectedOption({ value, repeatAmount }: Option) {
     console.log('hit');
 
-    this.selectedTickets = { ...this.selectedTickets, [type]: amount };
-
+    this.selectedTickets = {
+      ...this.selectedTickets,
+      [value.type]: value.ticketsAmount,
+    };
     this.calculateTotalPrice();
+  }
+  checkTotalOrderedTickets(obj: Cos) {
+    const total = Object.values(obj).reduce((acc, curr) => acc + curr, 0);
+    return total;
+  }
+  submit() {
+    if (!this.selectedTickets) return;
+    const total = this.checkTotalOrderedTickets(this.selectedTickets);
+    if (total > 10) return;
+    console.log('ok');
   }
 
   calculateTotalPrice() {
@@ -69,19 +91,6 @@ export class TicketDetails2Component implements OnInit {
         }
       }
       this.totalPrice = holder;
-
-      // for (let test of tests) {
-      //   let [type, value] = test;
-
-      //   console.log(test);
-      // }
     }
-    // setSelectedTicket(event: Event) {
-    //   // this.selectedTickets = { ...this.selectedTickets, [type]: amount };
-    //   //@ts-ignore
-    //   console.log(event.target.ɵNgSelectMultipleOption);
-    //   // console.log(this.selectedTickets);
-    //   // console.log({ amount, type });
-    // }
   }
 }

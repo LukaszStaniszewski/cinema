@@ -1,11 +1,13 @@
 <div class="dropdown" (clickOutside)="hideDropdown()">
   <div class="dropwdown__display-selected" (click)="toggleDropdown()">
-    {{ currentValue }}
+    {{ currentSelectedValue }}
   </div>
 
   <div [class.hidden]="hide" class="dropdown__options">
     <div
-      (click)="setSelectedTicket({ amount: option, type: ticketInfo.type })"
+      (click)="
+        setSelectedTicket({ ticketsAmount: option, type: ticketInfo.type })
+      "
       *ngFor="let option of options"
     >
       {{ option }}

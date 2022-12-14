@@ -1,6 +1,6 @@
 .ticket-details {
   background-color: #ffffff;
-  z-index: 2;
+  z-index: 3;
   max-width: 30%;
   /* transform: translateX(0); */
   position: absolute;
@@ -89,14 +89,14 @@
   background: var(--gradient-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-left: 1rem;
 }
 .ticket-details__main {
   height: 70%;
 }
-.info .voucher {
+.voucher {
   background-color: var(--background-tertiary);
 }
+.ticket-details__main .voucher,
 .ticket-details__main .info,
 .ticket-details__main .dropdowns-wrapper,
 .ticket-details__main .total {

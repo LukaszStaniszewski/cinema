@@ -2,16 +2,15 @@
   <div class="ticket-details__navbar-menu">
     <img class="arrow-icon" src="assets/svg/chevron-left.svg" alt="" />
     <div>WYBRANE BILETY</div>
-    <div>GOTOWE</div>
+    <div (click)="submit()">GOTOWE</div>
   </div>
   <main class="ticket-details__main">
-    <div class="info">
-      <div class="voucher">Wprowadź kod voucher'a</div>
-      <p>
-        W naszym kinie obowiązują ponizsze rodzaje biletów. Cena biletu zalezy
-        od wybranej znizki
-      </p>
-    </div>
+    <div class="voucher">Wprowadź kod voucher'a</div>
+    <p class="info">
+      W naszym kinie obowiązują ponizsze rodzaje biletów. Cena biletu zalezy od
+      wybranej znizki
+    </p>
+
     <div class="dropdowns-wrapper">
       <div *ngFor="let ticketInfo of ticketsInfo">
         <div class="ticket-type">{{ ticketInfo.type }}</div>
@@ -19,41 +18,16 @@
           [ticketInfo]="ticketInfo"
           [options]="options"
           (selectedOptionEvent)="getSelectedOption($event)"
-        ></app-dropdown>
-        <!-- 
-          <div
-            class="dropwdown__display-selected"
-            (click)="toggleDropdown()"
-            *ngIf="
-              selectedTickets && selectedTickets[ticketInfo.type];
-              else defaultValue
-            "
-          >
-            {{ selectedTickets[ticketInfo.type] }}
-          </div>
-          <ng-template #defaultValue>
-            <div class="dropwdown__display-selected" (click)="toggleDropdown()">
-              Ilość ↓
-            </div>
-          </ng-template>
-    
-          <div [class.hidden]="hide" class="dropdown__options">
-            <div
-              (click)="setSelectedTicket({ amount: option, type: ticketInfo.type })"
-              *ngFor="let option of options"
-            >
-              {{ option }}
-            </div>
-          </div> -->
+        >
+        </app-dropdown>
+
         <div>{{ ticketInfo.price }} zł</div>
       </div>
-
-      <!-- <div>{{ selectedTickets | json }}</div> -->
     </div>
     <div class="total">
       <div>Suma:</div>
       <div>{{ totalPrice }}zł</div>
     </div>
   </main>
-  <button class="btn-ready">GOTOWE</button>
+  <button (click)="submit()" class="btn-ready">GOTOWE</button>
 </section>
