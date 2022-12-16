@@ -1,8 +1,4 @@
 <section class="reservation-page">
-  <!-- <div class="reservation-page__info">
-    <span>19/11/2022, </span>
-    <span>godz. {{ params?.time }}</span>
-  </div> -->
   <div class="reservation-page__screen"></div>
   <app-cinema-room
     (seatToUpdate)="reserveSeat($event)"
@@ -10,25 +6,13 @@
     [seats]="seats"
   ></app-cinema-room>
   <ng-template #Spinner>...loading</ng-template>
+  <div (click)="toggleDropdown(true)">Zmień swoje miejsca</div>
 
-  <!-- <div class="reservation-page__ticket-details">
-    <span>Rrząd E Miejsce 6</span>
-    <select class="select-bilet-type" name="" id="">
-      <option value="">bilet normalny</option>
-      <option value="">bilet ulgowy</option>
-      <option value="">bilet rodzinny</option>
-      <option value="">vouvher</option>
-    </select>
-    <span>22 PLN</span>
-  </div>
- -->
+  <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>
 
-  <!-- <app-ticket-details></app-ticket-details> -->
-  <!-- <app-ticket-details2
+  <app-ticket-details2
     [class.hide]="hide"
     (toggleEmitter)="toggleDropdown($event)"
   ></app-ticket-details2>
-  <div [class.hide]="hide" class="screen-woal"></div> -->
-
-  <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>
+  <div [class.hide]="hide" class="screen-woal"></div>
 </section>

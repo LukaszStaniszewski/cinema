@@ -7,12 +7,12 @@
 }
 
 .reservation-page__screen {
-  border-top: 1px solid var(--color-border);
+  /* border-top: 1px solid var(--color-border);
   width: 35%;
-  height: 1px;
+  height: 1px; */
   /* transform: rotateX(100deg); */
   /* text-align: center; */
-  padding: 0.5rem 0 1rem 0;
+  /* padding: 0.5rem 0 1rem 0; */
   /* margin-top: 2rem; */
   /* border-radius: 100% 0% 0% 100% / 100% 0% 100% 0%; */
   /* position: absolute; */
@@ -35,7 +35,12 @@ box-shadow: 4px 8px 10px rgba(219, 177, 44, 0.35); */
   z-index: 99;
 } */
 
-.reservation-page__info {
+.reservation-page__screen {
+  /* height: 50px;
+
+
+}
+}.reservation-page__info {
   font-size: var(--text-lg);
   padding: 1.5rem 0;
 }

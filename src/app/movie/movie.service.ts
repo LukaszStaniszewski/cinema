@@ -117,8 +117,8 @@ export class MovieService {
       });
   }
 
-  updateSeats(seatsToUpdate: Seat) {
-    const adjustSeat = [{ ...seatsToUpdate, isBusy: true }];
+  updateSeats(seatToUpdate: Seat) {
+    const adjustSeat = [{ ...seatToUpdate, isBusy: !seatToUpdate.isBusy }];
     const cinemaRoom = this.cinemaRoom$$.value;
     if (!cinemaRoom) return;
     const updatedCinemaRoom = this.mapCinemaRoomSeats(cinemaRoom, adjustSeat);
@@ -157,32 +157,6 @@ export class MovieService {
         this.reperoire$$.next(reporoire);
         this.isLoading = false;
       });
-    // console.log(this.reperoire$$.value);
-    // this.http
-    //   .get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`)
-    //   .subscribe((reporoires) => {
-    //     if (!reporoires) return;
-    //     for (let reporoire of reporoires) {
-    //       this.http
-    //         .get<Movie | undefined>(`${API.MOVIES}/${reporoire?.movieId}`)
-    //         .pipe(map((movie) => ({ movie, ...reporoire })))
-    //         .subscribe((movie) => {
-    //           this.reperoire$$.next([{ ...movie, ...reporoire }]);
-    //           console.log(movie);
-    //         });
-    //       // this.reperoire$$.closed();
-    //       console.log(this.reperoire$$.subscribe(console.log));
-    //     }
-    //     // this.reperoire$$.next(reporoire);
-    //     this.isLoading = false;
-    //     // console.log(this.reperoire$$.value);
-    //   });
-    // combineLatest([
-    //   this.http.get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`),
-    //   this.http.get<Movie[] | undefined>(`${API.MOVIES}`),
-    // ])
-    //   .pipe(map((event) => ))
-    //   .subscribe();
   }
   addToFavorites() {
     // if user logged in post request

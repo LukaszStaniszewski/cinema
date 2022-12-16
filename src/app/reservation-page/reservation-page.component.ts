@@ -40,9 +40,7 @@ export class ReservationPageComponent {
 
   // }
   toggleDropdown(isValid: boolean) {
-    console.log(isValid);
     if (!isValid) return;
-    // console.log('toggle', event);
     this.hide = !this.hide;
   }
 

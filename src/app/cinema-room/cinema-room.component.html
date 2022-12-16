@@ -1,9 +1,17 @@
 <div class="cinema-room">
-  <div *ngFor="let seatColumns of seats; let first = first">
+  <div *ngFor="let seatColumns of seats; let index = index; let first = first">
     <div *ngFor="let seat of seatColumns">
-      <div *ngIf="first" class="test">
-        <div class="seat">{{ seat.position.row }}</div>
-      </div>
+      <!-- <div *ngIf="first" class="seats">
+        <span class="test">{{ seat.position.row }}</span>
+        <span class="seat">{{ seat.position.column }}</span>
+      </div> -->
+      <div *ngIf="first" class="letter-axis seat">{{ seat.position.row }}</div>
+
+      <!-- <div *ngIf="first" class="seat">
+        {{ seat.position.column }}
+ 
+      </div> -->
+
       <!-- <div *ngIf="first" class="seat test2">{{ seat.position.column }}</div> -->
       <!-- <div class="test2" *ngIf="first; else restOfSeats">
         <div class="seat test">
@@ -13,9 +21,7 @@
           {{ seat.position.column }}
         </div>
       </div> -->
-      <div *ngIf="first" class="seat test2">{{ seat.position.column }}</div>
       <div
-        *ngIf="!first"
         (click)="setSelectedSeat(seat)"
         id="{{ seat.position.column + seat.position.row }}"
         class="seat"
