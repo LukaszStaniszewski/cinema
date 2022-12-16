@@ -15,6 +15,7 @@ export class ReservationPageComponent {
   params: Maybe<ReservationParams>;
   seats: Maybe<Seat[][]>;
   selectedSeat: Maybe<Seat>;
+  hide = false;
   constructor(
     private route: ActivatedRoute,
     private movieService: MovieService
@@ -38,6 +39,12 @@ export class ReservationPageComponent {
   // ngOnDestroy() {
 
   // }
+  toggleDropdown(isValid: boolean) {
+    console.log(isValid);
+    if (!isValid) return;
+    // console.log('toggle', event);
+    this.hide = !this.hide;
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {

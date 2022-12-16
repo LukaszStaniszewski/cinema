@@ -3,7 +3,7 @@
     <span>19/11/2022, </span>
     <span>godz. {{ params?.time }}</span>
   </div> -->
-  <div class="reservation-page__screen">Ekran</div>
+  <div class="reservation-page__screen"></div>
   <app-cinema-room
     (seatToUpdate)="reserveSeat($event)"
     *ngIf="seats; else Spinner"
@@ -22,10 +22,13 @@
     <span>22 PLN</span>
   </div>
  -->
-  <div>
-    <!-- <app-ticket-details></app-ticket-details> -->
-    <app-ticket-details2></app-ticket-details2>
-    <div class="screen-woal"></div>
-  </div>
+
+  <!-- <app-ticket-details></app-ticket-details> -->
+  <!-- <app-ticket-details2
+    [class.hide]="hide"
+    (toggleEmitter)="toggleDropdown($event)"
+  ></app-ticket-details2>
+  <div [class.hide]="hide" class="screen-woal"></div> -->
+
   <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>
 </section>

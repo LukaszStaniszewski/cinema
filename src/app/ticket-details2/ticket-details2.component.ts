@@ -4,6 +4,8 @@ import {
   OnInit,
   ContentChild,
   TemplateRef,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { Seat } from '../movie/movie.service';
 import { Ticket, TicketInfo, TicketService } from '../ticket/ticket.service';
@@ -21,7 +23,7 @@ type Cos = {
 })
 export class TicketDetails2Component implements OnInit {
   ticketsInfo!: TicketInfo[];
-  hide = true;
+
   options = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   option: Option | null = null;
   ticketType!: string;
@@ -30,6 +32,7 @@ export class TicketDetails2Component implements OnInit {
   selectedTickets: null | Cos = null;
   // ticketSelected: ""
   @Input() seats: Maybe<Seat[]>;
+  @Output() toggleEmitter = new EventEmitter(true);
 
   constructor(private ticketService: TicketService) {}
 
@@ -55,14 +58,7 @@ export class TicketDetails2Component implements OnInit {
     this.ticketType = biletInfo.type;
   }
 
-  toggleDropdown() {
-    console.log('toggle');
-    this.hide = !this.hide;
-  }
-
   getSelectedOption({ value, repeatAmount }: Option) {
-    console.log('hit');
-
     this.selectedTickets = {
       ...this.selectedTickets,
       [value.type]: value.ticketsAmount,
@@ -74,10 +70,10 @@ export class TicketDetails2Component implements OnInit {
     return total;
   }
   submit() {
-    if (!this.selectedTickets) return;
+    if (!this.selectedTickets) return this.toggleEmitter.emit(true);
     const total = this.checkTotalOrderedTickets(this.selectedTickets);
     if (total > 10) return;
-    console.log('ok');
+    this.toggleEmitter.emit(true);
   }
 
   calculateTotalPrice() {
