@@ -12,16 +12,14 @@
     </p>
 
     <div class="dropdowns-wrapper">
-      <div *ngFor="let ticketInfo of ticketsInfo">
-        <div class="ticket-type">{{ ticketInfo.type }}</div>
+      <div *ngFor="let ticket of tickets$ | async">
+        <div class="ticket-type">{{ ticket.type }}</div>
         <app-dropdown
-          [ticketInfo]="ticketInfo"
-          [options]="options"
+          [ticket]="ticket"
           (selectedOptionEvent)="getSelectedOption($event)"
         >
         </app-dropdown>
-
-        <div>{{ ticketInfo.price }} zł</div>
+        <div>{{ ticket.price }} zł</div>
       </div>
     </div>
     <div class="total">

@@ -1,17 +1,6 @@
-import {
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  TemplateRef,
-} from '@angular/core';
-import { TicketInfo } from 'src/app/ticket/ticket.service';
-import { Maybe } from 'src/app/user/authentication.service';
-type Cos = {
-  [key: string]: number;
-};
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TicketInfo, TicketService } from 'src/app/ticket/ticket.service';
+
 export type Option = {
   value: { ticketsAmount: number; type: string };
   repeatAmount: number;
@@ -21,33 +10,35 @@ export type Option = {
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css'],
 })
-export class DropdownComponent<T> {
+export class DropdownComponent {
   hide = true;
-  selectedTickets: null | Cos = null;
+
   currentSelectedValue = 0;
-  @Input() ticketInfo!: TicketInfo;
-  @Input() options!: any[];
-  @Input() option!: Option | null;
-  @Output() selectedOptionEvent = new EventEmitter<Option>();
+  options: number[] = new Array(11).fill(0);
+  @Input() ticket!: TicketInfo;
+
+  @Output() selectedOptionEvent = new EventEmitter<{
+    type: string;
+    selectedAmount: number;
+  }>();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   toggleDropdown() {
     this.hide = !this.hide;
   }
-  setSelectedTicket({
-    ticketsAmount,
-    type,
-  }: {
-    ticketsAmount: number;
-    type: string;
-  }) {
+  ngDoCheck() {
+    this.options = new Array(11 - this.ticket.pickedTickets).fill(0);
+  }
+
+  setSelectedTicket(ticketsAmount: number) {
     this.currentSelectedValue = ticketsAmount;
+
+    console.log('dropdown', this.ticket);
+
     this.selectedOptionEvent.emit({
-      value: { ticketsAmount, type },
-      repeatAmount: this.options.length - 1,
+      type: this.ticket.type,
+      selectedAmount: ticketsAmount,
     });
   }
 

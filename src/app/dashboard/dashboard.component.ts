@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ShowingStateService } from './services/showings/showing-state.service';
+import { ShowingStateService } from './services/showing-state.service';
 
 @Component({
   selector: 'app-dashboard',

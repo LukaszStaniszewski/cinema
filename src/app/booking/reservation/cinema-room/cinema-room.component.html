@@ -22,7 +22,7 @@
         </div>
       </div> -->
       <div
-        (click)="setSelectedSeat(seat)"
+        (click)="updateCinemaRoom(seat)"
         id="{{ seat.position.column + seat.position.row }}"
         class="seat"
         [ngClass]="{ reservedSeat: seat.isBusy }"

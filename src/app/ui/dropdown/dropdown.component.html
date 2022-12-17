@@ -5,12 +5,10 @@
 
   <div [class.hidden]="hide" class="dropdown__options">
     <div
-      (click)="
-        setSelectedTicket({ ticketsAmount: option, type: ticketInfo.type })
-      "
-      *ngFor="let option of options"
+      (click)="setSelectedTicket(index)"
+      *ngFor="let option of options; let index = index"
     >
-      {{ option }}
+      {{ index }}
     </div>
   </div>
 </div>

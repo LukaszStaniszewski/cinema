@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Seat } from '../movie/movie.service';
+import { Seat } from '../../../movie/movie.service';
+import { CinemaRoomService } from './cinema-room.service';
 
 @Component({
   selector: 'app-cinema-room[seats]',
@@ -8,11 +9,15 @@ import { Seat } from '../movie/movie.service';
 })
 export class CinemaRoomComponent implements OnInit {
   @Input() seats: Seat[][] = [];
-  @Output() seatToUpdate = new EventEmitter<Seat>();
-  constructor() {}
+  constructor(private cinemaRoom: CinemaRoomService) {}
 
   ngOnInit(): void {}
-  setSelectedSeat(seat: Seat) {
-    this.seatToUpdate.emit(seat);
+
+  reserveSeat(seat: Seat) {
+    this.cinemaRoom.updateSeats(seat);
+  }
+
+  updateCinemaRoom(seat: Seat) {
+    this.cinemaRoom.updateSeats(seat);
   }
 }
