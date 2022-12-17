@@ -1,0 +1,7 @@
+<div class="dates">
+  <div *ngFor="let date of next7Days">
+    <a routerLink="/{{ date.replaceAll('/', '-') }}" class="dates__date">
+      {{ date.slice(0, 5) }}
+    </a>
+  </div>
+</div>

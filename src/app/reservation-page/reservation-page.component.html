@@ -10,9 +10,9 @@
 
   <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>
 
-  <app-ticket-details2
+  <app-ticket-details
     [class.hide]="hide"
     (toggleEmitter)="toggleDropdown($event)"
-  ></app-ticket-details2>
+  ></app-ticket-details>
   <div [class.hide]="hide" class="screen-woal"></div>
 </section>

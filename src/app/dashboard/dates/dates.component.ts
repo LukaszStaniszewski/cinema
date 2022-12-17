@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie/movie.service';
+import { MovieService } from '../../movie/movie.service';
 
 @Component({
-  selector: 'FilmDates',
-  templateUrl: './film-dates.component.html',
-  styleUrls: ['./film-dates.component.css'],
+  selector: 'app-dates',
+  templateUrl: './dates.component.html',
+  styleUrls: ['./dates.component.css'],
 })
-export class FilmDatesComponent implements OnInit {
+export class DatesComponent implements OnInit {
   options = { day: 'numeric', month: 'numeric' };
   next7Days: string[] | undefined = [
     '05/12/2022',

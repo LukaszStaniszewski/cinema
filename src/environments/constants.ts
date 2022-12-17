@@ -1,9 +1,9 @@
 export enum API {
   //   LOGIN = 'http://localhost:3000/user',
   LOGIN = '/api/user',
-  SHOWINGS = '/api/showings',
+  RESERVATIONS = '/api/reservations',
   SCREENING = '/api/reservation',
-  REPEROIRE = '/api/reperoire',
+  SHOWINGS = '/api/showings',
   MOVIES = '/api/movies',
   CINEMAROOMS = '/api/cinemarooms',
   TICKET_INFO = '/api/ticketInfo',

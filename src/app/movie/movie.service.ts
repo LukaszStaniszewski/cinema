@@ -4,7 +4,7 @@ import { BehaviorSubject, combineLatest, map, pipe, ReplaySubject } from 'rxjs';
 import { API } from 'src/environments/constants';
 import { Maybe } from '../user/authentication.service';
 
-export interface Showing {
+export interface Reservation {
   id: string;
   cinemaRoomId: string;
   movieTitle: string;
@@ -44,9 +44,9 @@ export type Reperoire = {
   // movieId: 'string';
   day: '06-12-2022';
   hours: [
-    { time: string; cinemaRoomId: RoomId; showingId: string },
-    { time: string; cinemaRoomId: RoomId; showingId: string },
-    { time: string; cinemaRoomId: RoomId; showingId: string }
+    { time: string; cinemaRoomId: RoomId; reservationId: string },
+    { time: string; cinemaRoomId: RoomId; reservationId: string },
+    { time: string; cinemaRoomId: RoomId; reservationId: string }
   ];
 };
 
@@ -57,15 +57,15 @@ type RoomId = 'room-a' | 'room-b' | 'room-c';
 })
 export class MovieService {
   isLoading = true;
-  movies: Maybe<Showing[]>;
-  movie$$: BehaviorSubject<Maybe<Showing>>;
-  showing$$: BehaviorSubject<Maybe<Showing>>;
+  movies: Maybe<Reservation[]>;
+  movie$$: BehaviorSubject<Maybe<Reservation>>;
+  showing$$: BehaviorSubject<Maybe<Reservation>>;
   reperoire$$: BehaviorSubject<Maybe<Reperoire[]>>;
   private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
   private reservedSeats$$ = new BehaviorSubject<Maybe<Seat>>(null);
   constructor(private http: HttpClient) {
-    this.movie$$ = new BehaviorSubject<Maybe<Showing>>(null);
-    this.showing$$ = new BehaviorSubject<Maybe<Showing>>(null);
+    this.movie$$ = new BehaviorSubject<Maybe<Reservation>>(null);
+    this.showing$$ = new BehaviorSubject<Maybe<Reservation>>(null);
     this.reperoire$$ = new BehaviorSubject<Maybe<Reperoire[]>>(null);
   }
 
@@ -74,16 +74,18 @@ export class MovieService {
   }
   fetchMovies() {
     // return this.http.get<Movie[]>(API.MOVIES);
-    this.http.get<Showing[] | undefined>(API.SHOWINGS).subscribe((movies) => {
-      this.movies = movies;
-      // console.log(movies);
-      this.isLoading = false;
-    });
+    this.http
+      .get<Reservation[] | undefined>(API.SHOWINGS)
+      .subscribe((movies) => {
+        this.movies = movies;
+        // console.log(movies);
+        this.isLoading = false;
+      });
   }
 
   fetchShowing(id: string | number) {
     // this.http
-    //   .get<Showing | undefined>(`${API.SHOWINGS}/${id}`)
+    //   .get<Reservation | undefined>(`${API.SHOWINGS}/${id}`)
     //   .subscribe((showing) => {
     //     this.showing$$.next(showing);
     //     console.log(showing);
@@ -91,10 +93,10 @@ export class MovieService {
     //   });
     // combineLatest([
     //   this.http.get<Maybe<CinemaRoom>>(`${API.CINEMAROOMS}/${id}`),
-    //   this.http.get<Maybe<Showing>>(`${API.SHOWINGS}/${id}`),
+    //   this.http.get<Maybe<Reservation>>(`${API.SHOWINGS}/${id}`),
     // ]);
     this.http
-      .get<Maybe<Showing>>(`${API.SHOWINGS}/${id}`)
+      .get<Maybe<Reservation>>(`${API.RESERVATIONS}/${id}`)
       .subscribe((showing) => {
         this.showing$$.next(showing);
         this.http
@@ -152,7 +154,7 @@ export class MovieService {
 
   fetchReperoire(date: string | number) {
     this.http
-      .get<Reperoire[] | undefined>(`${API.REPEROIRE}?day=${date}`)
+      .get<Reperoire[] | undefined>(`${API.SHOWINGS}?day=${date}`)
       .subscribe((reporoire) => {
         this.reperoire$$.next(reporoire);
         this.isLoading = false;

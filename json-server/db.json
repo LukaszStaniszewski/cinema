@@ -1,11 +1,5 @@
 {
   "user": { "id": 1, "name": "lukasz", "role": "customer" },
-
-  "repertoire": {
-    "movieId": "movie-7493-11ed-89ed-499bb1f405dc",
-    "hours": ["13:00", "15:00", "18:00"],
-    "day": "06-12-2022"
-  },
   "ticketInfo": [
     { "type": "normalny", "price": 20 },
     { "type": "ulgowy", "price": 12 },
@@ -50,7 +44,7 @@
     }
   ],
 
-  "reperoire": [
+  "showings": [
     {
       "movie": {
         "id": "movie-avatar-way-of-water-123",
@@ -65,10 +59,22 @@
         "genre": "Sci-Fi"
       },
       "day": "06-12-2022",
-      "hours": [
-        { "time": "15:00", "cinemaRoomId": "room-a", "showingId": "06-15-a" },
-        { "time": "17:00", "cinemaRoomId": "room-a", "showingId": "06-17-a" },
-        { "time": "20:00", "cinemaRoomId": "room-b", "showingId": "06-20-b" }
+      "available": [
+        {
+          "time": "15:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-15-a"
+        },
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-17-a"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-20-b"
+        }
       ]
     },
     {
@@ -85,10 +91,22 @@
         "genre": "Action"
       },
       "day": "06-12-2022",
-      "hours": [
-        { "time": "15:00", "cinemaRoomId": "room-b", "showingId": "06-15-b" },
-        { "time": "17:00", "cinemaRoomId": "room-c", "showingId": "06-17-c" },
-        { "time": "20:00", "cinemaRoomId": "room-a", "showingId": "06-20-a" }
+      "available": [
+        {
+          "time": "15:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-15-b"
+        },
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-17-c"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-20-a"
+        }
       ]
     },
     {
@@ -105,11 +123,27 @@
         "genre": "Action"
       },
       "day": "06-12-2022",
-      "hours": [
-        { "time": "12:00", "cinemaRoomId": "room-a", "showingId": "06-12-a" },
-        { "time": "14:00", "cinemaRoomId": "room-c", "showingId": "06-14-c" },
-        { "time": "17:00", "cinemaRoomId": "room-b", "showingId": "06-17-b" },
-        { "time": "20:00", "cinemaRoomId": "room-c", "showingId": "06-20-c" }
+      "available": [
+        {
+          "time": "12:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-12-a"
+        },
+        {
+          "time": "14:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-14-c"
+        },
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-17-b"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-20-c"
+        }
       ]
     },
     {
@@ -126,10 +160,22 @@
         "genre": "Action"
       },
       "day": "07-12-2022",
-      "hours": [
-        { "time": "15:00", "cinemaRoomId": "room-a", "showingId": "07-15-a" },
-        { "time": "17:00", "cinemaRoomId": "room-a", "showingId": "07-17-a" },
-        { "time": "20:00", "cinemaRoomId": "room-b", "showingId": "07-20-b" }
+      "available": [
+        {
+          "time": "15:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "07-15-a"
+        },
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "07-17-a"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "07-20-b"
+        }
       ]
     },
     {
@@ -146,10 +192,22 @@
         "genre": "Action"
       },
       "day": "07-12-2022",
-      "hours": [
-        { "time": "15:00", "cinemaRoomId": "room-b", "showingId": "07-15-b" },
-        { "time": "17:00", "cinemaRoomId": "room-c", "showingId": "07-17-c" },
-        { "time": "20:00", "cinemaRoomId": "room-a", "showingId": "07-20-a" }
+      "available": [
+        {
+          "time": "15:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "07-15-b"
+        },
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "07-17-c"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "07-20-a"
+        }
       ]
     },
     {
@@ -166,15 +224,31 @@
         "genre": "Sci-Fi"
       },
       "day": "07-12-2022",
-      "hours": [
-        { "time": "12:00", "cinemaRoomId": "room-a", "showingId": "07-12-a" },
-        { "time": "14:00", "cinemaRoomId": "room-c", "showingId": "07-14-c" },
-        { "time": "17:00", "cinemaRoomId": "room-b", "showingId": "07-17-b" },
-        { "time": "20:00", "cinemaRoomId": "room-c", "showingId": "07-20-c" }
+      "available": [
+        {
+          "time": "12:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "07-12-a"
+        },
+        {
+          "time": "14:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "07-14-c"
+        },
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "07-17-b"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "07-20-c"
+        }
       ]
     }
   ],
-  "showings": [
+  "reservations": [
     {
       "id": "06-15-a",
       "movieTitle": "Avatar: Istota Wody",

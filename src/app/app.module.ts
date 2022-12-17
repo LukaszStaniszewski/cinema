@@ -8,15 +8,14 @@ import { TicketPurchasePageComponent } from './ticket-purchase-page/ticket-purch
 import { NavbarComponent } from './ui/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './dashboard/card/card.component';
 import { ReservationPageComponent } from './reservation-page/reservation-page.component';
-import { FilmDatesComponent } from './film-dates/film-dates.component';
+import { DatesComponent } from './dashboard/dates/dates.component';
 import { ClickOutsideDirective } from './ui/directives/clickOutside.directive';
 import { CustomHttpInterceptor } from './interceptor/custom-http.interceptor';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CinemaRoomComponent } from './cinema-room/cinema-room.component';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
-import { TicketDetails2Component } from './ticket-details2/ticket-details2.component';
 import { DropdownComponent } from './ui/dropdown/dropdown.component';
 // import { UserService } from './user/user.service';
 
@@ -28,12 +27,11 @@ import { DropdownComponent } from './ui/dropdown/dropdown.component';
     NavbarComponent,
     CardComponent,
     ReservationPageComponent,
-    FilmDatesComponent,
+    DatesComponent,
     ClickOutsideDirective,
     PageNotFoundComponent,
     CinemaRoomComponent,
     TicketDetailsComponent,
-    TicketDetails2Component,
     DropdownComponent,
   ],
   imports: [
