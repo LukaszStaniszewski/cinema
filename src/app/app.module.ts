@@ -17,6 +17,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CinemaRoomComponent } from './booking/reservation/cinema-room/cinema-room.component';
 import { TicketDetailsComponent } from './booking/reservation/ticket-details/ticket-details.component';
 import { DropdownComponent } from './ui/dropdown/dropdown.component';
+import { SummaryComponent } from './booking/reservation/summary/summary.component';
 // import { UserService } from './user/user.service';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { DropdownComponent } from './ui/dropdown/dropdown.component';
     CinemaRoomComponent,
     TicketDetailsComponent,
     DropdownComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,

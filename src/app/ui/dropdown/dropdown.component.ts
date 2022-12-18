@@ -5,7 +5,7 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { TicketInfo } from 'src/app/ticket/ticket.service';
+import { Ticket } from 'src/app/booking/reservation/ticket-details/ticket.service';
 
 export type Option = {
   value: { ticketsAmount: number; type: string };
@@ -20,7 +20,7 @@ export class DropdownComponent implements OnChanges {
   hide = true;
   currentSelectedValue = 0;
   @Input() options: number[] = [];
-  @Input() ticket!: TicketInfo;
+  @Input() ticket!: Ticket;
 
   @Output() selectedOptionEvent = new EventEmitter<{
     type: string;

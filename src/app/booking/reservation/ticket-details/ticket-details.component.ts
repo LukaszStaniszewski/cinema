@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Seat } from '../../../movie/movie.service';
-import { TicketInfo, TicketService } from '../../../ticket/ticket.service';
+import { Ticket, TicketService } from './ticket.service';
 import { Maybe } from '../../../user/authentication.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { Maybe } from '../../../user/authentication.service';
   styleUrls: ['./ticket-details.component.css'],
 })
 export class TicketDetailsComponent implements OnInit {
-  options!: { [Property in TicketInfo['type']]: number[] };
+  options!: { [Property in Ticket['type']]: number[] };
   totalPrice = 0;
 
   @Input() seats: Maybe<Seat[]>;
@@ -28,7 +28,7 @@ export class TicketDetailsComponent implements OnInit {
     });
   }
 
-  private adjustOptions(tickets: TicketInfo[]) {
+  private adjustOptions(tickets: Ticket[]) {
     tickets.forEach((ticket) => {
       this.options = {
         ...this.options,
@@ -37,7 +37,7 @@ export class TicketDetailsComponent implements OnInit {
     });
   }
 
-  private calculateTotalPrice(tickets: TicketInfo[]) {
+  private calculateTotalPrice(tickets: Ticket[]) {
     let holder = 0;
     for (let ticket of tickets) {
       holder += ticket.price * ticket.pickedTickets;

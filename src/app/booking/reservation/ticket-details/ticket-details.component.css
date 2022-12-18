@@ -77,38 +77,6 @@
   justify-content: space-between;
 }
 
-.button {
-  display: block;
-
-  background-color: var(--background-secondary);
-
-  border: none;
-  text-align: center;
+.button--ticket-details {
   padding: 0.8rem 0;
-  line-height: 100%;
-  white-space: nowrap;
-  letter-spacing: 0.15em;
-  margin: 1rem auto;
-  min-width: max-content;
-  width: 80%;
-  position: relative;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button::after {
-  content: "";
-  background: var(--gradient-blue);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  margin: -3px;
-  border-radius: 5px;
-}
-
-.button:hover::after {
-  filter: blur(3px);
 }

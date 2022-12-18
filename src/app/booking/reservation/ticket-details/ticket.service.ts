@@ -2,34 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, of, tap } from 'rxjs';
 import { API } from 'src/environments/constants';
-import { User } from '../user/authentication.service';
+import { CinemaRoomService } from '../cinema-room/cinema-room.service';
+import { User } from 'src/app/user/authentication.service';
 
 export type Ticket = {
-  id: number;
-  type: TicketType;
-  price: number;
-  seat: string;
-  date: string;
-  movieTitle: string;
-  owner: User['id'];
-};
-
-export type TicketInfo = {
-  type: TicketType;
+  type: TicketTypes;
   price: number;
   pickedTickets: number;
   maxTicketsToPick: number;
   ticketsLeft: number;
-  totalTickets: number;
+};
+const defaultTickets: Ticket = {
+  type: 'normalny',
+  price: 20,
+  pickedTickets: 4,
+  maxTicketsToPick: 10,
+  ticketsLeft: 10,
 };
 
-export type TicketType = 'normal' | 'concessionary' | 'family' | 'voucher';
+export type TicketTypes = 'normalny' | 'concessionary' | 'family' | 'voucher';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TicketService {
-  private ticket$$ = new BehaviorSubject<TicketInfo[]>([]);
+  private ticket$$ = new BehaviorSubject<Ticket[]>([defaultTickets]);
 
   constructor(private http: HttpClient) {}
 
@@ -37,9 +34,13 @@ export class TicketService {
     return this.ticket$$.asObservable();
   }
 
+  get ticketsValue() {
+    return this.ticket$$.value;
+  }
+
   getTicketInfo() {
     this.http
-      .get<TicketInfo[]>(API.TICKET_INFO)
+      .get<Ticket[]>(API.TICKET_INFO)
       .pipe(
         map((ticketsInfo) =>
           ticketsInfo.map((ticketInfo) => {
@@ -68,6 +69,9 @@ export class TicketService {
     this.calculateChoosenTicketsPerType(type, selectedTicketsAmount);
 
     this.calculateTicketsLeftPerType(type);
+    this.ticket$$.subscribe((tickets) => {
+      console.log(tickets);
+    });
   }
 
   private calculateChoosenTicketsPerType(type: string, ticketsAmount: number) {

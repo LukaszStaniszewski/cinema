@@ -41,7 +41,7 @@ a {
   text-decoration: none;
 }
 
-.button {
+/* .button {
   display: block;
   background-color: var(--color-bg-button);
   border: 1px solid var(--color-border);
@@ -52,4 +52,48 @@ a {
   width: 6rem;
   line-height: 2.5rem;
   min-width: max-content;
+} */
+
+.screen-woal {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 2;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.button {
+  display: block;
+  background-color: var(--background-secondary);
+  border: none;
+  text-align: center;
+  line-height: 100%;
+  white-space: nowrap;
+  letter-spacing: 0.15em;
+  margin: 1rem auto;
+  min-width: max-content;
+  width: 80%;
+  position: relative;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button::after {
+  content: "";
+  background: var(--gradient-blue);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -3px;
+  border-radius: 5px;
+}
+
+.button:hover::after {
+  filter: blur(3px);
 }

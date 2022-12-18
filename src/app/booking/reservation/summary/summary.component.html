@@ -1,0 +1,23 @@
+<section *ngIf="ticketsInfo | async as tickets">
+  <div>
+    <h2>WYBRANE BILETY</h2>
+    <div *ngFor="let ticket of tickets">
+      <ng-container *ngIf="ticket.pickedTickets > 0">
+        <span>{{ ticket.pickedTickets }}</span>
+      </ng-container>
+    </div>
+  </div>
+  <div>
+    <h2>WYBRANE MIEJSCA</h2>
+  </div>
+  <div>
+    <h2>LEGENDA:</h2>
+    <div>Zajęte miejsce</div>
+    <div>Twoje miejsce</div>
+    <div>Miejsce VIP</div>
+  </div>
+  <div class="total">
+    <div>Suma:</div>
+    <div>0zł</div>
+  </div>
+</section>

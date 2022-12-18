@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Seat } from '../../../movie/movie.service';
-import { CinemaRoomService } from './cinema-room.service';
+
+import { CinemaRoomService, Seat } from './cinema-room.service';
 
 @Component({
   selector: 'app-cinema-room[seats]',
@@ -12,10 +12,6 @@ export class CinemaRoomComponent implements OnInit {
   constructor(private cinemaRoom: CinemaRoomService) {}
 
   ngOnInit(): void {}
-
-  reserveSeat(seat: Seat) {
-    this.cinemaRoom.updateSeats(seat);
-  }
 
   updateCinemaRoom(seat: Seat) {
     this.cinemaRoom.updateSeats(seat);

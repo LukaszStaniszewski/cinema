@@ -13,10 +13,10 @@ export type CinemaRoom = {
   id: string;
   seats: Seat[][];
 };
-
 export type Seat = {
   position: { column: string; row: string };
-  isBusy: boolean;
+  reservation: boolean;
+  taken: boolean;
   status: 'standard' | 'vip';
 };
 
@@ -25,11 +25,20 @@ export type Seat = {
 })
 export class CinemaRoomService {
   private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
+  private seatsBooked$$ = new BehaviorSubject<Seat[]>([]);
 
   constructor(private http: HttpClient) {}
 
   get cinemaRoom$(): Observable<Maybe<CinemaRoom>> {
     return this.cinemaRoom$$.asObservable();
+  }
+
+  get seatsBooked$(): Observable<Seat[]> {
+    return this.seatsBooked$$.asObservable();
+  }
+
+  get seatsBookedValue(): Seat[] {
+    return this.seatsBooked$$.value;
   }
 
   getSeatingData(id: string | number) {
@@ -49,7 +58,10 @@ export class CinemaRoomService {
   }
 
   updateSeats(seatToUpdate: Seat) {
-    const adjustedSeat = [{ ...seatToUpdate, isBusy: !seatToUpdate.isBusy }];
+    const adjustedSeat = [
+      { ...seatToUpdate, reservation: !seatToUpdate.reservation },
+    ];
+    this.seatsBooked$$.next([...this.seatsBooked$$.value, ...adjustedSeat]);
     const cinemaRoom = this.cinemaRoom$$.value;
     if (!cinemaRoom) return;
     const updatedCinemaRoom = this.mapCinemaRoomSeats(cinemaRoom, adjustedSeat);
