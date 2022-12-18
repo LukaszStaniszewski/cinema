@@ -17,6 +17,7 @@
         <app-dropdown
           [ticket]="ticket"
           (selectedOptionEvent)="getSelectedOption($event)"
+          [options]="options[ticket.type]"
         >
         </app-dropdown>
         <div>{{ ticket.price }} zł</div>
