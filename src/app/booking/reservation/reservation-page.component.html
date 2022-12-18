@@ -1,0 +1,18 @@
+<section class="reservation-page">
+  <div class="reservation-page__screen"></div>
+  <app-cinema-room
+    *ngIf="(cinemaRoom$ | async)?.seats as seats; else Spinner"
+    [seats]="seats"
+  ></app-cinema-room>
+  <ng-template #Spinner>...loading</ng-template>
+  <div (click)="toggleTicketDetails(true)">Zmień swoje miejsca</div>
+
+  <a [routerLink]="['/purchase']">Przejdź do zamówienia</a>
+
+  <!-- <app-ticket-details
+    [class.hide]="hide"
+    (toggleEmitter)="toggleTicketDetails($event)"
+  ></app-ticket-details>
+  <div [class.hide]="hide" class="screen-woal"></div> -->
+  <app-summary></app-summary>
+</section>

@@ -1,0 +1,27 @@
+.reservation-page {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* position: relative; */
+}
+
+.seats {
+  display: flex;
+}
+
+.reservation-page__ticket-details {
+  margin: 1rem 0;
+}
+
+.reservation-page__ticket-details .select-bilet-type {
+  margin: 0rem 3rem;
+}
+
+.reservedSeat {
+  background-color: grey;
+}
+
+.hide {
+  display: none;
+}

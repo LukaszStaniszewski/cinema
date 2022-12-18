@@ -1,0 +1,32 @@
+<section class="card-wrapper">
+  <div class="card-image">
+    <img src="{{ movie.image }}" alt="movie" />
+  </div>
+  <main class="card-main">
+    <div>
+      <div class="card-title">{{ movie.title | titlecase }}</div>
+      <div>
+        {{ movie.genre | titlecase }} |{{ movie.runTime }} minut | PG-{{
+          movie.pg
+        }}
+      </div>
+      <span class="card-description">{{ movie.descriptionShort }}</span>
+    </div>
+    <div class="card-details">
+      <a routerLink="/">Więcej</a>
+    </div>
+    <div class="card-hours">
+      <a
+        class="button"
+        *ngFor="let hour of hours"
+        routerLink="/reservation/{{ hour.reservationId }}"
+        >{{ hour.time }}</a
+      >
+    </div>
+  </main>
+  <div class="card-rating">
+    <p>{{ movie.rating }}/ 10</p>
+    <a class="button button--card" routerLink="/">Oceń ten film!</a>
+    <a class="button button--card" routerLink="/">Chcę zobaczyć</a>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<div class="dropdown" (clickOutside)="hideDropdown()">
+  <div class="dropwdown__display-selected" (click)="toggleDropdown()">
+    <div>
+      {{ currentSelectedValue }}
+    </div>
+    <img class="arrow-icon" src="assets/svg/chevron-down-mini.svg" alt="" />
+  </div>
+
+  <div [class.hidden]="hide" class="dropdown__options">
+    <div
+      (click)="setSelectedTicket(index)"
+      *ngFor="let option of options; let index = index"
+    >
+      <span>{{ index }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<section class="ticket-details">
+  <div class="ticket-details__navbar-menu">
+    <img
+      (click)="submit()"
+      class="arrow-icon"
+      src="assets/svg/chevron-left.svg"
+      alt=""
+    />
+    <div>WYBRANE BILETY</div>
+    <div (click)="submit()">GOTOWE</div>
+  </div>
+  <main class="ticket-details__main">
+    <div class="voucher">Wprowadź kod voucher'a</div>
+    <p class="info">
+      W naszym kinie obowiązują rózne rodzaje biletów. Cena biletu zalezy od
+      wybranej znizki.
+    </p>
+
+    <div class="dropdowns-wrapper">
+      <div *ngFor="let ticket of tickets$ | async">
+        <div class="ticket-type">{{ ticket.type }}</div>
+        <app-dropdown
+          [ticket]="ticket"
+          (selectedOptionEvent)="getSelectedOption($event)"
+          [options]="options[ticket.type]"
+        >
+        </app-dropdown>
+        <div class="single-ticket-price">{{ ticket.price }} zł</div>
+      </div>
+    </div>
+
+    <div class="total">
+      <div>Suma:</div>
+      <div>{{ totalPrice }}zł</div>
+    </div>
+  </main>
+  <button (click)="submit()" class="button button--ticket-details">
+    GOTOWE
+  </button>
+</section>

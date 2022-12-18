@@ -1,0 +1,45 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown__ticket-type {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 0.5rem;
+}
+.dropwdown__display-selected {
+  border: 1px solid #000000;
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown__options {
+  /* text-align: center; */
+  border: 1px solid var(--color-border);
+  z-index: 99;
+  width: 100%;
+  position: absolute;
+  background-color: var(--background-secondary);
+  transform: translateY(-2.5rem);
+  padding: 0.2rem 0;
+}
+
+.dropdown__options > div {
+  cursor: pointer;
+  margin: 0.1rem 0;
+}
+.dropdown__options > div:hover {
+  transition: all 0.3s;
+  transform: scale(1.2);
+}
+
+.hidden {
+  display: none;
+}
+
+.arrow-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+}
