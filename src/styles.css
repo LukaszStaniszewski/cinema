@@ -1,13 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap");
 :root {
-  --color-border: #00bff9;
-  --color-border-secondary: #d4d4d8;
+  --color-border: rgb(51, 51, 51);
+  --color-border-secondary: #00bff9;
+  /* --color-border-secondary: rgb(51, 51, 51); */
+  --background-primary: #000000;
   --background-secondary: #ffffff;
   --background-tertiary: #f1f5f9;
+  --color-text-primary: #e5e7eb;
   --color-bg-button: #f0f0f0;
-  --text-m: 1rem;
+  --text-m: 1.1rem;
   --text-lg: 1.3rem;
-  --text-XL: 1.6rem;
+  --text-XL: 1.8rem;
   --gradient-blue: linear-gradient(
     90deg,
     #2b74b9 0%,
@@ -25,8 +28,12 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.4;
+  line-height: 1.5;
+  background-color: var(--background-primary);
+  color: var(--color-text-primary);
   /* overflow-x: hidden; */
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0.02em;
 }
 
 *,
@@ -39,6 +46,12 @@ body {
 
 a {
   text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(max-content, 1fr));
 }
 
 /* .button {
@@ -67,7 +80,7 @@ a {
 
 .button {
   display: block;
-  background-color: var(--background-secondary);
+  background-color: var(--background-primary);
   border: none;
   text-align: center;
   line-height: 100%;

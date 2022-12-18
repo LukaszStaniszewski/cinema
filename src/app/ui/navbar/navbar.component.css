@@ -1,31 +1,45 @@
-nav {
-  max-width: 100vw;
+.navbar-wrapper {
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.2rem 0;
+}
+
+.navbar-wrapper > nav {
+  grid-column: 3 / 11;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-bottom: 2px solid var(--color-border);
-  padding: 1rem;
   position: relative;
 }
 
-.navbar__cinema-name {
-  width: 100%;
+.cinema-name__wrapper {
   position: absolute;
+  width: 100%;
   text-align: center;
-  font-weight: 500;
-  color: black;
-  font-size: var(--text-XL);
 }
 
-.navbar-buttons-wrapper {
+.navbar__cinema-name {
+  font-size: var(--text-XL);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+}
+
+.navbar-buttons__wrapper {
   display: flex;
-  column-gap: 1rem;
+  column-gap: 4rem;
+  width: 20%;
+  justify-content: space-evenly;
+  align-items: center;
   z-index: 2;
   position: relative;
 }
 
 .navbar-cart > img {
   height: 2rem;
+  fill: var(--color-text-primary) !important;
 }
 
 .button--navbar {
@@ -33,9 +47,17 @@ nav {
   line-height: 2rem;
 }
 
+.navbar__login {
+  font-size: var(--text-lg);
+  cursor: pointer;
+  text-transform: capitalize;
+  padding: 1rem;
+}
+
 .dropdown {
   position: absolute;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-secondary);
+  background-color: var(--background-primary);
   text-align: left;
   height: max-content;
   z-index: 99;
@@ -43,7 +65,7 @@ nav {
   padding: 0.5rem;
   top: 0;
   right: 0;
-  background-color: white;
+  z-index: 2;
 }
 
 .dropdown > div {

@@ -17,7 +17,7 @@
     </div>
     <div class="card-hours">
       <a
-        class="button"
+        class="time-details"
         *ngFor="let hour of hours"
         routerLink="/reservation/{{ hour.reservationId }}"
         >{{ hour.time }}</a
@@ -26,7 +26,7 @@
   </main>
   <div class="card-rating">
     <p>{{ movie.rating }}/ 10</p>
-    <a class="button button--card" routerLink="/">Oceń ten film!</a>
-    <a class="button button--card" routerLink="/">Chcę zobaczyć</a>
+    <a class="button--card" routerLink="/">Oceń ten film!</a>
+    <a class="button--card" routerLink="/">Chcę zobaczyć</a>
   </div>
 </section>
