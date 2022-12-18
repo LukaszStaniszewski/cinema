@@ -1,14 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* @font-face {
-  font-family: "RobotoCondensed";
-  src: local("RobotoCondensed"),
-    url(./assets/fonts/RobotoCondensed-Regular.ttf) format("truetype");
-} */
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap");
 :root {
   --color-border: #00bff9;
+  --color-border-secondary: #d4d4d8;
   --background-secondary: #ffffff;
   --background-tertiary: #f1f5f9;
   --color-bg-button: #f0f0f0;
