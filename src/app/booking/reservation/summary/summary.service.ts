@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, tap } from 'rxjs';
 import {
   Ticket,
   TicketService,
   TicketTypes,
 } from '../ticket-details/ticket.service';
-import { User } from 'src/app/user/authentication.service';
+import { User } from '../../../user/authentication.service';
 import { CinemaRoomService, Seat } from '../cinema-room/cinema-room.service';
 
 type TicketDetails = {
@@ -25,6 +25,7 @@ type Summary = {
 @Injectable({
   providedIn: 'root',
 })
+//@ts-ignore
 export class SummaryService {
   private summaryState$$ = new BehaviorSubject<Summary | null>(null);
 
@@ -34,9 +35,14 @@ export class SummaryService {
   ) {}
 
   mapTicketsAndSeats() {
-    combineLatest([
+    return combineLatest([
       this.ticketService.tickets$,
-      this.cinemaRoomService.cinemaRoom$,
-    ]).pipe();
+      this.cinemaRoomService.seatsBooked$,
+    ]).pipe(
+      map(([tickets, seats]) => ({ tickets: tickets, seats: seats })),
+      tap((value) => {
+        console.log(value);
+      })
+    );
   }
 }

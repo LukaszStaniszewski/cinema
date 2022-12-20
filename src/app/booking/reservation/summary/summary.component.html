@@ -1,7 +1,7 @@
-<section *ngIf="ticketsInfo | async as tickets">
+<section *ngIf="vm | async as vm">
   <div>
     <h2>WYBRANE BILETY</h2>
-    <div *ngFor="let ticket of tickets">
+    <div *ngFor="let ticket of vm.tickets">
       <ng-container *ngIf="ticket.pickedTickets > 0">
         <span>{{ ticket.pickedTickets }}</span>
       </ng-container>

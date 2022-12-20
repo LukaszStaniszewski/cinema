@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, tap } from 'rxjs';
-import { Maybe } from 'src/app/user/authentication.service';
-import { API } from 'src/environments/constants';
+import { Maybe } from '../../../user/authentication.service';
+import { API } from '../../../../environments/constants';
+
 export interface Reservation {
   id: string;
   cinemaRoomId: string;
@@ -19,13 +20,22 @@ export type Seat = {
   taken: boolean;
   status: 'standard' | 'vip';
 };
+export type SeatBooked = {
+  [key: string]: {
+    position: { column: string; row: string };
+    reservation: boolean;
+    taken: boolean;
+    status: 'standard' | 'vip';
+  };
+};
 
 @Injectable({
   providedIn: 'root',
 })
+//@ts-ignore
 export class CinemaRoomService {
   private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
-  private seatsBooked$$ = new BehaviorSubject<Seat[]>([]);
+  private seatsBooked$$ = new BehaviorSubject<string[]>([]);
 
   constructor(private http: HttpClient) {}
 
@@ -33,13 +43,13 @@ export class CinemaRoomService {
     return this.cinemaRoom$$.asObservable();
   }
 
-  get seatsBooked$(): Observable<Seat[]> {
+  get seatsBooked$(): Observable<string[]> {
     return this.seatsBooked$$.asObservable();
   }
 
-  get seatsBookedValue(): Seat[] {
-    return this.seatsBooked$$.value;
-  }
+  // get seatsBookedValue(): Seat[] {
+  //   return this.seatsBooked$$.value;
+  // }
 
   getSeatingData(id: string | number) {
     this.http
@@ -57,11 +67,46 @@ export class CinemaRoomService {
       });
   }
 
+  mapSeatBooked(seat: Seat) {
+    const id = seat.position.row + seat.position.column;
+    this.addSeat(seat, id);
+
+    // if (this.seatsBooked$$.value[id].reservation === false) {
+    //   this.removeSeat(id);
+    // }
+  }
+  addSeat(seat: Seat, id: string) {
+    // this.seatsBooked$$.next([...this.seatsBooked$$.value, id]);
+    if (this.seatsBooked$$.value.includes(id)) {
+      this.seatsBooked$$.next(
+        this.seatsBooked$$.value.filter((value) => value !== id)
+      );
+      return;
+    }
+    this.seatsBooked$$.next([...new Set([...this.seatsBooked$$.value, id])]);
+  }
+  // addSeat(seat: Seat, id: string) {
+  //   this.seatsBooked$$.next({
+  //     ...this.seatsBooked$$.value,
+  //     [id]: { ...seat, reservation: !seat.reservation },
+  //   });
+  // }
+
+  // removeSeat(id: string) {
+  //   this.seatsBooked$$.pipe(
+  //     tap((seatsBooked) => {
+  //       return {...seatsBooked, seatsBooked[id]: null};
+  //     })
+  //   );
+  // }
+
   updateSeats(seatToUpdate: Seat) {
     const adjustedSeat = [
       { ...seatToUpdate, reservation: !seatToUpdate.reservation },
     ];
-    this.seatsBooked$$.next([...this.seatsBooked$$.value, ...adjustedSeat]);
+
+    this.mapSeatBooked(seatToUpdate);
+    // this.seatsBooked$$.next([...this.seatsBooked$$.value, ...adjustedSeat]);
     const cinemaRoom = this.cinemaRoom$$.value;
     if (!cinemaRoom) return;
     const updatedCinemaRoom = this.mapCinemaRoomSeats(cinemaRoom, adjustedSeat);
