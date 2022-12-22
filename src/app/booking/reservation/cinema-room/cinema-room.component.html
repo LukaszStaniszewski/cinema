@@ -31,8 +31,8 @@
       </div>
       <ng-template #availableSeats>
         <div
-          (click)="updateCinemaRoom(seat)"
-          id="{{ seat.position.column + seat.position.row }}"
+          (click)="updateCinemaRoom(seat, $event)"
+          id="{{ seat.position.row + seat.position.column }}"
           class="seat"
           [ngClass]="{ 'seat-booked': seat.reservation }"
         >

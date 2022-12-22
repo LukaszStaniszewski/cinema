@@ -8,7 +8,6 @@ import { SummaryService } from './summary.service';
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css'],
 })
-//@ts-ignore
 export class SummaryComponent implements OnInit {
   constructor(
     private ticketService: TicketService,

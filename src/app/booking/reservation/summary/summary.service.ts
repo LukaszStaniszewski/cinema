@@ -25,7 +25,6 @@ type Summary = {
 @Injectable({
   providedIn: 'root',
 })
-//@ts-ignore
 export class SummaryService {
   private summaryState$$ = new BehaviorSubject<Summary | null>(null);
 
@@ -40,9 +39,7 @@ export class SummaryService {
       this.cinemaRoomService.seatsBooked$,
     ]).pipe(
       map(([tickets, seats]) => ({ tickets: tickets, seats: seats })),
-      tap((value) => {
-        console.log(value);
-      })
+      tap(console.log)
     );
   }
 }

@@ -21,21 +21,19 @@ export type Seat = {
   status: 'standard' | 'vip';
 };
 export type SeatBooked = {
-  [key: string]: {
-    position: { column: string; row: string };
-    reservation: boolean;
-    taken: boolean;
-    status: 'standard' | 'vip';
-  };
+  id: string;
+  position: { column: string; row: string };
+  reservation: boolean;
+  taken: boolean;
+  status: 'standard' | 'vip';
 };
 
 @Injectable({
   providedIn: 'root',
 })
-//@ts-ignore
 export class CinemaRoomService {
   private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
-  private seatsBooked$$ = new BehaviorSubject<string[]>([]);
+  private seatsBooked$$ = new BehaviorSubject<SeatBooked[]>([]);
 
   constructor(private http: HttpClient) {}
 
@@ -43,13 +41,9 @@ export class CinemaRoomService {
     return this.cinemaRoom$$.asObservable();
   }
 
-  get seatsBooked$(): Observable<string[]> {
+  get seatsBooked$(): Observable<SeatBooked[]> {
     return this.seatsBooked$$.asObservable();
   }
-
-  // get seatsBookedValue(): Seat[] {
-  //   return this.seatsBooked$$.value;
-  // }
 
   getSeatingData(id: string | number) {
     this.http
@@ -67,50 +61,30 @@ export class CinemaRoomService {
       });
   }
 
-  mapSeatBooked(seat: Seat) {
-    const id = seat.position.row + seat.position.column;
-    this.addSeat(seat, id);
-
-    // if (this.seatsBooked$$.value[id].reservation === false) {
-    //   this.removeSeat(id);
-    // }
-  }
-  addSeat(seat: Seat, id: string) {
-    // this.seatsBooked$$.next([...this.seatsBooked$$.value, id]);
-    if (this.seatsBooked$$.value.includes(id)) {
-      this.seatsBooked$$.next(
-        this.seatsBooked$$.value.filter((value) => value !== id)
-      );
-      return;
-    }
-    this.seatsBooked$$.next([...new Set([...this.seatsBooked$$.value, id])]);
-  }
-  // addSeat(seat: Seat, id: string) {
-  //   this.seatsBooked$$.next({
-  //     ...this.seatsBooked$$.value,
-  //     [id]: { ...seat, reservation: !seat.reservation },
-  //   });
-  // }
-
-  // removeSeat(id: string) {
-  //   this.seatsBooked$$.pipe(
-  //     tap((seatsBooked) => {
-  //       return {...seatsBooked, seatsBooked[id]: null};
-  //     })
-  //   );
-  // }
-
   updateSeats(seatToUpdate: Seat) {
-    const adjustedSeat = [
-      { ...seatToUpdate, reservation: !seatToUpdate.reservation },
-    ];
+    const seatToUpdateId =
+      seatToUpdate.position.row + seatToUpdate.position.column;
 
-    this.mapSeatBooked(seatToUpdate);
-    // this.seatsBooked$$.next([...this.seatsBooked$$.value, ...adjustedSeat]);
-    const cinemaRoom = this.cinemaRoom$$.value;
-    if (!cinemaRoom) return;
-    const updatedCinemaRoom = this.mapCinemaRoomSeats(cinemaRoom, adjustedSeat);
-    this.cinemaRoom$$.next(updatedCinemaRoom);
+    if (this.isExisting(seatToUpdateId)) {
+      this.removeBookedSeat(seatToUpdateId);
+    } else {
+      this.addBookedSeat(seatToUpdate, seatToUpdateId);
+    }
+  }
+  private isExisting(seatId: string) {
+    return this.seatsBooked$$.value.some(({ id }) => id === seatId);
+  }
+
+  private removeBookedSeat(seatToRemoveId: string) {
+    this.seatsBooked$$.next(
+      this.seatsBooked$$.value.filter(({ id }) => id !== seatToRemoveId)
+    );
+  }
+
+  private addBookedSeat(seat: Seat, id: string) {
+    this.seatsBooked$$.next([
+      ...new Set([...this.seatsBooked$$.value, { id: id, ...seat }]),
+    ]);
   }
 
   private mapCinemaRoomSeats(cinemaRoom: CinemaRoom, seatsToUpdate?: Seat[]) {

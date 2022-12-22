@@ -3,12 +3,17 @@
     <h2>WYBRANE BILETY</h2>
     <div *ngFor="let ticket of vm.tickets">
       <ng-container *ngIf="ticket.pickedTickets > 0">
-        <span>{{ ticket.pickedTickets }}</span>
+        <span>Ilość {{ ticket.pickedTickets }}, </span>
+        <span>typ {{ ticket.type }}</span>
       </ng-container>
     </div>
   </div>
   <div>
     <h2>WYBRANE MIEJSCA</h2>
+    <div *ngFor="let seat of vm.seats">
+      <span>Rząd {{ seat.position.row }}, </span>
+      <span>Miejsce {{ seat.position.column }}</span>
+    </div>
   </div>
   <div>
     <h2>LEGENDA:</h2>
