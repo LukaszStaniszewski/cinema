@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, tap } from 'rxjs';
-import { Maybe } from '../../../user/authentication.service';
+import { Maybe } from '../../user/authentication.service';
 import { API } from '../../../../environments/constants';
 
 export interface Reservation {

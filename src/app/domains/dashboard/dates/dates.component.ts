@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../movie/movie.service';
 
 @Component({
   selector: 'app-dates',
@@ -17,7 +16,7 @@ export class DatesComponent implements OnInit {
     '10/12/2022',
     '11/12/2022',
   ];
-  constructor(private showing: MovieService) {}
+  constructor() {}
 
   ngOnInit(): void {
     // console.log(this.next7Days);

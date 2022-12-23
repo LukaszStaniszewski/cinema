@@ -5,7 +5,7 @@ import {
   OnChanges,
   Output,
 } from '@angular/core';
-import { Ticket } from 'src/app/booking/reservation/ticket-details/ticket.service';
+import { Ticket } from 'src/app/domains/reservation/ticket-details/ticket.service';
 
 export type Option = {
   value: { ticketsAmount: number; type: string };

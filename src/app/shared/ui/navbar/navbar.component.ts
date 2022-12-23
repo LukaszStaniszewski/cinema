@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Admin } from 'src/app/user/Admin';
+import { Admin } from 'src/app/domains/user/Admin';
 
 import {
   AuthenticationService,
   Maybe,
-} from 'src/app/user/authentication.service';
+} from 'src/app/domains/user/authentication.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Maybe } from '../../user/authentication.service';
+import { Maybe } from '../user/authentication.service';
 import { CinemaRoomService } from './cinema-room/cinema-room.service';
 
 type ReservationParams = {

@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { catchError, EMPTY, filter, Observable } from 'rxjs';
 import { API } from 'src/environments/constants';
-import { HandleUserErrorService } from '../../user/handle-user-error.service';
+import { HandleUserErrorService } from '../../domains/user/handle-user-error.service';
 
 @Injectable()
 export class CustomHttpInterceptor implements HttpInterceptor {

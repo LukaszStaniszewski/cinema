@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, of, tap } from 'rxjs';
 import { API } from 'src/environments/constants';
 import { CinemaRoomService } from '../cinema-room/cinema-room.service';
-import { User } from 'src/app/user/authentication.service';
+import { User } from 'src/app/domains/user/authentication.service';
 
 export type Ticket = {
   type: TicketTypes;

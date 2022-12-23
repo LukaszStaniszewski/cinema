@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Seat } from '../../../movie/movie.service';
 import { Ticket, TicketService } from './ticket.service';
-import { Maybe } from '../../../user/authentication.service';
+import { Maybe } from '../../user/authentication.service';
 
 @Component({
   selector: 'app-ticket-details',

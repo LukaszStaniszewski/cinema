@@ -6,11 +6,11 @@ import {
   CanActivateChildFn,
   Router,
 } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TicketPurchasePageComponent } from './booking/purchase/ticket-purchase-page.component';
-import { ReservationPageComponent } from './booking/reservation/reservation-page.component';
+import { DashboardComponent } from './domains/dashboard/dashboard.component';
+import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
+import { ReservationPageComponent } from './domains/reservation/reservation-page.component';
 import { of, tap } from 'rxjs';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 // tylko angular 14+
 const guard: CanActivateChildFn = () => {

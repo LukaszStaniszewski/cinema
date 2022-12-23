@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Reperoire } from '../../movie/movie.service';
 import type { Showing } from '../services/showing-state.service';
 import { Maybe } from '../../user/authentication.service';
 

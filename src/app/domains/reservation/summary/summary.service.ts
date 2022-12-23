@@ -5,7 +5,7 @@ import {
   TicketService,
   TicketTypes,
 } from '../ticket-details/ticket.service';
-import { User } from '../../../user/authentication.service';
+import { User } from '../../user/authentication.service';
 import { CinemaRoomService, Seat } from '../cinema-room/cinema-room.service';
 
 type TicketDetails = {
