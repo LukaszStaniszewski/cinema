@@ -9,14 +9,15 @@
   max-height: 100vh;
   line-height: 1.5;
   overflow: hidden;
+  color: black;
 }
 
 .dropdowns-wrapper {
   display: flex;
   gap: 30px;
   text-align: center;
-  border-bottom: 1px solid var(--color-border-secondary);
-  border-top: 1px solid var(--color-border-secondary);
+  border-bottom: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 .ticket-type {
@@ -37,11 +38,11 @@
   display: flex;
   padding: 1.2rem 0;
   background-color: black;
-  color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-size: var(--text-lg);
+  color: white;
 }
 
 .ticket-details__navbar-menu .arrow-icon {

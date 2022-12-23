@@ -1,26 +1,41 @@
-<section *ngIf="vm | async as vm">
+<section class="summary" *ngIf="vm | async as vm">
   <div>
-    <h2>WYBRANE BILETY</h2>
-    <div *ngFor="let ticket of vm.tickets">
-      <ng-container *ngIf="ticket.pickedTickets > 0">
-        <span>Ilość {{ ticket.pickedTickets }}, </span>
-        <span>typ {{ ticket.type }}</span>
-      </ng-container>
+    <h2>LEGENDA:</h2>
+    <div>
+      <span class="seat seat--taken test">8</span>
+      Zajęte miejsce
     </div>
+    <div>
+      <span class="seat test">8</span>
+      Wolne miejsce
+    </div>
+    <div>
+      <span class="seat seat--booked test">8</span>
+      Twoje miejsce
+    </div>
+    <div>Miejsce VIP</div>
   </div>
   <div>
     <h2>WYBRANE MIEJSCA</h2>
-    <div *ngFor="let seat of vm.seats">
-      <span>Rząd {{ seat.position.row }}, </span>
-      <span>Miejsce {{ seat.position.column }}</span>
+    <div class="booked-seats--wrapper">
+      <div
+        class="seat seat--booked seat--summary"
+        *ngFor="let seat of vm.seats"
+      >
+        <p>Rząd {{ seat.position.row }}</p>
+        <p>Miejsce {{ seat.position.column }}</p>
+      </div>
     </div>
   </div>
-  <div>
-    <h2>LEGENDA:</h2>
-    <div>Zajęte miejsce</div>
-    <div>Twoje miejsce</div>
-    <div>Miejsce VIP</div>
+  <div class="booked-tickets--wrapper">
+    <h2>WYBRANE BILETY</h2>
+    <div *ngFor="let ticket of vm.tickets">
+      <ng-container *ngIf="ticket.pickedTickets > 0">
+        <p>{{ ticket.pickedTickets }} x {{ ticket.type | titlecase }}</p>
+      </ng-container>
+    </div>
   </div>
+
   <div class="total">
     <div>Suma:</div>
     <div>0zł</div>

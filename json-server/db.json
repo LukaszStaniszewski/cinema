@@ -263,6 +263,22 @@
           "taken": true
         },
         {
+          "position": { "row": "E", "column": "8" },
+          "taken": true
+        },
+        {
+          "position": { "row": "D", "column": "6" },
+          "taken": true
+        },
+        {
+          "position": { "row": "D", "column": "7" },
+          "taken": true
+        },
+        {
+          "position": { "row": "D", "column": "8" },
+          "taken": true
+        },
+        {
           "position": { "row": "H", "column": "9" },
           "taken": true
         }

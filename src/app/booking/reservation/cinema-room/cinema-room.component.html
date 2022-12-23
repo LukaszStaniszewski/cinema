@@ -25,7 +25,7 @@
         *ngIf="seat?.taken; else availableSeats"
         id="{{ seat.position.column + seat.position.row }}"
         class="seat"
-        [ngClass]="{ 'seat-taken': seat.taken }"
+        [ngClass]="{ 'seat--taken': seat.taken }"
       >
         {{ seat.position.column }}
       </div>
@@ -34,7 +34,7 @@
           (click)="updateCinemaRoom(seat, $event)"
           id="{{ seat.position.row + seat.position.column }}"
           class="seat"
-          [ngClass]="{ 'seat-booked': seat.reservation }"
+          [ngClass]="{ 'seat--booked': seat.reservation }"
         >
           {{ seat.position.column }}
         </div>

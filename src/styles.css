@@ -54,19 +54,6 @@ a {
   grid-template-columns: repeat(12, minmax(max-content, 1fr));
 }
 
-/* .button {
-  display: block;
-  background-color: var(--color-bg-button);
-  border: 1px solid var(--color-border);
-  text-align: center;
-  border-radius: 5px;
-  padding: 0.1rem 1rem;
-  height: 2.5rem;
-  width: 6rem;
-  line-height: 2.5rem;
-  min-width: max-content;
-} */
-
 .screen-woal {
   top: 0;
   left: 0;
@@ -80,7 +67,7 @@ a {
 
 .button {
   display: block;
-  background-color: var(--background-primary);
+  background-color: var(--background-secondary);
   border: none;
   text-align: center;
   line-height: 100%;
@@ -109,4 +96,28 @@ a {
 
 .button:hover::after {
   filter: blur(3px);
+}
+
+.seat {
+  width: 42px;
+  height: 42px;
+  min-width: max-content;
+  line-height: 42px;
+  text-align: center;
+  background-color: var(--color-bg-button);
+
+  background: #353b44;
+  border-radius: 6px 6px 0 0;
+  margin: 2px;
+  color: white;
+  cursor: pointer;
+}
+
+.seat--booked {
+  background: #fa6218;
+  backdrop-filter: blur(23px);
+}
+
+.seat--taken {
+  background: #f2e5d7;
 }

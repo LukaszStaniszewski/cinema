@@ -26,14 +26,14 @@ export class CinemaRoomComponent implements OnInit {
     // this.test = !this.test;
     if (
       clickdElementId === seatId &&
-      elementClassList.contains('seat-booked')
+      elementClassList.contains('seat--booked')
     ) {
       // console.log('hit');
       //@ts-ignore
-      event.currentTarget?.classList.remove('seat-booked');
+      event.currentTarget?.classList.remove('seat--booked');
     } else if (clickdElementId === seatId) {
       //@ts-ignore
-      event.currentTarget?.classList.add('seat-booked');
+      event.currentTarget?.classList.add('seat--booked');
     }
 
     this.cinemaRoom.updateSeats(seat);
