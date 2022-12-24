@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Seat } from '../../../movie/movie.service';
 import { Ticket, TicketService } from './ticket.service';
 import { Maybe } from '../../user/authentication.service';
+import { Seat } from '../cinema-room/cinema-room.service';
 
 @Component({
   selector: 'app-ticket-details',
@@ -22,9 +22,8 @@ export class TicketDetailsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.ticketService.getTicketInfo();
-    this.ticketService.tickets$.subscribe((tickets) => {
+    this.ticketService.tickets$.subscribe(({ tickets }) => {
       this.adjustOptions(tickets);
-      this.calculateTotalPrice(tickets);
     });
   }
 
@@ -37,13 +36,13 @@ export class TicketDetailsComponent implements OnInit {
     });
   }
 
-  private calculateTotalPrice(tickets: Ticket[]) {
-    let holder = 0;
-    for (let ticket of tickets) {
-      holder += ticket.price * ticket.pickedTickets;
-    }
-    this.totalPrice = holder;
-  }
+  // private calculateTotalPrice(tickets: Ticket[]) {
+  //   let holder = 0;
+  //   for (let ticket of tickets) {
+  //     holder += ticket.price * ticket.pickedTickets;
+  //   }
+  //   this.totalPrice = holder;
+  // }
 
   getSelectedOption({
     type,

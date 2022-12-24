@@ -16,23 +16,25 @@
       wybranej znizki.
     </p>
 
-    <div class="dropdowns-wrapper">
-      <div *ngFor="let ticket of tickets$ | async">
-        <div class="ticket-type">{{ ticket.type }}</div>
-        <app-dropdown
-          [ticket]="ticket"
-          (selectedOptionEvent)="getSelectedOption($event)"
-          [options]="options[ticket.type]"
-        >
-        </app-dropdown>
-        <div class="single-ticket-price">{{ ticket.price }} zł</div>
+    <ng-container *ngIf="tickets$ | async as ticketState">
+      <div class="dropdowns-wrapper">
+        <div *ngFor="let ticket of ticketState.tickets">
+          <div class="ticket-type">{{ ticket.type }}</div>
+          <app-dropdown
+            [ticket]="ticket"
+            (selectedOptionEvent)="getSelectedOption($event)"
+            [options]="options[ticket.type]"
+          >
+          </app-dropdown>
+          <div class="single-ticket-price">{{ ticket.price }} zł</div>
+        </div>
       </div>
-    </div>
 
-    <div class="total">
-      <div>Suma:</div>
-      <div>{{ totalPrice }}zł</div>
-    </div>
+      <div class="total">
+        <div>Suma:</div>
+        <div>{{ ticketState.totalPrice }}zł</div>
+      </div>
+    </ng-container>
   </main>
   <button (click)="submit()" class="button button--ticket-details">
     GOTOWE

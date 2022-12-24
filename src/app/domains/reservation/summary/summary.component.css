@@ -21,7 +21,8 @@
   display: flex;
   flex-wrap: wrap;
   /* max-width: 40%; */
-  width: 300px;
+  width: 320px;
+  justify-content: center;
 }
 
 .booked-tickets--wrapper {

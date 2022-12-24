@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CinemaRoomService } from '../cinema-room/cinema-room.service';
-import { TicketService } from '../ticket-details/ticket.service';
 import { SummaryService } from './summary.service';
 
 @Component({
@@ -9,16 +7,11 @@ import { SummaryService } from './summary.service';
   styleUrls: ['./summary.component.css'],
 })
 export class SummaryComponent implements OnInit {
-  constructor(
-    private ticketService: TicketService,
-    private cinemaRoomService: CinemaRoomService,
-    private summaryService: SummaryService
-  ) {}
-
-  get ticketsInfo() {
-    return this.ticketService.tickets$;
-  }
+  constructor(private summaryService: SummaryService) {}
 
   vm = this.summaryService.mapTicketsAndSeats();
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    // this.summaryService.mapTicketsAndSeats();
+  }
 }
