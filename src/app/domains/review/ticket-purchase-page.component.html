@@ -1,10 +1,33 @@
 <section class="purchase-page-container">
-  <div>
-    <p>Title,</p>
-    <span>Date, </span>
-    <span>Hour</span>
+  <div class="movie-info">
+    <img
+      class="movie-info__image"
+      src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg"
+      alt=""
+      srcset=""
+    />
+    <div class="movie-info__details">
+      <p>ZAKUP BILETÓW</p>
+      <p>Avatar: Istota Wody</p>
+      <span>28.12.2022, </span>
+      <span>14:30</span>
+    </div>
   </div>
   <!-- <label for="name">Name: </label> -->
+  <div class="order-details">
+    <div>
+      <div>2x Normalny</div>
+      <div>40zł</div>
+    </div>
+    <div>
+      <div>2x Ulgowy</div>
+      <div>25zł</div>
+    </div>
+    <div class="total">
+      <div>4 bilety</div>
+      <div>65zł</div>
+    </div>
+  </div>
 
   <form
     class="purchase-form"
@@ -33,6 +56,54 @@
         </p>
       </div>
     </div>
+    <div class="email-wrapper">
+      <div class="purchase-input">
+        <input
+          class="purchase-input--email"
+          placeholder="Adres e-mail*"
+          formControlName="email"
+          type="email"
+        />
+        <p
+          [ngClass]="{
+            hidden: controls.email.pristine || controls.email.valid
+          }"
+        >
+          Wpisz prawidłowy adres email
+        </p>
+      </div>
+      <!-- <p>Value: {{ userCredentials.status }}</p> -->
+      <div class="purchase-input">
+        <input
+          class="purchase-input--conrifm-email"
+          placeholder="Powtórz adres e-mail*"
+          formControlName="confirmEmail"
+          type="email"
+        />
+        <!-- <ng-container
+          *ngIf="userCredentialsForm.controls.confirmEmail.errors as errors"
+        >
+          <ng-container *ngIf="userCredentialsForm.controls.confirmEmail.touched">
+            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+            <p *ngIf="errors['minlength'] as milLength">
+              Podałeś {{ milLength.actualLength }} znaki, minimum to
+              {{ milLength.requiredLength }}
+            </p>
+            <p *ngIf="errors['emailMatch']">Emaile nie są identyczne</p>
+          </ng-container>
+        </ng-container> -->
+        <!-- <p
+          [ngClass]="{
+            hidden:
+              userCredentials.controls.confirmEmail.pristine ||
+              userCredentials.controls.confirmEmail.valid
+          }"
+        >
+          {{ errorMessage ? errorMessage : "Wpisz prawidłowy adres email" }}
+        </p> -->
+        {{ controls.confirmEmail.errors | json }}
+      </div>
+    </div>
     <div class="purchase-input">
       <input
         placeholder="Numer telefonu"
@@ -47,59 +118,16 @@
         Numer telefonu musi składać się z 9 cyfr
       </p>
     </div>
-    <div class="purchase-input">
-      <input
-        class="purchase-input--email"
-        placeholder="Adres e-mail*"
-        formControlName="email"
-        type="email"
-      />
-      <p
-        [ngClass]="{
-          hidden: controls.email.pristine || controls.email.valid
-        }"
-      >
-        Wpisz prawidłowy adres email
-      </p>
-    </div>
-    <!-- <p>Value: {{ userCredentials.status }}</p> -->
-    <div class="purchase-input">
-      <input
-        class="purchase-input--conrifm-email"
-        placeholder="Powtórz adres e-mail*"
-        formControlName="confirmEmail"
-        type="email"
-      />
-      <!-- <ng-container
-        *ngIf="userCredentialsForm.controls.confirmEmail.errors as errors"
-      >
-        <ng-container *ngIf="userCredentialsForm.controls.confirmEmail.touched">
-          <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
-          <p *ngIf="errors['minlength'] as milLength">
-            Podałeś {{ milLength.actualLength }} znaki, minimum to
-            {{ milLength.requiredLength }}
-          </p>
-          <p *ngIf="errors['emailMatch']">Emaile nie są identyczne</p>
-        </ng-container>
-      </ng-container> -->
-      <!-- <p
-        [ngClass]="{
-          hidden:
-            userCredentials.controls.confirmEmail.pristine ||
-            userCredentials.controls.confirmEmail.valid
-        }"
-      >
-        {{ errorMessage ? errorMessage : "Wpisz prawidłowy adres email" }}
-      </p> -->
-      {{ controls.confirmEmail.errors | json }}
-    </div>
     <button
       class="button button--purchase-form"
       type="button"
       [disabled]="!userCredentialsForm.valid"
     >
-      Zamawiam!
+      Zamawiam
     </button>
   </form>
-  <a [routerLink]="['/reservation']">Wróć do wyboru miejsc</a>
+  <div class="redirect-reservation">
+    <img src="assets/svg/chevron-left.svg" alt="left-arrow-icon" />
+    <a [routerLink]="['/reservation']"> Wróć do wyboru miejsc </a>
+  </div>
 </section>

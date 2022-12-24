@@ -3,20 +3,95 @@
   flex-direction: column;
   align-items: center;
 }
-input {
-  outline: none;
+
+.movie-info {
+  display: flex;
+  gap: 2rem;
+  width: 50%;
+  justify-content: center;
+  margin: 2rem 0rem 1rem 0rem;
+  padding-bottom: 1.5rem;
+
+  border-bottom: 1px solid var(--color-border);
 }
 
-.purchase-input > .ng-dirty.ng-invalid {
-  border: 1px solid red;
+.movie-info__image {
+  width: 120px;
 }
 
-.purchase-input > .ng-dirty.ng-valid {
-  border: 1px solid green;
+.movie-info__details > p:first-child {
+  font-weight: normal;
+  text-transform: uppercase;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.movie-info__details > p {
+  font-size: var(--text-XL);
+  font-weight: 300;
+}
+.movie-info__details > span {
+  font-size: var(--text-lg);
+  font-weight: 300;
+}
+
+.order-details {
+  font-size: var(--text-lg);
+
+  margin: 0 auto;
+  gap: 2rem;
+  width: 50%;
+}
+
+.order-details > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.total {
+  text-transform: uppercase;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.4rem;
+  border-top: 1px solid var(--color-border);
+  margin: 1rem 0rem 1rem 0rem;
+}
+
+.purchase-form {
+  width: 50%;
+}
+
+.name-surname-wrapper,
+.email-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
 
 .purchase-input {
   margin: 0.2rem 0;
+  width: 40%;
+}
+input {
+  outline: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+}
+
+input::placeholder {
+  color: #c0c0c0;
+  padding-left: 0.5rem;
+}
+.purchase-input > .ng-dirty.ng-invalid {
+  border: 2px solid red;
+}
+
+.purchase-input > .ng-dirty.ng-valid {
+  border: 2px solid green;
 }
 
 .purchase-input > input {
@@ -27,18 +102,30 @@ input {
   opacity: 0;
 }
 
-.name-surname-wrapper {
-  display: flex;
-  gap: 3rem;
-}
-
 .button--purchase-form {
-  margin: 0 auto;
+  width: 100%;
+  font-size: var(--text-lg);
+  color: black;
+  letter-spacing: 0.1rem !important;
+  text-transform: uppercase;
   height: 2rem;
-  line-height: 1.8rem;
 }
 
-.purchase-input--email,
+.redirect-reservation {
+  font-size: var(--text-lg);
+  display: flex;
+  align-items: center;
+}
+
+.redirect-reservation > img {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.redirect-reservation > a {
+  cursor: pointer;
+}
+/* .purchase-input--email,
 .purchase-input--conrifm-email {
   width: 60%;
-}
+} */

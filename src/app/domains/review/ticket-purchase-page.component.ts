@@ -48,13 +48,13 @@ export class TicketPurchasePageComponent implements OnInit {
         email: this.builder.control('', {
           validators: [
             Validators.required,
-            CustomValidators.emailPatternValidator,
+            // CustomValidators.emailPatternValidator,
           ],
         }),
         confirmEmail: this.builder.control('', {
           validators: [
             Validators.required,
-            CustomValidators.emailPatternValidator,
+            // CustomValidators.emailPatternValidator,
           ],
         }),
       },

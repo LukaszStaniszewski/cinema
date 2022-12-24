@@ -4,12 +4,13 @@
   --color-border-secondary: #00bff9;
   /* --color-border-secondary: rgb(51, 51, 51); */
   --background-primary: #000000;
+  /* --background-primary: #ffffff; */
   --background-secondary: #ffffff;
   --background-tertiary: #f1f5f9;
   --color-text-primary: #e5e7eb;
   --color-bg-button: #f0f0f0;
   --text-m: 1.1rem;
-  --text-lg: 1.3rem;
+  --text-lg: 1.35rem;
   --text-XL: 1.8rem;
   --gradient-blue: linear-gradient(
     90deg,

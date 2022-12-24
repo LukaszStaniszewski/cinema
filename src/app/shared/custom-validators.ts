@@ -8,7 +8,7 @@ export class CustomValidators {
   static emailPatternValidator(
     control: AbstractControl
   ): ValidationErrors | null {
-    if (this.regex.test(control.value)) {
+    if (this.regex?.test(control.value)) {
       return null;
     }
     return { emailValidation: 'Incorect Email;' };

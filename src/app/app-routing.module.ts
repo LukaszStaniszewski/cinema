@@ -28,15 +28,15 @@ const guard: CanActivateChildFn = () => {
 };
 
 const routes: Routes = [
-  {
-    path: '',
-    component: DashboardComponent,
-  },
-  {
-    path: ':day',
-    component: DashboardComponent,
-    title: 'DashboardComponent',
-  },
+  // {
+  //   path: '',
+  //   component: DashboardComponent,
+  // },
+  // {
+  //   path: ':day',
+  //   component: DashboardComponent,
+  //   title: 'DashboardComponent',
+  // },
   {
     path: 'purchase',
     component: TicketPurchasePageComponent,
