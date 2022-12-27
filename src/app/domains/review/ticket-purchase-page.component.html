@@ -7,7 +7,7 @@
       srcset=""
     />
     <div class="movie-info__details">
-      <p>ZAKUP BILETÓW</p>
+      <p class="text-gradient">ZAKUP BILETÓW</p>
       <p>Avatar: Istota Wody</p>
       <span>28.12.2022, </span>
       <span>14:30</span>
@@ -23,7 +23,7 @@
       <div>2x Ulgowy</div>
       <div>25zł</div>
     </div>
-    <div class="total">
+    <div class="total text-gradient">
       <div>4 bilety</div>
       <div>65zł</div>
     </div>
@@ -37,23 +37,52 @@
     <div class="name-surname-wrapper">
       <div class="purchase-input">
         <input placeholder="Imię*" formControlName="name" type="text" />
-        <p
+        <!-- <p
           [ngClass]="{
             hidden: controls.name.pristine || controls.name.valid
           }"
         >
-          Imię jest wymagane {{ message }}
-        </p>
+          Imię jest wymagane
+        </p> -->
+        <div>
+          <ng-container *ngIf="controls.name.errors as errors">
+            <ng-container *ngIf="controls.name.dirty">
+              <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+              <p *ngIf="errors['minlength'] as minLength">
+                Podałeś {{ minLength.actualLength }} znaki, minimum to
+                {{ minLength.requiredLength }}
+              </p>
+              <p *ngIf="errors['maxLength'] as maxLength">
+                Podałeś {{ maxLength.actualLength }} znaki, minimum to
+                {{ maxLength.requiredLength }}
+              </p>
+            </ng-container>
+          </ng-container>
+        </div>
       </div>
+      <div class="hidden">w</div>
       <div class="purchase-input">
         <input placeholder="Nazwisko*" formControlName="surname" type="text" />
-        <p
+        <!-- <p
           [ngClass]="{
             hidden: controls.surname.pristine || controls.surname.valid
           }"
         >
           Nazwisko jest wymagane
-        </p>
+        </p> -->
+        <ng-container *ngIf="controls.surname.errors as errors">
+          <ng-container *ngIf="controls.surname.dirty">
+            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+            <p *ngIf="errors['minlength'] as minLength">
+              Podałeś {{ minLength.actualLength }} znaki, minimum to
+              {{ minLength.requiredLength }}
+            </p>
+            <p *ngIf="errors['maxLength'] as maxLength">
+              Podałeś {{ maxLength.actualLength }} znaki, minimum to
+              {{ maxLength.requiredLength }}
+            </p>
+          </ng-container>
+        </ng-container>
       </div>
     </div>
     <div class="email-wrapper">
@@ -64,14 +93,23 @@
           formControlName="email"
           type="email"
         />
-        <p
+        <!-- <p
           [ngClass]="{
             hidden: controls.email.pristine || controls.email.valid
           }"
         >
           Wpisz prawidłowy adres email
-        </p>
+        </p> -->
+        <ng-container *ngIf="controls.email.errors as errors">
+          <ng-container *ngIf="controls.email.dirty">
+            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+            <p *ngIf="errors['emailValidation'] as emailValidation">
+              {{ emailValidation }}
+            </p>
+          </ng-container>
+        </ng-container>
       </div>
+      <div class="hidden">w</div>
       <!-- <p>Value: {{ userCredentials.status }}</p> -->
       <div class="purchase-input">
         <input
@@ -80,18 +118,7 @@
           formControlName="confirmEmail"
           type="email"
         />
-        <!-- <ng-container
-          *ngIf="userCredentialsForm.controls.confirmEmail.errors as errors"
-        >
-          <ng-container *ngIf="userCredentialsForm.controls.confirmEmail.touched">
-            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
-            <p *ngIf="errors['minlength'] as milLength">
-              Podałeś {{ milLength.actualLength }} znaki, minimum to
-              {{ milLength.requiredLength }}
-            </p>
-            <p *ngIf="errors['emailMatch']">Emaile nie są identyczne</p>
-          </ng-container>
-        </ng-container> -->
+
         <!-- <p
           [ngClass]="{
             hidden:
@@ -101,22 +128,50 @@
         >
           {{ errorMessage ? errorMessage : "Wpisz prawidłowy adres email" }}
         </p> -->
-        {{ controls.confirmEmail.errors | json }}
+        <!-- <p
+          [ngClass]="{
+            hidden:
+              controls.confirmEmail.pristine || controls.confirmEmail.valid
+          }"
+        >
+          {{ userCredentialsForm.errors?.["matchValidation"]}}
+        </p> -->
+        <ng-container *ngIf="controls.confirmEmail.touched">
+          <p *ngIf="userCredentialsForm.errors as errors">
+            {{ errors?.["matchValidation"]}}
+          </p>
+          <!-- <p *ngIf="controls.confirmEmail.errors["emailValidation"] as emailValidation">
+            {{ errors?.["matchValidation"]}}
+          </p> -->
+        </ng-container>
       </div>
     </div>
-    <div class="purchase-input">
-      <input
-        placeholder="Numer telefonu"
-        formControlName="phoneNumber"
-        type="number"
-      />
-      <p
-        [ngClass]="{
-          hidden: controls.phoneNumber.pristine || controls.phoneNumber.valid
-        }"
-      >
-        Numer telefonu musi składać się z 9 cyfr
-      </p>
+    <div style="display: flex">
+      <div class="purchase-input">
+        <input
+          placeholder="Numer telefonu"
+          formControlName="phoneNumber"
+          type="number"
+        />
+        <!-- <p
+          [ngClass]="{
+            hidden: controls.phoneNumber.pristine || controls.phoneNumber.valid
+          }"
+        >
+          Numer telefonu musi składać się z 9 cyfr
+        </p> -->
+        <ng-container *ngIf="controls.phoneNumber.errors as errors">
+          <ng-container *ngIf="controls.phoneNumber.dirty">
+            <p
+              style="width: 200%"
+              *ngIf="errors['phoneNumberValidation'] as message"
+            >
+              {{ message }}
+            </p>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="hidden">ww</div>
     </div>
     <button
       class="button button--purchase-form"

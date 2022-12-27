@@ -14,14 +14,9 @@ import { CustomValidators } from '../../shared/custom-validators';
   styleUrls: ['./ticket-purchase-page.component.css'],
 })
 export class TicketPurchasePageComponent implements OnInit {
-  errorMessage: string | null = null;
-  // regex =
-
   userCredentialsForm = this.createForm();
 
-  message: ValidationErrors | null;
   constructor(private builder: NonNullableFormBuilder) {
-    this.message = null;
     console.log(this.userCredentialsForm.errors);
   }
 
@@ -44,17 +39,19 @@ export class TicketPurchasePageComponent implements OnInit {
             Validators.maxLength(30),
           ],
         }),
-        phoneNumber: this.builder.control(''),
+        phoneNumber: this.builder.control('', {
+          validators: [CustomValidators.phoneNumberValidator],
+        }),
         email: this.builder.control('', {
           validators: [
             Validators.required,
-            // CustomValidators.emailPatternValidator,
+            CustomValidators.emailPatternValidator,
           ],
         }),
         confirmEmail: this.builder.control('', {
           validators: [
             Validators.required,
-            // CustomValidators.emailPatternValidator,
+            CustomValidators.emailPatternValidator,
           ],
         }),
       },

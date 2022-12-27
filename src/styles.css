@@ -122,3 +122,9 @@ a {
 .seat--taken {
   background: #f2e5d7;
 }
+
+.text-gradient {
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

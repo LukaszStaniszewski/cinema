@@ -6,8 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { catchError, EMPTY, filter, Observable } from 'rxjs';
-import { API } from 'src/environments/constants';
+import { catchError, EMPTY, filter, Observable, of } from 'rxjs';
 import { HandleUserErrorService } from '../../domains/user/handle-user-error.service';
 
 @Injectable()
@@ -25,8 +24,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
 
     return next.handle(clone).pipe(
       catchError((error: HttpErrorResponse) => {
-        this.handleError.handleError(error);
-        return EMPTY;
+        return this.handleError.handleError(error);
       })
     );
   }

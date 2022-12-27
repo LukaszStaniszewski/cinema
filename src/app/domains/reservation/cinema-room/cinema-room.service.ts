@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Location } from '@angular/common';
+import { Injectable, OnDestroy } from '@angular/core';
 import {
   BehaviorSubject,
   combineLatest,
@@ -10,7 +11,8 @@ import {
 } from 'rxjs';
 import { Maybe } from '../../user/authentication.service';
 import { API } from '../../../../environments/constants';
-import { TicketService } from '../ticket-details/ticket.service';
+import { TicketService, TicketState } from '../ticket-details/ticket.service';
+import { Router } from '@angular/router';
 
 export interface Reservation {
   id: string;
@@ -39,11 +41,15 @@ export type SeatBooked = {
 @Injectable({
   providedIn: 'root',
 })
-export class CinemaRoomService {
+export class CinemaRoomService implements OnDestroy {
   private cinemaRoom$$ = new BehaviorSubject<Maybe<CinemaRoom>>(null);
   private seatsBooked$$ = new BehaviorSubject<SeatBooked[]>([]);
 
-  constructor(private http: HttpClient, private ticketService: TicketService) {
+  constructor(
+    private http: HttpClient,
+    private ticketService: TicketService,
+    private router: Router
+  ) {
     this.seatsBooked$$.subscribe((seatsBooked) => {
       if (!this.cinemaRoom$$.value) return;
       this.cinemaRoom$$.next(
@@ -76,9 +82,11 @@ export class CinemaRoomService {
           this.mapCinemaRoomSeats(cinemaRoom, takenSeats)
         )
       )
-      .subscribe((seatings) => {
-        // to do: redirect to not found page when  seatings not found
-        this.cinemaRoom$$.next(seatings);
+      .subscribe({
+        next: (seatings) => {
+          this.cinemaRoom$$.next(seatings);
+        },
+        error: (err) => this.router.navigate(['/404']),
       });
   }
 
@@ -95,16 +103,18 @@ export class CinemaRoomService {
       this.removeBookedSeat(seatToUpdateId);
     } else {
       this.ticketService.tickets$.subscribe((ticketState) => {
-        if (
-          ticketState.tickets.reduce((acc, val) => val.pickedTickets + acc, 0) >
-          this.seatsBooked$$.value.length
-        ) {
-          console.log('hit add');
-
+        if (this.doesTicketsAndSeatsNumberMatch(ticketState)) {
           this.addBookedSeat(seatToUpdate, seatToUpdateId);
         }
-      }); // if (!this.isAllowed$.value) return;
+      });
     }
+  }
+
+  private doesTicketsAndSeatsNumberMatch(ticketState: TicketState) {
+    return (
+      ticketState.tickets.reduce((acc, val) => val.pickedTickets + acc, 0) >
+      this.seatsBooked$$.value.length
+    );
   }
 
   private isExisting(seatId: string) {

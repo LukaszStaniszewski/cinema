@@ -24,6 +24,7 @@ import {
 } from './domains/reservation';
 
 import { DropdownComponent } from './shared/ui/dropdown/dropdown.component';
+import { ShellComponent } from './shell/shell.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DropdownComponent } from './shared/ui/dropdown/dropdown.component';
     TicketDetailsComponent,
     DropdownComponent,
     SummaryComponent,
+    ShellComponent,
   ],
   imports: [
     BrowserModule,

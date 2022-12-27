@@ -11,7 +11,6 @@
   justify-content: center;
   margin: 2rem 0rem 1rem 0rem;
   padding-bottom: 1.5rem;
-
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -22,9 +21,6 @@
 .movie-info__details > p:first-child {
   font-weight: normal;
   text-transform: uppercase;
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .movie-info__details > p {
@@ -38,7 +34,6 @@
 
 .order-details {
   font-size: var(--text-lg);
-
   margin: 0 auto;
   gap: 2rem;
   width: 50%;
@@ -52,9 +47,6 @@
 
 .total {
   text-transform: uppercase;
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   font-size: 1.4rem;
   border-top: 1px solid var(--color-border);
   margin: 1rem 0rem 1rem 0rem;
@@ -100,6 +92,8 @@ input::placeholder {
 
 .hidden {
   opacity: 0;
+  width: 40px;
+  height: 80px;
 }
 
 .button--purchase-form {
@@ -125,7 +119,3 @@ input::placeholder {
 .redirect-reservation > a {
   cursor: pointer;
 }
-/* .purchase-input--email,
-.purchase-input--conrifm-email {
-  width: 60%;
-} */
