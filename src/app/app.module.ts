@@ -1,24 +1,30 @@
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TicketPurchasePageComponent } from './booking/purchase/ticket-purchase-page.component';
-import { NavbarComponent } from './ui/navbar/navbar.component';
+import {
+  DashboardComponent,
+  CardComponent,
+  DatesComponent,
+} from './domains/dashboard';
+import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
+import { NavbarComponent } from './shared/ui/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CardComponent } from './dashboard/card/card.component';
-import { ReservationPageComponent } from './booking/reservation/reservation-page.component';
-import { DatesComponent } from './dashboard/dates/dates.component';
-import { ClickOutsideDirective } from './ui/directives/clickOutside.directive';
+import { ReservationPageComponent } from './domains/reservation/reservation-page.component';
+
+import { ClickOutsideDirective } from './shared/directives/clickOutside.directive';
 import { CustomHttpInterceptor } from './shared/interceptor/custom-http.interceptor';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { CinemaRoomComponent } from './booking/reservation/cinema-room/cinema-room.component';
-import { TicketDetailsComponent } from './booking/reservation/ticket-details/ticket-details.component';
-import { DropdownComponent } from './ui/dropdown/dropdown.component';
-import { SummaryComponent } from './booking/reservation/summary/summary.component';
-// import { UserService } from './user/user.service';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import {
+  CinemaRoomComponent,
+  TicketDetailsComponent,
+  SummaryComponent,
+} from './domains/reservation';
+
+import { DropdownComponent } from './shared/ui/dropdown/dropdown.component';
+import { ShellComponent } from './shell/shell.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,7 @@ import { SummaryComponent } from './booking/reservation/summary/summary.componen
     TicketDetailsComponent,
     DropdownComponent,
     SummaryComponent,
+    ShellComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,13 @@
+.cinema-room {
+  display: flex;
+}
+
+.letter-axis {
+  position: absolute;
+  transform: translate(-46px, -2px);
+  text-align: center;
+}
+
+.reservedSeat {
+  background-color: grey;
+}

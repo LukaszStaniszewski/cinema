@@ -1,0 +1,83 @@
+.ticket-details {
+  background-color: var(--background-secondary);
+  z-index: 3;
+  max-width: 30%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  max-height: 100vh;
+  line-height: 1.5;
+  overflow: hidden;
+  color: black;
+}
+
+.dropdowns-wrapper {
+  display: flex;
+  gap: 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
+}
+
+.ticket-type {
+  width: 70px;
+  word-wrap: break-word;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.single-ticket-price {
+  margin-top: 0.5rem;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.ticket-details__navbar-menu {
+  display: flex;
+  padding: 1.2rem 0;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: var(--text-lg);
+  color: white;
+}
+
+.ticket-details__navbar-menu .arrow-icon {
+  width: 9%;
+}
+
+.ticket-details__navbar-menu > div:nth-child(2) {
+  color: var(--color-text);
+  font-weight: 700;
+  letter-spacing: 2px;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ticket-details__navbar-menu > img:nth-child(1),
+.ticket-details__navbar-menu > div:nth-child(3) {
+  cursor: pointer;
+}
+
+.voucher {
+  background-color: var(--background-tertiary);
+}
+.ticket-details__main .voucher,
+.ticket-details__main .info,
+.ticket-details__main .dropdowns-wrapper,
+.ticket-details__main .total {
+  padding: 1rem;
+}
+
+.ticket-details__main .total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button--ticket-details {
+  padding: 0.8rem 0;
+}

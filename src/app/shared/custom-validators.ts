@@ -1,17 +1,30 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export class CustomValidators {
-  private static regPattern =
-    /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
-  private static regex = new RegExp(this.regPattern);
-
   static emailPatternValidator(
     control: AbstractControl
   ): ValidationErrors | null {
-    if (this.regex.test(control.value)) {
+    const regPattern =
+      /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+    const regex = new RegExp(regPattern);
+    if (regex?.test(control.value)) {
       return null;
     }
-    return { emailValidation: 'Incorect Email;' };
+    return { emailValidation: 'Nieodpowiednia nazwa' };
+  }
+
+  static phoneNumberValidator(
+    control: AbstractControl
+  ): ValidationErrors | null {
+    const regPattern = /^\+?[1-9][0-9]{8,10}$/;
+    const regex = new RegExp(regPattern);
+    if (regex?.test(control.value)) {
+      return null;
+    }
+    return {
+      phoneNumberValidation:
+        'Numer telefonu musi mieć między 9 a 11 znaków i składać się wyłącznie z cyfr.',
+    };
   }
 
   static match(controlName: string, matchingControlName: string): ValidatorFn {
@@ -23,7 +36,7 @@ export class CustomValidators {
         return null;
       }
       return {
-        matchValidation: `${control} and ${matchingControl} must match.`,
+        matchValidation: `${controlName} i ${matchingControlName} nie są identyczne.`,
       };
     };
   }
