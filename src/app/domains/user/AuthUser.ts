@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Ticket } from '../reservation/ticket-details/ticket.service';
+import { Ticket } from '../reservation/ticket-details/ticket.state.service';
 import { Maybe, User, AuthenticationService } from './authentication.service';
 
 export interface ICustomer extends User {

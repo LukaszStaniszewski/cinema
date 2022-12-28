@@ -10,9 +10,7 @@ export class CardComponent {
   isLoading = false;
   @Input() showing!: Showing;
 
-  constructor() {
-    console.log('inCArd', this.showing);
-  }
+  constructor() {}
 
   get movie() {
     return this.showing.movie;

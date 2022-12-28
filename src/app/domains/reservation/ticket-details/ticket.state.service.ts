@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, of, tap } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { API } from 'src/environments/constants';
-import { ReservationModule } from '../reservation.module';
 
 export type Ticket = {
   type: TicketTypes;
@@ -36,11 +35,7 @@ export type TicketTypes = 'normalny' | 'concessionary' | 'family' | 'voucher';
   // providedIn: ReservationModule,
   providedIn: 'root',
 })
-export class TicketService {
-  // private ticket$$ = new BehaviorSubject<TicketState>({
-  //   tickets: [],
-  //   totalPrice: 0,
-  // });
+export class TicketStateService {
   private ticket$$ = new BehaviorSubject<TicketState>(defaultTickets);
 
   constructor(private http: HttpClient) {}
@@ -95,17 +90,6 @@ export class TicketService {
   }
 
   private calculateChoosenTicketsPerType(type: string, ticketsAmount: number) {
-    // this.ticket$$.next(
-    //   this.ticket$$.value.map((ticket) => {
-    //     if (ticket.type === type) {
-    //       return {
-    //         ...ticket,
-    //         pickedTickets: ticketsAmount,
-    //       };
-    //     }
-    //     return ticket;
-    //   })
-    // );
     this.ticket$$.next({
       tickets: this.ticket$$.value.tickets.map((ticket) => {
         if (ticket.type === type) {

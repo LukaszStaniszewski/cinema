@@ -9,8 +9,9 @@ import {
   switchMap,
 } from 'rxjs';
 import { API } from '../../../../environments/constants';
-import { TicketService, TicketState } from '../ticket-details/ticket.service';
+
 import { Router } from '@angular/router';
+import { TicketState, TicketStateService } from '..';
 
 export interface ReservationApi {
   id: string;
@@ -48,7 +49,7 @@ export type CinemaRoomState = {
   // providedIn: ReservationModule,
   providedIn: 'root',
 })
-export class CinemaRoomService implements OnDestroy {
+export class CinemaRoomStateService implements OnDestroy {
   private cinemaRoomState$$ = new BehaviorSubject<CinemaRoomState>({
     cinemaRoom: null,
     seatsBooked: [],
@@ -56,7 +57,7 @@ export class CinemaRoomService implements OnDestroy {
 
   constructor(
     private http: HttpClient,
-    private ticketService: TicketService,
+    private ticketService: TicketStateService,
     private router: Router
   ) {}
 

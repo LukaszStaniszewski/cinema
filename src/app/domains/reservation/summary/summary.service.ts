@@ -7,32 +7,31 @@ import {
   Observable,
   tap,
 } from 'rxjs';
+
 import {
   Ticket,
-  TicketService,
+  TicketStateService,
   TicketTypes,
-} from '../ticket-details/ticket.service';
-import {
-  CinemaRoomService,
+  CinemaRoomStateService,
   Seat,
   SeatBooked,
-} from '../cinema-room/cinema-room.service';
-import { ReservationModule } from '..';
+} from '..';
+import { User } from '../../user/authentication.service';
 
 type TicketDetails = {
   type: TicketTypes;
   price: number;
   pickedTickets: number;
-  seat: Seat;
+  seat: Partial<Seat>;
 };
 
-// type Summary = {
-//   details: TicketDetails[];
-//   totalPrice: number;
-//   date: string;
-//   movieTitle: string;
-//   owner: User['id'];
-// };
+type Summary2 = {
+  ticketsDetails: TicketDetails[];
+  totalPrice: number;
+  date: string;
+  movieTitle: string;
+  owner: User['id'];
+};
 
 type Summary = {
   tickets: Ticket[];
@@ -45,11 +44,17 @@ type Summary = {
   providedIn: 'root',
 })
 export class SummaryService {
-  private summaryState$$ = new BehaviorSubject<Summary | null>(null);
+  private summaryState$$ = new BehaviorSubject<Summary2>({
+    ticketsDetails: [],
+    totalPrice: 0,
+    date: '',
+    movieTitle: '',
+    owner: NaN,
+  });
 
   constructor(
-    private cinemaRoomService: CinemaRoomService,
-    private ticketService: TicketService
+    private cinemaRoomService: CinemaRoomStateService,
+    private ticketService: TicketStateService
   ) {}
 
   ngOnInit(): void {}

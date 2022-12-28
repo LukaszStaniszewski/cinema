@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Ticket, TicketService } from './ticket.service';
+import { Ticket, TicketStateService } from './ticket.state.service';
 import { Maybe } from '../../user/authentication.service';
-import { Seat } from '../cinema-room/cinema-room.service';
+import { Seat } from '../cinema-room/cinema-room.state.service';
 
 @Component({
   selector: 'app-ticket-details',
@@ -15,7 +15,7 @@ export class TicketDetailsComponent implements OnInit {
   @Input() seats: Maybe<Seat[]>;
   @Output() toggleEmitter = new EventEmitter(true);
 
-  constructor(private ticketService: TicketService) {}
+  constructor(private ticketService: TicketStateService) {}
 
   get tickets$() {
     return this.ticketService.tickets$;
@@ -35,14 +35,6 @@ export class TicketDetailsComponent implements OnInit {
       };
     });
   }
-
-  // private calculateTotalPrice(tickets: Ticket[]) {
-  //   let holder = 0;
-  //   for (let ticket of tickets) {
-  //     holder += ticket.price * ticket.pickedTickets;
-  //   }
-  //   this.totalPrice = holder;
-  // }
 
   getSelectedOption({
     type,

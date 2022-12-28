@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CinemaRoomService } from '..';
+import { CinemaRoomStateService } from '..';
 import { Maybe } from '../../user/authentication.service';
 
 type ReservationParams = {
@@ -16,7 +16,7 @@ export class ReservationPageComponent {
   hide = false;
   constructor(
     private route: ActivatedRoute,
-    private movieService: CinemaRoomService
+    private movieService: CinemaRoomStateService
   ) {}
 
   get cinemaRoom$() {

@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Ticket } from 'src/app/domains/reservation/ticket-details/ticket.service';
+import { Ticket } from 'src/app/domains/reservation/ticket-details/ticket.state.service';
 import { ClickOutsideModule } from '../../directives/clickOutside.directive';
 
 export type Option = {

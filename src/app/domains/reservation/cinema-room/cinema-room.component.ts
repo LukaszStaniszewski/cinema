@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { CinemaRoomService, Seat } from './cinema-room.service';
+import { CinemaRoomStateService, Seat } from './cinema-room.state.service';
 
 @Component({
   selector: 'app-cinema-room[seats]',
@@ -10,7 +10,7 @@ import { CinemaRoomService, Seat } from './cinema-room.service';
 export class CinemaRoomComponent implements OnInit {
   @Input() seats: Seat[][] = [];
 
-  constructor(private cinemaRoom: CinemaRoomService) {}
+  constructor(private cinemaRoom: CinemaRoomStateService) {}
 
   ngOnInit(): void {}
 
