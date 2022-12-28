@@ -56,7 +56,7 @@ export class SummaryService {
   mapTicketsAndSeats(): Observable<Summary> {
     return combineLatest([
       this.ticketService.tickets$,
-      this.cinemaRoomService.seatsBooked$,
+      this.cinemaRoomService.selectSeatsBooked$,
     ]).pipe(
       map(([ticketState, seats]) => ({
         tickets: ticketState.tickets,

@@ -19,46 +19,46 @@ import {
 import { ShellComponent } from './shell/shell.component';
 
 // tylko angular 14+
-const guard: CanActivateChildFn = () => {
-  const router = inject(Router);
-  // const showings = inject(CinemaRoomService);
-  const cinemaRoom = inject(CinemaRoomService);
+// const guard: CanActivateChildFn = () => {
+//   const router = inject(Router);
+//   // const showings = inject(CinemaRoomService);
+//   const cinemaRoom = inject(CinemaRoomService);
 
-  // return of(false).pipe(
-  //   tap((canActivate) => {
-  //     if (!canActivate) {
-  //       //przekierowanie
-  //       console.log('przekierowanie miala miejsce');
-  //       router.navigate(['']);
-  //     }
-  //   })
-  // );
-  // let cinemaRoom1 = false;
-  // showings.cinemaRoom$.subscribe((cinemaRoom) => {
-  //   cinemaRoom1 = !!cinemaRoom;
-  // });
+//   // return of(false).pipe(
+//   //   tap((canActivate) => {
+//   //     if (!canActivate) {
+//   //       //przekierowanie
+//   //       console.log('przekierowanie miala miejsce');
+//   //       router.navigate(['']);
+//   //     }
+//   //   })
+//   // );
+//   // let cinemaRoom1 = false;
+//   // showings.cinemaRoom$.subscribe((cinemaRoom) => {
+//   //   cinemaRoom1 = !!cinemaRoom;
+//   // });
 
-  // return of(cinemaRoom1).pipe(
-  //   tap((canActivate) => {
-  //     if (!canActivate) {
-  //       console.log('przekierowanie miala miejsce');
+//   // return of(cinemaRoom1).pipe(
+//   //   tap((canActivate) => {
+//   //     if (!canActivate) {
+//   //       console.log('przekierowanie miala miejsce');
 
-  //       router.navigate(['']);
-  //     }
-  //   })
-  // );
-  return cinemaRoom.cinemaRoom$.pipe(
-    tap((authState) => {
-      console.log(!!authState);
-      if (!authState) {
-        router.navigate(['']);
-      }
+//   //       router.navigate(['']);
+//   //     }
+//   //   })
+//   // );
+//   return cinemaRoom.cinemaRoom$.pipe(
+//     tap((authState) => {
+//       console.log(!!authState);
+//       if (!authState) {
+//         router.navigate(['']);
+//       }
 
-      // authService.handleNonAuthState();
-    }),
-    map((authState) => !!authState)
-  );
-};
+//       // authService.handleNonAuthState();
+//     }),
+//     map((authState) => !!authState)
+//   );
+// };
 
 const routes: Routes = [
   {

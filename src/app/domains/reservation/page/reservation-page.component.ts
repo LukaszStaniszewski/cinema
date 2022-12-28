@@ -20,7 +20,7 @@ export class ReservationPageComponent {
   ) {}
 
   get cinemaRoom$() {
-    return this.movieService.cinemaRoom$;
+    return this.movieService.selectCinemaRoom$;
   }
 
   toggleTicketDetails(isValid: boolean) {
