@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import type { Showing } from '../services/showing-state.service';
-import { Maybe } from '../../user/authentication.service';
 
 @Component({
   selector: 'app-card[showing]',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Maybe } from '../user/authentication.service';
-import { CinemaRoomService } from './cinema-room/cinema-room.service';
+import { CinemaRoomService } from '..';
+import { Maybe } from '../../user/authentication.service';
 
 type ReservationParams = {
   id: string;

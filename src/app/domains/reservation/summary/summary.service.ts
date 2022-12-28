@@ -17,6 +17,7 @@ import {
   Seat,
   SeatBooked,
 } from '../cinema-room/cinema-room.service';
+import { ReservationModule } from '..';
 
 type TicketDetails = {
   type: TicketTypes;
@@ -40,6 +41,7 @@ type Summary = {
 };
 
 @Injectable({
+  // providedIn: ReservationModule,
   providedIn: 'root',
 })
 export class SummaryService {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { API } from 'src/environments/constants';
+import { DashboardModule } from '../dashboard.modules';
 
 type Maybe<T = null> = {
   isAvailable: boolean;
@@ -44,6 +45,7 @@ export type Showing = {
 
 type RoomId = 'room-a' | 'room-b' | 'room-c';
 @Injectable({
+  // providedIn: DashboardModule,
   providedIn: 'root',
 })
 export class ShowingStateService {

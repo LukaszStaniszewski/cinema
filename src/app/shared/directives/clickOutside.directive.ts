@@ -1,38 +1,3 @@
-// import { DOCUMENT } from '@angular/common';
-// import { Directive, ElementRef, EventEmitter, Inject, Output } from '@angular/core';
-// import { filter, fromEvent, Subscription } from 'rxjs';
-
-// @Directive({
-//   selector: '[clickOutside]',
-// })
-// export class ClickOutsideDirective {
-//     documentClickSubscription: Subscription | undefined
-//     @Output() clickOutside = new EventEmitter<void>
-//   constructor(
-//     private element: ElementRef,
-//     @Inject(DOCUMENT) private document: Document
-//   ) {}
-
-//   ngAfterViewInit() {
-//     this.documentClickSubscription = fromEvent(this.document, 'click').pipe(
-//       filter((event) => {
-//         return !this.isInside(event.target as HTMLElement);
-//       })
-//     ).subscribe(() => {
-//         this.clickOutside.emit()
-//     });
-//   }
-//   ngOnDestroy() {
-//     this.documentClickSubscription?.unsubscribe()
-//   }
-
-//   isInside(elementToCheck: HTMLElement) {
-//     return (
-//       elementToCheck === this.element.nativeElement ||
-//       this.element.nativeElement.contains(elementToCheck)
-//     );
-//   }
-// }
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
@@ -40,6 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   Inject,
+  NgModule,
   OnDestroy,
   Output,
 } from '@angular/core';
@@ -81,3 +47,9 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
     );
   }
 }
+
+@NgModule({
+  declarations: [ClickOutsideDirective],
+  exports: [ClickOutsideDirective],
+})
+export class ClickOutsideModule {}

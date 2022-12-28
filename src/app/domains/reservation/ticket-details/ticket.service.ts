@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, of, tap } from 'rxjs';
 import { API } from 'src/environments/constants';
+import { ReservationModule } from '../reservation.module';
 
 export type Ticket = {
   type: TicketTypes;
@@ -32,6 +33,7 @@ const defaultTickets: TicketState = {
 export type TicketTypes = 'normalny' | 'concessionary' | 'family' | 'voucher';
 
 @Injectable({
+  // providedIn: ReservationModule,
   providedIn: 'root',
 })
 export class TicketService {

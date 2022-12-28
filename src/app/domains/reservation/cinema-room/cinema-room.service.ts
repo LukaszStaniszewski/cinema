@@ -13,6 +13,7 @@ import { Maybe } from '../../user/authentication.service';
 import { API } from '../../../../environments/constants';
 import { TicketService, TicketState } from '../ticket-details/ticket.service';
 import { Router } from '@angular/router';
+import { ReservationModule } from '..';
 
 export interface Reservation {
   id: string;
@@ -39,6 +40,7 @@ export type SeatBooked = {
 };
 
 @Injectable({
+  // providedIn: ReservationModule,
   providedIn: 'root',
 })
 export class CinemaRoomService implements OnDestroy {

@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Admin } from 'src/app/domains/user/Admin';
+import { Component } from '@angular/core';
 
 import {
   AuthenticationService,

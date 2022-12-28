@@ -2,10 +2,13 @@ import {
   Component,
   EventEmitter,
   Input,
+  NgModule,
   OnChanges,
   Output,
 } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { Ticket } from 'src/app/domains/reservation/ticket-details/ticket.service';
+import { ClickOutsideModule } from '../../directives/clickOutside.directive';
 
 export type Option = {
   value: { ticketsAmount: number; type: string };
@@ -49,3 +52,10 @@ export class DropdownComponent implements OnChanges {
     this.hide = true;
   }
 }
+
+@NgModule({
+  declarations: [DropdownComponent],
+  imports: [ClickOutsideModule, BrowserModule],
+  exports: [DropdownComponent],
+})
+export class DropdownModule {}

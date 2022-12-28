@@ -8,11 +8,14 @@ import {
 } from '@angular/router';
 import { DashboardComponent } from './domains/dashboard/dashboard.component';
 import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
-import { ReservationPageComponent } from './domains/reservation/reservation-page.component';
+
 import { map, of, tap } from 'rxjs';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ShowingStateService } from './domains/dashboard';
-import { CinemaRoomService } from './domains/reservation';
+import {
+  CinemaRoomService,
+  ReservationPageComponent,
+} from './domains/reservation';
 import { ShellComponent } from './shell/shell.component';
 
 // tylko angular 14+

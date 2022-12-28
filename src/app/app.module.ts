@@ -3,51 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import {
-  DashboardComponent,
-  CardComponent,
-  DatesComponent,
-} from './domains/dashboard';
-import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
-import { NavbarComponent } from './shared/ui/navbar/navbar.component';
+import { DashboardModule } from './domains/dashboard';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReservationPageComponent } from './domains/reservation/reservation-page.component';
 
-import { ClickOutsideDirective } from './shared/directives/clickOutside.directive';
-import { CustomHttpInterceptor } from './shared/interceptor/custom-http.interceptor';
+import { CustomHttpInterceptor } from './shared/interceptors/custom-http.interceptor';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import {
-  CinemaRoomComponent,
-  TicketDetailsComponent,
-  SummaryComponent,
-} from './domains/reservation';
 
-import { DropdownComponent } from './shared/ui/dropdown/dropdown.component';
 import { ShellComponent } from './shell/shell.component';
+import { UiModule } from './domains/ui';
+import { ReviewModule } from './domains/review/review.module';
+import { ReservationModule } from './domains/reservation';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent,
-    TicketPurchasePageComponent,
-    NavbarComponent,
-    CardComponent,
-    ReservationPageComponent,
-    DatesComponent,
-    ClickOutsideDirective,
-    PageNotFoundComponent,
-    CinemaRoomComponent,
-    TicketDetailsComponent,
-    DropdownComponent,
-    SummaryComponent,
-    ShellComponent,
-  ],
+  declarations: [AppComponent, PageNotFoundComponent, ShellComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    DashboardModule,
+    ReviewModule,
+    UiModule,
+    ReservationModule,
   ],
   providers: [
     {
