@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Ticket, TicketStateService } from './ticket.state.service';
+import { Component, EventEmitter,Input, OnInit, Output } from '@angular/core';
+
 import { Maybe } from '../../user/authentication.service';
 import { Seat } from '../cinema-room/cinema-room.state.service';
+import { Ticket, TicketStateService } from './ticket.state.service';
 
 @Component({
   selector: 'app-ticket-details',

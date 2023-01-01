@@ -1,16 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { CinemaRoomService } from './cinema-room.state.service';
+import { CinemaRoomStateService } from "./cinema-room.state.service";
 
-describe('CinemaRoomService', () => {
-  let service: CinemaRoomService;
+describe("CinemaRoomStateService", () => {
+  let service: CinemaRoomStateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CinemaRoomService);
+    service = TestBed.inject(CinemaRoomStateService);
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 });

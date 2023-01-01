@@ -1,28 +1,26 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ShowingStateService } from './services/showing-state.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+import { ShowingStateService } from "./services/showing-state.service";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+  selector: "app-dashboard",
+  templateUrl: "./dashboard.component.html",
+  styleUrls: ["./dashboard.component.css"],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   // state$ = this.showings.showings$.pipe(take(1))
-  constructor(
-    private route: ActivatedRoute,
-    private showings: ShowingStateService
-  ) {}
+  constructor(private route: ActivatedRoute, private showings: ShowingStateService) {}
   get state$() {
     return this.showings.showings$;
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      if (!params['day']) {
+    this.route.params.subscribe(params => {
+      if (!params["day"]) {
         return this.showDefaultPage();
       }
-      const adjustedDate = params['day'].replaceAll('/', '-');
+      const adjustedDate = params["day"].replaceAll("/", "-");
       console.log(adjustedDate);
 
       this.showings.getShowings(adjustedDate);
@@ -30,6 +28,6 @@ export class DashboardComponent {
   }
 
   private showDefaultPage() {
-    this.showings.getShowings('06-12-2022');
+    this.showings.getShowings("06-12-2022");
   }
 }

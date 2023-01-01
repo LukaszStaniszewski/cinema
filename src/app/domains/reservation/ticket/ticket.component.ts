@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+
 import {
   Ticket,
-  TicketStateService,
   TicketDetails,
-} from '../shared/ticket.state.service';
+  TicketStateService,
+} from "../shared/ticket.state.service";
 
 @Component({
-  selector: 'app-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css'],
+  selector: "app-ticket",
+  templateUrl: "./ticket.component.html",
+  styleUrls: ["./ticket.component.css"],
 })
 export class TicketComponent {
-  constructor(private ticketService: TicketStateService) {
-    this.ticketState$.subscribe(console.log);
-  }
+  constructor(private ticketService: TicketStateService) {}
 
   get ticketState$() {
     return this.ticketService.ticketState$;

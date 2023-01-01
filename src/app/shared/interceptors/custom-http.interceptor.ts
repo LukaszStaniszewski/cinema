@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
   HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
 } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { catchError, EMPTY, filter, Observable, of } from 'rxjs';
+
 import { HandleUserErrorService } from '../../domains/user/handle-user-error.service';
 
 @Injectable()
@@ -18,7 +19,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    let clone = request.clone({
+    const clone = request.clone({
       url: `${this.baseUrl}${request.url}`,
     });
 

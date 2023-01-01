@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Ticket } from '../reservation/ticket-details/ticket.state.service';
-import { Maybe, User, AuthenticationService } from './authentication.service';
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { Ticket } from "../reservation/ticket-details/ticket.state.service";
+import { AuthenticationService, Maybe, User } from "./authentication.service";
 
 export interface ICustomer extends User {
   // role: 'cutomer';
@@ -11,6 +9,7 @@ export interface ICustomer extends User {
   wantToSee?: [];
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export type Credentials = {};
 
 export class AuthUser {

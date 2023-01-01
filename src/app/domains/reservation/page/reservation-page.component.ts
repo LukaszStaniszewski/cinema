@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CinemaRoomStateService } from '..';
-import { Maybe } from '../../user/authentication.service';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+import { Maybe } from "../../user/authentication.service";
+import { CinemaRoomStateService } from "..";
 
 type ReservationParams = {
   id: string;
 };
 @Component({
-  selector: 'app-reservation-page',
-  templateUrl: './reservation-page.component.html',
-  styleUrls: ['./reservation-page.component.css'],
+  selector: "app-reservation-page",
+  templateUrl: "./reservation-page.component.html",
+  styleUrls: ["./reservation-page.component.css"],
 })
 export class ReservationPageComponent {
   params: Maybe<ReservationParams>;
@@ -29,7 +30,7 @@ export class ReservationPageComponent {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe(params => {
       this.params = params as ReservationParams;
       this.movieService.getSeatingData(this.params.id);
     });

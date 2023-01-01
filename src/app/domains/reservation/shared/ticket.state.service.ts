@@ -1,15 +1,15 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, combineLatest, map } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, combineLatest, map } from "rxjs";
+import { API } from "src/environments/constants";
 
-import { CinemaRoomStateService, Seat, SeatBooked } from '..';
-import { API } from 'src/environments/constants';
+import { CinemaRoomStateService, SeatBooked } from "..";
 
 export type TicketDetails = {
   type: TicketTypes;
   price: number;
 };
-export type TicketTypes = 'normalny' | 'concessionary' | 'family' | 'voucher';
+export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
 
 export type Ticket = {
   seat: SeatBooked;
@@ -25,13 +25,13 @@ type TicketState = {
 };
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class TicketStateService {
   private ticketState$$ = new BehaviorSubject<TicketState>({
     ticketsTech: [],
     tickets: [],
-    showingId: '',
+    showingId: "",
     totalPrice: 0,
   });
   constructor(
@@ -42,7 +42,7 @@ export class TicketStateService {
       this.http.get<TicketDetails[]>(API.TICKET_INFO),
       this.cinemaRoomService.selectSeatsBooked$,
     ]).subscribe(([ticketInfo, seatsBooked]) => {
-      const defaultValue = seatsBooked.map((seat) => ({
+      const defaultValue = seatsBooked.map(seat => ({
         seat: seat,
         type: ticketInfo[0].type,
         price: ticketInfo[0].price,
@@ -57,14 +57,11 @@ export class TicketStateService {
     });
   }
 
-  private mapTicketsAndSeats(
-    ticketInfo: TicketDetails[],
-    seatsBooked: SeatBooked[]
-  ) {
+  private mapTicketsAndSeats(ticketInfo: TicketDetails[], seatsBooked: SeatBooked[]) {
     const ticketStateSeatsId = this.ticketState$$.value.tickets.map(
-      (ticket) => ticket.seat.id
+      ticket => ticket.seat.id
     );
-    const seatsBookedId = seatsBooked.map((seat) => seat.id);
+    const seatsBookedId = seatsBooked.map(seat => seat.id);
     let tickets = this.ticketState$$.value.tickets;
     for (let i = 0; i < seatsBooked.length; i++) {
       if (!ticketStateSeatsId.includes(seatsBooked[i].id)) {
@@ -77,9 +74,7 @@ export class TicketStateService {
     }
     for (let j = 0; j < tickets.length; j++) {
       if (!seatsBookedId.includes(tickets[j].seat.id)) {
-        tickets = tickets.filter(
-          (ticket) => ticket.seat.id !== tickets[j].seat.id
-        );
+        tickets = tickets.filter(ticket => ticket.seat.id !== tickets[j].seat.id);
       }
     }
     return tickets;
@@ -93,14 +88,14 @@ export class TicketStateService {
     return this.ticketState$$.value.tickets;
   }
   get selectTickets$() {
-    return this.ticketState$.pipe(map((state) => state.tickets));
+    return this.ticketState$.pipe(map(state => state.tickets));
   }
   get selectTicketDetails$() {
-    return this.ticketState$.pipe(map((state) => state.ticketsTech));
+    return this.ticketState$.pipe(map(state => state.ticketsTech));
   }
 
   getTicketInfo() {
-    this.http.get<TicketDetails[]>(API.TICKET_INFO).subscribe((ticketInfo) => {
+    this.http.get<TicketDetails[]>(API.TICKET_INFO).subscribe(ticketInfo => {
       this.patchState({ ticketsTech: ticketInfo });
     });
   }
@@ -110,7 +105,7 @@ export class TicketStateService {
     { column, row }: { column: string; row: string }
   ) {
     const id = row + column;
-    const updatedTickets = this.ticketState$$.value.tickets.map((ticket) => {
+    const updatedTickets = this.ticketState$$.value.tickets.map(ticket => {
       if (id == ticket?.seat.id) return { ...ticket, type, price };
       return ticket;
     });

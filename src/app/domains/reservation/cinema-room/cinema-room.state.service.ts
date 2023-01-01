@@ -1,17 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
-import {
-  BehaviorSubject,
-  combineLatest,
-  map,
-  Observable,
-  of,
-  switchMap,
-} from 'rxjs';
-import { API } from '../../../../environments/constants';
+import { HttpClient } from "@angular/common/http";
+import { Injectable, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
+import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
 
-import { Router } from '@angular/router';
-import { TicketState, TicketStateService } from '..';
+import { API } from "../../../../environments/constants";
+import { TicketState } from "..";
 
 export interface ReservationApi {
   id: string;
@@ -24,7 +17,7 @@ export type Seat = {
   position: { column: string; row: string };
   reservation: boolean;
   taken: boolean;
-  status: 'standard' | 'vip';
+  status: "standard" | "vip";
 };
 
 export type CinemaRoom = {
@@ -37,7 +30,7 @@ export type SeatBooked = {
   position: { column: string; row: string };
   reservation: boolean;
   taken: boolean;
-  status: 'standard' | 'vip';
+  status: "standard" | "vip";
 };
 
 export type CinemaRoomState = {
@@ -47,7 +40,7 @@ export type CinemaRoomState = {
 
 @Injectable({
   // providedIn: ReservationModule,
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class CinemaRoomStateService implements OnDestroy {
   private cinemaRoomState$$ = new BehaviorSubject<CinemaRoomState>({
@@ -66,11 +59,11 @@ export class CinemaRoomStateService implements OnDestroy {
   }
 
   get selectCinemaRoom$(): Observable<CinemaRoom | null> {
-    return this.cinemaRoomState$.pipe(map((state) => state.cinemaRoom));
+    return this.cinemaRoomState$.pipe(map(state => state.cinemaRoom));
   }
 
   get selectSeatsBooked$(): Observable<SeatBooked[]> {
-    return this.cinemaRoomState$.pipe(map((state) => state.seatsBooked));
+    return this.cinemaRoomState$.pipe(map(state => state.seatsBooked));
   }
 
   get cinemaRoom(): CinemaRoom {
@@ -99,23 +92,20 @@ export class CinemaRoomStateService implements OnDestroy {
         })
       )
       .pipe(
-        map(([takenSeats, cinemaRoom]) =>
-          this.mapCinemaRoomSeats(cinemaRoom, takenSeats)
-        )
+        map(([takenSeats, cinemaRoom]) => this.mapCinemaRoomSeats(cinemaRoom, takenSeats))
       )
       .subscribe({
-        next: (seatings) => {
+        next: seatings => {
           this.patchState({
             cinemaRoom: seatings,
           });
         },
-        error: (err) => this.router.navigate(['/404']),
+        error: err => this.router.navigate(["/404"]),
       });
   }
 
   updateSeats(seatToUpdate: Seat) {
-    const seatToUpdateId =
-      seatToUpdate.position.row + seatToUpdate.position.column;
+    const seatToUpdateId = seatToUpdate.position.row + seatToUpdate.position.column;
 
     if (this.isExisting(seatToUpdateId)) {
       this.removeBookedSeat(seatToUpdateId);
@@ -128,9 +118,7 @@ export class CinemaRoomStateService implements OnDestroy {
     this.updateCinemaRoom();
   }
   private isExisting(seatId: string) {
-    return this.cinemaRoomState$$.value.seatsBooked.some(
-      ({ id }) => id === seatId
-    );
+    return this.cinemaRoomState$$.value.seatsBooked.some(({ id }) => id === seatId);
   }
 
   private doesTicketsAndSeatsNumberMatch(ticketState: TicketState) {
@@ -141,10 +129,9 @@ export class CinemaRoomStateService implements OnDestroy {
   }
 
   private removeBookedSeat(seatToRemoveId: string) {
-    const withoutUnwantedSeats =
-      this.cinemaRoomState$$.value.seatsBooked.filter(
-        ({ id }) => id !== seatToRemoveId
-      );
+    const withoutUnwantedSeats = this.cinemaRoomState$$.value.seatsBooked.filter(
+      ({ id }) => id !== seatToRemoveId
+    );
 
     this.patchState({ seatsBooked: withoutUnwantedSeats });
   }
@@ -161,29 +148,26 @@ export class CinemaRoomStateService implements OnDestroy {
   }
 
   private updateCinemaRoom() {
-    const updatedCinemaRoom = this.mapCinemaRoomSeats(
-      this.cinemaRoom,
-      this.seatsBooked
-    );
+    const updatedCinemaRoom = this.mapCinemaRoomSeats(this.cinemaRoom, this.seatsBooked);
     this.patchState({ cinemaRoom: updatedCinemaRoom });
   }
 
   private mapCinemaRoomSeats(cinemaRoom: CinemaRoom, seatsToUpdate?: Seat[]) {
     if (!seatsToUpdate) return cinemaRoom;
     const takenSeats = seatsToUpdate;
-    let updatedCinemaRoom = cinemaRoom;
+    const updatedCinemaRoom = cinemaRoom;
 
-    cinemaRoom.seats.map((column) => {
+    cinemaRoom.seats.map(column => {
       column.forEach((row, rowIndex, array) => {
         if (
           takenSeats.find(
-            (seat) =>
+            seat =>
               seat?.position?.column === row?.position?.column &&
               seat?.position?.row === row?.position?.row
           )
         ) {
           array[rowIndex] = takenSeats.find(
-            (seat) =>
+            seat =>
               seat.position?.column === row.position?.column &&
               seat.position?.row === row.position?.row
           ) as Seat;

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, map } from 'rxjs';
-import { API } from 'src/environments/constants';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, map } from "rxjs";
+import { API } from "src/environments/constants";
 
 export type Ticket = {
   type: TicketTypes;
@@ -19,7 +19,7 @@ export type TicketState = {
 const defaultTickets: TicketState = {
   tickets: [
     {
-      type: 'normalny',
+      type: "normalny",
       price: 20,
       pickedTickets: 4,
       maxTicketsToPick: 10,
@@ -29,11 +29,11 @@ const defaultTickets: TicketState = {
   totalPrice: 80,
 };
 
-export type TicketTypes = 'normalny' | 'concessionary' | 'family' | 'voucher';
+export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
 
 @Injectable({
   // providedIn: ReservationModule,
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class TicketStateService {
   private ticket$$ = new BehaviorSubject<TicketState>(defaultTickets);
@@ -54,9 +54,9 @@ export class TicketStateService {
     this.http
       .get<Ticket[]>(API.TICKET_INFO)
       .pipe(
-        map((ticketsInfo) => {
+        map(ticketsInfo => {
           return {
-            tickets: ticketsInfo.map((ticketInfo) => {
+            tickets: ticketsInfo.map(ticketInfo => {
               return {
                 ...ticketInfo,
                 pickedTickets: 0,
@@ -68,7 +68,7 @@ export class TicketStateService {
           };
         })
       )
-      .subscribe((ticketInfo) => {
+      .subscribe(ticketInfo => {
         this.ticket$$.next(ticketInfo);
       });
   }
@@ -84,14 +84,14 @@ export class TicketStateService {
     this.calculateChoosenTicketsPerType(type, selectedTicketsAmount);
 
     this.calculateTicketsLeftPerType(type);
-    this.ticket$$.subscribe((tickets) => {
+    this.ticket$$.subscribe(tickets => {
       console.log(tickets);
     });
   }
 
   private calculateChoosenTicketsPerType(type: string, ticketsAmount: number) {
     this.ticket$$.next({
-      tickets: this.ticket$$.value.tickets.map((ticket) => {
+      tickets: this.ticket$$.value.tickets.map(ticket => {
         if (ticket.type === type) {
           return {
             ...ticket,
@@ -105,12 +105,12 @@ export class TicketStateService {
   }
 
   private calculateTicketsLeftPerType(type: string) {
-    let pickedTotal = this.calculateChoosenTicketsAmount();
+    const pickedTotal = this.calculateChoosenTicketsAmount();
 
     this.ticket$$.next({
-      tickets: this.ticket$$.value.tickets.map((ticket) => {
-        let diff = ticket.maxTicketsToPick - pickedTotal;
-        let num = diff < 0 ? 0 : diff;
+      tickets: this.ticket$$.value.tickets.map(ticket => {
+        const diff = ticket.maxTicketsToPick - pickedTotal;
+        const num = diff < 0 ? 0 : diff;
         if (ticket.type !== type) {
           return {
             ...ticket,
@@ -122,10 +122,4 @@ export class TicketStateService {
       totalPrice: this.ticket$$.value.totalPrice,
     });
   }
-
-  delete() {}
-
-  update() {}
-
-  addTicketToCart() {}
 }

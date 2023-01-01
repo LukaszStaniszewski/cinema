@@ -1,19 +1,17 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { AppComponent } from './app.component';
-import { DashboardModule } from './domains/dashboard';
-import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-import { CustomHttpInterceptor } from './shared/interceptors/custom-http.interceptor';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-
-import { ShellComponent } from './shell/shell.component';
-import { UiModule } from './domains/ui';
-import { ReviewModule } from './domains/review/review.module';
-import { ReservationModule } from './domains/reservation';
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { DashboardModule } from "./domains/dashboard";
+import { ReservationModule } from "./domains/reservation";
+import { ReviewModule } from "./domains/review/review.module";
+import { UiModule } from "./domains/ui";
+import { CustomHttpInterceptor } from "./shared/interceptors/custom-http.interceptor";
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+import { ShellComponent } from "./shell/shell.component";
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, ShellComponent],

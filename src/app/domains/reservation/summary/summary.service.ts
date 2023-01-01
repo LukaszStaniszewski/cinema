@@ -8,15 +8,15 @@ import {
   tap,
 } from 'rxjs';
 
+import { User } from '../../user/authentication.service';
 import {
-  Ticket,
-  TicketStateService,
-  TicketTypes,
   CinemaRoomStateService,
   Seat,
   SeatBooked,
+  Ticket,
+  TicketStateService,
+  TicketTypes,
 } from '..';
-import { User } from '../../user/authentication.service';
 
 type TicketDetails = {
   type: TicketTypes;

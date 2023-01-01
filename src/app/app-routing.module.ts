@@ -1,12 +1,11 @@
-import { inject, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { inject, NgModule } from '@angular/core';
+import { RouterModule,Routes } from '@angular/router';
+
 import { DashboardComponent } from './domains/dashboard/dashboard.component';
-import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
-
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-
 import { ReservationPageComponent } from './domains/reservation';
+import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { ShellComponent } from './shell/shell.component';
 
 const routes: Routes = [

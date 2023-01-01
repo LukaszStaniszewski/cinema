@@ -1,28 +1,23 @@
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import {
-  ClickOutsideModule,
-  DropdownComponent,
-  DropdownModule,
-} from 'src/app/shared';
-import { CustomHttpInterceptor } from 'src/app/shared/interceptors/custom-http.interceptor';
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from "@angular/router";
+import { DropdownModule } from "src/app/shared";
+
 import {
   CinemaRoomComponent,
   ReservationPageComponent,
   SummaryComponent,
   TicketDetailsComponent,
-} from '.';
-import { TicketListComponent } from './ticket-list/ticket-list.component';
-import { TicketComponent } from './ticket/ticket.component';
+} from ".";
+import { TicketComponent } from "./ticket/ticket.component";
+import { TicketListComponent } from "./ticket-list/ticket-list.component";
 
 const routes: Routes = [
   {
-    path: 'reservation/:id',
+    path: "reservation/:id",
     component: ReservationPageComponent,
-    title: 'Reservation Page',
+    title: "Reservation Page",
   },
 ];
 

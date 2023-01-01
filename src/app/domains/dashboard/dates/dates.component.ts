@@ -1,22 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-dates',
-  templateUrl: './dates.component.html',
-  styleUrls: ['./dates.component.css'],
+  selector: "app-dates",
+  templateUrl: "./dates.component.html",
+  styleUrls: ["./dates.component.css"],
 })
 export class DatesComponent implements OnInit {
-  options = { day: 'numeric', month: 'numeric' };
+  options = { day: "numeric", month: "numeric" };
   next7Days: string[] | undefined = [
-    '05/12/2022',
-    '06/12/2022',
-    '07/12/2022',
-    '08/12/2022',
-    '09/12/2022',
-    '10/12/2022',
-    '11/12/2022',
+    "05/12/2022",
+    "06/12/2022",
+    "07/12/2022",
+    "08/12/2022",
+    "09/12/2022",
+    "10/12/2022",
+    "11/12/2022",
   ];
-  constructor() {}
 
   ngOnInit(): void {
     // console.log(this.next7Days);

@@ -5,19 +5,20 @@ import {
   NgModule,
   OnChanges,
   Output,
-} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { Ticket } from 'src/app/domains/reservation/ticket-details/ticket.state.service';
-import { ClickOutsideModule } from '../../directives/clickOutside.directive';
+} from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { Ticket } from "src/app/domains/reservation/ticket-details/ticket.state.service";
+
+import { ClickOutsideModule } from "../../directives/clickOutside.directive";
 
 export type Option = {
   value: { ticketsAmount: number; type: string };
   repeatAmount: number;
 };
 @Component({
-  selector: 'app-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css'],
+  selector: "app-dropdown",
+  templateUrl: "./dropdown.component.html",
+  styleUrls: ["./dropdown.component.css"],
 })
 export class DropdownComponent implements OnChanges {
   hide = true;

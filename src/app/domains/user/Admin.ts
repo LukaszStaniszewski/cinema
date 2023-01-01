@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Maybe, AuthenticationService, User } from './authentication.service';
-export interface IAdmin extends User {
-  // role: 'admin';
-}
+
+import { AuthenticationService, Maybe, User } from './authentication.service';
+export type IAdmin = User
 export class Admin {
   admin: IAdmin;
   constructor(private user: IAdmin) {
