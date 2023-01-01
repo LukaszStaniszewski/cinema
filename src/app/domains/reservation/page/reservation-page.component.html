@@ -7,12 +7,13 @@
   ></app-cinema-room>
   <ng-template #Spinner>...loading</ng-template>
 
-  <app-ticket-details
+  <!-- <app-ticket-details
     [class.hide]="hide"
     (toggleEmitter)="toggleTicketDetails($event)"
   ></app-ticket-details>
   <div [class.hide]="hide" class="screen-woal"></div>
-  <app-summary class="summary"></app-summary>
+  <app-summary class="summary"></app-summary> -->
+  <app-ticket class="summary"></app-ticket>
   <div class="redirect-links-wrapper">
     <div class="to-ticket-details-wrapper">
       <button class="test" (click)="toggleTicketDetails(true)">

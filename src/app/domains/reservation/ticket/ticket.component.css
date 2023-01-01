@@ -1,0 +1,16 @@
+.ticket-wrapper {
+  display: flex;
+  column-gap: 20px;
+}
+
+.seat--summary {
+  height: max-content;
+  line-height: normal;
+  padding: 0.2rem 0.3rem;
+  text-align: left;
+  border-radius: 8px 8px 0 0;
+}
+
+.seat--summary > p {
+  margin: 0.3rem 0;
+}

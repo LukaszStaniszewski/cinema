@@ -33,10 +33,28 @@ type Summary2 = {
   owner: User['id'];
 };
 
+interface TicketTrue {
+  seat: Seat;
+  type: string;
+  price: number;
+}
+
+type BookingState = {
+  tickets: TicketTrue[];
+  showingsId: string;
+  totalPrice: number;
+};
+
 type Summary = {
   tickets: Ticket[];
   total: number;
   seats: SeatBooked[];
+};
+
+type TicketState = {
+  tickets: Ticket[];
+  showingId: string;
+  totalPrice: number;
 };
 
 @Injectable({
@@ -44,13 +62,13 @@ type Summary = {
   providedIn: 'root',
 })
 export class SummaryService {
-  private summaryState$$ = new BehaviorSubject<Summary2>({
-    ticketsDetails: [],
-    totalPrice: 0,
-    date: '',
-    movieTitle: '',
-    owner: NaN,
-  });
+  // private summaryState$$ = new BehaviorSubject<SummaryState>({
+  //   ticketsDetails: [],
+  //   totalPrice: 0,
+  //   date: '',
+  //   movieTitle: '',
+  //   owner: NaN,
+  // });
 
   constructor(
     private cinemaRoomService: CinemaRoomStateService,

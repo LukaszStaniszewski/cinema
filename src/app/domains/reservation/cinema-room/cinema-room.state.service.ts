@@ -57,7 +57,7 @@ export class CinemaRoomStateService implements OnDestroy {
 
   constructor(
     private http: HttpClient,
-    private ticketService: TicketStateService,
+
     private router: Router
   ) {}
 
@@ -120,11 +120,9 @@ export class CinemaRoomStateService implements OnDestroy {
     if (this.isExisting(seatToUpdateId)) {
       this.removeBookedSeat(seatToUpdateId);
     } else {
-      this.ticketService.tickets$.subscribe((ticketState) => {
-        if (this.doesTicketsAndSeatsNumberMatch(ticketState)) {
-          this.addBookedSeat(seatToUpdate, seatToUpdateId);
-        }
-      });
+      if (this.cinemaRoomState$$.value.seatsBooked.length + 1 <= 10) {
+        this.addBookedSeat(seatToUpdate, seatToUpdateId);
+      }
     }
 
     this.updateCinemaRoom();

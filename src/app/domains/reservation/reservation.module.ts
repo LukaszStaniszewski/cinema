@@ -15,6 +15,8 @@ import {
   SummaryComponent,
   TicketDetailsComponent,
 } from '.';
+import { TicketListComponent } from './ticket-list/ticket-list.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,8 @@ const routes: Routes = [
     SummaryComponent,
     TicketDetailsComponent,
     ReservationPageComponent,
+    TicketListComponent,
+    TicketComponent,
   ],
   imports: [
     BrowserModule,
