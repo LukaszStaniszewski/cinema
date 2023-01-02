@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
 
 import { API } from "../../../../environments/constants";
-import { TicketState } from "..";
 
 export interface ReservationApi {
   id: string;
@@ -119,13 +118,6 @@ export class CinemaRoomStateService implements OnDestroy {
   }
   private isExisting(seatId: string) {
     return this.cinemaRoomState$$.value.seatsBooked.some(({ id }) => id === seatId);
-  }
-
-  private doesTicketsAndSeatsNumberMatch(ticketState: TicketState) {
-    return (
-      ticketState.tickets.reduce((acc, val) => val.pickedTickets + acc, 0) >
-      this.cinemaRoomState$$.value.seatsBooked.length
-    );
   }
 
   private removeBookedSeat(seatToRemoveId: string) {

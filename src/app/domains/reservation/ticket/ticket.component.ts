@@ -12,13 +12,21 @@ import {
   styleUrls: ["./ticket.component.css"],
 })
 export class TicketComponent {
-  constructor(private ticketService: TicketStateService) {}
+  constructor(private ticketService: TicketStateService) {
+    this.ticketState$.subscribe(console.log);
+  }
 
   get ticketState$() {
     return this.ticketService.ticketState$;
   }
 
-  addTicket(details: TicketDetails, ticket: { column: string; row: string }) {
-    this.ticketService.mapTickets(details, ticket);
+  addTicket({
+    ticketTech,
+    ticket,
+  }: {
+    ticketTech: TicketDetails;
+    ticket: { column: string; row: string };
+  }) {
+    this.ticketService.mapTickets(ticketTech, ticket);
   }
 }

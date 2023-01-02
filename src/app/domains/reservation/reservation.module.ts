@@ -7,11 +7,9 @@ import { DropdownModule } from "src/app/shared";
 import {
   CinemaRoomComponent,
   ReservationPageComponent,
-  SummaryComponent,
-  TicketDetailsComponent,
+  TicketComponent,
+  TicketListComponent,
 } from ".";
-import { TicketComponent } from "./ticket/ticket.component";
-import { TicketListComponent } from "./ticket-list/ticket-list.component";
 
 const routes: Routes = [
   {
@@ -24,8 +22,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CinemaRoomComponent,
-    SummaryComponent,
-    TicketDetailsComponent,
+
     ReservationPageComponent,
     TicketListComponent,
     TicketComponent,

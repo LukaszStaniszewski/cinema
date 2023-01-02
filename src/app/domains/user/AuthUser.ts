@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Ticket } from "../reservation/ticket-details/ticket.state.service";
+
+import { Ticket } from "../reservation/shared/ticket.state.service";
 import { AuthenticationService, Maybe, User } from "./authentication.service";
 
 export interface ICustomer extends User {

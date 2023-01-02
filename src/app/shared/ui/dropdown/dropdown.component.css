@@ -21,7 +21,8 @@
   position: absolute;
   background-color: var(--background-secondary);
   transform: translateY(-2.5rem);
-  padding: 0.2rem 0;
+  color: black;
+  padding: 0.4rem 0.7rem;
 }
 
 .dropdown__options > div {
@@ -38,8 +39,8 @@
 }
 
 .arrow-icon {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  right: 0;
+  right: 0; */
   width: 24px;
 }

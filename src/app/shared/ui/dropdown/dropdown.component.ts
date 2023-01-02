@@ -7,7 +7,10 @@ import {
   Output,
 } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { Ticket } from "src/app/domains/reservation/ticket-details/ticket.state.service";
+import {
+  Ticket,
+  TicketDetails,
+} from "src/app/domains/reservation/shared/ticket.state.service";
 
 import { ClickOutsideModule } from "../../directives/clickOutside.directive";
 
@@ -22,30 +25,26 @@ export type Option = {
 })
 export class DropdownComponent implements OnChanges {
   hide = true;
-  currentSelectedValue = 0;
-  @Input() options: number[] = [];
+  currentSelectedValue = "normlany";
+  @Input() options!: TicketDetails[];
   @Input() ticket!: Ticket;
 
   @Output() selectedOptionEvent = new EventEmitter<{
-    type: string;
-    selectedTicketsAmount: number;
+    ticketTech: TicketDetails;
+    ticket: { column: string; row: string };
   }>();
-
-  constructor() {}
 
   toggleDropdown() {
     this.hide = !this.hide;
   }
   ngOnChanges() {
-    this.currentSelectedValue = this.ticket.pickedTickets;
+    this.currentSelectedValue = this.ticket.type;
   }
 
-  setSelectedTicket(ticketsAmount: number) {
-    this.currentSelectedValue = ticketsAmount;
-
+  setSelectedTicket(ticketTech: TicketDetails) {
     this.selectedOptionEvent.emit({
-      type: this.ticket.type,
-      selectedTicketsAmount: ticketsAmount,
+      ticketTech: ticketTech,
+      ticket: this.ticket.seat.position,
     });
   }
 
