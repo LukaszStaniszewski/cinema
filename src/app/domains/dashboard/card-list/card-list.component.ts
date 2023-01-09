@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { ShowingStateService } from "./services/showing-state.service";
+import { ShowingStateService } from "..";
 
 @Component({
-  selector: "app-dashboard",
-  templateUrl: "./dashboard.component.html",
-  styleUrls: ["./dashboard.component.css"],
+  selector: "app-card-list",
+  templateUrl: "./card-list.component.html",
+  styleUrls: ["./card-list.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardComponent implements OnInit {
+export class CardListComponent implements OnInit {
   // state$ = this.showings.showings$.pipe(take(1))
   constructor(private route: ActivatedRoute, private showings: ShowingStateService) {}
   get state$() {
@@ -22,7 +22,6 @@ export class DashboardComponent implements OnInit {
         return this.showDefaultPage();
       }
       const adjustedDate = params["day"].replaceAll("/", "-");
-      console.log(adjustedDate);
 
       this.showings.getShowings(adjustedDate);
     });

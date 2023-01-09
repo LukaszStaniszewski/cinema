@@ -8,7 +8,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class DatesComponent implements OnInit {
   options = { day: "numeric", month: "numeric" };
-  next7Days: string[] | undefined = [
+  week: string[] | undefined = [
     "05/12/2022",
     "06/12/2022",
     "07/12/2022",
@@ -19,17 +19,17 @@ export class DatesComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    // console.log(this.next7Days);
+    // console.log(this.week);
     // const date = new Date();
     // const dateCopy = new Date(date.getTime());
     // for (let i = 0; i <= 6; i++) {
     //   dateCopy.setDate(date.getDate() + i);
-    //   this.next7Days?.push(
-    //     dateCopy.toLocaleDateString('en-GB', {
-    //       day: 'numeric',
-    //       month: 'numeric',
-    //       year: 'numeric',
-    //       timeZone: 'GMT',
+    //   this.week?.push(
+    //     dateCopy.toLocaleDateString("en-GB", {
+    //       day: "numeric",
+    //       month: "numeric",
+    //       year: "numeric",
+    //       timeZone: "GMT",
     //     })
     //   );
     // }

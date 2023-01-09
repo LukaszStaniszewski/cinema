@@ -1,23 +1,22 @@
 import { NgModule } from "@angular/core";
-import {
-  PreloadAllModules,
-  provideRouter,
-  RouterModule,
-  Routes,
-  withPreloading,
-} from "@angular/router";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
-import { DashboardComponent } from "./domains/dashboard/dashboard.component";
+import { CardListComponent } from "./domains/dashboard";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "showings/06-12-2022", pathMatch: "full" },
-  { path: "showings/:day", component: DashboardComponent, title: "Dashboard" },
+
   {
     path: "",
     component: ShellComponent,
     children: [
+      {
+        path: "showings/:day",
+        component: CardListComponent,
+        title: "Dashboard",
+      },
       {
         path: "purchase",
         loadChildren: () => import("./domains/review/review.module"),

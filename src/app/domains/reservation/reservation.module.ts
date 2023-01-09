@@ -6,7 +6,6 @@ import { DropdownModule } from "src/app/shared";
 
 import {
   CinemaRoomComponent,
-  CinemaRoomStateService,
   ReservationPageComponent,
   TicketComponent,
   TicketListComponent,

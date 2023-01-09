@@ -1,0 +1,10 @@
+<section class="card-list">
+    <app-dates></app-dates>
+    <ng-container *ngIf="this.state$ | async as showings; else spinner">
+        <app-card
+            class="card-component"
+            *ngFor="let showing of showings"
+            [showing]="showing"></app-card>
+    </ng-container>
+    <ng-template #spinner><h1>...Loading</h1></ng-template>
+</section>

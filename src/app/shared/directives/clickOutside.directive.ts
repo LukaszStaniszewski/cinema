@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT } from "@angular/common";
 import {
   AfterViewInit,
   Directive,
@@ -8,14 +8,14 @@ import {
   NgModule,
   OnDestroy,
   Output,
-} from '@angular/core';
-import { filter, fromEvent, Subscription } from 'rxjs';
+} from "@angular/core";
+import { filter, fromEvent, Subscription } from "rxjs";
 
 @Directive({
-  selector: '[clickOutside]',
+  selector: "[appClickOutside]",
 })
 export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
-  @Output() clickOutside = new EventEmitter<void>();
+  @Output() appClickOutside = new EventEmitter<void>();
 
   documentClickSubscription: Subscription | undefined;
 
@@ -25,14 +25,14 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
   ) {}
 
   ngAfterViewInit(): void {
-    this.documentClickSubscription = fromEvent(this.document, 'click')
+    this.documentClickSubscription = fromEvent(this.document, "click")
       .pipe(
-        filter((event) => {
+        filter(event => {
           return !this.isInside(event.target as HTMLElement);
         })
       )
       .subscribe(() => {
-        this.clickOutside.emit();
+        this.appClickOutside.emit();
       });
   }
 

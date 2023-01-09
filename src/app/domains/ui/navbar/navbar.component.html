@@ -1,30 +1,32 @@
 <div
-  class="navbar-wrapper grid-container"
-  clickOutside
-  (clickOutside)="clickedOutside()"
->
-  <nav>
-    <div class="cinema-name__wrapper">
-      <a class="navbar__cinema-name" [routerLink]="['/']">Ale Kino</a>
-    </div>
-    <div class="navbar-buttons__wrapper">
-      <div class="navbar-cart">
-        <img src="assets/svg/cart.svg" alt="" />
-      </div>
-      <div class="navbar__login" (click)="toggleDropdown()" (click)="login()">
-        {{
-          this.auth.customer$$.value?.customer?.name
-            ? this.auth.customer$$.value?.customer?.name
-            : "Zaloguj się"
-        }}
-        <!-- zaloguj sie -->
-      </div>
-      <div [class.hidden]="hide" class="dropdown dropdown--navbar">
-        <div>Moje bilety</div>
-        <div>Chcę obejrzeć</div>
-        <div>Ustawienia</div>
-        <div (click)="logout()">Wyloguj</div>
-      </div>
-    </div>
-  </nav>
+    class="navbar-wrapper grid-container"
+    appClickOutside
+    (appClickOutside)="clickedOutside()">
+    <nav>
+        <div class="cinema-name__wrapper">
+            <a class="navbar__cinema-name" [routerLink]="['/']">Ale Kino</a>
+        </div>
+        <div class="navbar-buttons__wrapper">
+            <div class="navbar-cart">
+                <img src="assets/svg/cart.svg" alt="" />
+            </div>
+            <div
+                class="navbar__login"
+                (click)="toggleDropdown()"
+                (click)="login()">
+                {{
+                    this.auth.customer$$.value?.customer?.name
+                        ? this.auth.customer$$.value?.customer?.name
+                        : "Zaloguj się"
+                }}
+                <!-- zaloguj sie -->
+            </div>
+            <div [class.hidden]="hide" class="dropdown dropdown--navbar">
+                <div>Moje bilety</div>
+                <div>Chcę obejrzeć</div>
+                <div>Ustawienia</div>
+                <div (click)="logout()">Wyloguj</div>
+            </div>
+        </div>
+    </nav>
 </div>
