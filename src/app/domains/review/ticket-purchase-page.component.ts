@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 
 import { CustomValidators } from "../../shared/custom-validators";
@@ -6,6 +6,7 @@ import { CustomValidators } from "../../shared/custom-validators";
   selector: "app-ticket-purchase-page",
   templateUrl: "./ticket-purchase-page.component.html",
   styleUrls: ["./ticket-purchase-page.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TicketPurchasePageComponent {
   userCredentialsForm = this.createForm();

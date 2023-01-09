@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, Routes } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from "@angular/router";
 
-import { TicketPurchasePageComponent } from './ticket-purchase-page.component';
+import { TicketPurchasePageComponent } from "./ticket-purchase-page.component";
 
 const routes: Routes = [
   {
-    path: 'purchase',
+    path: "",
     component: TicketPurchasePageComponent,
-    title: 'Purchase Page',
+    title: "Purchase Page",
   },
 ];
 
 @NgModule({
   declarations: [TicketPurchasePageComponent],
-  imports: [BrowserModule, ReactiveFormsModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
 })
-export class ReviewModule {}
+export default class ReviewModule {}

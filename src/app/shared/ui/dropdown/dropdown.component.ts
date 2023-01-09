@@ -1,3 +1,4 @@
+import { CommonModule } from "@angular/common";
 import {
   Component,
   EventEmitter,
@@ -55,7 +56,7 @@ export class DropdownComponent implements OnChanges {
 
 @NgModule({
   declarations: [DropdownComponent],
-  imports: [ClickOutsideModule, BrowserModule],
+  imports: [ClickOutsideModule, CommonModule],
   exports: [DropdownComponent],
 })
 export class DropdownModule {}

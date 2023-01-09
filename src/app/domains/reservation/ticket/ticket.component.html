@@ -1,23 +1,23 @@
-<ng-container *ngIf="ticketState$ | async as ticketState; else default">
-    <section class="ticket-wrapper" *ngFor="let ticket of ticketState.tickets">
-        <div class="seat seat--booked seat--summary">
-            <p>Rząd {{ ticket.seat.position.row }}</p>
-            <p>Miejsce {{ ticket.seat.position.column }}</p>
-        </div>
-        <!-- <div
-            *ngFor="let ticketTech of ticketState.ticketsTech"
-            (click)="addTicket(ticketTech, ticket.seat.position)">
-            {{ ticketTech.type }}
-        </div> -->
+<ng-container *ngIf="ticketState$ | async as ticketState">
+    <ng-container *ngIf="ticketState.showingId; else default">
+        <section
+            class="ticket-wrapper"
+            *ngFor="let ticket of ticketState.tickets; trackBy: trackById">
+            <div class="seat seat--booked seat--summary">
+                <p>Rząd {{ ticket.seat.position.row }}</p>
+                <p>Miejsce {{ ticket.seat.position.column }}</p>
+            </div>
+            <app-dropdown
+                (selectedOptionEvent)="addTicket($event)"
+                [ticket]="ticket"
+                [options]="ticketState.ticketsTech">
+            </app-dropdown>
 
-        <app-dropdown
-            (selectedOptionEvent)="addTicket($event)"
-            [ticket]="ticket"
-            [options]="ticketState.ticketsTech">
-        </app-dropdown>
-
-        <div>Cena: {{ ticket.price }}</div>
-    </section>
-    <!-- <div>total: {{ ticketState.totalPrice }}</div> -->
+            <div>Cena: {{ ticket.price }}</div>
+        </section>
+        <!-- <div>total: {{ ticketState.totalPrice }}</div> -->
+        {{ log() }}
+    </ng-container>
 </ng-container>
+
 <ng-template #default>loading</ng-template>

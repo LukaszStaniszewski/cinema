@@ -1,4 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from "@angular/core";
 
 import {
   Ticket,
@@ -10,10 +16,12 @@ import {
   selector: "app-ticket",
   templateUrl: "./ticket.component.html",
   styleUrls: ["./ticket.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TicketComponent {
-  constructor(private ticketService: TicketStateService) {
-    this.ticketState$.subscribe(console.log);
+  constructor(private ticketService: TicketStateService) {}
+  log() {
+    console.log("ticket component");
   }
 
   get ticketState$() {
@@ -28,5 +36,9 @@ export class TicketComponent {
     ticket: { column: string; row: string };
   }) {
     this.ticketService.mapTickets(ticketTech, ticket);
+  }
+
+  trackById(index: number, ticket: Ticket) {
+    return ticket.seat.id;
   }
 }

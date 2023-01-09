@@ -6,8 +6,6 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { DashboardModule } from "./domains/dashboard/dashboard.modules";
-import { ReservationModule } from "./domains/reservation/reservation.module";
-import { ReviewModule } from "./domains/review/review.module";
 import { UiModule } from "./domains/ui";
 import { CustomHttpInterceptor } from "./shared/interceptors/custom-http.interceptor";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
@@ -21,9 +19,7 @@ import { ShellComponent } from "./shell/shell.component";
     AppRoutingModule,
     HttpClientModule,
     DashboardModule,
-    ReviewModule,
     UiModule,
-    ReservationModule,
   ],
   providers: [
     {

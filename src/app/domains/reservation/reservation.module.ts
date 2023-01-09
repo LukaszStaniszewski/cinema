@@ -1,11 +1,12 @@
+import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
 import { DropdownModule } from "src/app/shared";
 
 import {
   CinemaRoomComponent,
+  CinemaRoomStateService,
   ReservationPageComponent,
   TicketComponent,
   TicketListComponent,
@@ -13,7 +14,7 @@ import {
 
 const routes: Routes = [
   {
-    path: "reservation/:id",
+    path: ":id",
     component: ReservationPageComponent,
     title: "Reservation Page",
   },
@@ -28,11 +29,12 @@ const routes: Routes = [
     TicketComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     RouterModule.forChild(routes),
     HttpClientModule,
     DropdownModule,
   ],
+  // providers: [CinemaRoomStateService],
   // exports: [ReservationPageComponent],
 
   // providers: [
@@ -50,4 +52,4 @@ const routes: Routes = [
   //   // }
   // ],
 })
-export class ReservationModule {}
+export default class ReservationModule {}

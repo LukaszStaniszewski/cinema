@@ -20,7 +20,7 @@ export type Ticket = {
 type TicketState = {
   ticketsTech: TicketDetails[];
   tickets: Ticket[];
-  showingId: string;
+  showingId: string | null;
   totalPrice: number;
 };
 
@@ -31,7 +31,7 @@ export class TicketStateService {
   private ticketState$$ = new BehaviorSubject<TicketState>({
     ticketsTech: [],
     tickets: [],
-    showingId: "",
+    showingId: null,
     totalPrice: 0,
   });
   constructor(
@@ -53,9 +53,14 @@ export class TicketStateService {
           seatsBooked.length === 0
             ? defaultValue
             : this.mapTicketsAndSeats(ticketInfo, seatsBooked),
+        showingId: seatsBooked.length ? "test" : null,
       });
     });
   }
+
+  // ngOnInit() {
+
+  // }
 
   private mapTicketsAndSeats(ticketInfo: TicketDetails[], seatsBooked: SeatBooked[]) {
     const ticketStateSeatsId = this.ticketState$$.value.tickets.map(

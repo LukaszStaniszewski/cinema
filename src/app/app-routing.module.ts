@@ -1,46 +1,40 @@
-import { CommonModule } from '@angular/common';
-import { inject, NgModule } from '@angular/core';
-import { RouterModule,Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import {
+  PreloadAllModules,
+  provideRouter,
+  RouterModule,
+  Routes,
+  withPreloading,
+} from "@angular/router";
 
-import { DashboardComponent } from './domains/dashboard/dashboard.component';
-import { ReservationPageComponent } from './domains/reservation';
-import { TicketPurchasePageComponent } from './domains/review/ticket-purchase-page.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { ShellComponent } from './shell/shell.component';
+import { DashboardComponent } from "./domains/dashboard/dashboard.component";
+import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
+import { ShellComponent } from "./shell/shell.component";
 
 const routes: Routes = [
+  { path: "", redirectTo: "showings/06-12-2022", pathMatch: "full" },
+  { path: "showings/:day", component: DashboardComponent, title: "Dashboard" },
   {
-    path: '',
+    path: "",
     component: ShellComponent,
     children: [
       {
-        path: '',
-        component: DashboardComponent,
-        children: [
-          {
-            path: 'showings/:day',
-            component: DashboardComponent,
-            title: 'DashboardComponent',
-          },
-        ],
+        path: "purchase",
+        loadChildren: () => import("./domains/review/review.module"),
       },
       {
-        path: 'purchase',
-        component: TicketPurchasePageComponent,
-        title: 'Purchase Ticket Page',
-      },
-      {
-        path: 'reservation/:id',
-        component: ReservationPageComponent,
-        title: 'Reservation Page',
+        path: "reservation",
+        loadChildren: () => import("./domains/reservation/reservation.module"),
       },
     ],
   },
-  { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' },
+  { path: "**", component: PageNotFoundComponent, title: "Page Not Found" },
 ];
 @NgModule({
   declarations: [],
-  imports: [CommonModule, RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
+  // imports: [provideRouter(routes, with)],
   exports: [RouterModule],
+  // providers: [provideRouter(routes, withPreloading(PreloadAllModules))],
 })
 export class AppRoutingModule {}

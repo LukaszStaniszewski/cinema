@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { ShowingStateService } from "./services/showing-state.service";
@@ -7,6 +7,7 @@ import { ShowingStateService } from "./services/showing-state.service";
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   // state$ = this.showings.showings$.pipe(take(1))
