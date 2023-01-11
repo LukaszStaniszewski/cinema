@@ -27,6 +27,10 @@ const routes: Routes = [
       },
     ],
   },
+  {
+    path: "login",
+    loadChildren: () => import("./domains/auth/auth.module"),
+  },
   { path: "**", component: PageNotFoundComponent, title: "Page Not Found" },
 ];
 @NgModule({

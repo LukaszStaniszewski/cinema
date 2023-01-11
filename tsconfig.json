@@ -22,7 +22,8 @@
     "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": false,
     "paths": {
-      "@dashboard/*": ["src/app/domains/dashboard/*"]
+      "@domains/*": ["src/app/domains/*"],
+      "@shared/*": ["src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {

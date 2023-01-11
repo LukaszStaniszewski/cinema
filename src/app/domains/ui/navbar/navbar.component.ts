@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import {
-  AuthenticationService,
-  Maybe,
-} from 'src/app/domains/user/authentication.service';
+import { Component } from "@angular/core";
+import { Maybe } from "@shared/utility-types";
+
+import { AuthenticationService } from "../../auth";
+
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"],
 })
 export class NavbarComponent {
   hide = true;
