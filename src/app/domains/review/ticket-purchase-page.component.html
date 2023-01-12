@@ -1,125 +1,127 @@
 <section class="purchase-page-container">
-  <div class="movie-info">
-    <img
-      class="movie-info__image"
-      src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg"
-      alt=""
-      srcset=""
-    />
-    <div class="movie-info__details">
-      <p class="text-gradient">ZAKUP BILETÓW</p>
-      <p>Avatar: Istota Wody</p>
-      <span>28.12.2022, </span>
-      <span>14:30</span>
-    </div>
-  </div>
-  <!-- <label for="name">Name: </label> -->
-  <div class="order-details">
-    <div>
-      <div>2x Normalny</div>
-      <div>40zł</div>
-    </div>
-    <div>
-      <div>2x Ulgowy</div>
-      <div>25zł</div>
-    </div>
-    <div class="total text-gradient">
-      <div>4 bilety</div>
-      <div>65zł</div>
-    </div>
-  </div>
-
-  <form
-    class="purchase-form"
-    [formGroup]="userCredentialsForm"
-    (ngSubmit)="onSubmit()"
-  >
-    <div class="name-surname-wrapper">
-      <div class="purchase-input">
-        <input placeholder="Imię*" formControlName="name" type="text" />
-        <!-- <p
-          [ngClass]="{
-            hidden: controls.name.pristine || controls.name.valid
-          }"
-        >
-          Imię jest wymagane
-        </p> -->
-        <div>
-          <ng-container *ngIf="controls.name.errors as errors">
-            <ng-container *ngIf="controls.name.dirty">
-              <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
-              <p *ngIf="errors['minlength'] as minLength">
-                Podałeś {{ minLength.actualLength }} znaki, minimum to
-                {{ minLength.requiredLength }}
-              </p>
-              <p *ngIf="errors['maxLength'] as maxLength">
-                Podałeś {{ maxLength.actualLength }} znaki, minimum to
-                {{ maxLength.requiredLength }}
-              </p>
-            </ng-container>
-          </ng-container>
+    <div class="movie-info">
+        <img
+            class="movie-info__image"
+            src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg"
+            alt=""
+            srcset="" />
+        <div class="movie-info__details">
+            <p class="text-gradient">ZAKUP BILETÓW</p>
+            <p>Avatar: Istota Wody</p>
+            <span>28.12.2022, </span>
+            <span>14:30</span>
         </div>
-      </div>
-      <div class="hidden">w</div>
-      <div class="purchase-input">
-        <input placeholder="Nazwisko*" formControlName="surname" type="text" />
-        <!-- <p
+    </div>
+    <!-- <label for="name">Name: </label> -->
+    <div class="order-details">
+        <div>
+            <div>2x Normalny</div>
+            <div>40zł</div>
+        </div>
+        <div>
+            <div>2x Ulgowy</div>
+            <div>25zł</div>
+        </div>
+        <div class="total text-gradient">
+            <div>4 bilety</div>
+            <div>65zł</div>
+        </div>
+    </div>
+
+    <form
+        class="purchase-form"
+        [formGroup]="userCredentialsForm"
+        (ngSubmit)="onSubmit()">
+        <div class="name-surname-wrapper">
+            <div class="purchase-input">
+                <input placeholder="Imię*" formControlName="name" type="text" />
+                <div>
+                    <ng-container *ngIf="controls.name.errors as errors">
+                        <ng-container *ngIf="controls.name.dirty">
+                            <p *ngIf="errors['required']">
+                                Te pole jest obowiązkowe
+                            </p>
+                            <p *ngIf="errors['minlength'] as minLength">
+                                Podałeś {{ minLength.actualLength }} znaki,
+                                minimum to
+                                {{ minLength.requiredLength }}
+                            </p>
+                            <p *ngIf="errors['maxLength'] as maxLength">
+                                Podałeś {{ maxLength.actualLength }} znaki,
+                                minimum to
+                                {{ maxLength.requiredLength }}
+                            </p>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="hidden">w</div>
+            <div class="purchase-input">
+                <input
+                    placeholder="Nazwisko*"
+                    formControlName="surname"
+                    type="text" />
+                <!-- <p
           [ngClass]="{
             hidden: controls.surname.pristine || controls.surname.valid
           }"
         >
           Nazwisko jest wymagane
         </p> -->
-        <ng-container *ngIf="controls.surname.errors as errors">
-          <ng-container *ngIf="controls.surname.dirty">
-            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
-            <p *ngIf="errors['minlength'] as minLength">
-              Podałeś {{ minLength.actualLength }} znaki, minimum to
-              {{ minLength.requiredLength }}
-            </p>
-            <p *ngIf="errors['maxLength'] as maxLength">
-              Podałeś {{ maxLength.actualLength }} znaki, minimum to
-              {{ maxLength.requiredLength }}
-            </p>
-          </ng-container>
-        </ng-container>
-      </div>
-    </div>
-    <div class="email-wrapper">
-      <div class="purchase-input">
-        <input
-          class="purchase-input--email"
-          placeholder="Adres e-mail*"
-          formControlName="email"
-          type="email"
-        />
-        <!-- <p
+                <ng-container *ngIf="controls.surname.errors as errors">
+                    <ng-container *ngIf="controls.surname.dirty">
+                        <p *ngIf="errors['required']">
+                            Te pole jest obowiązkowe
+                        </p>
+                        <p *ngIf="errors['minlength'] as minLength">
+                            Podałeś {{ minLength.actualLength }} znaki, minimum
+                            to
+                            {{ minLength.requiredLength }}
+                        </p>
+                        <p *ngIf="errors['maxLength'] as maxLength">
+                            Podałeś {{ maxLength.actualLength }} znaki, minimum
+                            to
+                            {{ maxLength.requiredLength }}
+                        </p>
+                    </ng-container>
+                </ng-container>
+            </div>
+        </div>
+        <div class="email-wrapper">
+            <div class="purchase-input">
+                <input
+                    class="purchase-input--email"
+                    placeholder="Adres e-mail*"
+                    formControlName="email"
+                    type="email" />
+                <!-- <p
           [ngClass]="{
             hidden: controls.email.pristine || controls.email.valid
           }"
         >
           Wpisz prawidłowy adres email
         </p> -->
-        <ng-container *ngIf="controls.email.errors as errors">
-          <ng-container *ngIf="controls.email.dirty">
-            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
-            <p *ngIf="errors['emailValidation'] as emailValidation">
-              {{ emailValidation }}
-            </p>
-          </ng-container>
-        </ng-container>
-      </div>
-      <div class="hidden">w</div>
-      <!-- <p>Value: {{ userCredentials.status }}</p> -->
-      <div class="purchase-input">
-        <input
-          class="purchase-input--conrifm-email"
-          placeholder="Powtórz adres e-mail*"
-          formControlName="confirmEmail"
-          type="email"
-        />
+                <ng-container *ngIf="controls.email.errors as errors">
+                    <ng-container *ngIf="controls.email.dirty">
+                        <p *ngIf="errors['required']">
+                            Te pole jest obowiązkowe
+                        </p>
+                        <p *ngIf="errors['emailValidation'] as emailValidation">
+                            {{ emailValidation }}
+                        </p>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="hidden">w</div>
+            <!-- <p>Value: {{ userCredentials.status }}</p> -->
+            <div class="purchase-input">
+                <input
+                    class="purchase-input--conrifm-email"
+                    placeholder="Powtórz adres e-mail*"
+                    formControlName="confirmEmail"
+                    type="email" />
 
-        <!-- <p
+                <!-- <p
           [ngClass]="{
             hidden:
               userCredentials.controls.confirmEmail.pristine ||
@@ -128,7 +130,7 @@
         >
           {{ errorMessage ? errorMessage : "Wpisz prawidłowy adres email" }}
         </p> -->
-        <!-- <p
+                <!-- <p
           [ngClass]="{
             hidden:
               controls.confirmEmail.pristine || controls.confirmEmail.valid
@@ -136,53 +138,50 @@
         >
           {{ userCredentialsForm.errors?.["matchValidation"]}}
         </p> -->
-        <ng-container *ngIf="controls.confirmEmail.touched">
-          <p *ngIf="userCredentialsForm.errors as errors">
-            {{ errors?.["matchValidation"]}}
-          </p>
-          <!-- <p *ngIf="controls.confirmEmail.errors["emailValidation"] as emailValidation">
+                <ng-container *ngIf="controls.confirmEmail.touched">
+                    <p *ngIf="userCredentialsForm.errors as errors">
+                        {{ errors?.["matchValidation"]}}
+                    </p>
+                    <!-- <p *ngIf="controls.confirmEmail.errors["emailValidation"] as emailValidation">
             {{ errors?.["matchValidation"]}}
           </p> -->
-        </ng-container>
-      </div>
-    </div>
-    <div style="display: flex">
-      <div class="purchase-input">
-        <input
-          placeholder="Numer telefonu"
-          formControlName="phoneNumber"
-          type="number"
-        />
-        <!-- <p
+                </ng-container>
+            </div>
+        </div>
+        <div style="display: flex">
+            <div class="purchase-input">
+                <input
+                    placeholder="Numer telefonu"
+                    formControlName="phoneNumber"
+                    type="number" />
+                <!-- <p
           [ngClass]="{
             hidden: controls.phoneNumber.pristine || controls.phoneNumber.valid
           }"
         >
           Numer telefonu musi składać się z 9 cyfr
         </p> -->
-        <ng-container *ngIf="controls.phoneNumber.errors as errors">
-          <ng-container *ngIf="controls.phoneNumber.dirty">
-            <p
-              style="width: 200%"
-              *ngIf="errors['phoneNumberValidation'] as message"
-            >
-              {{ message }}
-            </p>
-          </ng-container>
-        </ng-container>
-      </div>
-      <div class="hidden">ww</div>
+                <ng-container *ngIf="controls.phoneNumber.errors as errors">
+                    <ng-container *ngIf="controls.phoneNumber.dirty">
+                        <p
+                            style="width: 200%"
+                            *ngIf="errors['phoneNumberValidation'] as message">
+                            {{ message }}
+                        </p>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div class="hidden">ww</div>
+        </div>
+        <button
+            class="button button--purchase-form"
+            type="button"
+            [disabled]="!userCredentialsForm.valid">
+            Zamawiam
+        </button>
+    </form>
+    <div class="redirect-reservation">
+        <img src="assets/svg/chevron-left.svg" alt="left-arrow-icon" />
+        <a [routerLink]="['/reservation']"> Wróć do wyboru miejsc </a>
     </div>
-    <button
-      class="button button--purchase-form"
-      type="button"
-      [disabled]="!userCredentialsForm.valid"
-    >
-      Zamawiam
-    </button>
-  </form>
-  <div class="redirect-reservation">
-    <img src="assets/svg/chevron-left.svg" alt="left-arrow-icon" />
-    <a [routerLink]="['/reservation']"> Wróć do wyboru miejsc </a>
-  </div>
 </section>

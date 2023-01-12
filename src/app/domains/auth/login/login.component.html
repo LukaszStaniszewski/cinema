@@ -1,6 +1,12 @@
-<div>
-    <form>
-        <input />
-        <input />
+<div class="login-wrapper">
+    <form
+        class="login-form"
+        [formGroup]="userCredentialsForm"
+        (ngSubmit)="onSubmit()">
+        <input formControlName="email" />
+        <input formControlName="password" />
+        <button type="button" [disabled]="!userCredentialsForm.valid">
+            Zamawiam
+        </button>
     </form>
 </div>

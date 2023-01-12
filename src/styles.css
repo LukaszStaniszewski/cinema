@@ -9,15 +9,12 @@
   --background-tertiary: #f1f5f9;
   --color-text-primary: #e5e7eb;
   --color-bg-button: #f0f0f0;
+  --color-error: red;
+  --color-success: green;
   --text-m: 1.1rem;
   --text-lg: 1.35rem;
   --text-XL: 1.8rem;
-  --gradient-blue: linear-gradient(
-    90deg,
-    #2b74b9 0%,
-    #00ced1 50%,
-    #4682b4 100%
-  );
+  --gradient-blue: linear-gradient(90deg, #2b74b9 0%, #00ced1 50%, #4682b4 100%);
   --color-text: #00bff9;
 }
 
@@ -106,7 +103,6 @@ a {
   line-height: 42px;
   text-align: center;
   background-color: var(--color-bg-button);
-
   background: #353b44;
   border-radius: 6px 6px 0 0;
   margin: 2px;

@@ -21,14 +21,14 @@ export class TicketPurchasePageComponent {
         name: this.builder.control("", {
           validators: [
             Validators.required,
-            Validators.minLength(3),
+            Validators.minLength(2),
             Validators.maxLength(30),
           ],
         }),
         surname: this.builder.control("", {
           validators: [
             Validators.required,
-            Validators.minLength(3),
+            Validators.minLength(2),
             Validators.maxLength(30),
           ],
         }),

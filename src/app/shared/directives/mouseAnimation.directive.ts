@@ -1,21 +1,31 @@
-import { DOCUMENT } from "@angular/common";
-import { Directive, ElementRef, EventEmitter, Inject, Output } from "@angular/core";
-import { fromEvent, Subscription } from "rxjs";
+import { Directive, ElementRef, HostListener, NgModule } from "@angular/core";
 
 @Directive({
-  selector: "[appAnimation]",
+  selector: "[appMouseAnimation]",
 })
 export class MouseAnimationDirective {
-  @Output() appClickOutside = new EventEmitter<void>();
+  constructor(private element: ElementRef) {}
 
-  documentClickSubscription: Subscription | undefined;
+  @HostListener("mousemove", ["$event"]) onMouseMove(event: MouseEvent) {
+    const [x, y] = this.calculateCoordinates(event);
 
-  constructor(
-    private element: ElementRef,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+    this.setCoordinates(x, y);
+  }
+  private calculateCoordinates(event: MouseEvent) {
+    const rect = this.element.nativeElement.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    return [x, y];
+  }
 
-  // ngAfterViewInit(): void {
-  //   this.documentClickSubscription = fromEvent(this.document, "onmousemove").pipe()
-  // }
+  private setCoordinates(x: number, y: number) {
+    this.element.nativeElement.style.setProperty("--mouse-x", `${x}px`);
+    this.element.nativeElement.style.setProperty("--mouse-y", `${y}px`);
+  }
 }
+
+@NgModule({
+  declarations: [MouseAnimationDirective],
+  exports: [MouseAnimationDirective],
+})
+export class MouseAnimationModule {}

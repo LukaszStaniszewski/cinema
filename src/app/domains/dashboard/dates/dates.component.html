@@ -1,9 +1,10 @@
 <div class="dates">
-    <div *ngFor="let day of week">
+    <div appMouseAnimation class="date" *ngFor="let day of week">
         <a
-            routerLink="/showings/{{ day.replaceAll('/', '-') }}"
-            class="dates__date">
+            class="date-content"
+            routerLink="/showings/{{ day.replaceAll('/', '-') }}">
             {{ day.slice(0, 5) }}
         </a>
+        <div class="date-border"></div>
     </div>
 </div>
