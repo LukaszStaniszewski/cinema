@@ -17,15 +17,19 @@ export class LoginComponent {
       email: this.builder.control("", {
         validators: [Validators.required],
       }),
-      passwrod: this.builder.control("", {
+      password: this.builder.control("", {
         validators: [Validators.required],
       }),
     });
   }
 
-  get controls() {
-    return this.userCredentialsForm.controls;
+  get email() {
+    return this.userCredentialsForm.controls.email;
   }
+  get password() {
+    return this.userCredentialsForm.controls.password;
+  }
+
   onSubmit() {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;

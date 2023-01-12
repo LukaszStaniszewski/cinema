@@ -9,6 +9,7 @@
   --background-tertiary: #f1f5f9;
   --color-text-primary: #e5e7eb;
   --color-bg-button: #f0f0f0;
+  --color-placeholder: #c0c0c0;
   --color-error: red;
   --color-success: green;
   --text-m: 1.1rem;
@@ -50,17 +51,6 @@ a {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(12, minmax(max-content, 1fr));
-}
-
-.screen-woal {
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  z-index: 2;
-  background-color: black;
-  opacity: 0.5;
 }
 
 .button {
@@ -123,4 +113,32 @@ a {
   background: var(--gradient-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.input {
+  display: block;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+  padding: 1rem 1rem;
+  background-color: var(--color-bg-button);
+}
+
+.input:focus {
+  border: 2px solid var(--color-border-secondary);
+}
+
+.input--error {
+  border: 2px solid var(--color-error);
+}
+
+.input--success {
+  border: 2px solid var(--color-success);
+}
+
+.input::placeholder {
+  color: var(--color-placeholder);
 }

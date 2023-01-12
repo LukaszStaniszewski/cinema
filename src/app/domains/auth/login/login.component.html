@@ -3,8 +3,30 @@
         class="login-form"
         [formGroup]="userCredentialsForm"
         (ngSubmit)="onSubmit()">
-        <input formControlName="email" />
-        <input formControlName="password" />
+        <div class="input-wrapper">
+            <input
+                [ngClass]="{
+                    'input--error': email.errors && email.dirty
+                }"
+                #emailInput
+                class="input"
+                placeholder="email"
+                formControlName="email" />
+            <ng-container *ngIf="emailInput.classList.contains('input--error')">
+                <p>Te pole jest obowiązkowe</p>
+            </ng-container>
+        </div>
+        <div class="input-wrapper">
+            <input
+                [ngClass]="{
+                    'input--error': password.errors && password.dirty
+                }"
+                class="input"
+                formControlName="password" />
+            <ng-container *ngIf="password.errors">
+                <p *ngIf="password.dirty">Te pole jest obowiązkowe</p>
+            </ng-container>
+        </div>
         <button type="button" [disabled]="!userCredentialsForm.valid">
             Zamawiam
         </button>
