@@ -7,7 +7,10 @@ import { BehaviorSubject } from "rxjs";
 import { Ticket } from "../reservation/shared/ticket.state.service";
 
 export type Customer = {
+  id: number;
   role: "customer";
+  name: string;
+  email: string;
   credentials?: Credentials;
   tickets?: Ticket[];
   wantToSee?: [];
