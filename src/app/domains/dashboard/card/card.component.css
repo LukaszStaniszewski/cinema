@@ -22,7 +22,6 @@
 }
 .card-main {
   grid-column: 6 / 10;
-  font-size: var(--text-m);
 }
 
 .card-main .card-details {
@@ -67,7 +66,7 @@
   padding: 0.5rem 0 0 0;
 }
 .card-title {
-  font-size: var(--text-lg);
+  color: var(--accent-teal-400);
   padding: 0 0 0.5rem 0;
 }
 
