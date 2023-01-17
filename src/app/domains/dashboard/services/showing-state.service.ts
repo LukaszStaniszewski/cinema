@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { API } from 'src/environments/constants';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { BehaviorSubject, Observable, tap } from "rxjs";
+import { API } from "src/environments/constants";
 
-import { DashboardModule } from '../dashboard.modules';
+import { DashboardModule } from "../dashboard.modules";
 
 type Maybe<T = null> = {
   isAvailable: boolean;
@@ -44,11 +44,8 @@ export type Showing = {
   available: Availability[];
 };
 
-type RoomId = 'room-a' | 'room-b' | 'room-c';
-@Injectable({
-  // providedIn: DashboardModule,
-  providedIn: 'root',
-})
+type RoomId = "room-a" | "room-b" | "room-c";
+@Injectable()
 export class ShowingStateService {
   // private showings$$ = new BehaviorSubject<Showing[] | null>(null);
   showings$ = new Observable<Showing[]>();
@@ -94,7 +91,7 @@ export class ShowingStateService {
   // }
   getShowings(date: string | number) {
     // this.http
-    console.log('in service', date);
+    console.log("in service", date);
     //   .get<Showing[]>(`${API.SHOWINGS}?day=${date}`)
     //   .subscribe((showings) => {
     //     this.showings$$.next({ value: showings, isAvailable: true });
