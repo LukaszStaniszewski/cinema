@@ -1,32 +1,52 @@
 import {
-  HttpErrorResponse,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
 } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { HandleUserErrorService } from "@domains/auth/handle-user-error.service";
-import { catchError, EMPTY, filter, Observable, of } from "rxjs";
+import { CookieService } from "ngx-cookie-service";
+import { Observable, tap } from "rxjs";
+import { API } from "src/environments/constants";
 
 @Injectable()
 export class CustomHttpInterceptor implements HttpInterceptor {
-  readonly baseUrl = "http://localhost:3000";
+  private readonly baseUrl = "http://localhost:3000";
 
-  constructor(private handleError: HandleUserErrorService) {}
+  private handleError = inject(HandleUserErrorService);
+  private cookieService = inject(CookieService);
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
-    const clone = request.clone({
-      url: `${this.baseUrl}${request.url}`,
-    });
+  ): Observable<HttpEvent<any>> {
+    const url = `${this.baseUrl}${request.url}`;
+    let clone = request;
+    if (request.url === API.CURRENT_USER) {
+      clone = this.setAuthHeader(request, url);
+    } else {
+      clone = request.clone({ url });
+    }
 
     return next.handle(clone).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return this.handleError.handleError(error);
+      tap({
+        next: (event: any) => {
+          if (event?.body?.accessToken) {
+            this.cookieService.set("accessToken", event.body.accessToken);
+          }
+        },
+        error: error => this.handleError.handleError(error),
       })
     );
+  }
+  private setAuthHeader(req: HttpRequest<unknown>, url: string) {
+    return req.clone({
+      url,
+      headers: req.headers.set(
+        "Authorization",
+        `Bearer ${this.cookieService.get("accessToken")}`
+      ),
+    });
   }
 }

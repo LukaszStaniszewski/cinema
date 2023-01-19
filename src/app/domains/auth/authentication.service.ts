@@ -24,37 +24,19 @@ export class AuthenticationService {
     private http: HttpClient,
     private customerService: CustomerService,
     private adminService: AdminService
-  ) {
-    console.log("hit");
-    // const logedUser = localStorage.getItem("currentUser");
-    // if (logedUser) {
-    //   const user = JSON.parse(logedUser) as Customer | Admin;
-    //   if (user.role === "customer") {
-    //     this.customer$$ = new BehaviorSubject<Maybe<AuthUser>>(new AuthUser(user));
-    //   } else {
-    //     this.admin$$ = new BehaviorSubject<Maybe<Admin>>(new Admin(user));
-    //   }
-    // } else {
-    //   this.customer$$ = new BehaviorSubject<Maybe<AuthUser>>(null);
-    //   this.admin$$ = new BehaviorSubject<Maybe<Admin>>(null);
-    // }
-  }
+  ) {}
   autoLogin() {
-    this.http.get<User>("/600/users").subscribe({
-      next: user => {
-        console.log("autlogin", user);
-        this.setUser(user);
-      },
+    this.http.get<User>(API.CURRENT_USER).subscribe({
+      next: user => this.setUser(user),
+
       error: () => this.auth$$.next({ authType: "none" }),
     });
   }
 
   login(userCredentials: { email: string; password: string }) {
     this.http.post<User>(`/login`, userCredentials).subscribe({
-      next: user => {
-        console.log("manual", user);
-        this.setUser(user);
-      },
+      next: user => this.setUser(user),
+
       error: () => this.auth$$.next({ authType: "none" }),
     });
   }
