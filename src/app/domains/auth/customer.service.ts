@@ -25,6 +25,9 @@ export type Credentials = {
 export class CustomerService {
   customer$$ = new BehaviorSubject<Maybe<Customer>>(null);
 
+  constructor() {
+    this.customer$$.subscribe(console.log);
+  }
   get customerState$() {
     return this.customer$$.asObservable();
   }

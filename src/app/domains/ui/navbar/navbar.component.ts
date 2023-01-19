@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { Maybe } from "@shared/utility-types";
 
 import { AuthenticationService } from "../../auth";
@@ -12,12 +13,14 @@ export class NavbarComponent {
   hide = true;
   userName: Maybe<string>;
 
+  private router = inject(Router);
+
   getUserName = () => null;
+
   constructor(public auth: AuthenticationService) {}
 
   ngOnChange(): void {
-    this.userName = this.auth.customer$$.value?.customer.name;
-    console.log(this.userName);
+    // this.userName = this.auth.customer$$.value?.customer.name;
   }
 
   clickedOutside() {
@@ -25,16 +28,16 @@ export class NavbarComponent {
   }
 
   login() {
-    this.auth.login();
+    this.router.navigate(["/login"]);
   }
 
   toggleDropdown() {
-    if (!this.auth.admin$$ && !this.auth.customer$$) return;
+    // if (!this.auth.admin$$ && !this.auth.custo mer$$) return;
     this.hide = !this.hide;
   }
 
   logout() {
-    this.auth.logout();
+    // this.auth.logout();
     this.hide = true;
   }
 }

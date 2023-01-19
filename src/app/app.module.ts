@@ -1,7 +1,8 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { AuthenticationService } from "@domains/auth";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 
 import { AppComponent } from "./app.component";
@@ -28,12 +29,13 @@ import { ShellComponent } from "./shell/shell.component";
       multi: true,
     },
     // {
-    //   provide: APP_INITIALIZER,
-    //   useValue: (userService: UserService) => {
-
+    //   provide: [APP_INITIALIZER, AuthenticationService],
+    //   useValue: (userService: AuthenticationService) => {
+    //     userService.autoLogin();
     //   },
-    //   deps: [UserService]
-    // }
+    //   deps: [AuthenticationService],
+    //   multi: true,
+    // },
   ],
   bootstrap: [AppComponent],
 })

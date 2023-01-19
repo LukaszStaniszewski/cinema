@@ -16,11 +16,12 @@
                 class="navbar__login"
                 (click)="toggleDropdown()"
                 (click)="login()">
-                {{
+                Zaloguj
+                <!-- {{
                     this.auth.customer$$.value?.customer?.name
                         ? this.auth.customer$$.value?.customer?.name
                         : "Zaloguj się"
-                }}
+                }} -->
                 <!-- zaloguj sie -->
             </div>
             <div [class.hidden]="hide" class="dropdown dropdown--navbar">

@@ -25,6 +25,7 @@ export class AuthenticationService {
     private customerService: CustomerService,
     private adminService: AdminService
   ) {
+    console.log("hit");
     // const logedUser = localStorage.getItem("currentUser");
     // if (logedUser) {
     //   const user = JSON.parse(logedUser) as Customer | Admin;
@@ -38,18 +39,33 @@ export class AuthenticationService {
     //   this.admin$$ = new BehaviorSubject<Maybe<Admin>>(null);
     // }
   }
-  login(userCredentials: { email: string; password: string }) {
-    this.http.post<User>(`${API.LOGIN}`, userCredentials).subscribe({
+  autoLogin() {
+    this.http.get<User>("/600/users").subscribe({
       next: user => {
-        this.auth$$.next({ authType: user.role });
-        if (this.isGivenUserLoggedIn<Customer>(user, "customer")) {
-          this.customerService.setCustomer(user);
-        } else if (this.isGivenUserLoggedIn<Admin>(user, "admin")) {
-          this.adminService.setAdmin(user);
-        }
+        console.log("autlogin", user);
+        this.setUser(user);
       },
       error: () => this.auth$$.next({ authType: "none" }),
     });
+  }
+
+  login(userCredentials: { email: string; password: string }) {
+    this.http.post<User>(`/login`, userCredentials).subscribe({
+      next: user => {
+        console.log("manual", user);
+        this.setUser(user);
+      },
+      error: () => this.auth$$.next({ authType: "none" }),
+    });
+  }
+
+  private setUser(user: User) {
+    this.auth$$.next({ authType: user.role });
+    if (this.isGivenUserLoggedIn<Customer>(user, "customer")) {
+      this.customerService.setCustomer(user);
+    } else if (this.isGivenUserLoggedIn<Admin>(user, "admin")) {
+      this.adminService.setAdmin(user);
+    }
   }
 
   private isGivenUserLoggedIn<T extends User>(
