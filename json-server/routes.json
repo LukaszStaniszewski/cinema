@@ -3,5 +3,7 @@
   "/:resource/:id/show": "/:resource/:id",
   "/posts/:category": "/posts?category=:category",
   "/articles\\?id=:id": "/posts/:id",
-  "/user/:name": "/user?name=:name"
+  "/user/:name": "/user?name=:name",
+  "/users*": "/600/users$1",
+  "/messages*": "/640/messages$1"
 }

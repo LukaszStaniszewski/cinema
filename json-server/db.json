@@ -12,6 +12,7 @@
       "password": "$2a$10$nRw6YjzKTB8q8W5uq1m1fOlXk9h0WCDPhZJWoI6uB9LLOtAFCSD26",
       "firstname": "Olivier",
       "lastname": "Monge",
+      "role": "customer",
       "age": 32,
       "id": 2
     }
