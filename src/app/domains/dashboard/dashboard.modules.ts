@@ -1,14 +1,21 @@
-import { CommonModule } from "@angular/common";
+import { AsyncPipe, NgFor, NgIf, TitleCasePipe } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { MouseAnimationModule } from "@shared/directives/mouseAnimation.directive";
 import { AppRoutingModule } from "src/app/app-routing.module";
-import { MouseAnimationModule } from "src/app/shared/directives/mouseAnimation.directive";
 
 import { CardComponent, CardListComponent, DatesComponent, ShowingStateService } from ".";
 
 @NgModule({
   declarations: [CardComponent, DatesComponent, CardListComponent],
   exports: [CardListComponent],
-  imports: [CommonModule, AppRoutingModule, MouseAnimationModule],
+  imports: [
+    NgIf,
+    NgFor,
+    TitleCasePipe,
+    AsyncPipe,
+    AppRoutingModule,
+    MouseAnimationModule,
+  ],
   providers: [ShowingStateService],
 })
 export class DashboardModule {}
