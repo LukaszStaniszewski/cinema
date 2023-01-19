@@ -1,17 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  Validators,
-} from "@angular/forms";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { NonNullableFormBuilder, Validators } from "@angular/forms";
 
 import { AuthenticationService } from "../authentication.service";
-
-// type LoginCredentials = FormGroup<{
-//   email: FormControl<string>;
-//   password: FormControl<string>;
-// }>;
 
 type LoginCredentials = {
   email: string;

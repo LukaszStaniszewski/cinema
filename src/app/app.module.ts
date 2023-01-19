@@ -1,15 +1,13 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { APP_INITIALIZER, NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { AuthenticationService } from "@domains/auth";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 import { CookieService } from "ngx-cookie-service";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { CustomHttpInterceptor } from "./core/interceptors/custom-http.interceptor";
-import { ResponseInterceptor } from "./core/interceptors/response.interceptor";
 import { UiModule } from "./domains/ui";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
@@ -30,11 +28,6 @@ import { ShellComponent } from "./shell/shell.component";
       useClass: CustomHttpInterceptor,
       multi: true,
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ResponseInterceptor,
-    //   multi: true,
-    // },
     CookieService,
     // {
     //   provide: [APP_INITIALIZER, AuthenticationService],

@@ -15,7 +15,7 @@ export type Customer = {
   tickets?: Ticket[];
   wantToSee?: [];
 };
-// eslint-disable-next-line @typescript-eslint/ban-types
+
 export type Credentials = {
   email: string;
 };
@@ -34,9 +34,6 @@ export class CustomerService {
   setCustomer(customer: Customer) {
     this.customer$$.next({ ...this.customer$$.value, ...customer });
   }
-  // constructor(private user: ICustomer) {
-  //   this.customer = this.user;
-  // }
 
   updateCredentials() {}
 

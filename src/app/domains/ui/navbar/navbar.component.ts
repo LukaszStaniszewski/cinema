@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { ActivatedRoute, ParamMap, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { Maybe } from "@shared/utility-types";
 
 import { AuthenticationService } from "../../auth";

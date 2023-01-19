@@ -38,7 +38,6 @@ export type CinemaRoomState = {
 };
 
 @Injectable({
-  // providedIn: ReservationModule,
   providedIn: "root",
 })
 export class CinemaRoomStateService implements OnDestroy {
@@ -70,7 +69,7 @@ export class CinemaRoomStateService implements OnDestroy {
   }
 
   get seatsBooked(): SeatBooked[] {
-    return this.cinemaRoomState$$.value.seatsBooked!;
+    return this.cinemaRoomState$$.value.seatsBooked;
   }
 
   private patchState(stateSlice: Partial<CinemaRoomState>) {
@@ -99,7 +98,7 @@ export class CinemaRoomStateService implements OnDestroy {
             cinemaRoom: seatings,
           });
         },
-        error: err => this.router.navigate(["/404"]),
+        error: () => this.router.navigate(["/404"]),
       });
   }
 

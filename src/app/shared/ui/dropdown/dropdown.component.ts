@@ -7,7 +7,6 @@ import {
   OnChanges,
   Output,
 } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import {
   Ticket,
   TicketDetails,
