@@ -18,12 +18,9 @@
 }
 
 .navbar__cinema-name {
-  font-size: var(--text-XL);
+  color: var(--accent-teal-400);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
   cursor: pointer;
 }
 

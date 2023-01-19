@@ -1,22 +1,40 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+
 :root {
-  --color-border: rgb(51, 51, 51);
+  --color-border: #333333;
   --color-border-secondary: #00bff9;
-  /* --color-border-secondary: rgb(51, 51, 51); */
+  --color-border-secondary: #22d3ee;
   --background-primary: #000000;
-  /* --background-primary: #ffffff; */
+
   --background-secondary: #ffffff;
   --background-tertiary: #f1f5f9;
   --color-text-primary: #e5e7eb;
   --color-bg-button: #f0f0f0;
   --color-placeholder: #c0c0c0;
-  --color-error: red;
-  --color-success: green;
-  --text-m: 1.1rem;
-  --text-lg: 1.35rem;
-  --text-XL: 1.8rem;
-  --gradient-blue: linear-gradient(90deg, #2b74b9 0%, #00ced1 50%, #4682b4 100%);
-  --color-text: #00bff9;
+  --gradient-blue: linear-gradient(
+    89.83deg,
+    #00f3f3 4.83%,
+    #00ffff 52.31%,
+    #00ffff 100.78%
+  );
+
+  --neutral-900: #000000;
+  --neutral-800: #333333;
+  --neutral-700: #353b44;
+  --neutral-400: #c0c0c0;
+  --neutral-200: #e5e7eb;
+  --neutral-100: #ffffff;
+
+  --accent-organe: #fa6218;
+  --accent-teal-600: #00bfff;
+  --accent-teal-500: #00cbff;
+  --accent-teal-400: #00f3f3;
+  --accent-teal-300: #00ffff;
+  --accent-beige: #f2e5d7;
+
+  --accent-error: #ff0000;
+  --accent-success: #00fa9a;
 }
 
 html:focus-within {
@@ -24,15 +42,15 @@ html:focus-within {
 }
 
 body {
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Barlow", sans-serif;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
+
   background-color: var(--background-primary);
   color: var(--color-text-primary);
   /* overflow-x: hidden; */
   text-rendering: optimizeLegibility;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.4px;
 }
 
 *,
@@ -46,6 +64,44 @@ body {
 a {
   text-decoration: none;
   color: var(--color-text-primary);
+}
+.text-h1 {
+  font-size: clamp(1.5rem, 3.4vw + 0.81rem, 3rem);
+}
+.text-h2 {
+  font-size: clamp(1.125rem, 2vw + 0.75rem, 2rem);
+}
+.text-h3 {
+  font-size: clamp(1rem, 1.13vw + 0.75rem, 1.5rem);
+}
+.text-h4 {
+  font-size: clamp(1rem, 0.56vw + 0.87rem, 1.25rem);
+}
+.text-h5 {
+  font-size: clamp(1rem, 0.25vw + 0.94rem, 1.125rem);
+}
+.text-h1,
+.text-h2,
+.text-h3,
+.text-h4,
+.text-h5 {
+  font-family: "Allerta Stencil", "sans-serif";
+}
+.text-body {
+  font-size: 1rem;
+}
+.text-body-big {
+  font-size: 1.14rem;
+}
+.text-body-small {
+  font-size: 0.88rem;
+}
+.text-body-big,
+.text-body-small .text-body,
+.text-body-big,
+.text-body-small {
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .grid-container {

@@ -10,24 +10,18 @@ import { ShowingStateService } from "..";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardListComponent implements OnInit {
-  // state$ = this.showings.showings$.pipe(take(1))
   constructor(private route: ActivatedRoute, private showings: ShowingStateService) {}
-  get state$() {
-    return this.showings.showings$;
-  }
 
+  vm = this.showDefaultPage();
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if (!params["day"]) {
-        return this.showDefaultPage();
-      }
+      if (!params["day"]) return;
       const adjustedDate = params["day"].replaceAll("/", "-");
-
-      this.showings.getShowings(adjustedDate);
+      this.vm = this.showings.getShowings(adjustedDate);
     });
   }
 
   private showDefaultPage() {
-    this.showings.getShowings("06-12-2022");
+    return this.showings.getShowings("06-12-2022");
   }
 }
