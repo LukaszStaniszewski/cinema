@@ -13,13 +13,13 @@ export interface User {
   role: "customer" | "admin";
 }
 type Auth = {
-  authType: false | "admin" | "customer";
+  authType: "none" | "admin" | "customer";
 };
 @Injectable({
   providedIn: "root",
 })
 export class AuthenticationService {
-  private auth$$ = new BehaviorSubject<Auth>({ authType: false });
+  private auth$$ = new BehaviorSubject<Auth>({ authType: "none" });
   constructor(
     private http: HttpClient,
     private customerService: CustomerService,
@@ -27,7 +27,7 @@ export class AuthenticationService {
   ) {
     // const logedUser = localStorage.getItem("currentUser");
     // if (logedUser) {
-    //   const user = JSON.parse(logedUser) as ICustomer | IAdmin;
+    //   const user = JSON.parse(logedUser) as Customer | Admin;
     //   if (user.role === "customer") {
     //     this.customer$$ = new BehaviorSubject<Maybe<AuthUser>>(new AuthUser(user));
     //   } else {
@@ -48,7 +48,7 @@ export class AuthenticationService {
           this.adminService.setAdmin(user);
         }
       },
-      error: () => this.auth$$.next({ authType: false }),
+      error: () => this.auth$$.next({ authType: "none" }),
     });
   }
 
@@ -58,44 +58,4 @@ export class AuthenticationService {
   ): user is T {
     return user.role === role;
   }
-
-  // login() {
-  //   if (
-  //     this.isGivenUserLoggedIn(this.customer$$.value) ||
-  //     this.isGivenUserLoggedIn(this.admin$$.value)
-  //   )
-  //     return;
-  //   this.http.get<User>(`${API.LOGIN}`).subscribe(user => {
-  //     localStorage.setItem("currentUser", JSON.stringify(user));
-  //     if (user.role === "customer") {
-  //       this.customer$$.next(new AuthUser(user));
-  //     } else {
-  //       this.admin$$.next(new Admin(user));
-  //     }
-  //   });
-  // }
-
-  // logout() {
-  //   if (
-  //     !this.isGivenUserLoggedIn(this.customer$$) &&
-  //     !this.isGivenUserLoggedIn(this.admin$$)
-  //   )
-  //     return;
-  //   localStorage.removeItem("currentUser");
-  //   if (this.customer$$) {
-  //     this.customer$$.next(null);
-  //   } else {
-  //     this.admin$$.next(null);
-  //   }
-  // }
-
-  // private isGivenUserLoggedIn<T>(user: T): user is T {
-  //   return !!user;
-  // }
-
-  // updateCredentials() {}
-
-  // addTicketToCart() {}
-
-  // submitOrder() {}
 }
