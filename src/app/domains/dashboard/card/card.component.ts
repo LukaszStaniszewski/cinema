@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core";
+import { Component, inject, Input } from "@angular/core";
+import { MovieService } from "@core/movie/movie.service";
 
 import type { Showing } from "../services/showing-state.service";
 
@@ -11,10 +12,15 @@ export class CardComponent {
   isLoading = false;
   @Input() showing!: Showing;
 
+  private movieService = inject(MovieService);
   get movie() {
     return this.showing.movie;
   }
   get hours() {
     return this.showing.available;
   }
+
+  // addToFavorites() {
+
+  // }
 }

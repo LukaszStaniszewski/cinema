@@ -31,6 +31,13 @@
       "price": 16
     }
   ],
+  "wanna-see": [
+    { "userId": "2", "text": "testowy tekst", "id": "1" },
+    { "userId": "2", "text": "testowy tekst", "id": "2" },
+    { "userId": "2", "text": "testowy tekst", "id": "3" },
+    { "userId": "2", "text": "testowy tekst", "id": "4" },
+    { "userId": "1", "text": "testowy tekst", "id": "5" }
+  ],
   "movies": [
     {
       "id": "movie-avatar-way-of-water-123",

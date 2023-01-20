@@ -25,6 +25,10 @@ const routes: Routes = [
         path: "reservation",
         loadChildren: () => import("./domains/reservation/reservation.module"),
       },
+      {
+        path: "wanna-see",
+        loadChildren: () => import("./domains/wanna-see/wanna-see.module"),
+      },
     ],
   },
   {

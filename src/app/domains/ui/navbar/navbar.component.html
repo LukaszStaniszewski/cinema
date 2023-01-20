@@ -24,7 +24,7 @@
             </div>
             <div [class.hidden]="hide" class="dropdown dropdown--navbar">
                 <div>Moje bilety</div>
-                <div>Chcę obejrzeć</div>
+                <a [routerLink]="['/wanna-see']">Chcę obejrzeć</a>
                 <div>Ustawienia</div>
                 <div (click)="logout()">Wyloguj</div>
             </div>

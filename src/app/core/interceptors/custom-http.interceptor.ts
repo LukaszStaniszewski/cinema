@@ -22,12 +22,13 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const url = `${this.baseUrl}${request.url}`;
-    let clone = request;
-    if (request.url === API.CURRENT_USER) {
-      clone = this.setAuthHeader(request, url);
-    } else {
-      clone = request.clone({ url });
-    }
+    // let clone = request;
+    // if (request.url === API.CURRENT_USER) {
+    //   clone = this.setAuthHeader(request, url);
+    // } else {
+    //   clone = request.clone({ url });
+    // }
+    const clone = this.setAuthHeader(request, url);
 
     return next.handle(clone).pipe(
       tap({

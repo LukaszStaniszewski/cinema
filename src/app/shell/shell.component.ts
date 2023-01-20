@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MovieService } from "@core/movie/movie.service";
 import { AuthenticationService } from "@domains/auth";
 
 @Component({
@@ -7,9 +8,13 @@ import { AuthenticationService } from "@domains/auth";
   styleUrls: ["./shell.component.css"],
 })
 export class ShellComponent implements OnInit {
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService,
+    private movieService: MovieService
+  ) {}
 
   ngOnInit() {
+    this.movieService.getFavoriteMovies("2");
     this.authService.autoLogin();
   }
 }
