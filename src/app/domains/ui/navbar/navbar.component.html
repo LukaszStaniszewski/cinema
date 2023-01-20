@@ -12,17 +12,15 @@
             <div class="navbar-cart">
                 <img src="assets/svg/cart.svg" alt="" />
             </div>
-            <div
-                class="navbar__login"
-                (click)="toggleDropdown()"
-                (click)="login()">
-                Zaloguj
-                <!-- {{
-                    this.auth.customer$$.value?.customer?.name
-                        ? this.auth.customer$$.value?.customer?.name
-                        : "Zaloguj się"
-                }} -->
-                <!-- zaloguj sie -->
+            <div class="navbar__login">
+                <div
+                    *ngIf="currentUser$ | async as user; else signin"
+                    (click)="toggleDropdown()">
+                    {{ user.name }}
+                </div>
+                <ng-template #signin>
+                    <div (click)="login()">Zaloguj się</div>
+                </ng-template>
             </div>
             <div [class.hidden]="hide" class="dropdown dropdown--navbar">
                 <div>Moje bilety</div>

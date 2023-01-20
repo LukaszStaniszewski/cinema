@@ -1,6 +1,5 @@
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
-import { Maybe } from "@shared/utility-types";
 
 import { AuthenticationService } from "../../auth";
 
@@ -11,16 +10,14 @@ import { AuthenticationService } from "../../auth";
 })
 export class NavbarComponent {
   hide = true;
-  userName: Maybe<string>;
 
   private router = inject(Router);
-
-  getUserName = () => null;
+  private authService = inject(AuthenticationService);
 
   constructor(public auth: AuthenticationService) {}
 
-  ngOnChange(): void {
-    // this.userName = this.auth.customer$$.value?.customer.name;
+  get currentUser$() {
+    return this.authService.currentUser$;
   }
 
   clickedOutside() {
