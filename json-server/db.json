@@ -1,19 +1,19 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "lukasz",
-      "email": "test@gmail.com",
-      "password": "Test12",
-      "role": "customer"
-    },
-    {
       "email": "olivier@mail.com",
       "password": "$2a$10$nRw6YjzKTB8q8W5uq1m1fOlXk9h0WCDPhZJWoI6uB9LLOtAFCSD26",
       "firstname": "Olivier",
       "lastname": "Monge",
       "role": "customer",
       "age": 32,
+      "id": 1
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$PuuvUpjKwfT1obJV1Sg7LeqHJkJI2L/EfDhzPiMie1rJ.3fgYAAoO",
+      "role": "customer",
+      "name": "lukasz",
       "id": 2
     }
   ],
