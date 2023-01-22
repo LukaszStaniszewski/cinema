@@ -4,8 +4,10 @@
   "/posts/:category": "/posts?category=:category",
   "/articles\\?id=:id": "/posts/:id",
   "/user/:name": "/user?name=:name",
+  "/users/current": "/600/users/2",
   "/users*": "/600/users$1",
   "/messages*": "/640/messages$1",
-  "/600/users/current": "/users/2",
-  "/wanna-see": "/600/wanna-see$1"
+
+  "/wanna-see*": "/600/wanna-see$1",
+  "/wanna-see": "/600/wanna-see"
 }

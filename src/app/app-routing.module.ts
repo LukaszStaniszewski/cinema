@@ -29,12 +29,13 @@ const routes: Routes = [
         path: "wanna-see",
         loadChildren: () => import("./domains/wanna-see/wanna-see.module"),
       },
+      {
+        path: "login",
+        loadChildren: () => import("./domains/auth/auth.module"),
+      },
     ],
   },
-  {
-    path: "login",
-    loadChildren: () => import("./domains/auth/auth.module"),
-  },
+
   { path: "**", component: PageNotFoundComponent, title: "Page Not Found" },
 ];
 @NgModule({

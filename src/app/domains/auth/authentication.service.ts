@@ -1,6 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Maybe } from "@shared/utility-types";
+import { CookieService } from "ngx-cookie-service";
 import { BehaviorSubject, map } from "rxjs";
 import { API } from "src/environments/constants";
 
@@ -27,11 +29,19 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private customerService: CustomerService,
-    private adminService: AdminService
-  ) {}
+    private adminService: AdminService,
+    private cookieService: CookieService,
+    private router: Router
+  ) {
+    this.auth$$.subscribe(console.log);
+  }
 
   get currentUser$() {
     return this.auth$$.pipe(map(state => state.user));
+  }
+
+  get authState() {
+    return this.auth$$.value;
   }
 
   autoLogin() {
@@ -44,13 +54,26 @@ export class AuthenticationService {
 
   login(userCredentials: { email: string; password: string }) {
     this.http.post<User>(`/login`, userCredentials).subscribe({
-      next: user => this.setUser(user),
+      next: user => {
+        this.setUser(user);
+        this.router.navigate(["/"]);
+      },
 
       error: () => this.auth$$.next({ authType: "none", user: null }),
     });
   }
-  private setUser(user: User) {
-    this.auth$$.next({ authType: user.role, user: user });
+
+  logout() {
+    this.cookieService.delete("accessToken", "/showings");
+    this.setUser(null);
+  }
+
+  private setUser(user: User | null) {
+    this.auth$$.next({
+      ...this.auth$$.value,
+      authType: user?.role ?? "none",
+      user: user,
+    });
   }
 
   // private setUser(user: User) {

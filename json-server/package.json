@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "json-server db.json --watch -m ./node_modules/json-server-auth -r ./routes.json"
+    "serve": "json-server db.json --watch -m ./node_modules/json-server-auth -r ./routes.json",
+    "auth": "json-server-auth db.json --watch -r routes.json"
   },
   "author": "",
   "license": "ISC",

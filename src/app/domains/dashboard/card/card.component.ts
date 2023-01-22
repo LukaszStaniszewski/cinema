@@ -20,7 +20,7 @@ export class CardComponent {
     return this.showing.available;
   }
 
-  // addToFavorites() {
-
-  // }
+  addToFavorites() {
+    this.movieService.addToFavorites("2", this.showing.movie.id);
+  }
 }

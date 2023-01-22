@@ -7,14 +7,14 @@ import {
 import { inject, Injectable } from "@angular/core";
 import { HandleUserErrorService } from "@domains/auth/handle-user-error.service";
 import { CookieService } from "ngx-cookie-service";
-import { Observable, tap } from "rxjs";
+import { catchError, Observable, tap } from "rxjs";
 import { API } from "src/environments/constants";
 
 @Injectable()
 export class CustomHttpInterceptor implements HttpInterceptor {
   private readonly baseUrl = "http://localhost:3000";
 
-  private handleError = inject(HandleUserErrorService);
+  private handleErrorService = inject(HandleUserErrorService);
   private cookieService = inject(CookieService);
 
   intercept(
@@ -37,7 +37,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
             this.cookieService.set("accessToken", event.body.accessToken);
           }
         },
-        error: error => this.handleError.handleError(error),
+        error: error => this.handleErrorService.handleError(error),
       })
     );
   }

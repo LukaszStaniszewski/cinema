@@ -34,7 +34,6 @@ export class NavbarComponent {
   }
 
   logout() {
-    // this.auth.logout();
-    this.hide = true;
+    this.authService.logout();
   }
 }
