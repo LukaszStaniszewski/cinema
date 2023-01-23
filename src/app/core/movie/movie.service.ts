@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject, filter, map, of, switchMap, throwError } from "rxjs";
+import { BehaviorSubject, EMPTY, filter, map, of, switchMap, throwError } from "rxjs";
 import { API, MESSAGE } from "src/environments/constants";
 type Movie = {
   id: string;
@@ -60,9 +60,13 @@ export class MovieService {
   }
 
   getFavoriteMovies() {
-    this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE}/${2}`).pipe(
-      switchMap(movieId => {
-        return of();
+    return this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE}/${2}`).pipe(
+      switchMap(wannaSeeDTO => {
+        const query = wannaSeeDTO
+          .map(wannaSee => wannaSee.movieId)
+          .filter(Boolean)
+          .join("&id=");
+        return this.http.get<Movie[]>(`${API.MOVIES}?id=${query}`);
       })
     );
   }
