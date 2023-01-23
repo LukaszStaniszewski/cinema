@@ -8,6 +8,5 @@
   "/users*": "/600/users$1",
   "/messages*": "/640/messages$1",
 
-  "/wanna-see*": "/600/wanna-see$1",
-  "/wanna-see": "/600/wanna-see"
+  "/wanna-see/:id": "/600/wanna-see?userId_like=:id"
 }
