@@ -1,4 +1,11 @@
-import { Component, inject, Input } from "@angular/core";
+import {
+  AfterContentInit,
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  ViewChild,
+} from "@angular/core";
 import { MovieService } from "@core/movie/movie.service";
 
 import type { Showing } from "../services/showing-state.service";
@@ -8,11 +15,22 @@ import type { Showing } from "../services/showing-state.service";
   templateUrl: "./card.component.html",
   styleUrls: ["./card.component.css"],
 })
-export class CardComponent {
+export class CardComponent implements AfterContentInit {
   isLoading = false;
+  @ViewChild("addToWannaSee", { static: true })
+  buttonElement!: ElementRef<HTMLButtonElement>;
   @Input() showing!: Showing;
 
   private movieService = inject(MovieService);
+
+  ngAfterContentInit() {
+    this.movieService.movieService$.subscribe(wannaSee => {
+      if (wannaSee.includes(this.showing.movie.id)) {
+        this.buttonElement.nativeElement.disabled = true;
+        this.buttonElement.nativeElement.textContent = "Juz dodany!";
+      }
+    });
+  }
   get movie() {
     return this.showing.movie;
   }

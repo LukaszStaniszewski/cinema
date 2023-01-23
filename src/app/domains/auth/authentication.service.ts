@@ -64,7 +64,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.cookieService.delete("accessToken", "/showings");
+    this.cookieService.delete("accessToken", "/");
     this.setUser(null);
   }
 
