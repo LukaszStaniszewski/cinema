@@ -1,1 +1,38 @@
-<h1>wanna-see works!</h1>
+<ng-container *ngIf="movieMock as movies">
+    <section class="card-list" *ngFor="let movie of movies">
+        <div class="card">
+            <main class="card__main">
+                <img class="card__image" src="{{ movie.image }}" alt="" />
+
+                <main class="card__main__info">
+                    <h2 class="text-h3">{{ movie.title }}</h2>
+                    <p>Rezyser: {{ movie.director }}</p>
+                    <p>Gatunek: {{ movie.genre }}</p>
+                    <p>Czas trwania: {{ movie.runTime }}</p>
+                    <p>Wymagany wiek: {{ movie.pg }}</p>
+                    <p>Data premiery: {{ movie.premiere }}</p>
+                    <article class="card__main__description">
+                        {{ movie.descriptionShort }}
+                    </article>
+                </main>
+                <aside class="card__main__rating">
+                    <div>{{ movie.rating }}</div>
+                    <div></div>
+                    <div></div>
+                </aside>
+            </main>
+
+            <div class="card__cast-wrapper">
+                <h3 class="text-h4">Obsada</h3>
+                <div class="card__cast-list">
+                    <figure *ngFor="let actor of movie.descriptionExtra.cast">
+                        <img
+                            src="../../../../assets/actors/marlon-brando.jpg"
+                            alt="" />
+                        <p>{{ actor.name }}</p>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+</ng-container>

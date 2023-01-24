@@ -2,20 +2,26 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject, EMPTY, filter, map, of, switchMap, throwError } from "rxjs";
 import { API, MESSAGE } from "src/environments/constants";
+
+type Cast = {
+  name: string;
+  image: string;
+};
 type Movie = {
   id: string;
   title: string;
   image: string;
   genre: string;
   pg: string;
+  director: string;
   descriptionShort: string;
   descriptionLong: string;
   descriptionExtra: {
-    actors: string[];
+    cast: Cast[];
   };
   rating: string;
   votesNumber: number;
-  premiere: boolean;
+  premiere: Date;
   runTime: number;
 };
 

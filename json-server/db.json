@@ -76,10 +76,20 @@
       "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
       "rating": 8,
       "votesNumber": 432,
-      "premiere": true,
       "runTime": 192,
       "pg": 13,
-      "genre": "Sci-Fi"
+      "genre": "Sci-Fi",
+      "director": "James Cameron",
+      "premiere": "16:12:2022 20:00:00",
+      "descriptionExtra": {
+        "cast": [
+          { "name": "Sam Worthington" },
+          { "name": "Zoe Saldana" },
+          { "name": "Sigourney Weeaver" },
+          { "name": "Stephen Lang" },
+          { "name": "Kate Winslet" }
+        ]
+      }
     },
     {
       "id": "movie-darkKnight-123",

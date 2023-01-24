@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from "@angular/common";
+import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -13,7 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [NgFor, NgIf, RouterModule.forChild(routes)],
+  declarations: [WannaSeeComponent],
+  imports: [NgFor, NgIf, AsyncPipe, DatePipe, RouterModule.forChild(routes)],
 })
 export default class WannaSeeModule {}

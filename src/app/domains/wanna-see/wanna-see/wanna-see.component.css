@@ -1,0 +1,37 @@
+.card-list {
+  display: grid;
+  /* justify-content: center; */
+  grid-template-columns: repeat(13, minmax(min-content, 1fr));
+}
+
+.card {
+  grid-column: 4 / 11;
+  line-height: 1.4;
+
+  /* display: flex;
+  flex-direction: column; */
+}
+.card__image {
+  background-position: center;
+  width: 30%;
+}
+
+.card__main {
+  /* width: 100%; */
+  display: flex;
+}
+
+.card__main__info > h2 {
+  color: var(--accent-teal-400);
+}
+
+.card__main__info {
+  width: 50%;
+}
+
+.card__cast-wrapper > h3 {
+  color: var(--accent-teal-400);
+}
+.card__cast-list {
+  display: flex;
+}
