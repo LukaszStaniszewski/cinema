@@ -1,0 +1,43 @@
+<div class="card">
+    <main class="card__main">
+        <img class="card__image" src="{{ movie.image }}" alt="" />
+
+        <main class="card__main__poster">
+            <h2 class="text-h3">{{ movie.title }}</h2>
+            <div class="card__main__poster__info text-body-big">
+                <div>
+                    <p>Rezyser:</p>
+                    <p>Gatunek:</p>
+                    <p>Czas trwania:</p>
+                    <p>Wymagany wiek:</p>
+                    <p>Data premiery:</p>
+                </div>
+                <div>
+                    <p>{{ movie.director }}</p>
+                    <p>{{ movie.genre }}</p>
+                    <p>{{ movie.runTime }}</p>
+                    <p>{{ movie.pg }}</p>
+                    <p>{{ movie.premiere }}</p>
+                </div>
+            </div>
+            <article class="card__main__description">
+                {{ movie.description }}
+            </article>
+        </main>
+        <aside class="card__main__rating">
+            <div>{{ movie.rating }} / 10</div>
+            <div>Twoja ocena: 8</div>
+            <button class="button">Juz mnie nie interesuje</button>
+        </aside>
+    </main>
+
+    <div class="card__cast-wrapper">
+        <h3 class="text-h4">Obsada</h3>
+        <div class="card__cast-list">
+            <figure *ngFor="let actor of movie.descriptionExtra.cast">
+                <img src="/assets/actors/marlon-brando.jpg" alt="" />
+                <p>{{ actor.name }}</p>
+            </figure>
+        </div>
+    </div>
+</div>

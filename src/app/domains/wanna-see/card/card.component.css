@@ -1,0 +1,46 @@
+.card {
+  margin: 1.25rem 0;
+}
+.card__image {
+  background-position: center;
+  width: 30%;
+}
+
+.card__main {
+  /* width: 100%; */
+  column-gap: 1.25rem;
+  display: flex;
+}
+
+.card__main__poster > h2 {
+  color: var(--accent-teal-400);
+}
+
+.card__main__poster {
+  width: 50%;
+}
+.card__main__poster__info {
+  display: flex;
+  gap: 1.25rem;
+}
+.card__main__poster__info > div:first-child > p {
+  color: var(--neutral-300);
+  padding-right: 1rem;
+  font-weight: 400;
+}
+.card__main__poster > article {
+  padding-top: 1.25rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.card__main__rating {
+}
+.card__cast-wrapper > h3 {
+  color: var(--accent-teal-400);
+  margin: 1.25rem 0 0.8rem 0;
+}
+.card__cast-list {
+  display: flex;
+  gap: 10px;
+}

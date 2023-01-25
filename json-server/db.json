@@ -73,7 +73,7 @@
       "id": "movie-avatar-way-of-water-123",
       "title": "Avatar: Istota Wody",
       "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-      "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+      "description": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
       "rating": 8,
       "votesNumber": 432,
       "runTime": 192,
@@ -95,25 +95,45 @@
       "id": "movie-darkKnight-123",
       "title": "The Dark Knight",
       "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
-      "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+      "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
       "rating": 9,
       "votesNumber": 132,
-      "premiere": false,
       "runTime": 140,
       "pg": 13,
-      "genre": "Action"
+      "genre": "Action",
+      "director": "Christopher Nolan",
+      "premiere": "16:12:2022 20:00:00",
+      "descriptionExtra": {
+        "cast": [
+          { "name": "Sam Worthington" },
+          { "name": "Zoe Saldana" },
+          { "name": "Sigourney Weeaver" },
+          { "name": "Stephen Lang" },
+          { "name": "Kate Winslet" }
+        ]
+      }
     },
     {
       "id": "movie-Dune-134",
       "title": "Dune",
       "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-      "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+      "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
       "rating": 9,
       "votesNumber": 260,
-      "premiere": false,
       "runTime": 155,
       "pg": 16,
-      "genre": "Action"
+      "genre": "Action",
+      "director": "Denis Villeneuve",
+      "premiere": "16:12:2022 20:00:00",
+      "descriptionExtra": {
+        "cast": [
+          { "name": "Sam Worthington" },
+          { "name": "Zoe Saldana" },
+          { "name": "Sigourney Weeaver" },
+          { "name": "Stephen Lang" },
+          { "name": "Kate Winslet" }
+        ]
+      }
     }
   ],
   "showings": [
@@ -122,7 +142,7 @@
         "id": "movie-avatar-way-of-water-123",
         "title": "Avatar: Istota Wody",
         "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-        "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+        "description": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
         "rating": 8,
         "votesNumber": 432,
         "premiere": true,
@@ -154,7 +174,7 @@
         "id": "movie-darkKnight-123",
         "title": "The Dark Knight",
         "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
-        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
         "rating": 9,
         "votesNumber": 132,
         "premiere": false,
@@ -186,7 +206,7 @@
         "id": "movie-Dune-134",
         "title": "Dune",
         "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
         "rating": 9,
         "votesNumber": 260,
         "premiere": false,
@@ -223,7 +243,7 @@
         "id": "movie-Dune-134",
         "title": "Dune",
         "image": "https://m.media-amazon.com/images/M/MV5BN2FjNmEyNWMtYzM0ZS00NjIyLTg5YzYtYThlMGVjNzE1OGViXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
-        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
         "rating": 9,
         "votesNumber": 260,
         "premiere": false,
@@ -255,7 +275,7 @@
         "id": "movie-darkKnight-123",
         "title": "The Dark Knight",
         "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
-        "descriptionShort": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
+        "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice",
         "rating": 9,
         "votesNumber": 132,
         "premiere": false,
@@ -287,7 +307,7 @@
         "id": "movie-avatar-way-of-water-123",
         "title": "Avatar: Istota Wody",
         "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-        "descriptionShort": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+        "description": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
         "rating": 8,
         "votesNumber": 432,
         "premiere": true,

@@ -1,23 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Movie } from "@core/movie/movie.service";
 import { API } from "src/environments/constants";
-
-type Movie = {
-  id: string;
-  title: string;
-  image: string;
-  genre: string;
-  pg: string;
-  descriptionShort: string;
-  descriptionLong: string;
-  descriptionExtra: {
-    actors: string[];
-  };
-  rating: string;
-  votesNumber: number;
-  premiere: boolean;
-  runTime: number;
-};
 
 export type Availability = {
   // movieId: 'string';

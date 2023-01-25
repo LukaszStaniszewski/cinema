@@ -1,21 +1,20 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject, EMPTY, filter, map, of, switchMap, throwError } from "rxjs";
+import { BehaviorSubject, map, switchMap, throwError } from "rxjs";
 import { API, MESSAGE } from "src/environments/constants";
 
 type Cast = {
   name: string;
   image: string;
 };
-type Movie = {
+export type Movie = {
   id: string;
   title: string;
   image: string;
   genre: string;
   pg: string;
   director: string;
-  descriptionShort: string;
-  descriptionLong: string;
+  description: string;
   descriptionExtra: {
     cast: Cast[];
   };
@@ -30,8 +29,6 @@ type WannaSeeDTO = {
   movieId: string;
   id: string;
 };
-
-type WannaSee = string[];
 
 @Injectable({
   providedIn: "root",
@@ -77,6 +74,9 @@ export class MovieService {
     );
   }
 
+  deleteFavoriteMovie(movieId: string) {
+    this.http.delete(`${API.WANNA_SEE}/${movieId}`).subscribe(console.log);
+  }
   getFavoriteMoviesId(userId: string) {
     this.http
       .get<WannaSeeDTO[]>(`${API.WANNA_SEE}/${userId}`)
