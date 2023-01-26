@@ -1,11 +1,16 @@
-<ng-container *ngIf="vm$ | async as movies">
+<ng-container *ngIf="vm$ | async as movies; else information">
     <section class="card-list" *ngFor="let movie of movies">
-        <app-card
+        <app-wanna-see-card
             class="card"
             *ngIf="movie; else spinner"
             [movie]="movie"
             (newMovieId)="removeFromWannaSee($event)">
-        </app-card>
+        </app-wanna-see-card>
         <ng-template #spinner>Loading...</ng-template>
     </section>
 </ng-container>
+<ng-template #information>
+    <p>
+        Dodaj film który Cie interesuje, do chcę zobaczyć, aby go tu wyświetlić
+    </p>
+</ng-template>
