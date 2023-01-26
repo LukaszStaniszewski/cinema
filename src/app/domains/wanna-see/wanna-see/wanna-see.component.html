@@ -3,7 +3,9 @@
         <app-card
             class="card"
             *ngIf="movie; else spinner"
-            [movie]="movie"></app-card>
+            [movie]="movie"
+            (newMovieId)="removeFromWannaSee($event)">
+        </app-card>
         <ng-template #spinner>Loading...</ng-template>
     </section>
 </ng-container>

@@ -27,7 +27,11 @@
         <aside class="card__main__rating">
             <div>{{ movie.rating }} / 10</div>
             <div>Twoja ocena: 8</div>
-            <button class="button">Juz mnie nie interesuje</button>
+            <button
+                (click)="handleDoesntIntrestMeButtonEvent(movie.id)"
+                class="button">
+                Juz mnie nie interesuje
+            </button>
         </aside>
     </main>
 

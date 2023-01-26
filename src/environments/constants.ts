@@ -6,6 +6,7 @@ export const API = {
   CINEMAROOMS: "/api/cinemarooms",
   TICKET_INFO: "/api/ticketInfo",
   CURRENT_USER: "/api/users/current",
+  WANNA_SEE_LIST: "/api/wanna-see/list",
   WANNA_SEE: "/api/wanna-see",
 } as const;
 
