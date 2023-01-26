@@ -8,12 +8,12 @@ import {
 import { Movie } from "@core/movie/movie.service";
 
 @Component({
-  selector: "app-card[movie]",
-  templateUrl: "./card.component.html",
-  styleUrls: ["./card.component.css"],
+  selector: "app-wanna-see-card[movie]",
+  templateUrl: "./wanna-see-card.component.html",
+  styleUrls: ["./wanna-see-card.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CardComponent {
+export class WannaSeeCardComponent {
   @Input() movie!: Movie;
   @Output() newMovieId = new EventEmitter<string>();
 

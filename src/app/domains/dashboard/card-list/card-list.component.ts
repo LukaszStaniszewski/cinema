@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { MovieService } from "@core/movie/movie.service";
 
 import { ShowingStateService } from "..";
 
@@ -10,7 +11,11 @@ import { ShowingStateService } from "..";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardListComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private showings: ShowingStateService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private showings: ShowingStateService,
+    private movieService: MovieService
+  ) {}
 
   vm = this.showDefaultPage();
   ngOnInit(): void {
@@ -19,6 +24,8 @@ export class CardListComponent implements OnInit {
       const adjustedDate = params["day"].replaceAll("/", "-");
       this.vm = this.showings.getShowings(adjustedDate);
     });
+
+    this.movieService.getFavoriteMoviesId("2");
   }
 
   private showDefaultPage() {

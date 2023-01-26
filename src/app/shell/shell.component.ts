@@ -15,6 +15,5 @@ export class ShellComponent implements OnInit {
 
   ngOnInit() {
     this.authService.autoLogin();
-    this.movieService.getFavoriteMoviesId("2");
   }
 }

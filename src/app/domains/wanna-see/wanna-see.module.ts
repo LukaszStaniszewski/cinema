@@ -2,7 +2,7 @@ import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { CardComponent } from "./card/card.component";
+import { WannaSeeCardComponent } from "./card/wanna-see-card.component";
 import { WannaSeeComponent } from "./wanna-see/wanna-see.component";
 
 const routes: Routes = [
@@ -14,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [WannaSeeComponent, CardComponent],
+  declarations: [WannaSeeComponent, WannaSeeCardComponent],
   imports: [NgFor, NgIf, AsyncPipe, DatePipe, RouterModule.forChild(routes)],
 })
 export default class WannaSeeModule {}
