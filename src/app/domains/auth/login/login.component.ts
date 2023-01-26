@@ -1,12 +1,8 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 
-import { AuthenticationService } from "../authentication.service";
+import { AuthenticationService, LoginCredentials } from "../authentication.service";
 
-type LoginCredentials = {
-  email: string;
-  password: string;
-};
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -40,7 +36,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log(this.userCredentialsForm.value);
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;
     this.authService.login(this.userCredentialsForm.value as LoginCredentials);

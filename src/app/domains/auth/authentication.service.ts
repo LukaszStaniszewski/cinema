@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { useNavigate } from "@shared/inject-hooks";
 import { Maybe } from "@shared/utility-types";
 import { CookieService } from "ngx-cookie-service";
 import { BehaviorSubject, map } from "rxjs";
@@ -9,6 +10,10 @@ import { API } from "src/environments/constants";
 import { Admin, AdminService } from "./admin-service.service";
 import { Customer, CustomerService } from "./customer.service";
 
+export type LoginCredentials = {
+  email: string;
+  password: string;
+};
 export interface User {
   id: number;
   name: string;
@@ -26,13 +31,10 @@ type AuthState = {
 })
 export class AuthenticationService {
   private auth$$ = new BehaviorSubject<AuthState>({ authType: "none", user: null });
-  constructor(
-    private http: HttpClient,
-    private customerService: CustomerService,
-    private adminService: AdminService,
-    private cookieService: CookieService,
-    private router: Router
-  ) {
+  private navigate = useNavigate();
+  private http = inject(HttpClient);
+  private cookieService = inject(CookieService);
+  constructor() {
     this.auth$$.subscribe(console.log);
   }
 
@@ -56,7 +58,7 @@ export class AuthenticationService {
     this.http.post<User>(`/login`, userCredentials).subscribe({
       next: user => {
         this.setUser(user);
-        this.router.navigate(["/"]);
+        this.navigate("/");
       },
 
       error: () => this.auth$$.next({ authType: "none", user: null }),
