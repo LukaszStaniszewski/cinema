@@ -12,16 +12,12 @@ import { ToastState } from "./toast.service";
 })
 export class ToastComponent {
   @Input() toast!: ToastState;
-
   @Output() closeToastEvent = new EventEmitter();
 
   get iconUrl() {
     return `url("assets/svg/toast/${this.toast.status}.svg")`;
   }
 
-  ngOnInit() {
-    console.log("from toast");
-  }
   get toastType() {
     return `toast--${this.toast.status}`;
   }
