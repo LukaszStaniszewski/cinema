@@ -1,21 +1,32 @@
-import { NgClass } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { AsyncPipe, NgClass, NgIf } from "@angular/common";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-type Status = "success" | "info" | "warning" | "error";
+import { ToastState } from "./toast.service";
+
 @Component({
-  imports: [NgClass],
-  selector: "app-toast",
+  imports: [NgClass, NgIf, AsyncPipe],
+  selector: "app-toast[toast]",
   templateUrl: "./toast.component.html",
   standalone: true,
   styleUrls: ["./toast.component.css"],
 })
 export class ToastComponent {
-  @Input() toastStatus: Status = "error";
+  @Input() toast!: ToastState;
+
+  @Output() closeToastEvent = new EventEmitter();
 
   get iconUrl() {
-    return `url("assets/svg/toast/${this.toastStatus}.svg")`;
+    return `url("assets/svg/toast/${this.toast.status}.svg")`;
+  }
+
+  ngOnInit() {
+    console.log("from toast");
   }
   get toastType() {
-    return `toast--${this.toastStatus}`;
+    return `toast--${this.toast.status}`;
+  }
+
+  protected closeToast() {
+    this.closeToastEvent.emit();
   }
 }

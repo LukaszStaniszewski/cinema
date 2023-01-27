@@ -17,4 +17,5 @@ export const SET_UP = {
 export const MESSAGE = {
   WANNA_SEE_SUCCESS: "Film został dodany",
   WANNA_SEE_FAILURE: "Ten film juz został przez Ciebie wcześniej dodany",
+  JWT_EXPIRED: "Twoja sesja wygasła, zaloguj się ponownie",
 } as const;

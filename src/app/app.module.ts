@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
+import { ToastComponent } from "@shared/ui/toast/toast.component";
 import { CookieService } from "ngx-cookie-service";
 
 import { AppComponent } from "./app.component";
@@ -21,6 +22,7 @@ import { ShellComponent } from "./shell/shell.component";
     HttpClientModule,
     DashboardModule,
     UiModule,
+    ToastComponent,
   ],
   providers: [
     {

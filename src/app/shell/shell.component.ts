@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { MovieService } from "@core/movie/movie.service";
 import { AuthenticationService } from "@domains/auth";
+import { ToastStateService } from "@shared/ui/toast/toast.service";
 
 @Component({
   selector: "app-shell",
@@ -10,10 +10,17 @@ import { AuthenticationService } from "@domains/auth";
 export class ShellComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
-    private movieService: MovieService
+    private toastService: ToastStateService
   ) {}
 
+  get toastState$() {
+    return this.toastService.toastState$;
+  }
   ngOnInit() {
     this.authService.autoLogin();
+  }
+
+  closeToast() {
+    this.toastService.closeToast();
   }
 }

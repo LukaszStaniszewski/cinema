@@ -54,7 +54,6 @@ body {
 
   background-color: var(--background-primary);
   color: var(--color-text-primary);
-  /* overflow-x: hidden; */
   text-rendering: optimizeLegibility;
   letter-spacing: 0.4px;
 }

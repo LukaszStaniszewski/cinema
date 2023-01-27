@@ -2,8 +2,8 @@
     <div
         [style.background-image]="iconUrl"
         class="toast__icon toast__icon--color"></div>
-    <p class="toast-message">Film został usunięty</p>
-    <div class="toast__close-wrapper">
+    <p class="toast-message">{{ this.toast.message }}</p>
+    <div (click)="closeToast()" class="toast__close-wrapper">
         <img
             class="toast__close-image toast__icon--color"
             src="assets/svg/close.svg" />

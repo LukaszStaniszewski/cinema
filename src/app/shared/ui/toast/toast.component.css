@@ -1,7 +1,3 @@
-:host {
-  --background-image-path: url("../../../../assets/svg/toast/success.svg");
-}
-
 .toast {
   width: max-content;
   height: 50px;
@@ -11,6 +7,9 @@
   display: flex;
   padding: 0 0.2rem;
   align-items: center;
+  bottom: 20px;
+  margin: 0 auto;
+  position: sticky;
 }
 
 .toast__icon {
