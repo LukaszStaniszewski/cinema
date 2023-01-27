@@ -1,4 +1,5 @@
 <section class="card-list">
+    <app-toast></app-toast>
     <app-dates></app-dates>
     <ng-container *ngIf="this.vm | async as showings; else spinner">
         <app-card

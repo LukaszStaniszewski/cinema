@@ -27,12 +27,17 @@
   --neutral-200: #e5e7eb;
   --neutral-100: #ffffff;
 
-  --accent-organe: #fa6218;
+  --accent-orange-300: #fdba74;
+  --accent-orange-600: #fa6218;
+  --accent-orange-800: #c2410c;
   --accent-teal-600: #00bfff;
   --accent-teal-500: #00cbff;
   --accent-teal-400: #00f3f3;
   --accent-teal-300: #00ffff;
+  --accent-sky-800: #075985;
+  --accent-sky-300: #7dd3fc;
   --accent-beige: #f2e5d7;
+  --accent-green: #166534;
 
   --accent-error: #ff0000;
   --accent-success: #00fa9a;

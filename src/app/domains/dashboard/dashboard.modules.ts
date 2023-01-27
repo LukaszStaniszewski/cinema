@@ -1,6 +1,7 @@
 import { AsyncPipe, NgFor, NgIf, TitleCasePipe } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { MouseAnimationModule } from "@shared/directives/mouseAnimation.directive";
+import { ToastComponent } from "@shared/ui/toast/toast.component";
 import { AppRoutingModule } from "src/app/app-routing.module";
 
 import { CardComponent, CardListComponent, DatesComponent, ShowingStateService } from ".";
@@ -15,6 +16,7 @@ import { CardComponent, CardListComponent, DatesComponent, ShowingStateService }
     AsyncPipe,
     AppRoutingModule,
     MouseAnimationModule,
+    ToastComponent,
   ],
   providers: [ShowingStateService],
 })
