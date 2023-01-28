@@ -7,7 +7,6 @@
   "/users/current": "/600/users/2",
   "/users*": "/600/users$1",
   "/messages*": "/640/messages$1",
-
   "/wanna-see/list/:id": "/600/wanna-see?userId_like=:id",
-  "/wanna-see/:id": "/600/wanna-see?userId=2&movieId=:id"
+  "/wanna-see/:id": "/600/wanna-see/:id?userId_like=2"
 }
