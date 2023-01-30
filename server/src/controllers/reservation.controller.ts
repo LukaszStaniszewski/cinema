@@ -9,9 +9,11 @@ export const sendReservation = async (req: Request, res: Response) => {
     const reservationId = req.params.id;
 
     const [reservation] = db["reservations"].filter(reservation => reservation.id == reservationId);
+    console.log(reservation);
     if (!reservation) {
-      throw new Error(ErrorMessage.WANNA_SEE_NOT_FOUND);
+      throw new Error(ErrorMessage.RESERVATION_NOT_FOUND);
     }
+    console.log("hit");
     res.json(reservation);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));

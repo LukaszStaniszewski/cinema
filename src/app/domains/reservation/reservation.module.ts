@@ -6,10 +6,12 @@ import { DropdownModule } from "src/app/shared";
 
 import {
   CinemaRoomComponent,
+  CinemaRoomStateService,
   ReservationPageComponent,
   TicketComponent,
   TicketListComponent,
 } from ".";
+import { TicketStateService } from "./shared/ticket.state.service";
 
 const routes: Routes = [
   {
@@ -22,10 +24,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     CinemaRoomComponent,
-
-    ReservationPageComponent,
     TicketListComponent,
     TicketComponent,
+    ReservationPageComponent,
   ],
   imports: [
     CommonModule,
@@ -33,7 +34,7 @@ const routes: Routes = [
     HttpClientModule,
     DropdownModule,
   ],
-  // providers: [CinemaRoomStateService],
+  providers: [CinemaRoomStateService, TicketStateService],
   // exports: [ReservationPageComponent],
 
   // providers: [

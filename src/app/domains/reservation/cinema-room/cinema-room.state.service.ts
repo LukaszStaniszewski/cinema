@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
-import { Router } from "@angular/router";
 import { API, MESSAGE, SET_UP } from "@environments/constants";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
+
+import ReservationModule from "../reservation.module";
 
 export interface ReservationApi {
   id: string;
@@ -37,20 +38,14 @@ export type CinemaRoomState = {
   seatsBooked: SeatBooked[];
 };
 
-@Injectable({
-  providedIn: "root",
-})
-export class CinemaRoomStateService implements OnDestroy {
+@Injectable()
+export class CinemaRoomStateService {
   private cinemaRoomState$$ = new BehaviorSubject<CinemaRoomState>({
     cinemaRoom: null,
     seatsBooked: [],
   });
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private toastService: ToastStateService
-  ) {}
+  constructor(private http: HttpClient, private toastService: ToastStateService) {}
 
   get cinemaRoomState$(): Observable<CinemaRoomState> {
     return this.cinemaRoomState$$.asObservable();
@@ -170,8 +165,5 @@ export class CinemaRoomStateService implements OnDestroy {
     });
 
     return updatedCinemaRoom;
-  }
-  ngOnDestroy() {
-    this.cinemaRoomState$$.unsubscribe();
   }
 }

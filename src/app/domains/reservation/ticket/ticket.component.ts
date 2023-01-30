@@ -14,9 +14,6 @@ import {
 })
 export class TicketComponent {
   constructor(private ticketService: TicketStateService) {}
-  log() {
-    console.log("ticket component");
-  }
 
   get ticketState$() {
     return this.ticketService.ticketState$;

@@ -5,6 +5,7 @@ export const ErrorMessage = {
   WANNA_SEE_NOT_FOUND: "given user doesn't have any wanna see movies",
   SHOWINGS_NOT_FOUND: "No showings found for that day",
   MOVIE_NOT_ADDED: "Movie wasn't add to wanna see list",
+  RESERVATION_NOT_FOUND: "Given reservation doesn't exist",
 } as const;
 
 export const SuccessMessage = {

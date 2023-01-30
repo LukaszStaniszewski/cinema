@@ -6,6 +6,7 @@ import { CinemaRoomStateService, Seat } from "./cinema-room.state.service";
   selector: "app-cinema-room[seats]",
   templateUrl: "./cinema-room.component.html",
   styleUrls: ["./cinema-room.component.css"],
+
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CinemaRoomComponent {

@@ -1,5 +1,5 @@
 <ng-container *ngIf="ticketState$ | async as ticketState">
-    <ng-container *ngIf="ticketState.showingId; else default">
+    <ng-container *ngIf="ticketState.showingId">
         <section
             class="ticket-wrapper"
             *ngFor="let ticket of ticketState.tickets; trackBy: trackById">
@@ -16,8 +16,7 @@
             <div>Cena: {{ ticket.price }}</div>
         </section>
         <!-- <div>total: {{ ticketState.totalPrice }}</div> -->
-        {{ log() }}
     </ng-container>
 </ng-container>
 
-<ng-template #default>loading</ng-template>
+<!-- <ng-template #default>loading</ng-template> -->

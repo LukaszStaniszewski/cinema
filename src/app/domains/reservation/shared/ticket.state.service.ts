@@ -4,6 +4,7 @@ import { API } from "@environments/constants";
 import { BehaviorSubject, combineLatest, map } from "rxjs";
 
 import { CinemaRoomStateService, SeatBooked } from "..";
+import ReservationModule from "../reservation.module";
 
 export type TicketDetails = {
   type: TicketTypes;
@@ -24,9 +25,7 @@ type TicketState = {
   totalPrice: number;
 };
 
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class TicketStateService {
   private ticketState$$ = new BehaviorSubject<TicketState>({
     ticketsTech: [],
@@ -57,10 +56,6 @@ export class TicketStateService {
       });
     });
   }
-
-  // ngOnInit() {
-
-  // }
 
   private mapTicketsAndSeats(ticketInfo: TicketDetails[], seatsBooked: SeatBooked[]) {
     const ticketStateSeatsId = this.ticketState$$.value.tickets.map(

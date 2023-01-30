@@ -404,6 +404,62 @@
           "taken": true
         }
       ]
+    },
+    {
+      "id": "06-17-a",
+      "movieTitle": "The Dark Knight",
+      "cinemaRoomId": "room-a",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "G",
+            "column": "9"
+          },
+          "taken": true
+        }
+      ]
     }
   ],
   "cinemarooms": [
