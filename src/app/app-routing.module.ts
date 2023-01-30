@@ -18,13 +18,17 @@ const routes: Routes = [
         title: "Dashboard",
       },
       {
-        path: "purchase",
-        loadChildren: () => import("./domains/review/review.module"),
+        path: "booking",
+        loadChildren: () => import("./domains/booking/booking.module"),
       },
-      {
-        path: "reservation",
-        loadChildren: () => import("./domains/reservation/reservation.module"),
-      },
+      // {
+      //   path: "purchase",
+      //   loadChildren: () => import("./domains/booking/review/review.module"),
+      // },
+      // {
+      //   path: "reservation",
+      //   loadChildren: () => import("./domains/booking/reservation/reservation.module"),
+      // },
       {
         path: "wanna-see",
         loadChildren: () => import("./domains/wanna-see/wanna-see.module"),

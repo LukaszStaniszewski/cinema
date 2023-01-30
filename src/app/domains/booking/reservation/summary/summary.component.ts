@@ -7,12 +7,12 @@ import {
 } from "../shared/ticket.state.service";
 
 @Component({
-  selector: "app-ticket",
-  templateUrl: "./ticket.component.html",
-  styleUrls: ["./ticket.component.css"],
+  selector: "app-summary",
+  templateUrl: "./summary.component.html",
+  styleUrls: ["./summary.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TicketComponent {
+export class SummaryComponent {
   constructor(private ticketService: TicketStateService) {}
 
   get ticketState$() {

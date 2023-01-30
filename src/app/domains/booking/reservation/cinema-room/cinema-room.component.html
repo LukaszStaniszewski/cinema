@@ -1,0 +1,27 @@
+<div class="cinema-room">
+    <div
+        *ngFor="let seatColumns of seats; let index = index; let first = first">
+        <div *ngFor="let seat of seatColumns">
+            <div *ngIf="first" class="letter-axis seat">
+                {{ seat.position.row }}
+            </div>
+
+            <div
+                *ngIf="seat.taken; else availableSeats"
+                id="{{ seat.position.column + seat.position.row }}"
+                class="seat"
+                [ngClass]="{ 'seat--taken': seat.taken }">
+                {{ seat.position.column }}
+            </div>
+            <ng-template #availableSeats>
+                <div
+                    (click)="selectSeat(seat)"
+                    id="{{ seat.position.row + seat.position.column }}"
+                    class="seat"
+                    [ngClass]="{ 'seat--booked': seat.reservation }">
+                    {{ seat.position.column }}
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

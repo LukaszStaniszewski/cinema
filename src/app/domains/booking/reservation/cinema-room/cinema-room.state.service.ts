@@ -4,8 +4,6 @@ import { API, MESSAGE, SET_UP } from "@environments/constants";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
 
-import ReservationModule from "../reservation.module";
-
 export interface ReservationApi {
   id: string;
   cinemaRoomId: string;

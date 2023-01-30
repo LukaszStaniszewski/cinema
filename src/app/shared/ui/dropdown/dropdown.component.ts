@@ -10,7 +10,7 @@ import {
 import {
   Ticket,
   TicketDetails,
-} from "src/app/domains/reservation/shared/ticket.state.service";
+} from "@domains/booking/reservation/shared/ticket.state.service";
 
 import { ClickOutsideModule } from "../../directives/clickOutside.directive";
 

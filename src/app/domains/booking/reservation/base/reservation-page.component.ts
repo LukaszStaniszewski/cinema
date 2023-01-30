@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Maybe } from "@shared/utility-types";
 
-import { CinemaRoomStateService } from "..";
+import { CinemaRoomStateService, Seat } from "..";
 
 type ReservationParams = {
   id: string;
@@ -22,6 +22,10 @@ export class ReservationPageComponent {
 
   get cinemaRoom$() {
     return this.movieService.selectCinemaRoom$;
+  }
+
+  updateCinemaRoom(seat: Seat) {
+    this.movieService.updateSeats(seat);
   }
 
   toggleTicketDetails(isValid: boolean) {

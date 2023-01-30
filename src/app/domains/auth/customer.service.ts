@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 import { Maybe } from "@shared/utility-types";
 import { BehaviorSubject } from "rxjs";
 
-import { Ticket } from "../reservation/shared/ticket.state.service";
+import { Ticket } from "../booking/reservation/shared/ticket.state.service";
 
 export type Customer = {
   id: number;

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 
-import { CustomValidators } from "../../shared/custom-validators";
+import { CustomValidators } from "../../../shared/custom-validators";
 @Component({
   selector: "app-ticket-purchase-page",
   templateUrl: "./ticket-purchase-page.component.html",

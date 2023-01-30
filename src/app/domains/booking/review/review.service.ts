@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import { TicketStateService } from "@domains/reservation/shared/ticket.state.service";
+import { TicketStateService } from "@domains/booking/reservation/shared/ticket.state.service";
 
 @Injectable({
   providedIn: "root",
