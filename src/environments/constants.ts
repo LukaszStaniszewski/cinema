@@ -1,11 +1,11 @@
 export const API = {
   LOGIN: "/auth",
   RESERVATIONS: "/reservations",
-  SHOWINGS: "/showings",
+  CINEMAROOMS: "/reservations/cinemaroom",
   MOVIES: "/movies",
   WANNA_SEE: "/movies/wanna-see",
-  CINEMAROOMS: "/cinemarooms",
   TICKET_INFO: "/ticketInfo",
+  SHOWINGS: "/showings",
   // CURRENT_USER: "/api/users/current", // powinno byc pod /api/login bo to get, login pierwszy to post
 } as const;
 

@@ -1,5 +1,8 @@
 import { Router } from "express";
 
-const sessionRouter = Router();
+import { sendCinemaRoom, sendReservation } from "../controllers/reservation.controller";
 
-export default sessionRouter;
+const reservationRouter = Router();
+reservationRouter.get("/:id", sendReservation);
+reservationRouter.get("/cinemaroom/:id", sendCinemaRoom);
+export default reservationRouter;

@@ -22,7 +22,7 @@ export const authenticate = async (
     const accessToken = signJwt(adjustedUser, key.privateAccessKey, "1h");
 
     res.cookie("accessToken", accessToken, {
-      maxAge: 3600000, // 1h
+      maxAge: 36000000, // 10h
       httpOnly: true,
       domain: "localhost",
       path: "/",

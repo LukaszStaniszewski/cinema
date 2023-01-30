@@ -7,7 +7,7 @@ import cors from "cors";
 
 import userRouter from "./routes/auth.route";
 import movieRouter from "./routes/movie.route";
-import sessionRouter from "./routes/reservation.route";
+import reservationRouter from "./routes/reservation.route";
 import collectionRouter from "./routes/showings.route";
 import logger from "./utils/logger";
 const app = express();
@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", userRouter);
-app.use("/api/reservations", sessionRouter);
+app.use("/api/reservations", reservationRouter);
 app.use("/api/showings", collectionRouter);
 app.use("/api/movies", movieRouter);
 

@@ -46,11 +46,7 @@ export class CinemaRoomStateService implements OnDestroy {
     seatsBooked: [],
   });
 
-  constructor(
-    private http: HttpClient,
-
-    private router: Router
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   get cinemaRoomState$(): Observable<CinemaRoomState> {
     return this.cinemaRoomState$$.asObservable();
@@ -64,10 +60,6 @@ export class CinemaRoomStateService implements OnDestroy {
     return this.cinemaRoomState$.pipe(map(state => state.seatsBooked));
   }
 
-  get cinemaRoom(): CinemaRoom {
-    return this.cinemaRoomState$$.value.cinemaRoom!;
-  }
-
   get seatsBooked(): SeatBooked[] {
     return this.cinemaRoomState$$.value.seatsBooked;
   }
@@ -78,14 +70,14 @@ export class CinemaRoomStateService implements OnDestroy {
       ...stateSlice,
     });
   }
-  getSeatingData(id: string | number) {
+  getSeatingData(id: string) {
     this.http
       .get<ReservationApi>(`${API.RESERVATIONS}/${id}`)
       .pipe(
         switchMap(({ cinemaRoomId, takenSeats }) => {
           return combineLatest([
             of(takenSeats),
-            this.http.get<CinemaRoom>(`${API.CINEMAROOMS}?id=${cinemaRoomId}`),
+            this.http.get<CinemaRoom>(`${API.CINEMAROOMS}/${cinemaRoomId}`),
           ]);
         })
       )
@@ -98,7 +90,7 @@ export class CinemaRoomStateService implements OnDestroy {
             cinemaRoom: seatings,
           });
         },
-        error: () => this.router.navigate(["/404"]),
+        error: error => console.error(error),
       });
   }
 
@@ -139,7 +131,9 @@ export class CinemaRoomStateService implements OnDestroy {
   }
 
   private updateCinemaRoom() {
-    const updatedCinemaRoom = this.mapCinemaRoomSeats(this.cinemaRoom, this.seatsBooked);
+    const cinemaRoom = this.cinemaRoomState$$.value.cinemaRoom;
+    if (!cinemaRoom) return;
+    const updatedCinemaRoom = this.mapCinemaRoomSeats(cinemaRoom, this.seatsBooked);
     this.patchState({ cinemaRoom: updatedCinemaRoom });
   }
 
