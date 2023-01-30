@@ -12,7 +12,7 @@ import { API } from "src/environments/constants";
 
 @Injectable()
 export class CustomHttpInterceptor implements HttpInterceptor {
-  private readonly baseUrl = "http://localhost:3000";
+  private readonly baseUrl = "http://localhost:3000/api";
 
   private handleErrorService = inject(HandleUserErrorService);
   private cookieService = inject(CookieService);
@@ -28,26 +28,17 @@ export class CustomHttpInterceptor implements HttpInterceptor {
     // } else {
     //   clone = request.clone({ url });
     // }
-    const clone = this.setAuthHeader(request, url);
+    const clone = request.clone({ url, withCredentials: true });
 
-    return next.handle(clone).pipe(
-      tap({
-        next: (event: any) => {
-          if (event?.body?.accessToken) {
-            this.cookieService.set("accessToken", event.body.accessToken);
-          }
-        },
-        error: error => this.handleErrorService.handleError(error),
-      })
-    );
-  }
-  private setAuthHeader(req: HttpRequest<unknown>, url: string) {
-    return req.clone({
-      url,
-      headers: req.headers.set(
-        "Authorization",
-        `Bearer ${this.cookieService.get("accessToken")}`
-      ),
-    });
+    // return next.handle(clone).pipe(
+    //   tap({
+    //     next: (event: any) => event,
+
+    //     error: error => this.handleErrorService.handleError(error),
+    //   })
+    // );
+    return next
+      .handle(clone)
+      .pipe(catchError(error => this.handleErrorService.handleError(error)));
   }
 }

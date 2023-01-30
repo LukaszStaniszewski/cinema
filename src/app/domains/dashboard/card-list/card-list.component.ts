@@ -25,7 +25,7 @@ export class CardListComponent implements OnInit {
       this.vm = this.showings.getShowings(adjustedDate);
     });
 
-    this.movieService.getFavoriteMoviesId("2");
+    this.movieService.getFavoriteMoviesId();
   }
 
   private showDefaultPage() {

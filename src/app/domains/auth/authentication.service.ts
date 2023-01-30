@@ -47,7 +47,7 @@ export class AuthenticationService {
   }
 
   autoLogin() {
-    this.http.get<User>(API.CURRENT_USER).subscribe({
+    this.http.get<User>(API.LOGIN).subscribe({
       next: user => this.setUser(user),
 
       error: () => this.auth$$.next({ authType: "none", user: null }),
@@ -55,7 +55,7 @@ export class AuthenticationService {
   }
 
   login(userCredentials: { email: string; password: string }) {
-    this.http.post<User>(`/login`, userCredentials).subscribe({
+    this.http.post<User>(API.LOGIN, userCredentials).subscribe({
       next: user => {
         this.setUser(user);
         this.navigate("/");

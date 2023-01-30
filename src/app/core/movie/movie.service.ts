@@ -42,46 +42,51 @@ export class MovieService {
   }
 
   addToFavorites(userId: string, movieId: string) {
-    this.http
-      .get<WannaSeeDTO[] | []>(`${API.WANNA_SEE}?userId=${userId}&movieId=${movieId}`)
-      .pipe(
-        switchMap(([likedMovie]) => {
-          if (likedMovie) {
-            return throwError(() => MESSAGE.WANNA_SEE_FAILURE);
-          }
-          return this.http.post(
-            API.WANNA_SEE,
-            { userId, movieId },
-            { withCredentials: true }
-          );
-        })
-      )
-      .subscribe({
-        next: () => MESSAGE.WANNA_SEE_SUCCESS,
-        error: error => error,
-      });
+    this.http.post(API.WANNA_SEE, { movieId }).subscribe({
+      next: () => MESSAGE.WANNA_SEE_SUCCESS,
+      error: error => error,
+    });
+    // this.http
+    //   .get<WannaSeeDTO[] | []>(`${API.WANNA_SEE}?userId=${userId}&movieId=${movieId}`)
+    //   .pipe(
+    //     switchMap(([likedMovie]) => {
+    //       if (likedMovie) {
+    //         return throwError(() => MESSAGE.WANNA_SEE_FAILURE);
+    //       }
+    //       return this.http.post(
+    //         API.WANNA_SEE,
+    //         { userId, movieId },
+    //         { withCredentials: true }
+    //       );
+    //     })
+    //   )
+    //   .subscribe({
+    //     next: () => MESSAGE.WANNA_SEE_SUCCESS,
+    //     error: error => error,
+    //   });
   }
 
   getFavoriteMovies() {
-    return this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE_LIST}/${2}`).pipe(
-      switchMap(wannaSeeDTO => {
-        const query = wannaSeeDTO
-          .map(wannaSee => wannaSee.movieId)
-          .filter(Boolean)
-          .join("&id=");
-        return this.http.get<Movie[]>(`${API.MOVIES}?id=${query}`);
-      })
-    );
+    // return this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE_LIST}/${2}`).pipe(
+    //   switchMap(wannaSeeDTO => {
+    //     const query = wannaSeeDTO
+    //       .map(wannaSee => wannaSee.movieId)
+    //       .filter(Boolean)
+    //       .join("&id=");
+    //     return this.http.get<Movie[]>(`${API.MOVIES}?id=${query}`);
+    //   })
+    // );
+    return this.http.get<Movie[]>(`${API.MOVIES}`);
   }
 
   deleteFavoriteMovie(movieId: string) {
     console.log("hit");
     this.http.delete(`${API.WANNA_SEE}/${movieId}`).subscribe(console.log);
   }
-  getFavoriteMoviesId(userId: string) {
+  getFavoriteMoviesId() {
     this.http
-      .get<WannaSeeDTO[]>(`${API.WANNA_SEE_LIST}/${userId}`)
-      .pipe(map(arg => arg.map(movie => movie.movieId).filter(Boolean)))
+      .get<string[]>(`${API.WANNA_SEE}`)
+      // .pipe(map(arg => arg.map(movie => movie.movieId).filter(Boolean)))
       .subscribe(movies => this.movieServiceState$$.next(movies));
     // this.http.get<WannSee[]>(`${API.WANNA_SEE}/${userId}`).subscribe(console.log);
   }

@@ -1,13 +1,12 @@
 export const API = {
-  LOGIN: "/api/login",
-  RESERVATIONS: "/api/reservations",
-  SHOWINGS: "/api/showings",
-  MOVIES: "/api/movies",
-  CINEMAROOMS: "/api/cinemarooms",
-  TICKET_INFO: "/api/ticketInfo",
-  CURRENT_USER: "/api/users/current",
-  WANNA_SEE_LIST: "/api/wanna-see/list",
-  WANNA_SEE: "/api/wanna-see",
+  LOGIN: "/auth",
+  RESERVATIONS: "/reservations",
+  SHOWINGS: "/showings",
+  MOVIES: "/movies",
+  WANNA_SEE: "/movies/wanna-see",
+  CINEMAROOMS: "/cinemarooms",
+  TICKET_INFO: "/ticketInfo",
+  // CURRENT_USER: "/api/users/current", // powinno byc pod /api/login bo to get, login pierwszy to post
 } as const;
 
 export const SET_UP = {
