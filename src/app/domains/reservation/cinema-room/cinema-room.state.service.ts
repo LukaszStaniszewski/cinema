@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from "@angular/core";
 import { Router } from "@angular/router";
+import { API, MESSAGE, SET_UP } from "@environments/constants";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
-
-import { API } from "../../../../environments/constants";
 
 export interface ReservationApi {
   id: string;
@@ -46,7 +46,11 @@ export class CinemaRoomStateService implements OnDestroy {
     seatsBooked: [],
   });
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastService: ToastStateService
+  ) {}
 
   get cinemaRoomState$(): Observable<CinemaRoomState> {
     return this.cinemaRoomState$$.asObservable();
@@ -99,10 +103,13 @@ export class CinemaRoomStateService implements OnDestroy {
 
     if (this.isExisting(seatToUpdateId)) {
       this.removeBookedSeat(seatToUpdateId);
+    } else if (
+      this.cinemaRoomState$$.value.seatsBooked.length + 1 <=
+      SET_UP.TICKET_LIMIT
+    ) {
+      this.addBookedSeat(seatToUpdate, seatToUpdateId);
     } else {
-      if (this.cinemaRoomState$$.value.seatsBooked.length + 1 <= 10) {
-        this.addBookedSeat(seatToUpdate, seatToUpdateId);
-      }
+      this.toastService.updateToast({ message: MESSAGE.TICKET_LIMIT, status: "info" });
     }
 
     this.updateCinemaRoom();

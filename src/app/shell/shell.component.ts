@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "@domains/auth";
-import { ToastStateService } from "@shared/ui/toast/toast.service";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 
 @Component({
   selector: "app-shell",

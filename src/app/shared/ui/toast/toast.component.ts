@@ -1,7 +1,7 @@
 import { AsyncPipe, NgClass, NgIf } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { ToastState } from "./toast.service";
+import { ToastState } from "./toast.state.service";
 
 @Component({
   imports: [NgClass, NgIf, AsyncPipe],

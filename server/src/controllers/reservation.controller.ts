@@ -1,18 +1,14 @@
-import { CookieOptions, Request, Response } from "express";
-import { deburr } from "lodash";
+import { Request, Response } from "express";
 
 import { ErrorMessage } from "../config/constants.config";
-import * as key from "../config/keys";
 import db from "../db.json";
 import getErrorMessage from "../utils/getErrorMessage";
-import logger from "../utils/logger";
 
 export const sendReservation = async (req: Request, res: Response) => {
   try {
     const reservationId = req.params.id;
 
     const [reservation] = db["reservations"].filter(reservation => reservation.id == reservationId);
-    console.log(reservation);
     if (!reservation) {
       throw new Error(ErrorMessage.WANNA_SEE_NOT_FOUND);
     }

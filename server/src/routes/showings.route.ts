@@ -3,7 +3,7 @@ import { Router } from "express";
 import { getShowings } from "../controllers/showings.controler";
 import requireUser from "../middleware/requireUser";
 
-const collectionRouter = Router();
+const showingRouter = Router();
 
-collectionRouter.get("/", getShowings);
-export default collectionRouter;
+showingRouter.get("/", getShowings);
+export default showingRouter;

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { ToastStateService } from "@shared/ui/toast/toast.service";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { CookieService } from "ngx-cookie-service";
 import { throwError } from "rxjs";
 import { MESSAGE } from "src/environments/constants";

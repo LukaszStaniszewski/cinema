@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { API } from "@environments/constants";
 import { BehaviorSubject, combineLatest, map } from "rxjs";
-import { API } from "src/environments/constants";
 
 import { CinemaRoomStateService, SeatBooked } from "..";
 

@@ -8,7 +8,8 @@ import cors from "cors";
 import userRouter from "./routes/auth.route";
 import movieRouter from "./routes/movie.route";
 import reservationRouter from "./routes/reservation.route";
-import collectionRouter from "./routes/showings.route";
+import showingRouter from "./routes/showings.route";
+import ticketRouter from "./routes/ticket.route";
 import logger from "./utils/logger";
 const app = express();
 
@@ -26,8 +27,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", userRouter);
 app.use("/api/reservations", reservationRouter);
-app.use("/api/showings", collectionRouter);
+app.use("/api/showings", showingRouter);
 app.use("/api/movies", movieRouter);
+app.use("/api/tickets", ticketRouter);
 
 const PORT = process.env.PORT || 3000;
 
