@@ -107,7 +107,7 @@ export class CinemaRoomStateService {
     ) {
       this.store.dispatch(bookingActions.add_seat(seatToUpdate));
       // this should be method that creates ticket
-      this.addBookedSeat(seatToUpdate, seatToUpdateId);
+      // this.addBookedSeat(seatToUpdate, seatToUpdateId);
     } else {
       this.toastService.updateToast({ message: MESSAGE.TICKET_LIMIT, status: "info" });
     }

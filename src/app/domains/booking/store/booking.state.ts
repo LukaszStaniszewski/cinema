@@ -17,14 +17,14 @@ export type SeatBooked = {
 };
 
 export type TicketDetails = {
-  category: TicketTypes;
+  kind: TicketTypes;
   price: number;
 };
 export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
 
 export type Ticket = {
-  seat: SeatBooked;
-  type: TicketTypes;
+  seat: Seat;
+  kind: TicketTypes;
   price: number;
 };
 
@@ -37,13 +37,13 @@ type TicketState = {
 
 export type BookingState = {
   tickets: Ticket[];
-  seatsBooked: Seat[];
+  seatBooked: Maybe<Seat>;
 };
 
 export const bookingFeatureKey = "booking" as const;
 
 export const initialBookingState: BookingState = {
-  seatsBooked: [],
+  seatBooked: null,
   tickets: [],
 };
 

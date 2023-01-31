@@ -7,11 +7,11 @@ import { BookingState } from "./booking.state";
 
 const selectBookingState = createFeatureSelector<BookingState>("booking");
 
-export const selectBookedSeats = createSelector(
+export const selectBookedSeat = createSelector(
   selectBookingState,
-  state => state.seatsBooked
+  state => state.seatBooked
 );
 
-export const selectExactBookedSeat = (index: number) =>
-  createSelector(selectBookingState, state => state.seatsBooked.at(index));
+// export const selectExactBookedSeat = (index: number) =>
+//   createSelector(selectBookingState, state => state.seatsBooked.at(index));
 // bookedSeats  = this.store.select(selectBookedSeats)

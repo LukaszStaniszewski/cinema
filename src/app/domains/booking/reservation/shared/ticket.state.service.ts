@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { API } from "@environments/constants";
 import { BehaviorSubject, combineLatest, map } from "rxjs";
 
-import { CinemaRoomStateService, SeatBooked } from "..";
+import { CinemaRoomStateService, Seat, SeatBooked } from "..";
 import ReservationModule from "../reservation.module";
 
 export type TicketDetails = {
@@ -25,6 +25,11 @@ type TicketState = {
   totalPrice: number;
 };
 
+export type Ticket1 = {
+  seat: Seat;
+  kind: TicketTypes;
+  price: number;
+};
 @Injectable()
 export class TicketStateService {
   private ticketState$$ = new BehaviorSubject<TicketState>({
@@ -37,24 +42,32 @@ export class TicketStateService {
     private http: HttpClient,
     private cinemaRoomService: CinemaRoomStateService
   ) {
-    combineLatest([
-      this.http.get<TicketDetails[]>(API.TICKET_INFO),
-      this.cinemaRoomService.selectSeatsBooked$,
-    ]).subscribe(([ticketInfo, seatsBooked]) => {
-      const defaultValue = seatsBooked.map(seat => ({
-        seat: seat,
-        type: ticketInfo[0].type,
-        price: ticketInfo[0].price,
-      }));
-      this.patchState({
-        ticketsTech: ticketInfo,
-        tickets:
-          seatsBooked.length === 0
-            ? defaultValue
-            : this.mapTicketsAndSeats(ticketInfo, seatsBooked),
-        showingId: seatsBooked.length ? "test" : null,
-      });
-    });
+    // combineLatest([
+    //   this.http.get<TicketDetails[]>(API.TICKET_INFO),
+    //   this.cinemaRoomService.selectSeatsBooked$,
+    // ]).subscribe(([ticketInfo, seatsBooked]) => {
+    //   const defaultValue = seatsBooked.map(seat => ({
+    //     seat: seat,
+    //     type: ticketInfo[0].type,
+    //     price: ticketInfo[0].price,
+    //   }));
+    //   this.patchState({
+    //     ticketsTech: ticketInfo,
+    //     tickets:
+    //       seatsBooked.length === 0
+    //         ? defaultValue
+    //         : this.mapTicketsAndSeats(ticketInfo, seatsBooked),
+    //     showingId: seatsBooked.length ? "test" : null,
+    //   });
+    // });
+  }
+
+  mapSeatAndTicketType(seat: Seat): Ticket1 {
+    return {
+      seat: seat,
+      kind: this.ticketState$$.value.ticketsTech[0].type,
+      price: this.ticketState$$.value.ticketsTech[0].price,
+    };
   }
 
   private mapTicketsAndSeats(ticketInfo: TicketDetails[], seatsBooked: SeatBooked[]) {

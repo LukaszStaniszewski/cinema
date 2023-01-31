@@ -8,7 +8,13 @@ export const bookingReducer = createReducer(
   on(bookingActions.add_seat, (state, action): BookingState => {
     return {
       ...state,
-      seatsBooked: [...state.seatsBooked, action],
+      seatBooked: { ...action },
+    };
+  }),
+  on(bookingActions.add_ticket, (state, action): BookingState => {
+    return {
+      ...state,
+      tickets: [...state.tickets, action],
     };
   })
 );
