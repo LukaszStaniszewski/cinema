@@ -1,6 +1,10 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, OnDestroy } from "@angular/core";
+import { inject, Injectable, OnDestroy } from "@angular/core";
+import { AppState } from "@domains/booking/booking.module";
+import { bookingActions } from "@domains/booking/store/booking.actions";
+import { AppStateWithBookingState } from "@domains/booking/store/booking.state";
 import { API, MESSAGE, SET_UP } from "@environments/constants";
+import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
 
@@ -42,8 +46,9 @@ export class CinemaRoomStateService {
     cinemaRoom: null,
     seatsBooked: [],
   });
-
-  constructor(private http: HttpClient, private toastService: ToastStateService) {}
+  private store = inject<Store<AppStateWithBookingState>>(Store);
+  private http = inject(HttpClient);
+  private toastService = inject(ToastStateService);
 
   get cinemaRoomState$(): Observable<CinemaRoomState> {
     return this.cinemaRoomState$$.asObservable();
@@ -100,6 +105,8 @@ export class CinemaRoomStateService {
       this.cinemaRoomState$$.value.seatsBooked.length + 1 <=
       SET_UP.TICKET_LIMIT
     ) {
+      this.store.dispatch(bookingActions.add_seat(seatToUpdate));
+      // this should be method that creates ticket
       this.addBookedSeat(seatToUpdate, seatToUpdateId);
     } else {
       this.toastService.updateToast({ message: MESSAGE.TICKET_LIMIT, status: "info" });

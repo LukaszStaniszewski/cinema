@@ -23,7 +23,7 @@ export class ReservationPageComponent {
   get cinemaRoom$() {
     return this.movieService.selectCinemaRoom$;
   }
-
+ // change to addTicket ?
   updateCinemaRoom(seat: Seat) {
     this.movieService.updateSeats(seat);
   }

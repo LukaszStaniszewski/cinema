@@ -17,4 +17,4 @@ const routes: Routes = [
   declarations: [WannaSeeComponent, WannaSeeCardComponent],
   imports: [NgFor, NgIf, AsyncPipe, DatePipe, RouterModule.forChild(routes)],
 })
-export default class WannaSeeModule {}
+export default class CustomerModule {}

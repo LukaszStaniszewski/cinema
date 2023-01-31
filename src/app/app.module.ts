@@ -3,8 +3,9 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
+import { EffectsModule } from "@ngrx/effects";
+import { StoreModule } from "@ngrx/store";
 import { ToastComponent } from "@shared/ui/toast/toast.component";
-import { CookieService } from "ngx-cookie-service";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
@@ -23,6 +24,8 @@ import { ShellComponent } from "./shell/shell.component";
     DashboardModule,
     UiModule,
     ToastComponent,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     {
@@ -30,7 +33,6 @@ import { ShellComponent } from "./shell/shell.component";
       useClass: CustomHttpInterceptor,
       multi: true,
     },
-    CookieService,
     // {
     //   provide: [APP_INITIALIZER, AuthenticationService],
     //   useValue: (userService: AuthenticationService) => {

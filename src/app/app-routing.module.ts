@@ -31,7 +31,7 @@ const routes: Routes = [
       // },
       {
         path: "wanna-see",
-        loadChildren: () => import("./domains/wanna-see/wanna-see.module"),
+        loadChildren: () => import("./domains/customer/wanna-see/customer.module"),
       },
       {
         path: "login",
