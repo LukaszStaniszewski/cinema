@@ -3,7 +3,6 @@ import { inject, Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { useNavigate } from "@shared/inject-hooks";
 import { Maybe } from "@shared/utility-types";
-import { CookieService } from "ngx-cookie-service";
 import { BehaviorSubject, map } from "rxjs";
 import { API } from "src/environments/constants";
 
@@ -33,7 +32,6 @@ export class AuthenticationService {
   private auth$$ = new BehaviorSubject<AuthState>({ authType: "none", user: null });
   private navigate = useNavigate();
   private http = inject(HttpClient);
-  private cookieService = inject(CookieService);
   constructor() {
     this.auth$$.subscribe(console.log);
   }
@@ -66,7 +64,6 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.cookieService.delete("accessToken", "/");
     this.setUser(null);
   }
 

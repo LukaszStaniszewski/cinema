@@ -6,6 +6,7 @@ export const API = {
   WANNA_SEE: "/movies/wanna-see",
   TICKET_INFO: "/tickets",
   SHOWINGS: "/showings",
+  ORDER: "/",
 } as const;
 
 export const SET_UP = {

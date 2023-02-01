@@ -6,7 +6,6 @@ import {
 } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { HandleUserErrorService } from "@domains/auth/handle-user-error.service";
-import { CookieService } from "ngx-cookie-service";
 import { catchError, Observable, tap } from "rxjs";
 import { API } from "src/environments/constants";
 
@@ -15,7 +14,6 @@ export class CustomHttpInterceptor implements HttpInterceptor {
   private readonly baseUrl = "http://localhost:3000/api";
 
   private handleErrorService = inject(HandleUserErrorService);
-  private cookieService = inject(CookieService);
 
   intercept(
     request: HttpRequest<unknown>,

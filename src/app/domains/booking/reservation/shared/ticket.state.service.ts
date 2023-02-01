@@ -1,6 +1,9 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
+import { selectTickets } from "@domains/booking/store/booking.selectors";
+import { AppStateWithBookingState } from "@domains/booking/store/booking.state";
 import { API } from "@environments/constants";
+import { Store } from "@ngrx/store";
 import { BehaviorSubject, combineLatest, map } from "rxjs";
 
 import { CinemaRoomStateService, Seat, SeatBooked } from "..";
@@ -38,12 +41,16 @@ export class TicketStateService {
     showingId: null,
     totalPrice: 0,
   });
+
+  private store = inject<Store<AppStateWithBookingState>>(Store);
+
   constructor(
     private http: HttpClient,
     private cinemaRoomService: CinemaRoomStateService
   ) {
+    console.log(this.store.select(selectTickets));
     // combineLatest([
-    //   this.http.get<TicketDetails[]>(API.TICKET_INFO),
+    //   this.http.get<PTicketDetails[]>(API.TICKET_INFO),
     //   this.cinemaRoomService.selectSeatsBooked$,
     // ]).subscribe(([ticketInfo, seatsBooked]) => {
     //   const defaultValue = seatsBooked.map(seat => ({

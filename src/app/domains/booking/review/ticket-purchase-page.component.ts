@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 
 import { CustomValidators } from "../../../shared/custom-validators";
+import { ReviewStateService } from "./review.service";
 @Component({
   selector: "app-ticket-purchase-page",
   templateUrl: "./ticket-purchase-page.component.html",
@@ -11,9 +12,8 @@ import { CustomValidators } from "../../../shared/custom-validators";
 export class TicketPurchasePageComponent {
   userCredentialsForm = this.createForm();
 
-  constructor(private builder: NonNullableFormBuilder) {
-    console.log(this.userCredentialsForm.errors);
-  }
+  private builder = inject(NonNullableFormBuilder);
+  private reviewService = inject(ReviewStateService);
 
   private createForm() {
     return this.builder.group(
@@ -53,5 +53,6 @@ export class TicketPurchasePageComponent {
   onSubmit() {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;
+    this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
   }
 }

@@ -11,7 +11,7 @@ export const selectBookedSeat = createSelector(
   selectBookingState,
   state => state.seatBooked
 );
-
+export const selectTickets = createSelector(selectBookingState, state => state.tickets);
 // export const selectExactBookedSeat = (index: number) =>
 //   createSelector(selectBookingState, state => state.seatsBooked.at(index));
 // bookedSeats  = this.store.select(selectBookedSeats)
