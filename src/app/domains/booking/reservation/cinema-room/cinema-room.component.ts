@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
 
 type Seat = {
   position: { column: string; row: string };
@@ -22,7 +16,8 @@ export class CinemaRoomComponent {
   @Input() seats: Seat[][] = [];
   @Output() newSelectedSeat = new EventEmitter();
 
-  selectSeat(seat: Seat) {
+  selectSeat(seat: Seat, test?: any) {
+    console.log(test);
     this.newSelectedSeat.emit(seat);
   }
 }

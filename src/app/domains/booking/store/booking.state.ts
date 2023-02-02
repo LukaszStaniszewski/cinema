@@ -8,12 +8,8 @@ export type Seat = {
   taken: boolean;
   status: "standard" | "vip";
 };
-export type SeatBooked = {
+export type SeatBooked = Seat & {
   id: string;
-  position: { column: string; row: string };
-  reservation: boolean;
-  taken: boolean;
-  status: "standard" | "vip";
 };
 
 export type TicketDetails = {
@@ -23,6 +19,7 @@ export type TicketDetails = {
 export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
 
 export type Ticket = {
+  id: string;
   seat: Seat;
   kind: TicketTypes;
   price: number;

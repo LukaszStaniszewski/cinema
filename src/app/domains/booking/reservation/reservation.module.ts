@@ -28,7 +28,7 @@ const routes: Routes = [
     HttpClientModule,
     DropdownModule,
   ],
-  providers: [CinemaRoomStateService, TicketStateService],
+  providers: [CinemaRoomStateService],
   // exports: [ReservationPageComponent],
 
   // providers: [

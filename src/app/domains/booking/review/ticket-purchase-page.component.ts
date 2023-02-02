@@ -53,6 +53,6 @@ export class TicketPurchasePageComponent {
   onSubmit() {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;
-    this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
+    // this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
   }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Maybe } from "@shared/utility-types";
 
 import { CinemaRoomStateService, Seat } from "..";
+import { TicketStateService } from "../shared/ticket.state.service";
 
 type ReservationParams = {
   id: string;
@@ -17,15 +18,17 @@ export class ReservationPageComponent {
   hide = false;
   constructor(
     private route: ActivatedRoute,
-    private movieService: CinemaRoomStateService
+    private movieService: CinemaRoomStateService,
+    private ticketService: TicketStateService
   ) {}
 
   get cinemaRoom$() {
     return this.movieService.selectCinemaRoom$;
   }
- // change to addTicket ?
+  // change to addTicket ?
   updateCinemaRoom(seat: Seat) {
-    this.movieService.updateSeats(seat);
+    this.movieService.update(seat);
+    this.ticketService.updateList(seat);
   }
 
   toggleTicketDetails(isValid: boolean) {

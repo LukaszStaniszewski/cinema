@@ -15,6 +15,7 @@
             </div>
             <ng-template #availableSeats>
                 <div
+                    #seatRef
                     (click)="selectSeat(seat)"
                     id="{{ seat.position.row + seat.position.column }}"
                     class="seat"

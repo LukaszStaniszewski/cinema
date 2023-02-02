@@ -1,20 +1,26 @@
 import { createReducer, on } from "@ngrx/store";
 
-import { bookingActions } from "./booking.actions";
+import { BookingActions } from "./booking.actions";
 import { BookingState, initialBookingState } from "./booking.state";
 
 export const bookingReducer = createReducer(
   initialBookingState,
-  on(bookingActions.add_seat, (state, action): BookingState => {
+  on(BookingActions.add_seat, (state, { seat }): BookingState => {
     return {
       ...state,
-      seatBooked: { ...action },
+      seatBooked: { ...seat },
     };
   }),
-  on(bookingActions.add_ticket, (state, action): BookingState => {
+  on(BookingActions.add_ticket, (state, action): BookingState => {
     return {
       ...state,
       tickets: [...state.tickets, action],
+    };
+  }),
+  on(BookingActions.remove_ticket, (state, action): BookingState => {
+    return {
+      ...state,
+      tickets: state.tickets.filter(ticket => ticket.id !== action.id),
     };
   })
 );

@@ -1,16 +1,6 @@
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  EventEmitter,
-  Input,
-  NgModule,
-  OnChanges,
-  Output,
-} from "@angular/core";
-import {
-  Ticket,
-  TicketDetails,
-} from "@domains/booking/reservation/shared/ticket.state.service";
+import { Component, EventEmitter, Input, NgModule, OnChanges, Output } from "@angular/core";
+import { Ticket, TicketDetails } from "@domains/booking/store/booking.state";
 
 import { ClickOutsideModule } from "../../directives/clickOutside.directive";
 
@@ -19,7 +9,7 @@ export type Option = {
   repeatAmount: number;
 };
 @Component({
-  selector: "app-dropdown",
+  selector: "app-dropdown[options]",
   templateUrl: "./dropdown.component.html",
   styleUrls: ["./dropdown.component.css"],
 })
@@ -38,7 +28,7 @@ export class DropdownComponent implements OnChanges {
     this.hide = !this.hide;
   }
   ngOnChanges() {
-    this.currentSelectedValue = this.ticket.type;
+    this.currentSelectedValue = this.ticket.kind;
   }
 
   setSelectedTicket(ticketTech: TicketDetails) {

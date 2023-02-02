@@ -5,6 +5,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 
+import { TicketStateService } from "./reservation/shared/ticket.state.service";
 import { BookingEffects } from "./store/booking.effects";
 import { bookingReducer } from "./store/booking.reducer";
 import { bookingFeatureKey, BookingState } from "./store/booking.state";
@@ -32,7 +33,7 @@ export type AppState = {
     StoreModule.forFeature(bookingFeatureKey, bookingReducer),
     EffectsModule.forFeature(BookingEffects),
   ],
-  providers: [],
+  providers: [TicketStateService],
   // exports: [ReservationPageComponent],
 
   // providers: [

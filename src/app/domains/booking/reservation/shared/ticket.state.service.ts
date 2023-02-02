@@ -1,23 +1,25 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { BookingActions } from "@domains/booking/store/booking.actions";
 import { selectTickets } from "@domains/booking/store/booking.selectors";
 import { AppStateWithBookingState } from "@domains/booking/store/booking.state";
-import { API } from "@environments/constants";
+import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map } from "rxjs";
 
 import { CinemaRoomStateService, Seat, SeatBooked } from "..";
 import ReservationModule from "../reservation.module";
 
 export type TicketDetails = {
-  type: TicketTypes;
+  kind: TicketTypes;
   price: number;
 };
 export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
 
 export type Ticket = {
   seat: SeatBooked;
-  type: TicketTypes;
+  kind: TicketTypes;
   price: number;
 };
 
@@ -29,6 +31,7 @@ type TicketState = {
 };
 
 export type Ticket1 = {
+  id: string;
   seat: Seat;
   kind: TicketTypes;
   price: number;
@@ -43,12 +46,12 @@ export class TicketStateService {
   });
 
   private store = inject<Store<AppStateWithBookingState>>(Store);
+  private toastService = inject(ToastStateService);
 
   constructor(
-    private http: HttpClient,
-    private cinemaRoomService: CinemaRoomStateService
+    private http: HttpClient // private cinemaRoomService: CinemaRoomStateService
   ) {
-    console.log(this.store.select(selectTickets));
+    console.log(this.store.subscribe(state => console.log(state.booking.tickets)));
     // combineLatest([
     //   this.http.get<PTicketDetails[]>(API.TICKET_INFO),
     //   this.cinemaRoomService.selectSeatsBooked$,
@@ -68,26 +71,43 @@ export class TicketStateService {
     //   });
     // });
   }
+  removeTicket() {
+    this.store.select(selectTickets).pipe();
+  }
 
-  mapSeatAndTicketType(seat: Seat): Ticket1 {
+  updateList(seatToUpdate: Seat) {
+    const seatToUpdateId = seatToUpdate.position.row + seatToUpdate.position.column;
+
+    if (seatToUpdate.reservation === true) {
+      this.store.dispatch(BookingActions.remove_ticket({ id: seatToUpdateId }));
+    } else if (seatToUpdate) {
+      this.store.dispatch(BookingActions.add_seat({ seat: seatToUpdate, id: seatToUpdateId }));
+    } else {
+      this.toastService.updateToast({ message: MESSAGE.TICKET_LIMIT, status: "info" });
+    }
+  }
+
+  mapSeatAndTicketType({ seat, id }: { seat: Seat; id: string }): Ticket1 {
     return {
-      seat: seat,
-      kind: this.ticketState$$.value.ticketsTech[0].type,
+      seat: {
+        ...seat,
+        reservation: true,
+      },
+      id,
+      kind: this.ticketState$$.value.ticketsTech[0].kind,
       price: this.ticketState$$.value.ticketsTech[0].price,
     };
   }
 
   private mapTicketsAndSeats(ticketInfo: TicketDetails[], seatsBooked: SeatBooked[]) {
-    const ticketStateSeatsId = this.ticketState$$.value.tickets.map(
-      ticket => ticket.seat.id
-    );
+    const ticketStateSeatsId = this.ticketState$$.value.tickets.map(ticket => ticket.seat.id);
     const seatsBookedId = seatsBooked.map(seat => seat.id);
     let tickets = this.ticketState$$.value.tickets;
     for (let i = 0; i < seatsBooked.length; i++) {
       if (!ticketStateSeatsId.includes(seatsBooked[i].id)) {
         tickets.push({
           seat: seatsBooked[i],
-          type: ticketInfo[0].type,
+          kind: ticketInfo[0].kind,
           price: ticketInfo[0].price,
         });
       }
@@ -120,13 +140,10 @@ export class TicketStateService {
     });
   }
 
-  mapTickets(
-    { type, price }: TicketDetails,
-    { column, row }: { column: string; row: string }
-  ) {
+  mapTickets({ kind, price }: TicketDetails, { column, row }: { column: string; row: string }) {
     const id = row + column;
     const updatedTickets = this.ticketState$$.value.tickets.map(ticket => {
-      if (id == ticket?.seat.id) return { ...ticket, type, price };
+      if (id == ticket?.seat.id) return { ...ticket, kind, price };
       return ticket;
     });
     this.patchState({
