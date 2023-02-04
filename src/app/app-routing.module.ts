@@ -21,14 +21,6 @@ const routes: Routes = [
         path: "booking",
         loadChildren: () => import("./domains/booking/booking.module"),
       },
-      // {
-      //   path: "purchase",
-      //   loadChildren: () => import("./domains/booking/review/review.module"),
-      // },
-      // {
-      //   path: "reservation",
-      //   loadChildren: () => import("./domains/booking/reservation/reservation.module"),
-      // },
       {
         path: "wanna-see",
         loadChildren: () => import("./domains/customer/wanna-see/customer.module"),

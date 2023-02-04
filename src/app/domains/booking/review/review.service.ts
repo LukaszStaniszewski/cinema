@@ -2,6 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { API } from "@environments/constants";
 
+import ReviewModule from "./review.module";
+
 type Order = {
   name: string;
   surname: string;
@@ -10,7 +12,7 @@ type Order = {
 };
 
 @Injectable({
-  providedIn: "root",
+  providedIn: ReviewModule,
 })
 export class ReviewStateService {
   private http = inject(HttpClient);

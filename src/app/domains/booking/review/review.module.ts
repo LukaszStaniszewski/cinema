@@ -7,7 +7,7 @@ import { TicketPurchasePageComponent } from "./ticket-purchase-page.component";
 
 const routes: Routes = [
   {
-    path: "",
+    path: ":id",
     component: TicketPurchasePageComponent,
     title: "Purchase Page",
   },
@@ -16,5 +16,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [TicketPurchasePageComponent],
   imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
+  providers: [ReviewModule],
 })
 export default class ReviewModule {}

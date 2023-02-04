@@ -5,8 +5,9 @@ import { Seat, SeatBooked, Ticket, TicketDetails } from "./booking.state";
 export const BookingActions = createActionGroup({
   source: "tickets",
   events: {
-    add_seat: props<{ seat: Seat; id: string }>(),
-    add_ticket: props<Ticket>(),
-    remove_ticket: props<{ id: string }>(),
+    "add ticket start": props<{ seat: Seat; id: string }>(),
+    "add ticket success": props<Ticket>(),
+    "remove ticket": props<{ id: string }>(),
+    "update ticket": props<{ id: string; valueToUpdate: TicketDetails }>(),
   },
 });

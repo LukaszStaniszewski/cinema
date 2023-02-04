@@ -1,36 +1,30 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { CustomValidators } from "../../../shared/custom-validators";
-import { ReviewStateService } from "./review.service";
+
 @Component({
   selector: "app-ticket-purchase-page",
   templateUrl: "./ticket-purchase-page.component.html",
   styleUrls: ["./ticket-purchase-page.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TicketPurchasePageComponent {
-  userCredentialsForm = this.createForm();
-
+export class TicketPurchasePageComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
-  private reviewService = inject(ReviewStateService);
+  private route = inject(ActivatedRoute);
+  params = "";
+
+  userCredentialsForm = this.createForm();
 
   private createForm() {
     return this.builder.group(
       {
         name: this.builder.control("", {
-          validators: [
-            Validators.required,
-            Validators.minLength(2),
-            Validators.maxLength(30),
-          ],
+          validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
         }),
         surname: this.builder.control("", {
-          validators: [
-            Validators.required,
-            Validators.minLength(2),
-            Validators.maxLength(30),
-          ],
+          validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
         }),
         phoneNumber: this.builder.control("", {
           validators: [CustomValidators.phoneNumberValidator],
@@ -44,6 +38,10 @@ export class TicketPurchasePageComponent {
       },
       { validators: [CustomValidators.match("email", "confirmEmail")] }
     );
+  }
+
+  ngOnInit() {
+    this.params = this.route.snapshot.params["id"];
   }
 
   get controls() {

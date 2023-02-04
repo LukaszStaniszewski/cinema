@@ -1,12 +1,23 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, NgModule, OnChanges, Output } from "@angular/core";
-import { Ticket, TicketDetails } from "@domains/booking/store/booking.state";
 
 import { ClickOutsideModule } from "../../directives/clickOutside.directive";
-
-export type Option = {
-  value: { ticketsAmount: number; type: string };
-  repeatAmount: number;
+export type TicketDetails = {
+  kind: TicketTypes;
+  price: number;
+};
+export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
+export type Ticket = {
+  id: string;
+  seat: Seat;
+  kind: TicketTypes;
+  price: number;
+};
+export type Seat = {
+  position: { column: string; row: string };
+  reservation: boolean;
+  taken: boolean;
+  status: "standard" | "vip";
 };
 @Component({
   selector: "app-dropdown[options]",
@@ -20,8 +31,8 @@ export class DropdownComponent implements OnChanges {
   @Input() ticket!: Ticket;
 
   @Output() selectedOptionEvent = new EventEmitter<{
-    ticketTech: TicketDetails;
-    ticket: { column: string; row: string };
+    ticketDetails: TicketDetails;
+    id: string;
   }>();
 
   toggleDropdown() {
@@ -31,10 +42,12 @@ export class DropdownComponent implements OnChanges {
     this.currentSelectedValue = this.ticket.kind;
   }
 
-  setSelectedTicket(ticketTech: TicketDetails) {
+  setSelectedTicket(ticketDetails: TicketDetails) {
+    const { row, column } = this.ticket.seat.position;
+    const id = row + column;
     this.selectedOptionEvent.emit({
-      ticketTech: ticketTech,
-      ticket: this.ticket.seat.position,
+      ticketDetails,
+      id,
     });
   }
 

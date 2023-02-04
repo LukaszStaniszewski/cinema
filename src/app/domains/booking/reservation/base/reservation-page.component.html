@@ -2,18 +2,17 @@
     <div class="reservation-page__screen">Ekran</div>
     <app-cinema-room
         class="cinema-room"
-        *ngIf="(cinemaRoom$ | async)?.seats as seats"
+        *ngIf="cinemaRoomSeats$ | async as seats"
         [seats]="seats"
         (newSelectedSeat)="updateCinemaRoom($event)">
     </app-cinema-room>
     <app-summary class="summary"></app-summary>
     <div class="redirect-links-wrapper">
         <div class="to-ticket-details-wrapper">
-            <button class="/" (click)="toggleTicketDetails(true)">
-                Powrót do repertuaru
-            </button>
+            <a routerLink=""> Powrót do repertuaru </a>
             <img src="assets/svg/pencil.svg" />
         </div>
-        <a [routerLink]="['/booking/purchase']">Przejdź do zamówienia</a>
+
+        <a routerLink="/booking/purchase/{{ params }}">Przejdź do zamówienia</a>
     </div>
 </section>

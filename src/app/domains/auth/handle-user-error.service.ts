@@ -17,7 +17,7 @@ export class HandleUserErrorService {
       console.error("An error occurred:", error.error);
     } else if (error.error === "jwt expired") {
       this.authService.logout();
-      this.toastService.updateToast({
+      this.toastService.activateToast({
         message: MESSAGE.JWT_EXPIRED,
         status: "warning",
       });

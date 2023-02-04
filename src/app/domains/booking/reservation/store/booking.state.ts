@@ -1,6 +1,6 @@
 import { Maybe } from "@shared/utility-types";
 
-import { AppState } from "../booking.module";
+import { AppState } from "../reservation.module";
 
 export type Seat = {
   position: { column: string; row: string };
@@ -34,13 +34,11 @@ type TicketState = {
 
 export type BookingState = {
   tickets: Ticket[];
-  seatBooked: Maybe<Seat>;
 };
 
 export const bookingFeatureKey = "booking" as const;
 
 export const initialBookingState: BookingState = {
-  seatBooked: null,
   tickets: [],
 };
 

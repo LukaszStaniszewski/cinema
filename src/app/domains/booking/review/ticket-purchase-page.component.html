@@ -182,6 +182,8 @@
     </form>
     <div class="redirect-reservation">
         <img src="assets/svg/chevron-left.svg" alt="left-arrow-icon" />
-        <a [routerLink]="['/reservation']"> Wróć do wyboru miejsc </a>
+        <a routerLink="/booking/reservation/{{ params }}">
+            Wróć do wyboru miejsc
+        </a>
     </div>
 </section>

@@ -16,8 +16,7 @@ export class CinemaRoomComponent {
   @Input() seats: Seat[][] = [];
   @Output() newSelectedSeat = new EventEmitter();
 
-  selectSeat(seat: Seat, test?: any) {
-    console.log(test);
+  selectSeat(seat: Seat) {
     this.newSelectedSeat.emit(seat);
   }
 }

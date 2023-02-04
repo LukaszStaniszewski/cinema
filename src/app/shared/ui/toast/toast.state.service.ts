@@ -19,7 +19,7 @@ export class ToastStateService {
     return this.toastState$$.asObservable();
   }
 
-  updateToast({ message, status }: ToastState) {
+  activateToast({ message, status }: ToastState) {
     this.toastState$$.next({
       ...this.toastState$$.value,
       message: message,

@@ -1,18 +1,14 @@
 <!-- <ng-container *ngIf="(tickets$ | async) && (ticketState$ | async)"> -->
-<ng-container
-    *ngIf="{
-        tickets: tickets$ | async,
-        ticketType: ticketState$ | async
-    } as vm">
+<ng-container *ngIf="ticketInformation$ | async as vm">
     <section class="ticket-wrapper" *ngFor="let ticket of vm.tickets">
         <div class="seat seat--booked seat--summary">
             <p>Rząd {{ ticket.seat.position.row }}</p>
             <p>Miejsce {{ ticket.seat.position.column }}</p>
         </div>
         <app-dropdown
-            (selectedOptionEvent)="addTicket($event)"
+            (selectedOptionEvent)="updateTicket($event)"
             [ticket]="ticket"
-            [options]="vm.ticketType?.ticketsTech!">
+            [options]="vm.ticketDetails">
         </app-dropdown>
 
         <div>Cena: {{ ticket.price }}</div>

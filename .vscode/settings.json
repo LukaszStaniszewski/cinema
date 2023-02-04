@@ -3,5 +3,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-  }
+  },
+  "compile-hero.disable-compile-files-on-did-save-code": true
 }

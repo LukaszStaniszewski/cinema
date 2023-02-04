@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { selectTickets } from "@domains/booking/store/booking.selectors";
-import { AppStateWithBookingState } from "@domains/booking/store/booking.state";
-import { Store } from "@ngrx/store";
 
-import { Ticket, TicketDetails, TicketStateService } from "../shared/ticket.state.service";
+import { TicketStateService, ValuesRequiredToUpdateTicket } from "../shared/ticket.state.service";
 
 @Component({
   selector: "app-summary",
@@ -12,29 +9,13 @@ import { Ticket, TicketDetails, TicketStateService } from "../shared/ticket.stat
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SummaryComponent {
-  private store = inject<Store<AppStateWithBookingState>>(Store);
+  private ticketService = inject(TicketStateService);
 
-  constructor(private ticketService: TicketStateService) {}
-
-  get ticketState$() {
-    return this.ticketService.ticketState$;
-  }
-  tickets$ = this.store.select(selectTickets);
-  ngOnInit() {
-    this.ticketService.getTicketInfo();
+  get ticketInformation$() {
+    return this.ticketService.ticketInformation$;
   }
 
-  addTicket({
-    ticketTech,
-    ticket,
-  }: {
-    ticketTech: TicketDetails;
-    ticket: { column: string; row: string };
-  }) {
-    this.ticketService.mapTickets(ticketTech, ticket);
-  }
-
-  trackById(index: number, ticket: Ticket) {
-    return ticket.seat.id;
+  updateTicket(ticketData: ValuesRequiredToUpdateTicket) {
+    this.ticketService.update(ticketData);
   }
 }
