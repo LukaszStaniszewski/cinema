@@ -1,21 +1,10 @@
-import { CommonModule, NgClass } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
-import { DropdownModule } from "src/app/shared";
+import { DropdownModule } from "@shared/index";
 
-import {
-  CinemaRoomComponent,
-  CinemaRoomStateService,
-  ReservationPageComponent,
-  SummaryComponent,
-} from ".";
-import { TicketStateService } from "./shared/ticket.state.service";
-import { BookingEffects } from "./store/booking.effects";
-import { bookingReducer } from "./store/booking.reducer";
-import { bookingFeatureKey, BookingState } from "./store/booking.state";
+import { BookingState } from "../store";
+import { CinemaRoomComponent, ReservationComponent, SummaryComponent } from ".";
 
 /// czy dodanie typu AppState do app module sprawi ze booking module zostanie załadowany od razu (zamiast być lazy), bo aplikacja bedzie chciała zaimportować typ BookingState
 export type AppState = {
@@ -25,38 +14,13 @@ export type AppState = {
 const routes: Routes = [
   {
     path: ":id",
-    component: ReservationPageComponent,
+    component: ReservationComponent,
     title: "Reservation Page",
   },
 ];
 
 @NgModule({
-  declarations: [CinemaRoomComponent, SummaryComponent, ReservationPageComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    HttpClientModule,
-    DropdownModule,
-    // StoreModule.forFeature(bookingFeatureKey, bookingReducer),
-    // EffectsModule.forFeature(BookingEffects),
-  ],
-
-  providers: [],
-  // exports: [ReservationPageComponent],
-
-  // providers: [
-  //   {
-  //     provide: HTTP_INTERCEPTORS,
-  //     useClass: CustomHttpInterceptor,
-  //     multi: true,
-  //   },
-  //   // {
-  //   //   provide: APP_INITIALIZER,
-  //   //   useValue: (userService: UserService) => {
-
-  //   //   },
-  //   //   deps: [UserService]
-  //   // }
-  // ],
+  declarations: [CinemaRoomComponent, SummaryComponent, ReservationComponent],
+  imports: [CommonModule, RouterModule.forChild(routes), DropdownModule],
 })
 export default class ReservationModule {}

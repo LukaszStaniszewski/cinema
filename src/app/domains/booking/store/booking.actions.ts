@@ -1,6 +1,6 @@
-import { Action, createActionGroup, props } from "@ngrx/store";
+import { createActionGroup, emptyProps, props } from "@ngrx/store";
 
-import { Seat, SeatBooked, Ticket, TicketDetails } from "./booking.state";
+import { Seat, Ticket, TicketDetails } from ".";
 
 export const BookingActions = createActionGroup({
   source: "tickets",
@@ -9,5 +9,7 @@ export const BookingActions = createActionGroup({
     "add ticket success": props<Ticket>(),
     "remove ticket": props<{ id: string }>(),
     "update ticket": props<{ id: string; valueToUpdate: TicketDetails }>(),
+    "reset state": emptyProps(),
+    "update total price": props<{ total: number }>(),
   },
 });

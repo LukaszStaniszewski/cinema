@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 
-import { TicketStateService, ValuesRequiredToUpdateTicket } from "../shared/ticket.state.service";
+import { TicketStateService, ValuesRequiredToUpdateTicket } from "..";
 
 @Component({
   selector: "app-summary",
@@ -9,13 +9,13 @@ import { TicketStateService, ValuesRequiredToUpdateTicket } from "../shared/tick
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SummaryComponent {
-  private ticketService = inject(TicketStateService);
+  private ticket = inject(TicketStateService);
 
   get ticketInformation$() {
-    return this.ticketService.ticketInformation$;
+    return this.ticket.ticketInformation$;
   }
 
   updateTicket(ticketData: ValuesRequiredToUpdateTicket) {
-    this.ticketService.update(ticketData);
+    this.ticket.update(ticketData);
   }
 }

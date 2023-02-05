@@ -1,17 +1,9 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable, OnDestroy } from "@angular/core";
-import BookingModule from "@domains/booking/booking.module";
-import { BookingActions } from "@domains/booking/reservation/store/booking.actions";
-import { selectTickets } from "@domains/booking/reservation/store/booking.selectors";
-import { AppStateWithBookingState } from "@domains/booking/reservation/store/booking.state";
-import { API, MESSAGE, SET_UP } from "@environments/constants";
-import { Store } from "@ngrx/store";
-import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { BehaviorSubject, combineLatest, map, Observable, of, switchMap } from "rxjs";
+import { inject, Injectable } from "@angular/core";
+import { API, SET_UP } from "@environments/constants";
+import { BehaviorSubject, combineLatest, map, Observable, of, switchMap, takeUntil } from "rxjs";
 
-import ReservationModule from "../reservation.module";
-
-export interface ReservationApi {
+export interface ReservationDTO {
   id: string;
   cinemaRoomId: string;
   movieTitle: string;
@@ -30,36 +22,26 @@ export type CinemaRoom = {
   seats: Seat[][];
 };
 
-export interface SeatBooked extends Seat {
-  id: string;
-}
-
-export type CinemaRoomState = {
-  cinemaRoom: CinemaRoom;
+const defaultCinemaRoomState = {
+  id: "",
+  seats: [],
 };
 
-@Injectable({
-  providedIn: BookingModule,
-})
+@Injectable()
 export class CinemaRoomStateService {
-  private cinemaRoomState$$ = new BehaviorSubject<CinemaRoomState>({
-    cinemaRoom: { id: "", seats: [] },
-  });
-  private store = inject<Store<AppStateWithBookingState>>(Store);
+  private cinemaRoomState$$ = new BehaviorSubject<CinemaRoom>(defaultCinemaRoomState);
+
   private http = inject(HttpClient);
-  private toastService = inject(ToastStateService);
-  constructor() {
-    console.log(this.store.select(store => store.booking));
-  }
-  get cinemaRoomState$(): Observable<CinemaRoomState> {
+
+  get cinemaRoomState$(): Observable<CinemaRoom> {
     return this.cinemaRoomState$$.asObservable();
   }
 
   get selectSeats$(): Observable<Seat[][]> {
-    return this.cinemaRoomState$.pipe(map(state => state.cinemaRoom.seats));
+    return this.cinemaRoomState$.pipe(map(state => state.seats));
   }
 
-  private patchState(stateSlice: Partial<CinemaRoomState>) {
+  private patchState(stateSlice: Partial<CinemaRoom>) {
     this.cinemaRoomState$$.next({
       ...this.cinemaRoomState$$.value,
       ...stateSlice,
@@ -67,8 +49,9 @@ export class CinemaRoomStateService {
   }
   getSeatingData(id: string) {
     this.http
-      .get<ReservationApi>(`${API.RESERVATIONS}/${id}`)
+      .get<ReservationDTO>(`${API.RESERVATIONS}/${id}`)
       .pipe(
+        takeUntil(this.cinemaRoomState$$.value.seats),
         switchMap(({ cinemaRoomId, takenSeats }) => {
           return combineLatest([
             of(takenSeats),
@@ -80,50 +63,20 @@ export class CinemaRoomStateService {
       .subscribe({
         next: seatings => {
           this.patchState({
-            cinemaRoom: seatings,
+            ...seatings,
           });
         },
         error: error => console.error(error),
       });
   }
 
-  // updateSeats(seatToUpdate: Seat) {
-  //   const seatToUpdateId = seatToUpdate.position.row + seatToUpdate.position.column;
-
-  //   if (seatToUpdate.reservation === true) {
-  //     this.store.dispatch(BookingActions.remove_ticket({ id: seatToUpdateId }));
-  //   } else if (this.cinemaRoomState$$.value.seatsBooked.length + 1 <= SET_UP.TICKET_LIMIT) {
-  //     this.store.dispatch(BookingActions.add_seat({ seat: seatToUpdate, id: seatToUpdateId }));
-  //   } else {
-  //     this.toastService.updateToast({ message: MESSAGE.TICKET_LIMIT, status: "info" });
-  //   }
-
-  //   this.updateCinemaRoom(seatToUpdate);
-  // }
-  private isExisting(seatId: string) {
-    // return this.cinemaRoomState$$.value.seatsBooked.some((ticket) => tickes.);
-    return this.store.select(selectTickets).subscribe(tickets => tickets.length);
+  reset() {
+    this.patchState(defaultCinemaRoomState);
   }
-
-  // private removeBookedSeat(seatToRemoveId: string) {
-  //   const withoutUnwantedSeats = this.cinemaRoomState$$.value.seatsBooked.filter(
-  //     ({ id }) => id !== seatToRemoveId
-  //   );
-
-  //   this.patchState({ seatsBooked: withoutUnwantedSeats });
-  // }
-
-  // private addBookedSeat(seat: Seat, id: string) {
-  //   const withNewUniqueSeat = [
-  //     ...new Set([...this.cinemaRoomState$$.value.seatsBooked, { ...seat, id, reservation: true }]),
-  //   ];
-
-  //   this.patchState({ seatsBooked: withNewUniqueSeat });
-  // }
 
   update(seatToUpdate: Seat) {
     let bookedSeats = 0;
-    const cinemaRoom = this.cinemaRoomState$$.value.cinemaRoom;
+    const cinemaRoom = this.cinemaRoomState$$.value;
     if (!cinemaRoom) return;
     const updatedCinemaRoom = cinemaRoom.seats.map(column => {
       return column.map(seat => {
@@ -140,7 +93,7 @@ export class CinemaRoomStateService {
     });
     if (bookedSeats >= SET_UP.TICKET_LIMIT) return;
 
-    this.patchState({ cinemaRoom: { id: cinemaRoom.id, seats: updatedCinemaRoom } });
+    this.patchState({ id: cinemaRoom.id, seats: updatedCinemaRoom });
   }
 
   private mapCinemaRoomSeats(cinemaRoom: CinemaRoom, seatsToUpdate?: Seat[]) {
@@ -170,31 +123,8 @@ export class CinemaRoomStateService {
 
     return updatedCinemaRoom;
   }
-  // private mapCinemaRoomSeats(cinemaRoom: CinemaRoom, seatsToUpdate?: Seat[]) {
-  //   if (!seatsToUpdate) return cinemaRoom;
-  //   const takenSeats = seatsToUpdate;
-  //   const updatedCinemaRoom = cinemaRoom;
 
-  //   cinemaRoom.seats.map(column => {
-  //     column.forEach((row, rowIndex, array) => {
-  //       if (
-  //         takenSeats.find(
-  //           seat =>
-  //             seat?.position?.column === row?.position?.column &&
-  //             seat?.position?.row === row?.position?.row
-  //         )
-  //       ) {
-  //         array[rowIndex] = takenSeats.find(
-  //           seat =>
-  //             seat.position?.column === row.position?.column &&
-  //             seat.position?.row === row.position?.row
-  //         ) as Seat;
-  //       } else {
-  //         array[rowIndex] = { ...array[rowIndex], reservation: false };
-  //       }
-  //     });
-  //   });
-
-  //   return updatedCinemaRoom;
-  // }
+  ngOnDestory() {
+    console.log("cinema room service destroeyd");
+  }
 }

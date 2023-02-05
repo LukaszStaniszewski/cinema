@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 
+import { ReviewStateService } from "./review.service";
 import { TicketPurchasePageComponent } from "./ticket-purchase-page.component";
 
 const routes: Routes = [
@@ -16,6 +17,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [TicketPurchasePageComponent],
   imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
-  providers: [ReviewModule],
+  providers: [],
 })
 export default class ReviewModule {}

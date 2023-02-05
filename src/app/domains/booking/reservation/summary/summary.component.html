@@ -1,19 +1,21 @@
 <!-- <ng-container *ngIf="(tickets$ | async) && (ticketState$ | async)"> -->
 <ng-container *ngIf="ticketInformation$ | async as vm">
-    <section class="ticket-wrapper" *ngFor="let ticket of vm.tickets">
-        <div class="seat seat--booked seat--summary">
-            <p>Rząd {{ ticket.seat.position.row }}</p>
-            <p>Miejsce {{ ticket.seat.position.column }}</p>
-        </div>
-        <app-dropdown
-            (selectedOptionEvent)="updateTicket($event)"
-            [ticket]="ticket"
-            [options]="vm.ticketDetails">
-        </app-dropdown>
+    <ng-container *ngIf="vm.ticketDetails.length > 0">
+        <section class="ticket-wrapper" *ngFor="let ticket of vm.tickets">
+            <div class="seat seat--booked seat--summary">
+                <p>Rząd {{ ticket.seat.position.row }}</p>
+                <p>Miejsce {{ ticket.seat.position.column }}</p>
+            </div>
+            <app-dropdown
+                (selectedOptionEvent)="updateTicket($event)"
+                [ticket]="ticket"
+                [options]="vm.ticketDetails">
+            </app-dropdown>
 
-        <div>Cena: {{ ticket.price }}</div>
-    </section>
-    <!-- <div>total: {{ ticketState.totalPrice }}</div> -->
+            <div>Cena: {{ ticket.price }}</div>
+        </section>
+        <div>total: {{ vm.totalPrice }}</div>
+    </ng-container>
 </ng-container>
 
 <!-- <ng-template #default>loading</ng-template> -->

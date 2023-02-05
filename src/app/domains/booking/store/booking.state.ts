@@ -1,6 +1,4 @@
-import { Maybe } from "@shared/utility-types";
-
-import { AppState } from "../reservation.module";
+import { AppState } from "../reservation/reservation.module";
 
 export type Seat = {
   position: { column: string; row: string };
@@ -8,14 +6,12 @@ export type Seat = {
   taken: boolean;
   status: "standard" | "vip";
 };
-export type SeatBooked = Seat & {
-  id: string;
-};
 
 export type TicketDetails = {
   kind: TicketTypes;
   price: number;
 };
+
 export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
 
 export type Ticket = {
@@ -25,23 +21,20 @@ export type Ticket = {
   price: number;
 };
 
-type TicketState = {
-  ticketsTech: TicketDetails[];
-  tickets: Ticket[];
-  showingId: string | null;
-  totalPrice: number;
-};
-
 export type BookingState = {
   tickets: Ticket[];
+  totalPrice: number;
+  showingId: string;
 };
 
 export const bookingFeatureKey = "booking" as const;
 
-export const initialBookingState: BookingState = {
-  tickets: [],
-};
-
 type BookingPick = Required<Pick<AppState, "booking">>;
 
 export type AppStateWithBookingState = AppState & BookingPick;
+
+export const initialBookingState: BookingState = {
+  tickets: [],
+  totalPrice: 0,
+  showingId: "",
+};

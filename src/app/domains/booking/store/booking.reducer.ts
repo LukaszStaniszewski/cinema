@@ -26,5 +26,16 @@ export const bookingReducer = createReducer(
           : ticket
       ),
     };
+  }),
+  on(BookingActions.updateTotalPrice, (state, action): BookingState => {
+    return {
+      ...state,
+      totalPrice: action.total,
+    };
+  }),
+  on(BookingActions.resetState, (): BookingState => {
+    return {
+      ...initialBookingState,
+    };
   })
 );

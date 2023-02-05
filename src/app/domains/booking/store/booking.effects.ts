@@ -3,12 +3,10 @@ import { MESSAGE, SET_UP } from "@environments/constants";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { catchError, EMPTY, map } from "rxjs";
+import { catchError, map, throwError } from "rxjs";
 
-import { TicketStateService } from "../shared/ticket.state.service";
-import { BookingActions } from "./booking.actions";
-import { selectTickets } from "./booking.selectors";
-import { AppStateWithBookingState } from "./booking.state";
+import { TicketStateService } from "../reservation";
+import { AppStateWithBookingState, BookingActions, selectTickets } from ".";
 
 @Injectable()
 export class BookingEffects {
@@ -17,6 +15,7 @@ export class BookingEffects {
   private ticketService = inject(TicketStateService);
   private toastService = inject(ToastStateService);
 
+  test = this.actions$.subscribe(console.log);
   createTicket$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BookingActions.addTicketStart),
@@ -29,7 +28,7 @@ export class BookingEffects {
       map(ticket => BookingActions.addTicketSuccess(ticket)),
       catchError((error: string) => {
         this.toastService.activateToast({ message: error, status: "info" });
-        return EMPTY;
+        return throwError(() => new Error(error));
       })
     );
   });
