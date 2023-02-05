@@ -14,9 +14,12 @@
             </div>
             <div class="navbar__login">
                 <div
-                    *ngIf="currentUser$ | async as user; else signin"
+                    *ngIf="
+                        (currentUser$ | async)?.firstName as name;
+                        else signin
+                    "
                     (click)="toggleDropdown()">
-                    {{ user.name }}
+                    {{ name }}
                 </div>
                 <ng-template #signin>
                     <div (click)="login()">Zaloguj się</div>

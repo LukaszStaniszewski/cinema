@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AuthenticationService } from "@domains/auth";
+import { AuthService } from "@domains/auth";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 
 @Component({
@@ -8,10 +8,7 @@ import { ToastStateService } from "@shared/ui/toast/toast.state.service";
   styleUrls: ["./shell.component.css"],
 })
 export class ShellComponent implements OnInit {
-  constructor(
-    private authService: AuthenticationService,
-    private toastService: ToastStateService
-  ) {}
+  constructor(private authService: AuthService, private toastService: ToastStateService) {}
 
   get toastState$() {
     return this.toastService.toastState$;

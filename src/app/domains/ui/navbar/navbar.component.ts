@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { AuthenticationService } from "../../auth";
+import { AuthService, UserStateService } from "../../auth";
 
 @Component({
   selector: "app-navbar",
@@ -12,12 +12,11 @@ export class NavbarComponent {
   hide = true;
 
   private router = inject(Router);
-  private authService = inject(AuthenticationService);
-
-  constructor(public auth: AuthenticationService) {}
+  private userService = inject(UserStateService);
+  private authService = inject(AuthService);
 
   get currentUser$() {
-    return this.authService.currentUser$;
+    return this.userService.user$;
   }
 
   clickedOutside() {
@@ -29,7 +28,6 @@ export class NavbarComponent {
   }
 
   toggleDropdown() {
-    // if (!this.auth.admin$$ && !this.auth.custo mer$$) return;
     this.hide = !this.hide;
   }
 

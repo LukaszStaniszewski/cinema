@@ -4,13 +4,13 @@ import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { throwError } from "rxjs";
 import { MESSAGE } from "src/environments/constants";
 
-import { AuthenticationService } from "./authentication.service";
+import { AuthService } from ".";
 
 @Injectable({
   providedIn: "root",
 })
-export class HandleUserErrorService {
-  private authService = inject(AuthenticationService);
+export class HandleAuthErrorService {
+  private authService = inject(AuthService);
   private toastService = inject(ToastStateService);
   handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

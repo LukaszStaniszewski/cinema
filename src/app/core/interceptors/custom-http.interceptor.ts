@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { HandleUserErrorService } from "@domains/auth/handle-user-error.service";
+import { HandleAuthErrorService } from "@domains/auth/handle-auth-error.service";
 import { catchError, Observable, tap } from "rxjs";
 import { API } from "src/environments/constants";
 
@@ -8,7 +8,7 @@ import { API } from "src/environments/constants";
 export class CustomHttpInterceptor implements HttpInterceptor {
   private readonly baseUrl = "http://localhost:3000/api";
 
-  private handleErrorService = inject(HandleUserErrorService);
+  private handleErrorService = inject(HandleAuthErrorService);
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const url = `${this.baseUrl}${request.url}`;

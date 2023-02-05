@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 
-import { AuthenticationService } from "../authentication.service";
+import { AuthService } from "..";
 
 @Component({
   selector: "app-login",
@@ -12,10 +12,7 @@ import { AuthenticationService } from "../authentication.service";
 export class LoginComponent {
   userCredentialsForm = this.createForm();
 
-  constructor(
-    private builder: NonNullableFormBuilder,
-    private authService: AuthenticationService
-  ) {}
+  constructor(private builder: NonNullableFormBuilder, private authService: AuthService) {}
 
   createForm() {
     return this.builder.group({
