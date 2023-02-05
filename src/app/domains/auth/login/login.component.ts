@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
+import { MESSAGE } from "@environments/constants";
 
 import { AuthService } from "..";
 
@@ -10,31 +11,48 @@ import { AuthService } from "..";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  userCredentialsForm = this.createForm();
+  private builder = inject(NonNullableFormBuilder);
+  private authService = inject(AuthService);
+  private changeDetector = inject(ChangeDetectorRef);
 
-  constructor(private builder: NonNullableFormBuilder, private authService: AuthService) {}
+  loginForm = this.createForm();
 
   createForm() {
     return this.builder.group({
       email: this.builder.control("test@gmail.com", {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.email, Validators.maxLength(30)],
+        updateOn: "blur",
       }),
       password: this.builder.control("test", {
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.maxLength(30)],
+        updateOn: "blur",
       }),
     });
   }
 
   get email() {
-    return this.userCredentialsForm.controls.email;
+    return this.loginForm.controls.email;
   }
   get password() {
-    return this.userCredentialsForm.controls.password;
+    return this.loginForm.controls.password;
   }
 
-  onSubmit() {
-    this.userCredentialsForm.markAllAsTouched();
-    if (this.userCredentialsForm.invalid) return;
-    this.authService.login(this.userCredentialsForm.getRawValue());
+  login() {
+    this.loginForm.markAllAsTouched();
+
+    if (this.loginForm.valid) {
+      this.loginForm.disable();
+      this.authService
+        .login(this.loginForm.getRawValue())
+        .subscribe({
+          next: user => this.authService.loginSuccess(user),
+
+          error: () => {
+            this.loginForm.setErrors({ authenticationError: MESSAGE.AUTHENTICATION_FAILED }),
+              this.changeDetector.detectChanges();
+          },
+        })
+        .add(() => this.loginForm.enable());
+    }
   }
 }

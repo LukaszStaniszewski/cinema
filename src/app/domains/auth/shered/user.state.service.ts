@@ -13,9 +13,6 @@ export type User = {
 })
 export class UserStateService {
   private userState$$ = new BehaviorSubject<User>({ email: "" });
-  constructor() {
-    this.userState$$.subscribe(console.log);
-  }
 
   get user$() {
     return this.userState$$.asObservable();

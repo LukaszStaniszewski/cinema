@@ -26,9 +26,6 @@ export class AuthService {
   private navigate = useNavigate();
   private http = inject(HttpClient);
   private userService = inject(UserStateService);
-  constructor() {
-    this.auth$$.subscribe(console.log);
-  }
 
   get authState() {
     return this.auth$$.value;
@@ -46,19 +43,18 @@ export class AuthService {
     });
   }
 
-  login(userCredentials: { email: string; password: string }) {
-    this.http.post<LoginDTO>(API.LOGIN, userCredentials).subscribe({
-      next: user => {
-        this.setGlobalUserState(user);
-        this.navigate("/");
-      },
+  login(userCredentials: LoginCredentials) {
+    return this.http.post<LoginDTO>(API.LOGIN, userCredentials);
+  }
 
-      error: () => this.auth$$.next({ authType: "none" }),
-    });
+  loginSuccess(loginDTO: LoginDTO) {
+    this.setGlobalUserState(loginDTO);
+    this.navigate("/");
   }
 
   logout() {
-    this.auth$$.next;
+    this.auth$$.next({ authType: "none" });
+    this.userService.remove();
   }
 
   private setGlobalUserState({ role, ...user }: LoginDTO) {

@@ -19,4 +19,5 @@ export const MESSAGE = {
   WANNA_SEE_FAILURE: "Ten film juz został przez Ciebie wcześniej dodany",
   JWT_EXPIRED: "Twoja sesja wygasła, zaloguj się ponownie",
   TICKET_LIMIT: "Aby zakupić więcej biletów skontaktuj się z obsługą klienta",
+  AUTHENTICATION_FAILED: "Zły email lub hasło",
 } as const;

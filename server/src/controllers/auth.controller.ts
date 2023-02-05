@@ -30,7 +30,7 @@ export const authenticate = async (
       secure: false,
     });
 
-    res.json(accessToken);
+    res.json(user);
   } catch (error) {
     logger.error(getErrorMessage(error));
     res.status(409).json(getErrorMessage(error));
