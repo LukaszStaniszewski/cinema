@@ -6,6 +6,7 @@ export const ErrorMessage = {
   SHOWINGS_NOT_FOUND: "No showings found for that day",
   MOVIE_NOT_ADDED: "Movie wasn't add to wanna see list",
   RESERVATION_NOT_FOUND: "Given reservation doesn't exist",
+  CINEMA_ROOM_NOT_FOUND: "Given cinema room doesn't exist",
 } as const;
 
 export const SuccessMessage = {

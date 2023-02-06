@@ -352,7 +352,7 @@
   "reservations": [
     {
       "id": "06-15-a",
-      "movieTitle": "Avatar: Istota Wody",
+      "movieId": "movie-avatar-way-of-water-123",
       "cinemaRoomId": "room-a",
       "takenSeats": [
         {
@@ -408,7 +408,7 @@
     },
     {
       "id": "06-17-a",
-      "movieTitle": "The Dark Knight",
+      "movieId": "movie-darkKnight-123",
       "cinemaRoomId": "room-a",
       "takenSeats": [
         {

@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { getShowings } from "../controllers/showings.controler";
-import requireUser from "../middleware/requireUser";
+import { sendShowingBasis, sendShowings } from "../controllers/showings.controler";
 
 const showingRouter = Router();
 
-showingRouter.get("/", getShowings);
+showingRouter.get("/:id", sendShowingBasis);
+showingRouter.get("/", sendShowings);
 export default showingRouter;

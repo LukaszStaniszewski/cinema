@@ -9,11 +9,9 @@ export const sendReservation = async (req: Request, res: Response) => {
     const reservationId = req.params.id;
 
     const [reservation] = db["reservations"].filter(reservation => reservation.id == reservationId);
-    console.log(reservation);
     if (!reservation) {
       throw new Error(ErrorMessage.RESERVATION_NOT_FOUND);
     }
-    console.log("hit");
     res.json(reservation);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));
@@ -26,7 +24,7 @@ export const sendCinemaRoom = async (req: Request, res: Response) => {
 
     const [cinemaRoom] = db["cinemarooms"].filter(cinemaroom => cinemaroom.id == cinemaRoomId);
     if (!cinemaRoom) {
-      throw new Error(ErrorMessage.WANNA_SEE_NOT_FOUND);
+      throw new Error(ErrorMessage.CINEMA_ROOM_NOT_FOUND);
     }
     res.json(cinemaRoom);
   } catch (error) {
