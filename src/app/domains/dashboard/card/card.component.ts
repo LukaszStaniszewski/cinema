@@ -1,14 +1,7 @@
-import {
-  AfterContentInit,
-  Component,
-  ElementRef,
-  inject,
-  Input,
-  ViewChild,
-} from "@angular/core";
+import { AfterContentInit, Component, ElementRef, inject, Input, ViewChild } from "@angular/core";
 import { MovieService } from "@core/movie/movie.service";
 
-import type { Showing } from "../services/showing-state.service";
+import type { Showing } from "../shared/showing-api.service";
 
 @Component({
   selector: "app-card[showing]",

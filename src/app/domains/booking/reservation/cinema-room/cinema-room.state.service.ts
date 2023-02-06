@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { API, SET_UP } from "@environments/constants";
+import { API, MESSAGE, SET_UP } from "@environments/constants";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap, takeUntil } from "rxjs";
 
-export interface ReservationDTO {
+export interface ReservationDto {
   id: string;
   cinemaRoomId: string;
   movieTitle: string;
@@ -32,7 +33,7 @@ export class CinemaRoomStateService {
   private cinemaRoomState$$ = new BehaviorSubject<CinemaRoom>(defaultCinemaRoomState);
 
   private http = inject(HttpClient);
-
+  private toastService = inject(ToastStateService);
   get cinemaRoomState$(): Observable<CinemaRoom> {
     return this.cinemaRoomState$$.asObservable();
   }
@@ -49,7 +50,7 @@ export class CinemaRoomStateService {
   }
   getSeatingData(id: string) {
     this.http
-      .get<ReservationDTO>(`${API.RESERVATIONS}/${id}`)
+      .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)
       .pipe(
         takeUntil(this.cinemaRoomState$$.value.seats),
         switchMap(({ cinemaRoomId, takenSeats }) => {
@@ -66,7 +67,11 @@ export class CinemaRoomStateService {
             ...seatings,
           });
         },
-        error: error => console.error(error),
+        error: () =>
+          this.toastService.activateToast({
+            message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
+            status: "info",
+          }),
       });
   }
 

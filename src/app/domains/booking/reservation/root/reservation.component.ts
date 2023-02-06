@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
+import { Observable } from "rxjs";
 
 import { CinemaRoomStateService, Seat, TicketStateService } from "..";
 
@@ -11,23 +13,26 @@ import { CinemaRoomStateService, Seat, TicketStateService } from "..";
 })
 export class ReservationComponent implements OnInit {
   params = "";
+  showingInfo$ = new Observable<ShowingPartial>();
   constructor(
     private route: ActivatedRoute,
     private cinemaRoom: CinemaRoomStateService,
-    private ticket: TicketStateService
+    private ticket: TicketStateService,
+    private showing: ShowingApiService
   ) {}
 
   get cinemaRoomSeats$() {
     return this.cinemaRoom.selectSeats$;
   }
 
-  updateCinemaRoom(seat: Seat) {
-    this.cinemaRoom.update(seat);
-    this.ticket.addToList(seat);
-  }
-
   ngOnInit(): void {
     this.params = this.route.snapshot.params["id"];
     this.cinemaRoom.getSeatingData(this.params);
+    this.showingInfo$ = this.showing.getShowingPartial(this.params);
+  }
+
+  updateCinemaRoom(seat: Seat) {
+    this.cinemaRoom.update(seat);
+    this.ticket.addToList(seat);
   }
 }

@@ -4,7 +4,7 @@ import { MouseAnimationModule } from "@shared/directives/mouseAnimation.directiv
 import { ToastComponent } from "@shared/ui/toast/toast.component";
 import { AppRoutingModule } from "src/app/app-routing.module";
 
-import { CardComponent, CardListComponent, DatesComponent, ShowingStateService } from ".";
+import { CardComponent, CardListComponent, DatesComponent } from ".";
 
 @NgModule({
   declarations: [CardComponent, DatesComponent, CardListComponent],
@@ -18,6 +18,5 @@ import { CardComponent, CardListComponent, DatesComponent, ShowingStateService }
     MouseAnimationModule,
     ToastComponent,
   ],
-  providers: [ShowingStateService],
 })
 export class DashboardModule {}

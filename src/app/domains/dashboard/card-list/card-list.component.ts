@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MovieService } from "@core/movie/movie.service";
 
-import { ShowingStateService } from "..";
+import { ShowingApiService } from "..";
 
 @Component({
   selector: "app-card-list",
@@ -13,7 +13,7 @@ import { ShowingStateService } from "..";
 export class CardListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private showings: ShowingStateService,
+    private showingService: ShowingApiService,
     private movieService: MovieService
   ) {}
 
@@ -22,13 +22,13 @@ export class CardListComponent implements OnInit {
     this.route.params.subscribe(params => {
       if (!params["day"]) return;
       const adjustedDate = params["day"].replaceAll("/", "-");
-      this.vm = this.showings.getShowings(adjustedDate);
+      this.vm = this.showingService.getShowings(adjustedDate);
     });
 
     this.movieService.getFavoriteMoviesId();
   }
 
   private showDefaultPage() {
-    return this.showings.getShowings("06-12-2022");
+    return this.showingService.getShowings("06-12-2022");
   }
 }

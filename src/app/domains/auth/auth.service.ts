@@ -43,6 +43,11 @@ export class AuthService {
     });
   }
 
+  private setGlobalUserState({ role, ...user }: LoginDTO) {
+    this.auth$$.next({ authType: role });
+    this.userService.set(user);
+  }
+
   login(userCredentials: LoginCredentials) {
     return this.http.post<LoginDTO>(API.LOGIN, userCredentials);
   }
@@ -55,10 +60,5 @@ export class AuthService {
   logout() {
     this.auth$$.next({ authType: "none" });
     this.userService.remove();
-  }
-
-  private setGlobalUserState({ role, ...user }: LoginDTO) {
-    this.auth$$.next({ authType: role });
-    this.userService.set(user);
   }
 }

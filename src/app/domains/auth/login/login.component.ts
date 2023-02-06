@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  inject,
+  InjectorType,
+  ProviderToken,
+} from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MESSAGE } from "@environments/constants";
 
@@ -12,7 +20,7 @@ import { AuthService } from "..";
 })
 export class LoginComponent {
   private builder = inject(NonNullableFormBuilder);
-  private authService = inject(AuthService);
+  authService = inject(AuthService);
   private changeDetector = inject(ChangeDetectorRef);
 
   loginForm = this.createForm();

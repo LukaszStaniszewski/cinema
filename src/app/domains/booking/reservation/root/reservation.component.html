@@ -1,8 +1,17 @@
 <section class="reservation-page">
-    <div class="reservation-page__screen">Ekran</div>
+    <div class="showing-info" *ngIf="showingInfo$ | async as showingInfo">
+        <img src="{{ showingInfo.image }}" />
+        <div class="showing-info__text">
+            <p class="text-h5">{{ showingInfo.title }}</p>
+            <p>{{ showingInfo.day }}</p>
+            <p>{{ showingInfo.time }}</p>
+        </div>
+    </div>
+
+    <div class="screen">Ekran</div>
     <app-cinema-room
-        class="cinema-room"
         *ngIf="cinemaRoomSeats$ | async as seats"
+        class="cinema-room"
         [seats]="seats"
         (newSelectedSeat)="updateCinemaRoom($event)">
     </app-cinema-room>
