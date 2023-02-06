@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { CustomValidators } from "../../../shared/custom-validators";
+import { ReviewStateService } from "./review.service";
 
 @Component({
   selector: "app-ticket-purchase-page",
@@ -13,6 +14,7 @@ import { CustomValidators } from "../../../shared/custom-validators";
 export class TicketPurchasePageComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
   private route = inject(ActivatedRoute);
+  private reviewService = inject(ReviewStateService);
   params = "";
 
   userCredentialsForm = this.createForm();

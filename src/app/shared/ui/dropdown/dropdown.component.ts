@@ -6,7 +6,7 @@ export type TicketDetails = {
   kind: TicketTypes;
   price: number;
 };
-export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
+export type TicketTypes = "normalny" | "ulgowy" | "family" | "voucher";
 export type Ticket = {
   id: string;
   seat: Seat;

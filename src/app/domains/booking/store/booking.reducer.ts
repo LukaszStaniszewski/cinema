@@ -37,5 +37,33 @@ export const bookingReducer = createReducer(
     return {
       ...initialBookingState,
     };
+  }),
+  on(BookingActions.addInitialValuesForTicketStats, (state, action): BookingState => {
+    return {
+      ...state,
+      ticketStats: action.initial,
+    };
+  }),
+  on(BookingActions.addTicketStats, (state, action): BookingState => {
+    return {
+      ...state,
+      ticketStats: state.ticketStats.map(stat => {
+        if (stat.kind === action.kind) {
+          return { ...stat, amount: stat.amount + 1, total: stat.total + action.total };
+        }
+        return stat;
+      }),
+    };
+  }),
+  on(BookingActions.updateTicketStats, (state, { type, ...ticketToUpdate }): BookingState => {
+    return {
+      ...state,
+      ticketStats: state.ticketStats.map(stat => {
+        if (stat.kind === ticketToUpdate.kind) {
+          return { ...ticketToUpdate };
+        }
+        return stat;
+      }),
+    };
   })
 );

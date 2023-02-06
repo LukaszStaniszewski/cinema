@@ -12,7 +12,7 @@ export type TicketDetails = {
   price: number;
 };
 
-export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
+export type TicketTypes = "normalny" | "ulgowy" | "family" | "voucher";
 
 export type Ticket = {
   id: string;
@@ -21,8 +21,16 @@ export type Ticket = {
   price: number;
 };
 
+export type TicketsSortedByType = {
+  amount: number;
+  kind: string;
+  total: number;
+};
+
 export type BookingState = {
   tickets: Ticket[];
+  // orderStats ?
+  ticketStats: TicketsSortedByType[];
   totalPrice: number;
   showingId: string;
 };
@@ -35,6 +43,7 @@ export type AppStateWithBookingState = AppState & BookingPick;
 
 export const initialBookingState: BookingState = {
   tickets: [],
+  ticketStats: [],
   totalPrice: 0,
   showingId: "",
 };

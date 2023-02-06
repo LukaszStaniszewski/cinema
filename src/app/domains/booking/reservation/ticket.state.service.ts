@@ -24,6 +24,11 @@ type TicketInformation = {
   totalPrice: number;
 };
 
+type TicketsSortedByType = {
+  amount: number;
+  kind: string;
+  total: number;
+};
 const defaultTicketInformation = {
   ticketDetails: [],
   tickets: [],
@@ -46,6 +51,10 @@ export class TicketStateService {
         }))
       )
       .subscribe(ticketInfo => {
+        console.log("hit ticket rwtawq", ticketInfo);
+        if (!ticketInfo.tickets.length) {
+          this.initialValuesForTicketStats(ticketInfo.ticketDetails);
+        }
         this.patchState({ ...ticketInfo });
         this.store.dispatch(BookingActions.updateTotalPrice({ total: ticketInfo.totalPrice }));
       });
@@ -61,6 +70,13 @@ export class TicketStateService {
 
   update({ ticketDetails, id }: ValuesRequiredToUpdateTicket) {
     this.store.dispatch(BookingActions.updateTicket({ id, valueToUpdate: ticketDetails }));
+    this.store.dispatch(
+      BookingActions.addTicketStats({
+        total: ticketDetails.price,
+        kind: ticketDetails.kind,
+        amount: 1,
+      })
+    );
   }
 
   addToList(seatToUpdate: Seat) {
@@ -71,8 +87,17 @@ export class TicketStateService {
     } else {
       this.store.dispatch(
         BookingActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId })
+        // BookingActions.addTicketStats({})
       );
     }
+  }
+
+  // sortBasicTicketDataByType() {
+
+  // }
+  private initialValuesForTicketStats(ticketDetails: TicketDetails[]) {
+    const initialValues = ticketDetails.map(ticket => ({ kind: ticket.kind, amount: 0, total: 0 }));
+    this.store.dispatch(BookingActions.addInitialValuesForTicketStats({ initial: initialValues }));
   }
 
   mapSeatAndTicketType({ seat, id }: { seat: Seat; id: string }): Ticket {

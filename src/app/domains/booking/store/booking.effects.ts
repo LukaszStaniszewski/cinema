@@ -25,6 +25,10 @@ export class BookingEffects {
           return this.ticketService.mapSeatAndTicketType(seat);
         } else throw new Error(MESSAGE.TICKET_LIMIT);
       }),
+      map(ticket => {
+        BookingActions.addTicketStats({ total: ticket.price, kind: ticket.kind, amount: 1 });
+        return ticket;
+      }),
       map(ticket => BookingActions.addTicketSuccess(ticket)),
       catchError((error: string) => {
         this.toastService.activateToast({ message: error, status: "info" });
@@ -32,4 +36,21 @@ export class BookingEffects {
       })
     );
   });
+
+  updateTicketStats$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(BookingActions.updateTicket),
+        map(ticketToUpdate => {
+          BookingActions.updateTicketStats({
+            kind: ticketToUpdate.valueToUpdate.kind,
+            amount: 1,
+            total: ticketToUpdate.valueToUpdate.price,
+          });
+          return BookingActions.updateTicket(ticketToUpdate);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }
