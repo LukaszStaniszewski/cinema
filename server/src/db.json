@@ -18,15 +18,15 @@
   ],
   "ticketInfo": [
     {
-      "kind": "normalny",
+      "type": "normalny",
       "price": 20
     },
     {
-      "kind": "ulgowy",
+      "type": "ulgowy",
       "price": 12
     },
     {
-      "kind": "rodzinny",
+      "type": "rodzinny",
       "price": 16
     }
   ],

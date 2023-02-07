@@ -8,7 +8,7 @@ export type Seat = {
 };
 
 export type TicketDetails = {
-  kind: TicketTypes;
+  type: TicketTypes;
   price: number;
 };
 
@@ -17,20 +17,26 @@ export type TicketTypes = "normalny" | "ulgowy" | "family" | "voucher";
 export type Ticket = {
   id: string;
   seat: Seat;
-  kind: TicketTypes;
+  type: TicketTypes;
   price: number;
 };
 
 export type TicketsSortedByType = {
   amount: number;
-  kind: string;
-  total: number;
+  type: string;
+  price: number;
+};
+
+export type TicketSortedByValueToUpdate = {
+  type: string;
+  price: number;
+  currentType: string;
 };
 
 export type BookingState = {
   tickets: Ticket[];
   // orderStats ?
-  ticketStats: TicketsSortedByType[];
+  ticketsSortedByType: TicketsSortedByType[];
   totalPrice: number;
   showingId: string;
 };
@@ -43,7 +49,7 @@ export type AppStateWithBookingState = AppState & BookingPick;
 
 export const initialBookingState: BookingState = {
   tickets: [],
-  ticketStats: [],
+  ticketsSortedByType: [],
   totalPrice: 0,
   showingId: "",
 };

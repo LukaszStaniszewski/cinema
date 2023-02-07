@@ -6,6 +6,7 @@ import {
   selectTickets,
   Ticket,
   TicketDetails,
+  TicketTypes,
 } from "@domains/booking/store";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
@@ -15,6 +16,7 @@ import { Seat } from "./cinema-room/cinema-room.state.service";
 
 export type ValuesRequiredToUpdateTicket = {
   ticketDetails: TicketDetails;
+  currentType: TicketTypes;
   id: string;
 };
 
@@ -26,7 +28,7 @@ type TicketInformation = {
 
 type TicketsSortedByType = {
   amount: number;
-  kind: string;
+  type: string;
   total: number;
 };
 const defaultTicketInformation = {
@@ -51,7 +53,7 @@ export class TicketStateService {
         }))
       )
       .subscribe(ticketInfo => {
-        console.log("hit ticket rwtawq", ticketInfo);
+        // console.log("hit ticket rwtawq", ticketInfo);
         if (!ticketInfo.tickets.length) {
           this.initialValuesForTicketStats(ticketInfo.ticketDetails);
         }
@@ -68,13 +70,11 @@ export class TicketStateService {
     return tickets.map(ticket => ticket.price).reduce((acc, current) => current + acc, 0);
   }
 
-  update({ ticketDetails, id }: ValuesRequiredToUpdateTicket) {
+  update({ ticketDetails, id, currentType }: ValuesRequiredToUpdateTicket) {
     this.store.dispatch(BookingActions.updateTicket({ id, valueToUpdate: ticketDetails }));
     this.store.dispatch(
-      BookingActions.addTicketStats({
-        total: ticketDetails.price,
-        kind: ticketDetails.kind,
-        amount: 1,
+      BookingActions.updateTicketsSortedByTypeStart({
+        payload: { currentType, price: ticketDetails.price, type: ticketDetails.type },
       })
     );
   }
@@ -96,8 +96,10 @@ export class TicketStateService {
 
   // }
   private initialValuesForTicketStats(ticketDetails: TicketDetails[]) {
-    const initialValues = ticketDetails.map(ticket => ({ kind: ticket.kind, amount: 0, total: 0 }));
-    this.store.dispatch(BookingActions.addInitialValuesForTicketStats({ initial: initialValues }));
+    const initialValues = ticketDetails.map(ticket => ({ type: ticket.type, amount: 0, price: 0 }));
+    this.store.dispatch(
+      BookingActions.addInitialValuesForTicketSortedByType({ initial: initialValues })
+    );
   }
 
   mapSeatAndTicketType({ seat, id }: { seat: Seat; id: string }): Ticket {
@@ -107,7 +109,7 @@ export class TicketStateService {
         reservation: true,
       },
       id,
-      kind: this.ticketInformation$$.value.ticketDetails[0].kind,
+      type: this.ticketInformation$$.value.ticketDetails[0].type,
       price: this.ticketInformation$$.value.ticketDetails[0].price,
     };
   }

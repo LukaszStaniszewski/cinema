@@ -8,7 +8,7 @@ export const bookingReducer = createReducer(
   on(BookingActions.addTicketSuccess, (state, action): BookingState => {
     return {
       ...state,
-      tickets: [...state.tickets, action],
+      tickets: [...state.tickets, action.payload],
     };
   }),
   on(BookingActions.removeTicket, (state, action): BookingState => {
@@ -22,7 +22,7 @@ export const bookingReducer = createReducer(
       ...state,
       tickets: state.tickets.map(ticket =>
         ticket.id === id
-          ? { ...ticket, kind: valueToUpdate.kind, price: valueToUpdate.price }
+          ? { ...ticket, type: valueToUpdate.type, price: valueToUpdate.price }
           : ticket
       ),
     };
@@ -38,32 +38,27 @@ export const bookingReducer = createReducer(
       ...initialBookingState,
     };
   }),
-  on(BookingActions.addInitialValuesForTicketStats, (state, action): BookingState => {
+  on(BookingActions.addInitialValuesForTicketSortedByType, (state, action): BookingState => {
     return {
       ...state,
-      ticketStats: action.initial,
+      ticketsSortedByType: action.initial,
     };
   }),
-  on(BookingActions.addTicketStats, (state, action): BookingState => {
+  on(BookingActions.addTicketSortedByType, (state, { payload }): BookingState => {
     return {
       ...state,
-      ticketStats: state.ticketStats.map(stat => {
-        if (stat.kind === action.kind) {
-          return { ...stat, amount: stat.amount + 1, total: stat.total + action.total };
+      ticketsSortedByType: state.ticketsSortedByType.map(stat => {
+        if (stat.type === payload.type) {
+          return { ...stat, amount: stat.amount + 1, price: stat.price + payload.price };
         }
         return stat;
       }),
     };
   }),
-  on(BookingActions.updateTicketStats, (state, { type, ...ticketToUpdate }): BookingState => {
+  on(BookingActions.updateTicketsSortedByTypeSuccess, (state, { payload }): BookingState => {
     return {
       ...state,
-      ticketStats: state.ticketStats.map(stat => {
-        if (stat.kind === ticketToUpdate.kind) {
-          return { ...ticketToUpdate };
-        }
-        return stat;
-      }),
+      ticketsSortedByType: [...payload],
     };
   })
 );

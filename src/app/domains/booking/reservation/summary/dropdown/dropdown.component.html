@@ -7,10 +7,8 @@
     </div>
 
     <div [class.hidden]="hide" class="dropdown__options">
-        <div
-            (click)="setSelectedTicket(ticketTech)"
-            *ngFor="let ticketTech of options">
-            <span>{{ ticketTech.kind }}</span>
+        <div (click)="setSelectedTicket(ticketTech)" *ngFor="let ticketTech of options">
+            <span>{{ ticketTech.type }}</span>
         </div>
     </div>
 </div>

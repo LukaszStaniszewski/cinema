@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
-import { Ticket, TicketDetails } from "@domains/booking/store";
+import { Ticket, TicketDetails, TicketTypes } from "@domains/booking/store";
 
 @Component({
   selector: "app-dropdown[options]",
@@ -15,13 +15,14 @@ export class DropdownComponent implements OnChanges {
   @Output() selectedOptionEvent = new EventEmitter<{
     ticketDetails: TicketDetails;
     id: string;
+    currentType: TicketTypes;
   }>();
 
   toggleDropdown() {
     this.hide = !this.hide;
   }
   ngOnChanges() {
-    this.currentSelectedValue = this.ticket.kind;
+    this.currentSelectedValue = this.ticket.type;
   }
 
   setSelectedTicket(ticketDetails: TicketDetails) {
@@ -30,6 +31,7 @@ export class DropdownComponent implements OnChanges {
     this.selectedOptionEvent.emit({
       ticketDetails,
       id,
+      currentType: this.ticket.type,
     });
   }
 
