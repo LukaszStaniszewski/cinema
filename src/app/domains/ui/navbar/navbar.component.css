@@ -3,7 +3,7 @@
   padding: 0.2rem 0;
 }
 
-.navbar-wrapper > nav {
+.navbar-wrapper > div:first-child {
   grid-column: 3 / 11;
   display: flex;
   justify-content: flex-end;
@@ -47,7 +47,7 @@
 .navbar__login {
   font-size: var(--text-lg);
   cursor: pointer;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   padding: 1rem;
 }
 
@@ -73,6 +73,10 @@
   transform: translateY(3rem);
 }
 
-.dropdown--navbar.hidden {
-  display: none;
+.dropdown > button {
+  all: unset;
+}
+
+.login__text {
+  width: max-content;
 }

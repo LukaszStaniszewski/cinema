@@ -1,7 +1,8 @@
-import { Directive, ElementRef, HostListener, NgModule } from "@angular/core";
+import { Directive, ElementRef, HostListener } from "@angular/core";
 
 @Directive({
   selector: "[appMouseAnimation]",
+  standalone: true,
 })
 export class MouseAnimationDirective {
   constructor(private element: ElementRef) {}
@@ -23,9 +24,3 @@ export class MouseAnimationDirective {
     this.element.nativeElement.style.setProperty("--mouse-y", `${y}px`);
   }
 }
-
-@NgModule({
-  declarations: [MouseAnimationDirective],
-  exports: [MouseAnimationDirective],
-})
-export class MouseAnimationModule {}
