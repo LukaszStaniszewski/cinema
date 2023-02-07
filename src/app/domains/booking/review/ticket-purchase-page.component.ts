@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { CustomValidators } from "../../../shared/custom-validators";
 import { ReviewStateService } from "./review.service";
@@ -12,12 +12,16 @@ import { ReviewStateService } from "./review.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TicketPurchasePageComponent implements OnInit {
+  params = "";
   private builder = inject(NonNullableFormBuilder);
   private route = inject(ActivatedRoute);
   private reviewService = inject(ReviewStateService);
-  params = "";
 
   userCredentialsForm = this.createForm();
+
+  get reviewState$() {
+    return this.reviewService.reviewState$;
+  }
 
   private createForm() {
     return this.builder.group(
@@ -44,6 +48,7 @@ export class TicketPurchasePageComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.snapshot.params["id"];
+    this.reviewService.getViewData(this.params);
   }
 
   get controls() {

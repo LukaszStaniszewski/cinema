@@ -8,7 +8,8 @@ import { catchError, map, mergeMap, throwError } from "rxjs";
 import { TicketStateService } from "../reservation";
 import {
   AppStateWithBookingState,
-  BookingActions,
+  BookingTicketActions,
+  BookingTicketSortedActions,
   selectTickets,
   selectTicketsSortedByType,
 } from ".";
@@ -20,24 +21,21 @@ export class BookingEffects {
   private ticketService = inject(TicketStateService);
   private toastService = inject(ToastStateService);
 
-  // test = this.actions$.subscribe(console.log);
   createTicket$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(BookingActions.addTicketStart),
+      ofType(BookingTicketActions.addTicketStart),
       concatLatestFrom(() => this.store.select(selectTickets)),
       map(([seat, tickets]) => {
         if (tickets.length + 1 <= SET_UP.TICKET_LIMIT) {
           return this.ticketService.mapSeatAndTicketType(seat);
         } else throw new Error(MESSAGE.TICKET_LIMIT);
       }),
-
       mergeMap(ticket => [
-        BookingActions.addTicketSuccess({ payload: ticket }),
-        BookingActions.addTicketSortedByType({
+        BookingTicketActions.addTicketSuccess({ payload: ticket }),
+        BookingTicketSortedActions.addTicketSortedByType({
           payload: { amount: 1, price: ticket.price, type: ticket.type },
         }),
       ]),
-      // map(ticket => BookingActions.addTicketSuccess(ticket)),
       catchError((error: string) => {
         this.toastService.activateToast({ message: error, status: "info" });
         return throwError(() => new Error(error));
@@ -47,7 +45,7 @@ export class BookingEffects {
 
   updateTicketsSortedByType$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(BookingActions.updateTicketsSortedByTypeStart),
+      ofType(BookingTicketSortedActions.updateTicketsSortedByTypeStart),
       concatLatestFrom(() => this.store.select(selectTicketsSortedByType)),
       map(
         ([
@@ -75,8 +73,27 @@ export class BookingEffects {
         }
       ),
       map(ticketsSortedByType =>
-        BookingActions.updateTicketsSortedByTypeSuccess({ payload: ticketsSortedByType })
+        BookingTicketSortedActions.updateTicketsSortedByTypeSuccess({
+          payload: ticketsSortedByType,
+        })
       )
     );
   });
+
+  // removeTicket$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(BookingActions.removeTicket),
+  //     concatLatestFrom(() => this.store.select(selectTickets)),
+  //     map(([id, tickets]) => tickets.filter(ticket => ticket.id == id.id)),
+  //     mergeMap(([{ price, id, type }]) => [
+  //       BookingActions.removeTicketSuccess({ id }),
+  //       BookingActions.removeTicketSortedByType({
+  //         payload: { price, type },
+  //       }),
+  //     ]),
+  //     catchError((error: string) => {
+  //       return throwError(() => new Error(error));
+  //     })
+  //   );
+  // });
 }

@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 
-import { ReviewStateService } from "./review.service";
 import { TicketPurchasePageComponent } from "./ticket-purchase-page.component";
 
 const routes: Routes = [

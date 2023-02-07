@@ -32,19 +32,19 @@
   ],
   "wanna-see": [
     {
-      "userId": "2",
-      "movieId": "movie-avatar-way-of-water-123",
-      "id": "I8Et9T0"
-    },
-    {
       "userId": "1",
       "movieId": "movie-avatar-way-of-water-123",
       "id": "I8Et9T2"
     },
     {
       "userId": "2",
+      "movieId": "movie-avatar-way-of-water-123",
+      "id": "movie-avatar-way-of-water-1232"
+    },
+    {
+      "userId": "2",
       "movieId": "movie-darkKnight-123",
-      "id": "qkkWDpx"
+      "id": "movie-darkKnight-1232"
     }
   ],
   "movies": [
@@ -408,6 +408,97 @@
     },
     {
       "id": "06-17-a",
+      "movieId": "movie-avatar-way-of-water-123",
+      "cinemaRoomId": "room-a",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "9"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "10"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "9"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "10"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "11"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "H",
+            "column": "9"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-15-b",
       "movieId": "movie-darkKnight-123",
       "cinemaRoomId": "room-a",
       "takenSeats": [

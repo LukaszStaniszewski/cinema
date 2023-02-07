@@ -1,4 +1,4 @@
-<section class="purchase-page-container">
+<section *ngIf="reviewState$ | async as vm" class="purchase-page-container">
     <div class="movie-info">
         <img
             class="movie-info__image"
@@ -7,20 +7,16 @@
             srcset="" />
         <div class="movie-info__details">
             <p class="text-gradient text-title">ZAKUP BILETÓW</p>
-            <p>Avatar: Istota Wody</p>
-            <span>28.12.2022, </span>
-            <span>14:30</span>
+            <p>{{ vm.showing?.title }}</p>
+            <span>{{ vm.showing?.day }}</span>
+            <span>{{ vm.showing?.time }}</span>
         </div>
     </div>
     <!-- <label for="name">Name: </label> -->
     <div class="order-details">
-        <div>
-            <div>2x Normalny</div>
-            <div>40zł</div>
-        </div>
-        <div>
-            <div>2x Ulgowy</div>
-            <div>25zł</div>
+        <div *ngFor="let ticket of vm.ticketsSortedByType">
+            <div>{{ ticket.amount }}x {{ ticket.type }}</div>
+            <div>{{ ticket.price }}zł</div>
         </div>
         <div class="total text-gradient">
             <div>4 bilety</div>
@@ -28,27 +24,20 @@
         </div>
     </div>
 
-    <form
-        class="purchase-form"
-        [formGroup]="userCredentialsForm"
-        (ngSubmit)="onSubmit()">
+    <form class="purchase-form" [formGroup]="userCredentialsForm" (ngSubmit)="onSubmit()">
         <div class="name-surname-wrapper">
             <div class="purchase-input">
                 <input placeholder="Imię*" formControlName="name" type="text" />
                 <div>
                     <ng-container *ngIf="controls.name.errors as errors">
                         <ng-container *ngIf="controls.name.dirty">
-                            <p *ngIf="errors['required']">
-                                Te pole jest obowiązkowe
-                            </p>
+                            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
                             <p *ngIf="errors['minlength'] as minLength">
-                                Podałeś {{ minLength.actualLength }} znaki,
-                                minimum to
+                                Podałeś {{ minLength.actualLength }} znaki, minimum to
                                 {{ minLength.requiredLength }}
                             </p>
                             <p *ngIf="errors['maxLength'] as maxLength">
-                                Podałeś {{ maxLength.actualLength }} znaki,
-                                minimum to
+                                Podałeś {{ maxLength.actualLength }} znaki, minimum to
                                 {{ maxLength.requiredLength }}
                             </p>
                         </ng-container>
@@ -57,10 +46,7 @@
             </div>
             <div class="hidden">w</div>
             <div class="purchase-input">
-                <input
-                    placeholder="Nazwisko*"
-                    formControlName="surname"
-                    type="text" />
+                <input placeholder="Nazwisko*" formControlName="surname" type="text" />
                 <!-- <p
           [ngClass]="{
             hidden: controls.surname.pristine || controls.surname.valid
@@ -70,17 +56,13 @@
         </p> -->
                 <ng-container *ngIf="controls.surname.errors as errors">
                     <ng-container *ngIf="controls.surname.dirty">
-                        <p *ngIf="errors['required']">
-                            Te pole jest obowiązkowe
-                        </p>
+                        <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
                         <p *ngIf="errors['minlength'] as minLength">
-                            Podałeś {{ minLength.actualLength }} znaki, minimum
-                            to
+                            Podałeś {{ minLength.actualLength }} znaki, minimum to
                             {{ minLength.requiredLength }}
                         </p>
                         <p *ngIf="errors['maxLength'] as maxLength">
-                            Podałeś {{ maxLength.actualLength }} znaki, minimum
-                            to
+                            Podałeś {{ maxLength.actualLength }} znaki, minimum to
                             {{ maxLength.requiredLength }}
                         </p>
                     </ng-container>
@@ -103,9 +85,7 @@
         </p> -->
                 <ng-container *ngIf="controls.email.errors as errors">
                     <ng-container *ngIf="controls.email.dirty">
-                        <p *ngIf="errors['required']">
-                            Te pole jest obowiązkowe
-                        </p>
+                        <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
                         <p *ngIf="errors['emailValidation'] as emailValidation">
                             {{ emailValidation }}
                         </p>
@@ -182,8 +162,6 @@
     </form>
     <div class="redirect-reservation">
         <img src="assets/svg/chevron-left.svg" alt="left-arrow-icon" />
-        <a routerLink="/booking/reservation/{{ params }}">
-            Wróć do wyboru miejsc
-        </a>
+        <a routerLink="/booking/reservation/{{ params }}"> Wróć do wyboru miejsc </a>
     </div>
 </section>

@@ -27,7 +27,7 @@ export type TicketsSortedByType = {
   price: number;
 };
 
-export type TicketSortedByValueToUpdate = {
+export type TicketSortedByTypeValueToUpdate = {
   type: string;
   price: number;
   currentType: string;
@@ -35,7 +35,6 @@ export type TicketSortedByValueToUpdate = {
 
 export type BookingState = {
   tickets: Ticket[];
-  // orderStats ?
   ticketsSortedByType: TicketsSortedByType[];
   totalPrice: number;
   showingId: string;

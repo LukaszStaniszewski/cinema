@@ -6,7 +6,7 @@ import { Store, StoreModule } from "@ngrx/store";
 
 import { CinemaRoomStateService, TicketStateService } from "./reservation";
 import { ReviewStateService } from "./review/review.service";
-import { BookingActions, BookingEffects, bookingFeatureKey, bookingReducer } from "./store";
+import { BookingEffects, bookingFeatureKey, bookingReducer, BookingTicketActions } from "./store";
 
 const routes: Routes = [
   {
@@ -50,6 +50,6 @@ export default class BookingModule {
   private resetStateOnLeaveCuzNgOnDestoryIsNotWorking() {
     this.cinemaRoom.reset();
     this.ticketService.reset();
-    this.store.dispatch(BookingActions.resetState());
+    this.store.dispatch(BookingTicketActions.resetState());
   }
 }
