@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import { Router } from "@angular/router";
+import { useNavigate } from "@shared/inject-hooks";
 
 import { AuthService, UserStateService } from "../../auth";
 
@@ -11,7 +11,7 @@ import { AuthService, UserStateService } from "../../auth";
 export class NavbarComponent {
   hide = true;
 
-  private router = inject(Router);
+  private useNavigate = useNavigate();
   private userService = inject(UserStateService);
   private authService = inject(AuthService);
 
@@ -24,7 +24,7 @@ export class NavbarComponent {
   }
 
   login() {
-    this.router.navigate(["/login"]);
+    this.useNavigate("/login");
   }
 
   toggleDropdown() {

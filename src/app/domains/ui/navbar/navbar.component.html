@@ -1,12 +1,10 @@
-<div
+<nav
     class="navbar-wrapper grid-container"
     appClickOutside
     (appClickOutside)="clickedOutside()">
-    <nav>
+    <div>
         <div class="cinema-name__wrapper">
-            <a class="navbar__cinema-name text-h2" [routerLink]="['/']"
-                >Ale Kino</a
-            >
+            <a class="navbar__cinema-name text-h2" [routerLink]="['/']">Ale Kino</a>
         </div>
         <div class="navbar-buttons__wrapper">
             <div class="navbar-cart">
@@ -14,23 +12,20 @@
             </div>
             <div class="navbar__login">
                 <div
-                    *ngIf="
-                        (currentUser$ | async)?.firstName as name;
-                        else signin
-                    "
+                    *ngIf="(currentUser$ | async)?.firstName as name; else signin"
                     (click)="toggleDropdown()">
                     {{ name }}
                 </div>
                 <ng-template #signin>
-                    <div (click)="login()">Zaloguj się</div>
+                    <div class="login__text" (click)="login()">Zaloguj się</div>
                 </ng-template>
             </div>
-            <div [class.hidden]="hide" class="dropdown dropdown--navbar">
+            <div *ngIf="!hide" class="dropdown dropdown--navbar">
                 <div>Moje bilety</div>
                 <a [routerLink]="['/wanna-see']">Chcę obejrzeć</a>
                 <div>Ustawienia</div>
-                <div (click)="logout()">Wyloguj</div>
+                <button (click)="logout()">Wyloguj</button>
             </div>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>

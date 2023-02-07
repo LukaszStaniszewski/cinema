@@ -1,24 +1,6 @@
-import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, NgModule, OnChanges, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output } from "@angular/core";
+import { Ticket, TicketDetails } from "@domains/booking/store";
 
-import { ClickOutsideModule } from "../../directives/clickOutside.directive";
-export type TicketDetails = {
-  kind: TicketTypes;
-  price: number;
-};
-export type TicketTypes = "normalny" | "concessionary" | "family" | "voucher";
-export type Ticket = {
-  id: string;
-  seat: Seat;
-  kind: TicketTypes;
-  price: number;
-};
-export type Seat = {
-  position: { column: string; row: string };
-  reservation: boolean;
-  taken: boolean;
-  status: "standard" | "vip";
-};
 @Component({
   selector: "app-dropdown[options]",
   templateUrl: "./dropdown.component.html",
@@ -55,10 +37,3 @@ export class DropdownComponent implements OnChanges {
     this.hide = true;
   }
 }
-
-@NgModule({
-  declarations: [DropdownComponent],
-  imports: [ClickOutsideModule, CommonModule],
-  exports: [DropdownComponent],
-})
-export class DropdownModule {}
