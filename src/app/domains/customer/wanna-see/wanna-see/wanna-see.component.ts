@@ -1,21 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { MovieService } from "@core/movie/movie.service";
-type Movie = {
-  id: string;
-  title: string;
-  image: string;
-  genre: string;
-  pg: string;
-  descriptionShort: string;
-  descriptionLong: string;
-  descriptionExtra: {
-    cast: string[];
-  };
-  rating: string;
-  votesNumber: number;
-  premiere: boolean;
-  runTime: number;
-};
+
 @Component({
   selector: "app-wanna-see",
   templateUrl: "./wanna-see.component.html",
@@ -24,9 +9,9 @@ type Movie = {
 })
 export class WannaSeeComponent {
   private movieService = inject(MovieService);
-  vm$ = this.movieService.getFavoriteMovies();
+  vm$ = this.movieService.getFavorites();
 
   protected removeFromWannaSee(moveId: string) {
-    this.movieService.deleteFavoriteMovie(moveId);
+    this.movieService.deleteFavorite(moveId);
   }
 }

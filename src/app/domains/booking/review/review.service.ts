@@ -1,11 +1,10 @@
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { Injectable } from "@angular/core";
 import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
-import { BehaviorSubject, combineLatest, forkJoin, of, takeUntil, takeWhile } from "rxjs";
+import { BehaviorSubject, combineLatest } from "rxjs";
 
 import { selectTicketsSortedByType, TicketsSortedByType } from "../store";
 

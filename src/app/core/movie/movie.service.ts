@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject, map, startWith, switchMap, throwError } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { API, MESSAGE } from "src/environments/constants";
 
 type Cast = {
@@ -66,7 +66,7 @@ export class MovieService {
     //   });
   }
 
-  getFavoriteMovies() {
+  getFavorites() {
     // return this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE_LIST}/${2}`).pipe(
     //   switchMap(wannaSeeDTO => {
     //     const query = wannaSeeDTO
@@ -79,11 +79,10 @@ export class MovieService {
     return this.http.get<Movie[]>(`${API.MOVIES}`);
   }
 
-  deleteFavoriteMovie(movieId: string) {
-    console.log("hit");
+  deleteFavorite(movieId: string) {
     this.http.delete(`${API.WANNA_SEE}/${movieId}`).subscribe(console.log);
   }
-  getFavoriteMoviesId() {
+  getFavoriteId() {
     this.http
       .get<string[]>(`${API.WANNA_SEE}`)
       // .pipe(map(arg => arg.map(movie => movie.movieId).filter(Boolean)))
