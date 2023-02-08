@@ -38,7 +38,11 @@ export class ReviewStateService {
       this.store.select(selectTicketsSortedByType),
       this.showingState.getShowingPartial(params),
     ]).subscribe(([ticketsSortedByType, showing]) => {
-      this.reviewState$$.next({ ticketsSortedByType, showing: showing });
+      this.reviewState$$.next({
+        ...this.reviewState$$.value,
+        ticketsSortedByType,
+        showing: showing,
+      });
     });
   }
 
