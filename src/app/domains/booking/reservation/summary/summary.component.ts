@@ -1,4 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import {
+  AppStateWithBookingState,
+  BookingTicketActions,
+  selectTickets,
+  selectTotalPrice,
+} from "@domains/booking/store";
+import { Store } from "@ngrx/store";
+import { Observable, Subscription } from "rxjs";
 
 import { TicketStateService, ValuesRequiredToUpdateTicket } from "..";
 
@@ -10,12 +18,18 @@ import { TicketStateService, ValuesRequiredToUpdateTicket } from "..";
 })
 export class SummaryComponent {
   private ticket = inject(TicketStateService);
+  private store = inject<Store<AppStateWithBookingState>>(Store);
+
+  // tickets$ = this.store.select(selectTickets);
+  // totalPrice$ = this.store.select(selectTotalPrice);
+  // ticketDetails$ = this.ticket.fetchTicketDetails();
 
   get ticketInformation$() {
     return this.ticket.ticketInformation$;
   }
 
-  updateTicket(ticketData: ValuesRequiredToUpdateTicket) {
-    this.ticket.update(ticketData);
+  updateTicket({ id, ticketDetails }: ValuesRequiredToUpdateTicket) {
+    this.store.dispatch(BookingTicketActions.updateTicket({ id, valueToUpdate: ticketDetails }));
+    // this.ticket.update(ticketData);
   }
 }

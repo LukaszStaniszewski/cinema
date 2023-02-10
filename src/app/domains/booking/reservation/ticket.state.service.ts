@@ -3,21 +3,19 @@ import { inject, Injectable } from "@angular/core";
 import {
   AppStateWithBookingState,
   BookingTicketActions,
-  BookingTicketSortedActions,
   selectTickets,
+  selectTotalPrice,
   Ticket,
   TicketDetails,
-  TicketTypes,
 } from "@domains/booking/store";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
-import { BehaviorSubject, combineLatest, map, takeUntil } from "rxjs";
+import { BehaviorSubject, combineLatest, takeUntil } from "rxjs";
 
 import { Seat } from "./cinema-room/cinema-room.state.service";
 
 export type ValuesRequiredToUpdateTicket = {
   ticketDetails: TicketDetails;
-  currentType: TicketTypes;
   id: string;
 };
 
@@ -40,45 +38,24 @@ export class TicketStateService {
   private store = inject<Store<AppStateWithBookingState>>(Store);
 
   constructor(private http: HttpClient) {
-    combineLatest([this.store.select(selectTickets), this.fetchTicketDetails()])
-      .pipe(
-        map(([tickets, ticketDetails]) => ({
-          tickets,
-          ticketDetails,
-          totalPrice: this.calculateTotalPrice(tickets),
-        }))
-      )
-      .subscribe(ticketInfo => {
-        if (!ticketInfo.tickets.length) {
-          this.initialValuesForTicketStats(ticketInfo.ticketDetails);
-        }
-        this.patchState({ ...ticketInfo });
-        this.store.dispatch(
-          BookingTicketActions.updateTotalPrice({ total: ticketInfo.totalPrice })
-        );
-      });
-  }
-
-  get ticketInformation$() {
-    return this.ticketInformation$$.asObservable();
+    combineLatest([
+      this.store.select(selectTickets),
+      this.store.select(selectTotalPrice),
+      this.fetchTicketDetails(),
+    ]).subscribe(([tickets, totalPrice, ticketDetails]) => {
+      this.patchState({ tickets, totalPrice, ticketDetails });
+    });
   }
 
   private calculateTotalPrice(tickets: Ticket[]) {
     return tickets.map(ticket => ticket.price).reduce((acc, current) => current + acc, 0);
   }
-
-  update({ ticketDetails, id, currentType }: ValuesRequiredToUpdateTicket) {
-    this.store.dispatch(BookingTicketActions.updateTicket({ id, valueToUpdate: ticketDetails }));
-    this.store.dispatch(
-      BookingTicketSortedActions.updateTicketsSortedByTypeStart({
-        payload: { currentType, price: ticketDetails.price, type: ticketDetails.type },
-      })
-    );
+  get ticketInformation$() {
+    return this.ticketInformation$$.asObservable();
   }
 
   addToList(seatToUpdate: Seat) {
     const seatToUpdateId = seatToUpdate.position.row + seatToUpdate.position.column;
-
     if (seatToUpdate.reservation === true) {
       this.store.dispatch(BookingTicketActions.removeTicket({ id: seatToUpdateId }));
     } else {
@@ -86,16 +63,6 @@ export class TicketStateService {
         BookingTicketActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId })
       );
     }
-  }
-
-  // sortBasicTicketDataByType() {
-
-  // }
-  private initialValuesForTicketStats(ticketDetails: TicketDetails[]) {
-    const initialValues = ticketDetails.map(ticket => ({ type: ticket.type, amount: 0, price: 0 }));
-    this.store.dispatch(
-      BookingTicketSortedActions.addInitialValuesForTicketSortedByType({ initial: initialValues })
-    );
   }
 
   mapSeatAndTicketType({ seat, id }: { seat: Seat; id: string }): Ticket {

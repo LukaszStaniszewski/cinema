@@ -14,9 +14,9 @@
     </div>
     <!-- <label for="name">Name: </label> -->
     <div class="order-details">
-        <div *ngFor="let ticket of vm.ticketsSortedByType">
-            <div>{{ ticket.amount }}x {{ ticket.type }}</div>
-            <div>{{ ticket.price }}zł</div>
+        <div *ngFor="let ticket of vm.sortedTickets | keyvalue">
+            <div>{{ ticket.value.amout }}x {{ ticket.key }}</div>
+            <div>{{ ticket.value.price }}zł</div>
         </div>
         <div class="total text-gradient">
             <div>4 bilety</div>

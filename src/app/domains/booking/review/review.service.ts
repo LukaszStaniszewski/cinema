@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
 import { BehaviorSubject, combineLatest } from "rxjs";
 
-import { selectTicketsSortedByType, TicketsSortedByType } from "../store";
+import { selectTickets, selectTicketsSortedByType, TicketTypes } from "../store";
 
 type Order = {
   name: string;
@@ -16,29 +16,53 @@ type Order = {
 };
 
 export type ReviewState = {
-  ticketsSortedByType: TicketsSortedByType[];
+  sortedTickets: TicketsSortedByType;
   showing: Maybe<ShowingPartial>;
 };
-
+type TicketsSortedByType = {
+  [key: string]: { amout: number; price: number };
+};
 @Injectable()
 export class ReviewStateService {
   private reviewState$$ = new BehaviorSubject<ReviewState>({
-    ticketsSortedByType: [],
+    sortedTickets: {},
     showing: null,
   });
+  // private holder$$ = new BehaviorSubject<TicketsSortedByType>({});
 
   constructor(
     private http: HttpClient,
     private store: Store,
     private showingState: ShowingApiService
-  ) {}
+  ) {
+    this.reviewState$$.subscribe(value => console.log("holder", value));
+  }
 
   getViewData(params: string) {
+    let holder: TicketsSortedByType = {};
     combineLatest([
-      this.store.select(selectTicketsSortedByType),
+      this.store.select(selectTickets),
       this.showingState.getShowingPartial(params),
-    ]).subscribe(([ticketsSortedByType, showing]) => {
-      this.reviewState$$.next({ ticketsSortedByType, showing: showing });
+    ]).subscribe(([tickets, showing]) => {
+      holder = {};
+
+      for (let i = 0; i < tickets.length; i++) {
+        holder = {
+          ...holder,
+          [tickets[i].type]: {
+            amout: holder[tickets[i].type]?.amout ? holder[tickets[i].type]?.amout + 1 : 1,
+            price: holder[tickets[i].type]?.price
+              ? holder[tickets[i].type]?.price + tickets[i].price
+              : tickets[i].price,
+          },
+        };
+      }
+      // this.holder$$.next(holder);
+      this.reviewState$$.next({
+        ...this.reviewState$$.value,
+        sortedTickets: holder,
+        showing: showing,
+      });
     });
   }
 

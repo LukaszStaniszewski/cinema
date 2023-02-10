@@ -35,7 +35,7 @@ export type TicketSortedByTypeValueToUpdate = {
 
 export type BookingState = {
   tickets: Ticket[];
-  ticketsSortedByType: TicketsSortedByType[];
+
   totalPrice: number;
   showingId: string;
 };
@@ -48,7 +48,6 @@ export type AppStateWithBookingState = AppState & BookingPick;
 
 export const initialBookingState: BookingState = {
   tickets: [],
-  ticketsSortedByType: [],
   totalPrice: 0,
   showingId: "",
 };

@@ -1,12 +1,6 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
 
-import {
-  Seat,
-  Ticket,
-  TicketDetails,
-  TicketSortedByTypeValueToUpdate,
-  TicketsSortedByType,
-} from ".";
+import { Seat, Ticket, TicketDetails } from ".";
 
 export const BookingTicketActions = createActionGroup({
   source: "tickets",
@@ -18,16 +12,5 @@ export const BookingTicketActions = createActionGroup({
     "update ticket": props<{ id: string; valueToUpdate: TicketDetails }>(),
     "reset state": emptyProps(),
     "update total price": props<{ total: number }>(),
-  },
-});
-
-export const BookingTicketSortedActions = createActionGroup({
-  source: "sorted",
-  events: {
-    "add initial values for ticket sorted by type": props<{ initial: TicketsSortedByType[] }>(),
-    "add ticket sorted by type": props<{ payload: TicketsSortedByType }>(),
-    "update tickets sorted by type start": props<{ payload: TicketSortedByTypeValueToUpdate }>(),
-    "update tickets sorted by type success": props<{ payload: TicketsSortedByType[] }>(),
-    "remove ticket sorted by type": props<{ payload: Omit<TicketsSortedByType, "amount"> }>(),
   },
 });

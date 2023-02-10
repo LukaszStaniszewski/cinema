@@ -3,7 +3,6 @@ import { createReducer, on } from "@ngrx/store";
 import {
   // BookingState,
   BookingTicketActions,
-  BookingTicketSortedActions,
   // initialBookingState,
 } from ".";
 import { BookingState, initialBookingState } from "./booking.state";
@@ -41,50 +40,6 @@ export const bookingReducer = createReducer(
   on(BookingTicketActions.resetState, (): BookingState => {
     return {
       ...initialBookingState,
-    };
-  }),
-  on(
-    BookingTicketSortedActions.addInitialValuesForTicketSortedByType,
-    (state, action): BookingState => {
-      return {
-        ...state,
-        ticketsSortedByType: action.initial,
-      };
-    }
-  ),
-  on(BookingTicketSortedActions.addTicketSortedByType, (state, { payload }): BookingState => {
-    return {
-      ...state,
-      ticketsSortedByType: state.ticketsSortedByType.map(stat => {
-        if (stat.type === payload.type) {
-          return { ...stat, amount: stat.amount + 1, price: stat.price + payload.price };
-        }
-        return stat;
-      }),
-    };
-  }),
-  on(
-    BookingTicketSortedActions.updateTicketsSortedByTypeSuccess,
-    (state, { payload }): BookingState => {
-      return {
-        ...state,
-        ticketsSortedByType: [...payload],
-      };
-    }
-  ),
-  on(BookingTicketSortedActions.removeTicketSortedByType, (state, { payload }): BookingState => {
-    return {
-      ...state,
-      ticketsSortedByType: state.ticketsSortedByType.map(ticket => {
-        if (ticket.type === payload.type) {
-          return {
-            ...ticket,
-            amount: Math.max(ticket.amount - 1, 0),
-            price: Math.max(ticket.price - payload.price, 0),
-          };
-        }
-        return ticket;
-      }),
     };
   })
 );
