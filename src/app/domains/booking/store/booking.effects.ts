@@ -31,21 +31,4 @@ export class BookingEffects {
       })
     );
   });
-
-  // removeTicket$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(BookingActions.removeTicket),
-  //     concatLatestFrom(() => this.store.select(selectTickets)),
-  //     map(([id, tickets]) => tickets.filter(ticket => ticket.id == id.id)),
-  //     mergeMap(([{ price, id, type }]) => [
-  //       BookingActions.removeTicketSuccess({ id }),
-  //       BookingActions.removeTicketSortedByType({
-  //         payload: { price, type },
-  //       }),
-  //     ]),
-  //     catchError((error: string) => {
-  //       return throwError(() => new Error(error));
-  //     })
-  //   );
-  // });
 }

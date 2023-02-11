@@ -35,7 +35,6 @@ export type TicketSortedByTypeValueToUpdate = {
 
 export type BookingState = {
   tickets: Ticket[];
-
   totalPrice: number;
   showingId: string;
 };

@@ -1,10 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 
-import {
-  // BookingState,
-  BookingTicketActions,
-  // initialBookingState,
-} from ".";
+import { BookingTicketActions } from ".";
 import { BookingState, initialBookingState } from "./booking.state";
 
 export const bookingReducer = createReducer(

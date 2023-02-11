@@ -47,9 +47,6 @@ export class TicketStateService {
     });
   }
 
-  private calculateTotalPrice(tickets: Ticket[]) {
-    return tickets.map(ticket => ticket.price).reduce((acc, current) => current + acc, 0);
-  }
   get ticketInformation$() {
     return this.ticketInformation$$.asObservable();
   }
