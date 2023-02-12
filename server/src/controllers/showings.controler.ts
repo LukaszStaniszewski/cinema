@@ -18,8 +18,6 @@ export const sendShowings = async (req: Request, res: Response) => {
 };
 
 export const sendShowingBasis = async (req: Request<{ id: string }>, res: Response) => {
-  console.log("hit");
-
   try {
     const reservationId = req.params.id;
 
@@ -37,8 +35,6 @@ export const sendShowingBasis = async (req: Request<{ id: string }>, res: Respon
           time: available.find(at => at.reservationId == reservation.id)?.time,
         };
       })[0];
-
-    console.log(showingBasis);
     res.json(showingBasis);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));

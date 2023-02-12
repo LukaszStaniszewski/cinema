@@ -8,28 +8,33 @@
                 {{ movie.title | titlecase }}
             </div>
             <div class="text-body-big">
-                {{ movie.genre | titlecase }} | {{ movie.runTime }} minut |
-                PG-{{ movie.pg }}
+                {{ movie.genre | titlecase }} | {{ movie.runTime }} minut | PG-{{
+                    movie.pg
+                }}
             </div>
-            <span class="card-description text-body-big">{{
-                movie.description
-            }}</span>
+            <span class="card-description text-body-big">{{ movie.description }}</span>
         </div>
         <div class="card-details">
             <a routerLink="/">Więcej</a>
         </div>
         <div class="card-hours text-body-big">
-            <a
+            <!-- <a
                 class="time-details"
                 *ngFor="let hour of hours"
                 routerLink="/booking/reservation/{{ hour.reservationId }}"
+                >{{ hour.time }}</a
+            > -->
+            <a
+                class="time-details"
+                *ngFor="let hour of hours"
+                [routerLink]="['/booking/reservation', hour.reservationId]"
                 >{{ hour.time }}</a
             >
         </div>
     </main>
     <div class="card-rating">
         <p>{{ movie.rating }}/ 10</p>
-        <a class="button--card" routerLink="/">Oceń ten film!</a>
+        <a class="button--card" [routerLink]="['/']">Oceń ten film!</a>
         <button #addToWannaSee class="button--card" (click)="addToFavorites()">
             Chcę zobaczyć
         </button>

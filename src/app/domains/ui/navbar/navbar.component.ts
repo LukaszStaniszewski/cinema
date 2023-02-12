@@ -19,6 +19,10 @@ export class NavbarComponent {
     return this.userService.user$;
   }
 
+  get authState$() {
+    return this.authService.authState$;
+  }
+
   clickedOutside() {
     this.hide = true;
   }

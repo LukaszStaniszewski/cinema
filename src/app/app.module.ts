@@ -1,7 +1,8 @@
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { AuthService } from "@domains/auth";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
@@ -13,6 +14,10 @@ import { CustomHttpInterceptor } from "./core/interceptors/custom-http.intercept
 import { UiModule } from "./domains/ui";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
+
+function initFactory(initService: AuthService) {
+  return () => initService.autoLogin();
+}
 
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent, ShellComponent],
@@ -41,6 +46,12 @@ import { ShellComponent } from "./shell/shell.component";
     //   deps: [AuthenticationService],
     //   multi: true,
     // },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initFactory,
+      deps: [AuthService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

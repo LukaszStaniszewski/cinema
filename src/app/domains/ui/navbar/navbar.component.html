@@ -7,9 +7,12 @@
             <a class="navbar__cinema-name text-h2" [routerLink]="['/']">Ale Kino</a>
         </div>
         <div class="navbar-buttons__wrapper">
-            <div class="navbar-cart">
-                <img src="assets/svg/cart.svg" alt="" />
-            </div>
+            <ng-container *ngIf="authState$ | async as auth">
+                <div *ngIf="auth.authType !== 'admin'" class="navbar-cart">
+                    <img src="assets/svg/cart.svg" alt="" />
+                    <!-- <app-cart></app-cart> -->
+                </div>
+            </ng-container>
             <div class="navbar__login">
                 <div
                     *ngIf="(currentUser$ | async)?.firstName as name; else signin"
@@ -27,5 +30,6 @@
                 <button (click)="logout()">Wyloguj</button>
             </div>
         </div>
+        <!-- <div class="login__text" (click)="login()">Zaloguj się</div> -->
     </div>
 </nav>

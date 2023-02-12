@@ -5,9 +5,9 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import reservationRouter from "./reservation/reservation.route";
 import userRouter from "./routes/auth.route";
 import movieRouter from "./routes/movie.route";
-import reservationRouter from "./routes/reservation.route";
 import showingRouter from "./routes/showings.route";
 import ticketRouter from "./routes/ticket.route";
 import logger from "./utils/logger";

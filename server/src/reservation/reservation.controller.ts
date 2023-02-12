@@ -1,17 +1,19 @@
 import { Request, Response } from "express";
+import fs from "fs";
 
 import { ErrorMessage } from "../config/constants.config";
 import db from "../db.json";
 import getErrorMessage from "../utils/getErrorMessage";
+import { createOrder, findReservation } from ".";
 
-export const sendReservation = async (req: Request, res: Response) => {
+export const sendReservation = async (req: Request<{ id: string }>, res: Response) => {
   try {
-    const reservationId = req.params.id;
-
-    const [reservation] = db["reservations"].filter(reservation => reservation.id == reservationId);
-    if (!reservation) {
-      throw new Error(ErrorMessage.RESERVATION_NOT_FOUND);
+    const userId = res.locals.user?.id as string;
+    const reservationId = req.params?.id;
+    if (userId) {
+      createOrder(userId, reservationId);
     }
+    const reservation = findReservation(reservationId);
     res.json(reservation);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));

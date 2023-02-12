@@ -16,7 +16,7 @@ const deserialaizeUser = async (req: Request, res: Response, next: NextFunction)
     res.locals.user = decoded;
     return next();
   }
-  if (expired) return res.status(403).json(ErrorMessage.JWT_EXPIRED);
+  // if (expired) return res.status(403).json(ErrorMessage.JWT_EXPIRED);
 
   next();
 };
