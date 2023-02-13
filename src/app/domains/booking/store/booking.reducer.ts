@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 
-import { BookingTicketActions } from ".";
+import { BookingApiAtions, BookingTicketActions } from ".";
 import { BookingState, initialBookingState } from "./booking.state";
 
 export const bookingReducer = createReducer(
@@ -36,6 +36,12 @@ export const bookingReducer = createReducer(
   on(BookingTicketActions.resetState, (): BookingState => {
     return {
       ...initialBookingState,
+    };
+  }),
+  on(BookingApiAtions.getTicketsSuccess, (state, action): BookingState => {
+    return {
+      ...state,
+      tickets: action.payload,
     };
   })
 );

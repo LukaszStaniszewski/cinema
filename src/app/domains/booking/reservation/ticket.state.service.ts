@@ -1,18 +1,29 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { AuthService, AuthType } from "@domains/auth";
 import {
   AppStateWithBookingState,
   BookingTicketActions,
   selectTickets,
-  selectTotalPrice,
+  selectTicketsWithTotalPrice,
   Ticket,
   TicketDetails,
 } from "@domains/booking/store";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
-import { BehaviorSubject, combineLatest, takeUntil } from "rxjs";
+import {
+  BehaviorSubject,
+  catchError,
+  combineLatest,
+  concatMap,
+  debounceTime,
+  distinctUntilChanged,
+  of,
+  skip,
+  takeUntil,
+} from "rxjs";
 
-import { Seat } from "./cinema-room/cinema-room.state.service";
+import { Seat } from ".";
 
 export type ValuesRequiredToUpdateTicket = {
   ticketDetails: TicketDetails;
@@ -36,14 +47,21 @@ export class TicketStateService {
   private ticketInformation$$ = new BehaviorSubject<TicketInformation>(defaultTicketInformation);
 
   private store = inject<Store<AppStateWithBookingState>>(Store);
+  private authService = inject(AuthService);
 
   constructor(private http: HttpClient) {
     combineLatest([
-      this.store.select(selectTickets),
-      this.store.select(selectTotalPrice),
+      this.store.select(selectTicketsWithTotalPrice),
       this.fetchTicketDetails(),
-    ]).subscribe(([tickets, totalPrice, ticketDetails]) => {
+    ]).subscribe(([{ tickets, totalPrice }, ticketDetails]) => {
       this.patchState({ tickets, totalPrice, ticketDetails });
+    });
+  }
+
+  private patchState(stateSlice: Partial<TicketInformation>) {
+    this.ticketInformation$$.next({
+      ...this.ticketInformation$$.value,
+      ...stateSlice,
     });
   }
 
@@ -60,6 +78,35 @@ export class TicketStateService {
         BookingTicketActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId })
       );
     }
+  }
+
+  detectChangesToUpdateDB(reservationId: string) {
+    if (this.isAuthenticated("customer")) {
+      this.saveToDB(reservationId);
+    } else {
+      this.saveLocaly();
+    }
+  }
+
+  private isAuthenticated(type: AuthType): boolean {
+    return this.authService.authState.authType === type;
+  }
+
+  private saveToDB(reservationId: string) {
+    this.store
+      .select(selectTickets)
+      .pipe(
+        skip(1),
+        debounceTime(700),
+        distinctUntilChanged(),
+        concatMap(tickets => this.http.patch(`${API.RESERVATIONS}/${reservationId}`, tickets)),
+        catchError(error => of(error))
+      )
+      .subscribe();
+  }
+
+  private saveLocaly() {
+    of(console.log("hey")).subscribe();
   }
 
   mapSeatAndTicketType({ seat, id }: { seat: Seat; id: string }): Ticket {
@@ -79,15 +126,9 @@ export class TicketStateService {
       .get<TicketDetails[]>(API.TICKET_INFO)
       .pipe(takeUntil(this.ticketInformation$$.value.ticketDetails));
   }
+
   reset() {
     this.patchState({ tickets: [] });
-  }
-
-  private patchState(stateSlice: Partial<TicketInformation>) {
-    this.ticketInformation$$.next({
-      ...this.ticketInformation$$.value,
-      ...stateSlice,
-    });
   }
 
   ngOnDestroy() {

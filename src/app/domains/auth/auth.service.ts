@@ -13,7 +13,7 @@ export type LoginCredentials = {
 export type LoginDTO = User & {
   role: "customer" | "admin";
 };
-type AuthType = "none" | "admin" | "customer";
+export type AuthType = "none" | "admin" | "customer";
 
 type AuthState = {
   authType: AuthType;

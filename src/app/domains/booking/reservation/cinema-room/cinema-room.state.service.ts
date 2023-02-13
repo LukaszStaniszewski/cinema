@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { Ticket } from "@domains/booking/store";
 import { API, MESSAGE, SET_UP } from "@environments/constants";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, combineLatest, map, Observable, of, switchMap, takeUntil } from "rxjs";
@@ -7,10 +9,13 @@ import { BehaviorSubject, combineLatest, map, Observable, of, switchMap, takeUnt
 export interface ReservationDto {
   id: string;
   cinemaRoomId: string;
-  movieTitle: string;
   takenSeats: Seat[];
+  order?: Order;
 }
 
+export type Order = {
+  tickets: Ticket[];
+};
 export interface Seat {
   position: { column: string; row: string };
   reservation: boolean;
@@ -33,9 +38,13 @@ export class CinemaRoomStateService {
   private cinemaRoomState$$ = new BehaviorSubject<CinemaRoom>(defaultCinemaRoomState);
 
   private http = inject(HttpClient);
-  private toastService = inject(ToastStateService);
+
   get cinemaRoomState$(): Observable<CinemaRoom> {
     return this.cinemaRoomState$$.asObservable();
+  }
+
+  get cinemaRoomId() {
+    return this.cinemaRoomState$$.value.id;
   }
 
   get selectSeats$(): Observable<Seat[][]> {
@@ -48,31 +57,39 @@ export class CinemaRoomStateService {
       ...stateSlice,
     });
   }
-  getSeatingData(id: string) {
-    this.http
-      .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)
-      .pipe(
-        takeUntil(this.cinemaRoomState$$.value.seats),
-        switchMap(({ cinemaRoomId, takenSeats }) => {
-          return combineLatest([
-            of(takenSeats),
-            this.http.get<CinemaRoom>(`${API.CINEMAROOMS}/${cinemaRoomId}`),
-          ]);
-        })
-      )
-      .pipe(map(([takenSeats, cinemaRoom]) => this.mapCinemaRoomSeats(cinemaRoom, takenSeats)))
-      .subscribe({
-        next: seatings => {
-          this.patchState({
-            ...seatings,
-          });
-        },
-        error: () =>
-          this.toastService.activateToast({
-            message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
-            status: "info",
-          }),
-      });
+  // getSeatingData(id: string) {
+  //   this.http
+  //     .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)
+  //     .pipe(
+  //       takeUntil(this.cinemaRoomState$$.value.seats),
+  //       switchMap(({ cinemaRoomId, takenSeats, order }) => {
+  //         return combineLatest([
+  //           of(takenSeats),
+  //           of(order),
+  //           this.http.get<CinemaRoom>(`${API.CINEMAROOMS}/${cinemaRoomId}`),
+  //         ]);
+  //       })
+  //     )
+  //     .pipe(
+  //       map(([takenSeats, order, cinemaRoom]) =>
+  //         this.mapCinemaRoomSeats(cinemaRoom, takenSeats, order)
+  //       )
+  //     )
+  //     .subscribe({
+  //       next: seatings => {
+  //         this.patchState({
+  //           ...seatings,
+  //         });
+  //       },
+  //       error: () =>
+  //         this.toastService.activateToast({
+  //           message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
+  //           status: "info",
+  //         }),
+  //     });
+  // }
+  fetchCinemaRoom(cinemaRoomId: string) {
+    return this.http.get<CinemaRoom>(`${API.CINEMAROOMS}/${cinemaRoomId}`);
   }
 
   reset() {
@@ -101,18 +118,21 @@ export class CinemaRoomStateService {
     this.patchState({ id: cinemaRoom.id, seats: updatedCinemaRoom });
   }
 
-  private mapCinemaRoomSeats(cinemaRoom: CinemaRoom, seatsToUpdate?: Seat[]) {
-    if (!seatsToUpdate) return cinemaRoom;
-    const takenSeats = seatsToUpdate;
+  mapSeats(cinemaRoom: CinemaRoom, taken?: Seat[], reservedByCurrentUser?: Ticket[]) {
+    // if (!taken) return cinemaRoom;
+    if (!taken) return this.patchState({ ...cinemaRoom });
+
+    const takenSeats = taken;
     const updatedCinemaRoom = cinemaRoom;
+    const ticketsReservedInCurrentSession = reservedByCurrentUser;
 
     cinemaRoom.seats.map(column => {
       column.forEach((row, rowIndex, array) => {
         if (
           takenSeats.find(
-            seat =>
-              seat?.position?.column === row?.position?.column &&
-              seat?.position?.row === row?.position?.row
+            takenSeat =>
+              takenSeat?.position?.column === row?.position?.column &&
+              takenSeat?.position?.row === row?.position?.row
           )
         ) {
           array[rowIndex] = takenSeats.find(
@@ -120,15 +140,36 @@ export class CinemaRoomStateService {
               seat.position?.column === row.position?.column &&
               seat.position?.row === row.position?.row
           ) as Seat;
+        } else if (
+          ticketsReservedInCurrentSession?.find(
+            ({ seat }) =>
+              seat.position?.column == row.position?.column &&
+              seat.position?.row == row.position?.row
+          )
+        ) {
+          array[rowIndex] = ticketsReservedInCurrentSession?.find(
+            ({ seat }) =>
+              seat.position?.column == row.position?.column &&
+              seat.position?.row == row.position?.row
+          )?.seat as Seat;
         } else {
           array[rowIndex] = { ...array[rowIndex], reservation: false };
         }
       });
     });
 
-    return updatedCinemaRoom;
+    // return updatedCinemaRoom;
+
+    this.patchState({ ...updatedCinemaRoom });
   }
 
+  // private mapTakenSeats(array: Seat[], rowIndex: number, takenSeats: Seat[]) {
+  //   array[rowIndex] = takenSeats.find(
+  //     seat =>
+  //       seat.position?.column === row.position?.column &&
+  //       seat.position?.row === row.position?.row
+  //   ) as Seat;
+  // }
   ngOnDestory() {
     console.log("cinema room service destroeyd");
   }

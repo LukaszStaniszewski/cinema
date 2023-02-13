@@ -4,6 +4,7 @@ import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
 import { Observable } from "rxjs";
 
 import { CinemaRoomStateService, Seat, TicketStateService } from "..";
+import { ReservationService } from "../reservation.service";
 
 @Component({
   selector: "app-reservation",
@@ -18,7 +19,8 @@ export class ReservationComponent implements OnInit {
     private route: ActivatedRoute,
     private cinemaRoom: CinemaRoomStateService,
     private ticket: TicketStateService,
-    private showing: ShowingApiService
+    private showing: ShowingApiService,
+    private reservationService: ReservationService
   ) {}
 
   get cinemaRoomSeats$() {
@@ -27,7 +29,8 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.params = this.route.snapshot.params["id"];
-    this.cinemaRoom.getSeatingData(this.params);
+    // this.cinemaRoom.getSeatingData(this.params);
+    this.reservationService.getReservationData(this.params);
     this.showingInfo$ = this.showing.getShowingPartial(this.params);
   }
 

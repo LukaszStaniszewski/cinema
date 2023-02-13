@@ -49,7 +49,22 @@
   ],
   "orders": {
     "test": {
-      "tickets": []
+      "tickets": [
+        {
+          "seat": {
+            "position": {
+              "row": "H",
+              "column": "4"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "H4",
+          "type": "normalny",
+          "price": 20
+        }
+      ]
     },
     "20615a": {
       "tickets": []

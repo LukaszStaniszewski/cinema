@@ -14,3 +14,12 @@ export const BookingTicketActions = createActionGroup({
     "update total price": props<{ total: number }>(),
   },
 });
+
+export const BookingApiAtions = createActionGroup({
+  source: "tickets",
+  events: {
+    "get tickets start": emptyProps(),
+    "get tickets success": props<{ payload: Ticket[] }>(),
+    "get tickets failure": props<{ payload: string }>(),
+  },
+});

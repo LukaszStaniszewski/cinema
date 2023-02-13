@@ -3,7 +3,7 @@ import { MESSAGE, SET_UP } from "@environments/constants";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { catchError, map, throwError } from "rxjs";
+import { catchError, combineLatest, concatMap, map, of, switchMap, throwError } from "rxjs";
 
 import { TicketStateService } from "../reservation";
 import { AppStateWithBookingState, BookingTicketActions, selectTickets } from ".";
@@ -31,4 +31,15 @@ export class BookingEffects {
       })
     );
   });
+
+  // getReservation = createEffect(
+  //   () => {
+  //     return this.actions$.pipe(
+  //       ofType(BookingApiAtions.getTicketsStart),
+  //       map(() => this.ticketService.save("id")),
+  //       map(() => this.reservationService.fetchReservation()),
+  //     )
+  //   },
+  //   { dispatch: false }
+  // );
 }

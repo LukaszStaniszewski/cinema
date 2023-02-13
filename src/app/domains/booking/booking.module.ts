@@ -5,6 +5,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { Store, StoreModule } from "@ngrx/store";
 
 import { CinemaRoomStateService, TicketStateService } from "./reservation";
+import { ReservationService } from "./reservation/reservation.service";
 import { ReviewStateService } from "./review/review.service";
 import { BookingEffects, bookingFeatureKey, bookingReducer, BookingTicketActions } from "./store";
 
@@ -30,7 +31,7 @@ const routes: Routes = [
     StoreModule.forFeature(bookingFeatureKey, bookingReducer),
     EffectsModule.forFeature(BookingEffects),
   ],
-  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService],
+  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService, ReservationService],
 })
 export default class BookingModule {
   constructor(
