@@ -18,9 +18,14 @@ import {
   concatMap,
   debounceTime,
   distinctUntilChanged,
+  map,
+  Observable,
   of,
   skip,
+  skipUntil,
   takeUntil,
+  takeWhile,
+  tap,
 } from "rxjs";
 
 import { Seat } from ".";
@@ -45,7 +50,7 @@ const defaultTicketInformation = {
 @Injectable()
 export class TicketStateService {
   private ticketInformation$$ = new BehaviorSubject<TicketInformation>(defaultTicketInformation);
-
+  updateDB = new Observable<boolean>();
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private authService = inject(AuthService);
 
@@ -69,7 +74,12 @@ export class TicketStateService {
     return this.ticketInformation$$.asObservable();
   }
 
+  get selectTickets$() {
+    return this.ticketInformation$$.pipe(map(state => state.tickets.length));
+  }
+
   addToList(seatToUpdate: Seat) {
+    this.updateDB = of(true);
     const seatToUpdateId = seatToUpdate.position.row + seatToUpdate.position.column;
     if (seatToUpdate.reservation === true) {
       this.store.dispatch(BookingTicketActions.removeTicket({ id: seatToUpdateId }));
@@ -96,7 +106,7 @@ export class TicketStateService {
     this.store
       .select(selectTickets)
       .pipe(
-        skip(1),
+        skip(2),
         debounceTime(700),
         distinctUntilChanged(),
         concatMap(tickets => this.http.patch(`${API.RESERVATIONS}/${reservationId}`, tickets)),

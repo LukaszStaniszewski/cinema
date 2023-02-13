@@ -34,11 +34,9 @@ export const createOrder = (orderId: string) => {
   return order;
 };
 
-export const getOrder = (orderId: string) => {
-  console.log("git pre order", orderId);
+export const getTicketsReservedByCurrentUser = (orderId: string) => {
   if (doesExist(orderId)) {
     const order = db["orders"][orderId];
-    console.log("hit order", order);
     return order;
   }
   return;

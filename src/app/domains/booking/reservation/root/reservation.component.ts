@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import {
+  AppStateWithBookingState,
+  BookingApiAtions,
+  selectShowingPartial,
+} from "@domains/booking/store";
 import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
-import { Observable } from "rxjs";
+import { Store } from "@ngrx/store";
+import { Observable, single, switchMap, takeWhile, tap } from "rxjs";
 
-import { CinemaRoomStateService, Seat, TicketStateService } from "..";
-import { ReservationService } from "../reservation.service";
+import { CinemaRoomStateService, ReservationService, Seat, TicketStateService } from "..";
 
 @Component({
   selector: "app-reservation",
@@ -14,7 +19,9 @@ import { ReservationService } from "../reservation.service";
 })
 export class ReservationComponent implements OnInit {
   params = "";
-  showingInfo$ = new Observable<ShowingPartial>();
+  // showingInfo$ = new Observable<ShowingPartial>();
+  private store = inject<Store<AppStateWithBookingState>>(Store);
+
   constructor(
     private route: ActivatedRoute,
     private cinemaRoom: CinemaRoomStateService,
@@ -26,12 +33,25 @@ export class ReservationComponent implements OnInit {
   get cinemaRoomSeats$() {
     return this.cinemaRoom.selectSeats$;
   }
+  showingInfo$ = this.store.select(selectShowingPartial);
 
   ngOnInit(): void {
     this.params = this.route.snapshot.params["id"];
     // this.cinemaRoom.getSeatingData(this.params);
+    this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: this.params }));
     this.reservationService.getReservationData(this.params);
-    this.showingInfo$ = this.showing.getShowingPartial(this.params);
+    // this.showingInfo$ = this.showing
+    //   .getShowingPartial(this.params)
+    //   .pipe(
+    //     tap(showingPartial =>
+    //       this.store.dispatch(BookingApiAtions.getShowingPartialStart(showingPartial))
+    //     )
+    //   );
+    // this.showingInfo$ = this.store.select(selectShowingPartial).pipe(
+    //   takeWhile(showing => !showing),
+    //   switchMap(() => this.showing.getShowingPartial(this.params)),
+    //   tap(showing => this.store.dispatch(BookingApiAtions.getShowingPartialStart(showing)))
+    // );
   }
 
   updateCinemaRoom(seat: Seat) {

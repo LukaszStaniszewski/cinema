@@ -1,12 +1,29 @@
 import { inject, Injectable } from "@angular/core";
+import { ShowingApiService } from "@domains/dashboard";
 import { MESSAGE, SET_UP } from "@environments/constants";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { catchError, combineLatest, concatMap, map, of, switchMap, throwError } from "rxjs";
+import {
+  catchError,
+  combineLatest,
+  concatMap,
+  map,
+  of,
+  switchMap,
+  takeWhile,
+  tap,
+  throwError,
+} from "rxjs";
 
 import { TicketStateService } from "../reservation";
-import { AppStateWithBookingState, BookingTicketActions, selectTickets } from ".";
+import {
+  AppStateWithBookingState,
+  BookingApiAtions,
+  BookingTicketActions,
+  selectShowingPartial,
+  selectTickets,
+} from ".";
 
 @Injectable()
 export class BookingEffects {
@@ -14,6 +31,7 @@ export class BookingEffects {
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private ticketService = inject(TicketStateService);
   private toastService = inject(ToastStateService);
+  private showingService = inject(ShowingApiService);
 
   createTicket$ = createEffect(() => {
     return this.actions$.pipe(
@@ -32,14 +50,14 @@ export class BookingEffects {
     );
   });
 
-  // getReservation = createEffect(
-  //   () => {
-  //     return this.actions$.pipe(
-  //       ofType(BookingApiAtions.getTicketsStart),
-  //       map(() => this.ticketService.save("id")),
-  //       map(() => this.reservationService.fetchReservation()),
-  //     )
-  //   },
-  //   { dispatch: false }
-  // );
+  getShowingPartial$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(BookingApiAtions.getShowingPartialStart),
+      concatLatestFrom(() => this.store.select(selectShowingPartial)),
+      takeWhile(([payload, showingParital]) => !showingParital),
+      switchMap(([{ payload }]) => this.showingService.getShowingPartial(payload)),
+      map(showingPartial => BookingApiAtions.getShowingPartialSuccess(showingPartial)),
+      catchError(error => of(BookingApiAtions.getShowingPartialFailure({ payload: error })))
+    );
+  });
 }

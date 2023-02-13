@@ -1,3 +1,6 @@
+import { ShowingPartial } from "@domains/dashboard";
+import { Maybe } from "@shared/utility-types";
+
 import { AppState } from "../reservation/reservation.module";
 
 export type Seat = {
@@ -36,7 +39,7 @@ export type TicketSortedByTypeValueToUpdate = {
 export type BookingState = {
   tickets: Ticket[];
   totalPrice: number;
-  showingId: string;
+  showing: Maybe<ShowingPartial>;
 };
 
 export const bookingFeatureKey = "booking" as const;
@@ -48,5 +51,5 @@ export type AppStateWithBookingState = AppState & BookingPick;
 export const initialBookingState: BookingState = {
   tickets: [],
   totalPrice: 0,
-  showingId: "",
+  showing: null,
 };

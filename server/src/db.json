@@ -49,6 +49,12 @@
   ],
   "orders": {
     "test": {
+      "showing": {
+        "title": "The Dark Knight",
+        "day": "06-12-2022",
+        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+        "time": "14:00"
+      },
       "tickets": [
         {
           "seat": {
@@ -67,7 +73,64 @@
       ]
     },
     "20615a": {
-      "tickets": []
+      "tickets": [
+        {
+          "seat": {
+            "position": {
+              "row": "H",
+              "column": "3"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "H3",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "G",
+              "column": "3"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "G3",
+          "type": "ulgowy",
+          "price": 12
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "F",
+              "column": "3"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "F3",
+          "type": "rodzinny",
+          "price": 16
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "H",
+              "column": "4"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "H4",
+          "type": "normalny",
+          "price": 20
+        }
+      ]
     }
   },
   "movies": [

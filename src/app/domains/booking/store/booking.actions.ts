@@ -1,3 +1,4 @@
+import { ShowingPartial } from "@domains/dashboard";
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
 
 import { Seat, Ticket, TicketDetails } from ".";
@@ -21,5 +22,9 @@ export const BookingApiAtions = createActionGroup({
     "get tickets start": emptyProps(),
     "get tickets success": props<{ payload: Ticket[] }>(),
     "get tickets failure": props<{ payload: string }>(),
+    // "get showing partial start": props<ShowingPartial>(),
+    "get showing partial start": props<{ payload: string }>(),
+    "get showing partial success": props<ShowingPartial>(),
+    "get showing partial failure": props<{ payload: string }>(),
   },
 });

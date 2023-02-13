@@ -3,8 +3,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ClickOutsideDirective } from "@shared/index";
 import { AppRoutingModule } from "src/app/app-routing.module";
 
+import { CartComponent } from "./cart/cart/cart.component";
 import { NavbarComponent } from "./navbar/navbar.component";
-import { CartComponent } from './cart/cart/cart.component';
 
 @NgModule({
   declarations: [NavbarComponent, CartComponent],

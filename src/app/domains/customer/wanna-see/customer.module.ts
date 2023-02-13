@@ -7,7 +7,7 @@ import { WannaSeeComponent } from "./wanna-see/wanna-see.component";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "wanna-see",
     component: WannaSeeComponent,
     title: "Want to see page",
   },

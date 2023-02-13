@@ -22,7 +22,7 @@ const routes: Routes = [
         loadChildren: () => import("./domains/booking/booking.module"),
       },
       {
-        path: "wanna-see",
+        path: "",
         loadChildren: () => import("./domains/customer/wanna-see/customer.module"),
       },
       {

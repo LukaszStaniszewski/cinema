@@ -1,28 +1,37 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
+import { ShowingPartial } from "@domains/dashboard";
 import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
+import { Maybe } from "@shared/utility-types";
 import { combineLatest, map, of, switchMap } from "rxjs";
 
 import { AppStateWithBookingState, BookingApiAtions, Ticket } from "../store";
 import { CinemaRoomStateService } from "./cinema-room/cinema-room.state.service";
 import { TicketStateService } from "./ticket.state.service";
 
-export type Order = {
+type Order = {
   tickets: Ticket[];
+  showing: Maybe<ShowingPartial>;
+  credentials?: {
+    name: string;
+    surname: string;
+    email: string;
+    phoneNumber?: number;
+  };
 };
-export interface Seat {
+interface Seat {
   position: { column: string; row: string };
   reservation: boolean;
   taken: boolean;
   status: "standard" | "vip";
 }
-export interface ReservationDto {
+interface ReservationDto {
   id: string;
   cinemaRoomId: string;
   takenSeats: Seat[];
-  order?: Order;
+  reservedTickets?: Ticket[];
 }
 
 @Injectable()
@@ -37,6 +46,7 @@ export class ReservationService {
   getReservationData(id: string) {
     this.store.dispatch(BookingApiAtions.getTicketsStart());
     this.ticketService.detectChangesToUpdateDB(id);
+
     this.http
       .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)
       .pipe(
@@ -47,13 +57,19 @@ export class ReservationService {
           ]);
         })
       )
-      .pipe(map(([{ takenSeats, order }, cinemaRoom]) => ({ takenSeats, order, cinemaRoom })))
+      .pipe(
+        map(([{ takenSeats, reservedTickets }, cinemaRoom]) => ({
+          takenSeats,
+          reservedTickets,
+          cinemaRoom,
+        }))
+      )
       .subscribe({
-        next: ({ takenSeats, order, cinemaRoom }) => {
-          if (order) {
-            this.store.dispatch(BookingApiAtions.getTicketsSuccess({ payload: order?.tickets }));
+        next: ({ takenSeats, reservedTickets, cinemaRoom }) => {
+          if (reservedTickets) {
+            this.store.dispatch(BookingApiAtions.getTicketsSuccess({ payload: reservedTickets }));
           }
-          this.cinemaRoomService.mapSeats(cinemaRoom, takenSeats, order?.tickets);
+          this.cinemaRoomService.mapSeats(cinemaRoom, takenSeats, reservedTickets);
         },
         error: () =>
           this.toastService.activateToast({

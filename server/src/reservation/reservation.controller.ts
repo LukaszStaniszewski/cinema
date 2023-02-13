@@ -4,7 +4,7 @@ import fs from "fs";
 import { ErrorMessage } from "../config/constants.config";
 import db from "../db.json";
 import getErrorMessage from "../utils/getErrorMessage";
-import { createOrder, findReservation, getOrder, Ticket, updateOrder } from ".";
+import { createOrder, findReservation, getTicketsReservedByCurrentUser, Ticket, updateOrder } from ".";
 
 export const sendReservation = async (req: Request<{ id: string }>, res: Response) => {
   try {
@@ -15,9 +15,9 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
       createOrder(orderId);
 
       const reservation = findReservation(reservationId);
-      const order = getOrder(orderId);
-      if (order) {
-        res.json({ ...reservation, order });
+      const reservedTickets = getTicketsReservedByCurrentUser(orderId);
+      if (reservedTickets) {
+        res.json({ ...reservation, reservedTickets: [...reservedTickets.tickets] });
       } else {
         res.json(reservation);
       }
