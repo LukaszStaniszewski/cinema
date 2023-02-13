@@ -2,7 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { AuthService } from "@domains/auth";
+import { AuthService, UserStateService } from "@domains/auth";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";

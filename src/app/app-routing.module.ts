@@ -1,9 +1,12 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { CanMatchCustomerSection } from "@core/guards/canMatchCustomerSection.guard";
 
 import { CardListComponent } from "./domains/dashboard";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
+
+// export const authCustomerGuard: CanMatchFn = () => !inject(IS_PRODUCTION);
 
 const routes: Routes = [
   { path: "", redirectTo: "showings/06-12-2022", pathMatch: "full" },
@@ -24,6 +27,7 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () => import("./domains/customer/wanna-see/customer.module"),
+        canMatch: [CanMatchCustomerSection],
       },
       {
         path: "login",
