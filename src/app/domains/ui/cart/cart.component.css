@@ -1,0 +1,29 @@
+img {
+  height: 2rem;
+  fill: var(--color-text-primary) !important;
+}
+.cart {
+  position: relative;
+}
+.cart__toggle-btn {
+  all: unset;
+}
+
+.cart .dropdown {
+  position: absolute;
+  display: block;
+  background-color: white;
+  height: max-content;
+  width: max-content;
+  z-index: 3;
+  color: black;
+}
+
+.dropdown__list {
+  background-color: white;
+}
+
+.dropdown__list-item {
+  all: unset;
+  display: flex;
+}

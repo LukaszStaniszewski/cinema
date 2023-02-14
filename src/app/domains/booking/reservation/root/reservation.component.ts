@@ -38,7 +38,7 @@ export class ReservationComponent implements OnInit {
   ngOnInit(): void {
     this.params = this.route.snapshot.params["id"];
     // this.cinemaRoom.getSeatingData(this.params);
-    this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: this.params }));
+    // this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: this.params }));
     this.reservationService.getReservationData(this.params);
     // this.showingInfo$ = this.showing
     //   .getShowingPartial(this.params)

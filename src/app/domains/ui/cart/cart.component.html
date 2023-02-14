@@ -1,1 +1,23 @@
-<h1 class="cart">hahahahasadsadsadsadwqewqe</h1>
+<!-- <h1 class="cart">hahahahasadsadsadsadwqewqe</h1> -->
+<div class="cart">
+    <button class="cart__toggle-btn">
+        <img class="toggle-btn__icon" src="assets/svg/cart.svg" alt="" />
+    </button>
+
+    <menu class="dropdown">
+        <ul class="dropdown__list">
+            <li
+                class="dropdown__list-item"
+                *ngFor="let showingParital of ShowingsPartial">
+                <!-- <div>{{ showingParital.image }}</div> -->
+                <img src="{{ showingParital.image }}" />
+                <div>
+                    <div>{{ showingParital.title }}</div>
+                    <div>{{ showingParital.day }}</div>
+                    <div>{{ showingParital.time }}</div>
+                </div>
+                <a [routerLink]="['/lastUrl']">Dokończ zamówienie</a>
+            </li>
+        </ul>
+    </menu>
+</div>

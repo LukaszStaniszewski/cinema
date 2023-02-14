@@ -2,7 +2,7 @@ import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { CartComponent, WannaSeeCardComponent, WannaSeeComponent } from ".";
+import { WannaSeeCardComponent, WannaSeeComponent } from ".";
 
 const routes: Routes = [
   {

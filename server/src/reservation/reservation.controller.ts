@@ -10,6 +10,7 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
   try {
     const userId = res.locals.user?.id as string;
     const reservationId = req.params?.id;
+    console.log("user", userId);
     if (userId) {
       const orderId = (userId + reservationId).replaceAll("-", "");
       createOrder(orderId);

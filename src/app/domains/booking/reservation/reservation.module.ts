@@ -4,7 +4,13 @@ import { RouterModule, Routes } from "@angular/router";
 import { ClickOutsideDirective } from "@shared/index";
 
 import { BookingState } from "../store";
-import { CinemaRoomComponent, DropdownComponent, ReservationComponent, SummaryComponent } from ".";
+import {
+  CinemaRoomComponent,
+  DropdownComponent,
+  ReservationComponent,
+  ReservationService,
+  SummaryComponent,
+} from ".";
 
 /// czy dodanie typu AppState do app module sprawi ze booking module zostanie załadowany od razu (zamiast być lazy), bo aplikacja bedzie chciała zaimportować typ BookingState
 export type AppState = {
@@ -22,5 +28,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [CinemaRoomComponent, SummaryComponent, ReservationComponent, DropdownComponent],
   imports: [CommonModule, RouterModule.forChild(routes), ClickOutsideDirective],
+  providers: [ReservationService],
 })
 export default class ReservationModule {}

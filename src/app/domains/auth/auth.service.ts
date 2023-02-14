@@ -35,7 +35,7 @@ export class AuthService {
     return this.auth$$.asObservable();
   }
 
-  async autoLogin() {
+  autoLogin() {
     this.http.get<LoginDTO>(API.LOGIN).subscribe({
       next: user => this.setGlobalUserState(user),
 

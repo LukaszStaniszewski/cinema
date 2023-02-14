@@ -6,7 +6,12 @@ import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
 import { BehaviorSubject, combineLatest } from "rxjs";
 
-import { selectTicketsWithTotalPrice, Ticket, TicketTypes } from "../store";
+import {
+  selectTicketsWithTotalPrice,
+  selectTicketsWithTotalPriceAndShowingPartial,
+  Ticket,
+  TicketTypes,
+} from "../store";
 
 type Order = {
   name: string;
@@ -40,19 +45,18 @@ export class ReviewStateService {
   ) {}
 
   getViewData(params: string) {
-    combineLatest([
-      this.showingState.getShowingPartial(params),
-      this.store.select(selectTicketsWithTotalPrice),
-    ]).subscribe(([showing, { tickets, totalPrice }]) => {
-      const sortedTickets = this.sortTicketsByType(tickets);
-      this.reviewState$$.next({
-        ...this.reviewState$$.value,
-        sortedTickets: sortedTickets,
-        showing: showing,
-        totalPrice: totalPrice,
-        totalAmount: tickets.length,
-      });
-    });
+    combineLatest([this.store.select(selectTicketsWithTotalPriceAndShowingPartial)]).subscribe(
+      ([{ tickets, totalPrice, showingPartial }]) => {
+        const sortedTickets = this.sortTicketsByType(tickets);
+        this.reviewState$$.next({
+          ...this.reviewState$$.value,
+          sortedTickets: sortedTickets,
+          showing: showingPartial,
+          totalPrice: totalPrice,
+          totalAmount: tickets.length,
+        });
+      }
+    );
   }
 
   private sortTicketsByType(tickets: Ticket[]): TicketsSortedByType {

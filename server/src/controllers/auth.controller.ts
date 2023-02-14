@@ -44,7 +44,9 @@ export const autoLogin = async (req: Request, res: Response) => {
       throw new Error("User not found");
     }
     res.json(user);
-    // res.status(400);
+    // console.log("auth hit");
+    // res.status(401);
+    // res.end();
   } catch (error) {
     res.status(418);
   }

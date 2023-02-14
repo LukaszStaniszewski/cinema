@@ -1,13 +1,20 @@
 import { CommonModule, Location } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
+import { ActivatedRoute, RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { Store, StoreModule } from "@ngrx/store";
+import { distinctUntilChanged, map, of } from "rxjs";
 
 import { CinemaRoomStateService, TicketStateService } from "./reservation";
 import { ReservationService } from "./reservation/reservation.service";
 import { ReviewStateService } from "./review/review.service";
-import { BookingEffects, bookingFeatureKey, bookingReducer, BookingTicketActions } from "./store";
+import {
+  BookingApiAtions,
+  BookingEffects,
+  bookingFeatureKey,
+  bookingReducer,
+  BookingTicketActions,
+} from "./store";
 
 const routes: Routes = [
   {
@@ -31,17 +38,21 @@ const routes: Routes = [
     StoreModule.forFeature(bookingFeatureKey, bookingReducer),
     EffectsModule.forFeature(BookingEffects),
   ],
-  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService, ReservationService],
+  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService],
 })
 export default class BookingModule {
   constructor(
     private cinemaRoom: CinemaRoomStateService,
     private ticketService: TicketStateService,
     private location: Location,
-    private store: Store
+    private store: Store,
+    private route: ActivatedRoute
   ) {
     const regex = new RegExp(/booking/i);
     this.location.onUrlChange(url => {
+      if (regex.test(url)) {
+        this.getShowingPartial(url);
+      }
       if (!regex.test(url)) {
         this.resetStateOnLeaveCuzNgOnDestoryIsNotWorking();
       }
@@ -52,5 +63,17 @@ export default class BookingModule {
     this.cinemaRoom.reset();
     this.ticketService.reset();
     this.store.dispatch(BookingTicketActions.resetState());
+  }
+
+  private getShowingPartial(reservationId: string) {
+    of(reservationId)
+      .pipe(
+        map(url => url.split("/")),
+        map(url => url[url.length - 1]),
+        distinctUntilChanged()
+      )
+      .subscribe(params =>
+        this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: params }))
+      );
   }
 }
