@@ -36,17 +36,11 @@ export class AuthService {
   }
 
   async autoLogin() {
-    console.log("auto-login hit");
     this.http.get<LoginDTO>(API.LOGIN).subscribe({
       next: user => this.setGlobalUserState(user),
 
       error: () => this.auth$$.next({ authType: "none" }),
     });
-    // const { body } = await fetch(`http://localhost:3000/api${API.LOGIN} `);
-    // console.log(body);
-    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // //@ts-ignore
-    // this.setGlobalUserState(body);
   }
 
   setGlobalUserState({ role, ...user }: LoginDTO) {
@@ -64,6 +58,7 @@ export class AuthService {
   }
 
   logout() {
+    this.http.get(API.LOGOUT).subscribe();
     this.auth$$.next({ authType: "none" });
     this.userService.remove();
   }

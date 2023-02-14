@@ -1,5 +1,6 @@
 export const API = {
   LOGIN: "/auth",
+  LOGOUT: "/auth/logout",
   RESERVATIONS: "/reservations",
   CINEMAROOMS: "/reservations/cinemaroom",
   MOVIES: "/movies",

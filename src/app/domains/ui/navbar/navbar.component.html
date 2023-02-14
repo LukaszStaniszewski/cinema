@@ -8,8 +8,9 @@
         </div>
         <div class="navbar-buttons__wrapper">
             <ng-container *ngIf="authState$ | async as auth">
-                <div *ngIf="auth.authType !== 'admin'" class="navbar-cart">
+                <div class="navbar-cart">
                     <img src="assets/svg/cart.svg" alt="" />
+                    <router-outlet name="cart"></router-outlet>
                     <!-- <app-cart></app-cart> -->
                 </div>
             </ng-container>
@@ -32,4 +33,6 @@
         </div>
         <!-- <div class="login__text" (click)="login()">Zaloguj się</div> -->
     </div>
+    <!-- <router-outlet name="cart"></router-outlet> -->
 </nav>
+<!-- <router-outlet></router-outlet> -->

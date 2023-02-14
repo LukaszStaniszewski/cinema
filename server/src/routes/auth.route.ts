@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { authenticate, autoLogin } from "../controllers/auth.controller";
+import { authenticate, autoLogin, logout } from "../controllers/auth.controller";
 import deserialaizeUser from "../middleware/deserialaizeUser";
 import requireUser from "../middleware/requireUser";
 
@@ -11,6 +11,7 @@ const userRouter = Router();
 // userRouter.patch("/", requireUser, updateUserOrUsers);
 userRouter.post("/", authenticate);
 userRouter.get("/", deserialaizeUser, autoLogin);
+userRouter.get("/logout", deserialaizeUser, logout);
 // userRouter.get("/current", requireUser, getCurrentUser);
 
 export default userRouter;

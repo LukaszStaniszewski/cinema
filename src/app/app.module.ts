@@ -2,7 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-import { AuthService, UserStateService } from "@domains/auth";
+import { AuthService } from "@domains/auth";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
@@ -11,7 +11,6 @@ import { ToastComponent } from "@shared/ui/toast/toast.component";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { CustomHttpInterceptor } from "./core/interceptors/custom-http.interceptor";
-import { UiModule } from "./domains/ui";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
 
@@ -27,7 +26,6 @@ function initFactory(initService: AuthService) {
     AppRoutingModule,
     HttpClientModule,
     DashboardModule,
-    UiModule,
     ToastComponent,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

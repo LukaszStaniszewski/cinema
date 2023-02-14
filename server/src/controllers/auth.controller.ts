@@ -44,6 +44,15 @@ export const autoLogin = async (req: Request, res: Response) => {
       throw new Error("User not found");
     }
     res.json(user);
+    // res.status(400);
+  } catch (error) {
+    res.status(418);
+  }
+};
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    res.clearCookie("accessToken", { path: "/" });
   } catch (error) {
     res.status(418);
   }
