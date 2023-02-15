@@ -35,7 +35,7 @@
     <div class="card-rating">
         <p>{{ movie.rating }}/ 10</p>
         <a class="button--card" [routerLink]="['/']">Oceń ten film!</a>
-        <button #addToWannaSee class="button--card" (click)="addToFavorites()">
+        <button #addToWannaSee class="btn" (click)="addToFavorites()">
             Chcę zobaczyć
         </button>
     </div>

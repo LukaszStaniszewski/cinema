@@ -1,6 +1,7 @@
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { ClickOutsideDirective } from "@shared/index";
 
 const test = [
   {
@@ -22,11 +23,20 @@ const test = [
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"],
-  imports: [NgIf, NgFor, AsyncPipe, RouterLink],
+  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective],
   standalone: true,
 
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CartComponent {
+  isOpen = false;
   @Input() ShowingsPartial = test;
+
+  closeDropdown() {
+    this.isOpen = false;
+  }
+
+  toggleDropdown() {
+    this.isOpen = !this.isOpen;
+  }
 }

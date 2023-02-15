@@ -1,10 +1,6 @@
 .dates {
   margin: 2.5rem 0;
   display: flex;
-  /* border: 1px solid var(--color-border); */
-
-  /* width: max-content; */
-  /* border-radius: 5px; */
 }
 .date > a {
   word-spacing: 1px;
@@ -12,15 +8,13 @@
 .date {
   position: relative;
   cursor: pointer;
-  /* padding: 1rem 1.5rem; */
   height: 60px;
   width: 90px;
-  /* border: 1px solid var(--color-border); */
   border-collapse: collapse;
   cursor: pointer;
   letter-spacing: 2px;
-  background-color: rgba(255, 255, 255, 0.15);
-  /* border-radius: 5px; */
+  background-color: var(--color-border);
+  /* z-index: -1; */
 }
 
 .date:hover > .date-border {
@@ -29,7 +23,7 @@
 .date::before,
 .date > .date-border {
   border-radius: inherit;
-  /* aby efekt sie resetowal gdy uzytkownik wyjedzie myszka poza karte */
+
   opacity: 0;
   content: "";
   height: 100%;
@@ -39,14 +33,12 @@
   position: absolute;
   transition: opacity 500ms;
   pointer-events: none;
-  /* background-color: red !important; */
 }
 
 .date::before {
   background: radial-gradient(
     60px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.06),
-    /* rgba(0, 191, 249, 0.5), */ transparent 40%
+    rgba(38, 51, 78, 0.1) transparent 40%
   );
   z-index: 3;
 }
@@ -58,8 +50,8 @@
 .date > .date-border {
   background: radial-gradient(
     120px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.3),
-    /* rgba(0, 191, 249, 1)  */ transparent 40%
+    rgba(38, 51, 78, 0.6),
+    transparent 40%
   );
   z-index: 1;
 }
@@ -68,8 +60,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* text-align: center;
-  line-height: 60px; */
   background-color: var(--background-primary);
   border-radius: inherit;
   height: calc(100% - 2px);
@@ -77,6 +67,4 @@
   margin: 1px;
 
   width: calc(100% - 2px);
-
-  z-index: 3;
 }

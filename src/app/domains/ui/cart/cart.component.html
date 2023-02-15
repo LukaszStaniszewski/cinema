@@ -1,22 +1,26 @@
-<!-- <h1 class="cart">hahahahasadsadsadsadwqewqe</h1> -->
-<div class="cart">
-    <button class="cart__toggle-btn">
-        <img class="toggle-btn__icon" src="assets/svg/cart.svg" alt="" />
+<div class="cart" (appClickOutside)="closeDropdown()">
+    <button (click)="toggleDropdown()" type="button" class="cart__toggle-btn">
+        <img
+            draggable="false"
+            class="toggle-btn__icon"
+            src="assets/svg/cart.svg"
+            alt="cart with reservations" />
     </button>
 
-    <menu class="dropdown">
+    <menu *ngIf="isOpen" class="cart__dropdown">
         <ul class="dropdown__list">
             <li
                 class="dropdown__list-item"
                 *ngFor="let showingParital of ShowingsPartial">
-                <!-- <div>{{ showingParital.image }}</div> -->
-                <img src="{{ showingParital.image }}" />
-                <div>
-                    <div>{{ showingParital.title }}</div>
-                    <div>{{ showingParital.day }}</div>
-                    <div>{{ showingParital.time }}</div>
+                <div class="list-item__content">
+                    <img src="{{ showingParital.image }}" />
+                    <div class="content__info">
+                        <div>{{ showingParital.title }}</div>
+                        <div>{{ showingParital.day }}</div>
+                        <div>{{ showingParital.time }}</div>
+                    </div>
                 </div>
-                <a [routerLink]="['/lastUrl']">Dokończ zamówienie</a>
+                <a class="btn btn--sm" [routerLink]="['/lastUrl']">Dokończ zamówienie</a>
             </li>
         </ul>
     </menu>

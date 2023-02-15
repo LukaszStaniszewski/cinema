@@ -2,45 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
 
 :root {
-  --color-border: #333333;
-  --color-border-secondary: #00bff9;
-  --color-border-secondary: #22d3ee;
-  --background-primary: #000000;
+  --color-primary: #00f3f3;
 
-  --background-secondary: #ffffff;
-  --background-tertiary: #f1f5f9;
-  --color-text-primary: #e5e7eb;
-  --color-bg-button: #f0f0f0;
-  --color-placeholder: #c0c0c0;
-  --gradient-blue: linear-gradient(
-    89.83deg,
-    #00f3f3 4.83%,
-    #00ffff 52.31%,
-    #00ffff 100.78%
-  );
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #637394;
 
-  --neutral-900: #000000;
-  --neutral-800: #333333;
-  --neutral-700: #353b44;
-  --neutral-400: #c0c0c0;
-  --neutral-300: #cccccc;
-  --neutral-200: #e5e7eb;
-  --neutral-100: #ffffff;
+  --color-border: #26334e;
 
-  --accent-orange-300: #fdba74;
-  --accent-orange-600: #fa6218;
-  --accent-orange-800: #c2410c;
-  --accent-teal-600: #00bfff;
-  --accent-teal-500: #00cbff;
-  --accent-teal-400: #00f3f3;
-  --accent-teal-300: #00ffff;
-  --accent-sky-800: #075985;
-  --accent-sky-300: #7dd3fc;
-  --accent-beige: #f2e5d7;
-  --accent-green: #166534;
+  --background-primary: #111620;
+  --background-secondary: #1a2232;
+  /* --background-secondary: #1a2232; */
+  --background-secondary-v2: #151c29;
+  --background-tertiary: #253554;
+  --background-glass: #1b2435;
 
   --accent-error: #ff0000;
   --accent-success: #00fa9a;
+  --accent-orange-300: #fdba74;
+  --accent-orange-600: #fa6218;
+  --accent-orange-800: #c2410c;
+
+  --color-placeholder: #c0c0c0;
 }
 
 html:focus-within {
@@ -202,4 +184,26 @@ a {
 
 .input::placeholder {
   color: var(--color-placeholder);
+}
+
+.btn {
+  all: unset;
+  color: black;
+  background-color: var(--color-primary);
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0px 4px 16px rgba(0, 243, 243, 0.25);
+  letter-spacing: normal;
+  line-height: 1.5;
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn--sm {
+  /* line-height: 1.5; */
+  font-size: 0.875rem;
+  padding: 0.3rem 0.6rem;
 }

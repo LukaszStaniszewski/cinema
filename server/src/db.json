@@ -73,25 +73,25 @@
       ]
     },
     "20615a": {
+      "tickets": []
+    },
+    "20617a": {
       "tickets": [
         {
           "seat": {
             "position": {
-              "row": "H",
-              "column": "5"
+              "row": "G",
+              "column": "7"
             },
             "taken": false,
             "reservation": true,
             "status": "standard"
           },
-          "id": "H5",
+          "id": "G7",
           "type": "normalny",
           "price": 20
         }
       ]
-    },
-    "20617a": {
-      "tickets": []
     }
   },
   "movies": [
