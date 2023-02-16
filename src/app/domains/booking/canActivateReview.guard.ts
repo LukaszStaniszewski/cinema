@@ -31,7 +31,7 @@ export class CanActivateReview implements CanActivate {
         // else if(route.url.some(value => value.path === "purchase")) {
 
         // }
-        return true;
+        return false;
       })
     );
   }
