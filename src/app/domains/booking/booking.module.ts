@@ -5,6 +5,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { Store, StoreModule } from "@ngrx/store";
 import { distinctUntilChanged, map, of } from "rxjs";
 
+import { CanActivateReview } from "./canActivateReview.guard";
 import { CinemaRoomStateService, TicketStateService } from "./reservation";
 import { ReservationService } from "./reservation/reservation.service";
 import { ReviewStateService } from "./review/review.service";
@@ -20,6 +21,7 @@ const routes: Routes = [
   {
     path: "purchase",
     loadChildren: () => import("./review/review.module"),
+    canActivate: [CanActivateReview],
   },
   {
     path: "reservation",
@@ -38,7 +40,7 @@ const routes: Routes = [
     StoreModule.forFeature(bookingFeatureKey, bookingReducer),
     EffectsModule.forFeature(BookingEffects),
   ],
-  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService],
+  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService, CanActivateReview],
 })
 export default class BookingModule {
   constructor(
