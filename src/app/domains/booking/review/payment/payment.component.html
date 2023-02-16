@@ -1,0 +1,25 @@
+<div class="payment-dialog">
+    <div mat-dialog-actions>
+        <button class="dialog__return-button" (click)="onNoClick()">
+            <img src="assets/svg/chevron-left.svg" alt="close modal dialog" />
+        </button>
+    </div>
+    <img class="dialog__blik-icon" src="assets/svg/blik/blik-logo.svg" alt="" />
+
+    <div class="dialog__text">
+        <h1 class="text-body-big">Wpisz kod BLIK</h1>
+        <p class="text-body-small">Wygenerowany przez aplikację Twojego banku</p>
+    </div>
+    <div class="dialog__content" mat-dialog-content>
+        <img src="assets/svg/blik/blik-logo.svg" alt="" />
+        <form [formGroup]="paymentForm">
+            <input formControlName="code" class="payment-input" type="number" />
+            <input class="payment-input" type="number" />
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button type="button" class="dialog__submit btn" [mat-dialog-close]="submit()">
+            Zapłać
+        </button>
+    </div>
+</div>

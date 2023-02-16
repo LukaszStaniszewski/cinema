@@ -2,6 +2,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthService } from "@domains/auth";
 import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 import { EffectsModule } from "@ngrx/effects";
@@ -29,6 +30,7 @@ function initFactory(initService: AuthService) {
     ToastComponent,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    BrowserAnimationsModule,
   ],
   providers: [
     {

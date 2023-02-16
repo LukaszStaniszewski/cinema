@@ -1,0 +1,72 @@
+/* .dialog {
+  position: absolute;
+} */
+
+/* p {
+  font-family: "Barlow", sans-serif;
+} */
+
+.payment-dialog {
+  padding: 8px;
+}
+
+.payment-dialog > div:first-child {
+  all: unset;
+}
+
+.dialog__return-button {
+  all: unset;
+}
+
+.dialog__return-button > img {
+  box-sizing: content-box;
+
+  width: 25px;
+  height: 25px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.dialog__blik-icon {
+  display: block;
+  top: 0;
+  margin: 0 auto;
+  width: 60px;
+}
+
+.dialog__text {
+  text-align: center;
+  margin: 50px 0 30px 0;
+  /* font-family: "Barlow", sans-serif; */
+}
+
+.dialog__text > h1 {
+  color: var(--color-text-white-background);
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 1.14rem;
+  line-height: 1.5;
+}
+
+.dialog__text > p {
+  color: var(--color-text-secondary);
+}
+
+.payment-input {
+}
+
+.dialog__content {
+  display: flex;
+
+  background-color: var(--background-tertiary);
+  margin-bottom: 20px;
+}
+
+.dialog__content > img {
+  width: 40px;
+}
+
+.dialog__submit {
+  top: 0;
+  margin: 0 auto;
+}

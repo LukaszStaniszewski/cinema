@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 
 import { CustomValidators } from "../../../shared/custom-validators";
+import { PaymentComponent } from "./payment/payment.component";
 import { ReviewStateService } from "./review.service";
 
 @Component({
@@ -16,7 +18,7 @@ export class TicketPurchasePageComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
   private route = inject(ActivatedRoute);
   private reviewService = inject(ReviewStateService);
-
+  private dialog = inject(MatDialog);
   userCredentialsForm = this.createForm();
 
   get reviewState$() {
@@ -59,5 +61,27 @@ export class TicketPurchasePageComponent implements OnInit {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;
     // this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
+  }
+  openDialog(): void {
+    // this.dialog.open(PaymentComponent);
+    const dialogRef = this.dialog.open(PaymentComponent, {
+      // height: "350px",
+      // width: "250px",
+      // position: { right: "0px", top: "0px" },
+      // direction: "rtl",
+      disableClose: true,
+      closeOnNavigation: true,
+    });
+    // const dialogRef = this.dialog.open(PaymentComponent, {
+    //   // data: { name: this.name, animal: this.animal },
+    // });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log("The dialog was closed");
+    //   // this.animal = result;
+    // });
   }
 }
