@@ -2,9 +2,8 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Ticket } from "@domains/booking/store";
-import { API, MESSAGE, SET_UP } from "@environments/constants";
-import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { BehaviorSubject, combineLatest, map, Observable, of, switchMap, takeUntil } from "rxjs";
+import { API, SET_UP } from "@environments/constants";
+import { BehaviorSubject, map, Observable, retry } from "rxjs";
 
 export interface ReservationDto {
   id: string;
@@ -89,7 +88,7 @@ export class CinemaRoomStateService {
   //     });
   // }
   fetchCinemaRoom(cinemaRoomId: string) {
-    return this.http.get<CinemaRoom>(`${API.CINEMAROOMS}/${cinemaRoomId}`);
+    return this.http.get<CinemaRoom>(`${API.CINEMAROOM}/${cinemaRoomId}`).pipe(retry(2));
   }
 
   reset() {

@@ -49,12 +49,14 @@
   ],
   "orders": {
     "test": {
-      "showing": {
+      "userId": "1",
+      "showingPartial": {
         "title": "The Dark Knight",
         "day": "06-12-2022",
         "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
         "time": "14:00"
       },
+      "url": "",
       "tickets": [
         {
           "seat": {
@@ -72,26 +74,107 @@
         }
       ]
     },
-    "20615a": {
-      "tickets": []
-    },
-    "20617a": {
+    "20615b": {
       "tickets": [
         {
           "seat": {
             "position": {
-              "row": "G",
-              "column": "7"
+              "row": "F",
+              "column": "3"
             },
             "taken": false,
             "reservation": true,
             "status": "standard"
           },
-          "id": "G7",
+          "id": "F3",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "G",
+              "column": "3"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "G3",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "E",
+              "column": "3"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "E3",
           "type": "normalny",
           "price": 20
         }
-      ]
+      ],
+      "showingPartial": {
+        "title": "The Dark Knight",
+        "day": "06-12-2022",
+        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+        "time": "15:00",
+        "reservationId": "06-15-b",
+        "type": "[tickets] get showing partial success"
+      },
+      "url": "",
+      "userId": 2
+    },
+    "20615a": {
+      "tickets": [
+        {
+          "seat": {
+            "position": {
+              "row": "H",
+              "column": "4"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "H4",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "G",
+              "column": "4"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "G4",
+          "type": "normalny",
+          "price": 20
+        }
+      ],
+      "showingPartial": {
+        "title": "Avatar: Istota Wody",
+        "day": "06-12-2022",
+        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+        "time": "15:00",
+        "reservationId": "06-15-a",
+        "type": "[tickets] get showing partial success"
+      },
+      "url": "",
+      "userId": 2
+    },
+    "20612a": {
+      "userId": 2,
+      "tickets": []
     }
   },
   "movies": [

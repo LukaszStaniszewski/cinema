@@ -40,6 +40,7 @@ export type BookingState = {
   tickets: Ticket[];
   totalPrice: number;
   showing: Maybe<ShowingPartial>;
+  reservationId: string;
 };
 
 export const bookingFeatureKey = "booking" as const;
@@ -52,4 +53,5 @@ export const initialBookingState: BookingState = {
   tickets: [],
   totalPrice: 0,
   showing: null,
+  reservationId: "",
 };

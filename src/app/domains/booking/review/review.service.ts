@@ -81,6 +81,6 @@ export class ReviewStateService {
   }
 
   submitOrder(payload: Order) {
-    this.http.post(API.ORDER, payload).subscribe(console.log);
+    this.http.post(API.ORDERS, payload).subscribe(console.log);
   }
 }

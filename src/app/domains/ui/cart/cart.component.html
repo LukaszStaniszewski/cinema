@@ -8,16 +8,14 @@
     </button>
 
     <menu *ngIf="isOpen" class="cart__dropdown">
-        <ul class="dropdown__list">
-            <li
-                class="dropdown__list-item"
-                *ngFor="let showingParital of ShowingsPartial">
+        <ul *ngIf="vm$ | async as cartItems" class="dropdown__list">
+            <li class="dropdown__list-item" *ngFor="let cartItem of cartItems">
                 <div class="list-item__content">
-                    <img src="{{ showingParital.image }}" />
+                    <img src="{{ cartItem.showingPartial.image }}" />
                     <div class="content__info">
-                        <div>{{ showingParital.title }}</div>
-                        <div>{{ showingParital.day }}</div>
-                        <div>{{ showingParital.time }}</div>
+                        <div>{{ cartItem.showingPartial.title }}</div>
+                        <div>{{ cartItem.showingPartial.day }}</div>
+                        <div>{{ cartItem.showingPartial.time }}</div>
                     </div>
                 </div>
                 <a class="btn btn--sm" [routerLink]="['/lastUrl']">Dokończ zamówienie</a>

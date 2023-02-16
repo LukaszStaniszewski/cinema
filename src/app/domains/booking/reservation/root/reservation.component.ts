@@ -37,25 +37,12 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.params = this.route.snapshot.params["id"];
-    // this.cinemaRoom.getSeatingData(this.params);
-    // this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: this.params }));
     this.reservationService.getReservationData(this.params);
-    // this.showingInfo$ = this.showing
-    //   .getShowingPartial(this.params)
-    //   .pipe(
-    //     tap(showingPartial =>
-    //       this.store.dispatch(BookingApiAtions.getShowingPartialStart(showingPartial))
-    //     )
-    //   );
-    // this.showingInfo$ = this.store.select(selectShowingPartial).pipe(
-    //   takeWhile(showing => !showing),
-    //   switchMap(() => this.showing.getShowingPartial(this.params)),
-    //   tap(showing => this.store.dispatch(BookingApiAtions.getShowingPartialStart(showing)))
-    // );
   }
 
   updateCinemaRoom(seat: Seat) {
     this.cinemaRoom.update(seat);
     this.ticket.addToList(seat);
+    this.ticket.detectChangesToUpdateDB(this.params);
   }
 }

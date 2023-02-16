@@ -48,6 +48,8 @@ export default class BookingModule {
     private store: Store,
     private route: ActivatedRoute
   ) {
+    console.log("booking module");
+
     const regex = new RegExp(/booking/i);
     this.location.onUrlChange(url => {
       if (regex.test(url)) {

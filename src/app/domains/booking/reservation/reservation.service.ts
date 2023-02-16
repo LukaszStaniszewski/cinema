@@ -9,7 +9,6 @@ import { combineLatest, map, of, switchMap } from "rxjs";
 
 import { AppStateWithBookingState, BookingApiAtions, Ticket } from "../store";
 import { CinemaRoomStateService } from "./cinema-room/cinema-room.state.service";
-import { TicketStateService } from "./ticket.state.service";
 
 type Order = {
   tickets: Ticket[];
@@ -40,12 +39,10 @@ export class ReservationService {
 
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private cinemaRoomService = inject(CinemaRoomStateService);
-  private ticketService = inject(TicketStateService);
   private toastService = inject(ToastStateService);
 
   getReservationData(id: string) {
     this.store.dispatch(BookingApiAtions.getTicketsStart());
-    this.ticketService.detectChangesToUpdateDB(id);
 
     this.http
       .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)

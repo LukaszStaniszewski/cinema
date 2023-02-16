@@ -4,7 +4,7 @@ import fs from "fs";
 import { ErrorMessage } from "../config/constants.config";
 import db from "../db.json";
 import getErrorMessage from "../utils/getErrorMessage";
-import { createOrder, findReservation, getTicketsReservedByCurrentUser, Ticket, updateOrder } from ".";
+import { createOrder, findReservation, getTicketsReservedByCurrentUser, Ticket } from ".";
 
 export const sendReservation = async (req: Request<{ id: string }>, res: Response) => {
   try {
@@ -13,12 +13,12 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
     console.log("user", userId);
     if (userId) {
       const orderId = (userId + reservationId).replaceAll("-", "");
-      createOrder(orderId);
+      createOrder(orderId, userId);
 
       const reservation = findReservation(reservationId);
       const reservedTickets = getTicketsReservedByCurrentUser(orderId);
       if (reservedTickets) {
-        res.json({ ...reservation, reservedTickets: [...reservedTickets.tickets] });
+        res.json({ ...reservation, reservedTickets: [...reservedTickets] });
       } else {
         res.json(reservation);
       }
@@ -48,14 +48,14 @@ export const sendCinemaRoom = async (req: Request, res: Response) => {
   }
 };
 
-export const updateOrderController = (req: Request<{ id: string }, { ticket: Ticket[] }>, res: Response) => {
-  try {
-    const userId = res.locals.user?.id as string;
-    const reservationId = req.params?.id;
-    updateOrder(userId, reservationId, req.body);
-    // const reservation = findReservation(reservationId);
-    res.status(204).send("ok");
-  } catch (error) {
-    res.status(404).json(getErrorMessage(error));
-  }
-};
+// export const updateOrderController = (req: Request<{ id: string }, { ticket: Ticket[] }>, res: Response) => {
+//   try {
+//     const userId = res.locals.user?.id as string;
+//     const reservationId = req.params?.id;
+//     updateOrder(userId, reservationId, req.body);
+//     // const reservation = findReservation(reservationId);
+//     res.status(204).send("ok");
+//   } catch (error) {
+//     res.status(404).json(getErrorMessage(error));
+//   }
+// };

@@ -5,10 +5,12 @@ import {
   AppStateWithBookingState,
   BookingTicketActions,
   selectTickets,
+  selectTicketsWithShowingPartial,
   selectTicketsWithTotalPrice,
   Ticket,
   TicketDetails,
 } from "@domains/booking/store";
+import { CartStateService } from "@domains/ui/cart/cart-state.service";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import {
@@ -50,9 +52,10 @@ const defaultTicketInformation = {
 @Injectable()
 export class TicketStateService {
   private ticketInformation$$ = new BehaviorSubject<TicketInformation>(defaultTicketInformation);
-  updateDB = new Observable<boolean>();
+
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private authService = inject(AuthService);
+  // private cartService = inject(CartStateService);
 
   constructor(private http: HttpClient) {
     combineLatest([
@@ -79,7 +82,6 @@ export class TicketStateService {
   }
 
   addToList(seatToUpdate: Seat) {
-    this.updateDB = of(true);
     const seatToUpdateId = seatToUpdate.position.row + seatToUpdate.position.column;
     if (seatToUpdate.reservation === true) {
       this.store.dispatch(BookingTicketActions.removeTicket({ id: seatToUpdateId }));
@@ -103,13 +105,20 @@ export class TicketStateService {
   }
 
   private saveToDB(reservationId: string) {
+    console.log("hit");
     this.store
-      .select(selectTickets)
+      .select(selectTicketsWithShowingPartial)
       .pipe(
-        skip(2),
+        takeWhile(state => state.tickets.length > 0),
         debounceTime(700),
         distinctUntilChanged(),
-        concatMap(tickets => this.http.patch(`${API.RESERVATIONS}/${reservationId}`, tickets)),
+        concatMap(({ tickets, showingPartial }) => {
+          return this.http.patch(`${API.ORDERS}/${reservationId}`, {
+            tickets,
+            showingPartial,
+            url: "",
+          });
+        }),
         catchError(error => of(error))
       )
       .subscribe();
