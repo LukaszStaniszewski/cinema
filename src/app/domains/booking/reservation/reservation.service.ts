@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { ShowingPartial } from "@domains/dashboard";
@@ -5,9 +6,9 @@ import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { Maybe } from "@shared/utility-types";
-import { combineLatest, map, of, switchMap } from "rxjs";
+import { combineLatest, distinctUntilChanged, map, of, switchMap } from "rxjs";
 
-import { AppStateWithBookingState, BookingApiAtions, Ticket } from "../store";
+import { AppStateWithBookingState, BookingApiAtions, BookingTicketActions, Ticket } from "../store";
 import { CinemaRoomStateService } from "./cinema-room/cinema-room.state.service";
 import { TicketStateService } from "./ticket.state.service";
 
@@ -36,13 +37,33 @@ interface ReservationDto {
 
 @Injectable()
 export class ReservationService {
-  private http = inject(HttpClient);
+  // private http = inject(HttpClient);
 
-  private store = inject<Store<AppStateWithBookingState>>(Store);
-  private cinemaRoomService = inject(CinemaRoomStateService);
-  private ticketService = inject(TicketStateService);
-  private toastService = inject(ToastStateService);
+  // private store = inject<Store<AppStateWithBookingState>>(Store);
+  // private cinemaRoomService = inject(CinemaRoomStateService);
+  // private ticketService = inject(TicketStateService);
+  // private toastService = inject(ToastStateService);
+  // private location = inject(Location)
 
+  constructor(
+    private cinemaRoomService: CinemaRoomStateService,
+    private ticketService: TicketStateService,
+    private location: Location,
+    private store: Store,
+    private http: HttpClient,
+    private toastService: ToastStateService
+  ) {
+    const regex = new RegExp(/booking/i);
+    this.location.onUrlChange(url => {
+      console.log(url);
+      if (regex.test(url)) {
+        this.getShowingPartial(url);
+      }
+      if (!regex.test(url)) {
+        this.resetStateOnLeaveCuzNgOnDestoryIsNotWorking();
+      }
+    });
+  }
   getReservationData(id: string) {
     this.store.dispatch(BookingApiAtions.getTicketsStart());
     this.ticketService.detectChangesToUpdateDB(id);
@@ -77,5 +98,23 @@ export class ReservationService {
             status: "error",
           }),
       });
+  }
+
+  private resetStateOnLeaveCuzNgOnDestoryIsNotWorking() {
+    this.cinemaRoomService.reset();
+    this.ticketService.reset();
+    this.store.dispatch(BookingTicketActions.resetState());
+  }
+
+  private getShowingPartial(reservationId: string) {
+    of(reservationId)
+      .pipe(
+        map(url => url.split("/")),
+        map(url => url[url.length - 1]),
+        distinctUntilChanged()
+      )
+      .subscribe(params =>
+        this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: params }))
+      );
   }
 }

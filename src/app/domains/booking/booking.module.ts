@@ -40,17 +40,23 @@ const routes: Routes = [
     StoreModule.forFeature(bookingFeatureKey, bookingReducer),
     EffectsModule.forFeature(BookingEffects),
   ],
-  providers: [CinemaRoomStateService, TicketStateService, ReviewStateService, CanActivateReview],
+  providers: [
+    CinemaRoomStateService,
+    TicketStateService,
+    ReviewStateService,
+    CanActivateReview,
+    ReservationService,
+  ],
 })
 export default class BookingModule {
   constructor(
     private cinemaRoom: CinemaRoomStateService,
     private ticketService: TicketStateService,
     private location: Location,
-    private store: Store,
-    private route: ActivatedRoute
+    private store: Store
   ) {
     const regex = new RegExp(/booking/i);
+
     this.location.onUrlChange(url => {
       if (regex.test(url)) {
         this.getShowingPartial(url);

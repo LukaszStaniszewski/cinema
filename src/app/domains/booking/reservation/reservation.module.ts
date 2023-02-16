@@ -28,6 +28,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [CinemaRoomComponent, SummaryComponent, ReservationComponent, DropdownComponent],
   imports: [CommonModule, RouterModule.forChild(routes), ClickOutsideDirective],
-  providers: [ReservationService],
+  providers: [],
 })
 export default class ReservationModule {}
