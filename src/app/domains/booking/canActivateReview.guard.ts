@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { map, Observable } from "rxjs";
+import { map, Observable, timeout, timestamp } from "rxjs";
 
 import { AppStateWithBookingState, selectTickets } from "./store";
 
@@ -21,18 +21,17 @@ export class CanActivateReview implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     console.log(state.url);
-
-    console.log(this.router.snapshot.params["id"]);
     // console.log();
     return this.store.select(selectTickets).pipe(
       map(tickets => {
+        console.log(tickets);
         if (tickets.length > 0) {
           return true;
         }
         // else if(route.url.some(value => value.path === "purchase")) {
 
         // }
-        return false;
+        return true;
       })
     );
   }

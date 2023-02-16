@@ -1,21 +1,14 @@
 import { CommonModule, Location } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ActivatedRoute, RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { Store, StoreModule } from "@ngrx/store";
-import { distinctUntilChanged, map, of } from "rxjs";
 
 import { CanActivateReview } from "./canActivateReview.guard";
+import { InitialBookingApiService } from "./initial-booking-api.service";
 import { CinemaRoomStateService, TicketStateService } from "./reservation";
-import { ReservationService } from "./reservation/reservation.service";
 import { ReviewStateService } from "./review/review.service";
-import {
-  BookingApiAtions,
-  BookingEffects,
-  bookingFeatureKey,
-  bookingReducer,
-  BookingTicketActions,
-} from "./store";
+import { BookingEffects, bookingFeatureKey, bookingReducer, selectTickets } from "./store";
 
 const routes: Routes = [
   {
@@ -45,43 +38,24 @@ const routes: Routes = [
     TicketStateService,
     ReviewStateService,
     CanActivateReview,
-    ReservationService,
+    InitialBookingApiService,
   ],
 })
 export default class BookingModule {
+  reservationId = "";
+
   constructor(
-    private cinemaRoom: CinemaRoomStateService,
-    private ticketService: TicketStateService,
     private location: Location,
-    private store: Store
+    private store: Store,
+    private initialApiService: InitialBookingApiService
   ) {
-    const regex = new RegExp(/booking/i);
+    this.store.select(selectTickets).subscribe(console.log);
 
     this.location.onUrlChange(url => {
-      if (regex.test(url)) {
-        this.getShowingPartial(url);
-      }
-      if (!regex.test(url)) {
-        this.resetStateOnLeaveCuzNgOnDestoryIsNotWorking();
-      }
+      const splitedUrl = url.split("/");
+      const reservationId = splitedUrl[splitedUrl.length - 1];
+
+      this.initialApiService.getReservationData(reservationId);
     });
-  }
-
-  private resetStateOnLeaveCuzNgOnDestoryIsNotWorking() {
-    this.cinemaRoom.reset();
-    this.ticketService.reset();
-    this.store.dispatch(BookingTicketActions.resetState());
-  }
-
-  private getShowingPartial(reservationId: string) {
-    of(reservationId)
-      .pipe(
-        map(url => url.split("/")),
-        map(url => url[url.length - 1]),
-        distinctUntilChanged()
-      )
-      .subscribe(params =>
-        this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: params }))
-      );
   }
 }

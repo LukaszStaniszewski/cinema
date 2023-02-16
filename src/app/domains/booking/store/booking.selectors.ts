@@ -6,6 +6,9 @@ export const selectBookingState = createFeatureSelector<BookingState>("booking")
 
 export const selectTickets = createSelector(selectBookingState, state => state.tickets);
 
+export const selectTicketsAtPosition = (index: number) =>
+  createSelector(selectBookingState, state => state.tickets.at(index));
+
 export const selectTotalPrice = createSelector(selectBookingState, state =>
   state.tickets.map(ticket => ticket.price).reduce((acc, current) => current + acc, 0)
 );

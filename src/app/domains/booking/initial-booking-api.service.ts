@@ -1,16 +1,30 @@
 import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { ShowingPartial } from "@domains/dashboard";
 import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { Maybe } from "@shared/utility-types";
-import { combineLatest, distinctUntilChanged, map, of, switchMap } from "rxjs";
+import {
+  combineLatest,
+  distinctUntilChanged,
+  map,
+  of,
+  switchMap,
+  takeUntil,
+  takeWhile,
+} from "rxjs";
 
-import { AppStateWithBookingState, BookingApiAtions, BookingTicketActions, Ticket } from "../store";
-import { CinemaRoomStateService } from "./cinema-room/cinema-room.state.service";
-import { TicketStateService } from "./ticket.state.service";
+import { CinemaRoomStateService } from "./reservation/cinema-room/cinema-room.state.service";
+import { TicketStateService } from "./reservation/ticket.state.service";
+import {
+  BookingApiAtions,
+  BookingTicketActions,
+  selectShowingPartial,
+  selectTicketsAtPosition,
+  Ticket,
+} from "./store";
 
 type Order = {
   tickets: Ticket[];
@@ -36,14 +50,9 @@ interface ReservationDto {
 }
 
 @Injectable()
-export class ReservationService {
-  // private http = inject(HttpClient);
-
-  // private store = inject<Store<AppStateWithBookingState>>(Store);
-  // private cinemaRoomService = inject(CinemaRoomStateService);
-  // private ticketService = inject(TicketStateService);
-  // private toastService = inject(ToastStateService);
-  // private location = inject(Location)
+export class InitialBookingApiService {
+  hasLoadedShowingPartial = this.store.select(selectShowingPartial);
+  hasLoaded = this.store.select(selectTicketsAtPosition(0));
 
   constructor(
     private cinemaRoomService: CinemaRoomStateService,
@@ -55,7 +64,6 @@ export class ReservationService {
   ) {
     const regex = new RegExp(/booking/i);
     this.location.onUrlChange(url => {
-      console.log(url);
       if (regex.test(url)) {
         this.getShowingPartial(url);
       }
@@ -66,11 +74,11 @@ export class ReservationService {
   }
   getReservationData(id: string) {
     this.store.dispatch(BookingApiAtions.getTicketsStart());
-    this.ticketService.detectChangesToUpdateDB(id);
 
     this.http
       .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)
       .pipe(
+        takeUntil(this.hasLoaded.pipe(takeWhile(tickets => !!tickets))),
         switchMap(({ cinemaRoomId, ...reservation }) => {
           return combineLatest([
             of(reservation),
@@ -91,6 +99,7 @@ export class ReservationService {
             this.store.dispatch(BookingApiAtions.getTicketsSuccess({ payload: reservedTickets }));
           }
           this.cinemaRoomService.mapSeats(cinemaRoom, takenSeats, reservedTickets);
+          // this.hasLoaded = true;
         },
         error: () =>
           this.toastService.activateToast({
@@ -109,12 +118,13 @@ export class ReservationService {
   private getShowingPartial(reservationId: string) {
     of(reservationId)
       .pipe(
+        takeUntil(this.hasLoadedShowingPartial.pipe(takeWhile(showing => !!showing))),
         map(url => url.split("/")),
         map(url => url[url.length - 1]),
         distinctUntilChanged()
       )
-      .subscribe(params =>
-        this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: params }))
-      );
+      .subscribe(params => {
+        this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: params }));
+      });
   }
 }

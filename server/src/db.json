@@ -48,6 +48,9 @@
     }
   ],
   "orders": {
+    "206122022": {
+      "tickets": []
+    },
     "test": {
       "showing": {
         "title": "The Dark Knight",
@@ -77,39 +80,46 @@
         {
           "seat": {
             "position": {
-              "row": "J",
-              "column": "11"
+              "row": "H",
+              "column": "4"
             },
             "taken": false,
             "reservation": true,
             "status": "standard"
           },
-          "id": "J11",
+          "id": "H4",
           "type": "normalny",
           "price": 20
-        }
-      ]
-    },
-    "20617a": {
-      "tickets": [
+        },
         {
           "seat": {
             "position": {
               "row": "G",
-              "column": "7"
+              "column": "4"
             },
             "taken": false,
             "reservation": true,
             "status": "standard"
           },
-          "id": "G7",
+          "id": "G4",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "F",
+              "column": "4"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "F4",
           "type": "normalny",
           "price": 20
         }
       ]
-    },
-    "20615b": {
-      "tickets": []
     }
   },
   "movies": [

@@ -33,6 +33,10 @@ export class BookingEffects {
   private toastService = inject(ToastStateService);
   private showingService = inject(ShowingApiService);
 
+  constructor() {
+    this.actions$.subscribe(console.log);
+  }
+
   createTicket$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BookingTicketActions.addTicketStart),
