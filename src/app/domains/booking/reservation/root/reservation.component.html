@@ -22,6 +22,6 @@
             <img src="assets/svg/pencil.svg" />
         </div>
 
-        <a routerLink="/booking/purchase/{{ params }}">Przejdź do zamówienia</a>
+        <a [routerLink]="['/booking/purchase/', params]">Przejdź do zamówienia</a>
     </div>
 </section>

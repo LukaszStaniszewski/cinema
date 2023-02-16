@@ -50,7 +50,7 @@ export class TicketPurchasePageComponent implements OnInit {
 
   ngOnInit() {
     this.params = this.route.snapshot.params["id"];
-    this.reviewService.getViewData(this.params);
+    this.reviewService.getViewData();
   }
 
   get controls() {

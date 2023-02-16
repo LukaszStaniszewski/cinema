@@ -1,17 +1,12 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
+import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
 import { BehaviorSubject, combineLatest } from "rxjs";
 
-import {
-  selectTicketsWithTotalPrice,
-  selectTicketsWithTotalPriceAndShowingPartial,
-  Ticket,
-  TicketTypes,
-} from "../store";
+import { selectTicketsWithTotalPriceAndShowingPartial, Ticket, TicketTypes } from "../store";
 
 type Order = {
   name: string;
@@ -38,13 +33,9 @@ export class ReviewStateService {
     totalAmount: 0,
   });
 
-  constructor(
-    private http: HttpClient,
-    private store: Store,
-    private showingState: ShowingApiService
-  ) {}
+  constructor(private http: HttpClient, private store: Store) {}
 
-  getViewData(params: string) {
+  getViewData() {
     combineLatest([this.store.select(selectTicketsWithTotalPriceAndShowingPartial)]).subscribe(
       ([{ tickets, totalPrice, showingPartial }]) => {
         const sortedTickets = this.sortTicketsByType(tickets);

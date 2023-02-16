@@ -73,7 +73,22 @@
       ]
     },
     "20615a": {
-      "tickets": []
+      "tickets": [
+        {
+          "seat": {
+            "position": {
+              "row": "J",
+              "column": "11"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "J11",
+          "type": "normalny",
+          "price": 20
+        }
+      ]
     },
     "20617a": {
       "tickets": [

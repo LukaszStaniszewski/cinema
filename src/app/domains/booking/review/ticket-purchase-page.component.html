@@ -153,9 +153,9 @@
             </div>
             <div class="hidden">ww</div>
         </div>
-        <button class="btn" (click)="openDialog()">Pick one</button>
         <button
-            class="button button--purchase-form"
+            (click)="openDialog()"
+            class="btn button--purchase-form"
             type="button"
             [disabled]="!userCredentialsForm.valid">
             Zamawiam
