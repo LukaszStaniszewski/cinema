@@ -53,6 +53,7 @@ export default class BookingModule {
     const regex = new RegExp(/booking/i);
     this.location.onUrlChange(url => {
       if (regex.test(url)) {
+        this.store.dispatch(BookingTicketActions.getLatestReservationUrl({ payload: url }));
         this.getShowingPartial(url);
       }
       if (!regex.test(url)) {

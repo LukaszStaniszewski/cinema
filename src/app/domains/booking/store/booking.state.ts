@@ -39,8 +39,9 @@ export type TicketSortedByTypeValueToUpdate = {
 export type BookingState = {
   tickets: Ticket[];
   totalPrice: number;
-  showing: Maybe<ShowingPartial>;
+  showingPartial: Maybe<ShowingPartial>;
   reservationId: string;
+  url: string;
 };
 
 export const bookingFeatureKey = "booking" as const;
@@ -52,6 +53,7 @@ export type AppStateWithBookingState = AppState & BookingPick;
 export const initialBookingState: BookingState = {
   tickets: [],
   totalPrice: 0,
-  showing: null,
+  showingPartial: null,
+  url: "",
   reservationId: "",
 };

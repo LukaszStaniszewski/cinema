@@ -14,6 +14,7 @@ export const BookingTicketActions = createActionGroup({
     "reset state": emptyProps(),
     "update total price": props<{ total: number }>(),
     "remove showing partial": emptyProps(),
+    "get latest reservation url": props<{ payload: string }>(),
   },
 });
 

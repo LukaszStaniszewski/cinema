@@ -1,6 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { AppStateWithBookingState, selectTicketsWithShowingPartial } from "@domains/booking/store";
+import {
+  AppStateWithBookingState,
+  selectTicketsWithShowingPartial,
+  selectTicketsWithShowingPartialAndUrl,
+} from "@domains/booking/store";
 import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
@@ -23,7 +27,7 @@ export class CartStateService {
 
   constructor() {
     this.store
-      .select(selectTicketsWithShowingPartial)
+      .select(selectTicketsWithShowingPartialAndUrl)
       .pipe(
         map(select => {
           console.log("select in cart state", select);
@@ -35,8 +39,9 @@ export class CartStateService {
         })
       )
       .subscribe({
-        next: select => {
-          if (select?.showingPartial) this.add(select.showingPartial);
+        next: item => {
+          if (item?.showingPartial)
+            this.add({ showingPartial: item.showingPartial, url: item.url });
         },
         error: error => error,
       });
@@ -48,15 +53,15 @@ export class CartStateService {
     return this.cartState$$.pipe(map(cart => cart.cartItems));
   }
 
-  add(order: ShowingPartial) {
+  add(order: CartItem) {
     const isExisting = this.cartState$$.value.cartItems?.some(
-      ({ showingPartial }) => showingPartial.reservationId === order.reservationId
+      ({ showingPartial }) => showingPartial.reservationId === order.showingPartial.reservationId
     );
     if (isExisting) return;
     this.cartState$$.next({
       cartItems: [
         ...this.cartState$$.value.cartItems,
-        { showingPartial: order, url: "", orderId: "" },
+        { showingPartial: order.showingPartial, url: order.url, orderId: "" },
       ],
     });
   }

@@ -2,6 +2,8 @@ import { CdkMenuModule } from "@angular/cdk/menu";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { AppStateWithBookingState, BookingTicketActions } from "@domains/booking/store";
+import { Store } from "@ngrx/store";
 import { ClickOutsideDirective } from "@shared/index";
 
 import { CartStateService } from "./cart-state.service";
@@ -37,9 +39,15 @@ export default class CartComponent {
   @Input() ShowingsPartial = test;
 
   private cartService = inject(CartStateService);
+  private store = inject<Store<AppStateWithBookingState>>(Store);
+
   vm$ = this.cartService.selectCartItems$;
   ngOnInit() {
     this.cartService.fetchReservedOrders();
+  }
+
+  redirect() {
+    this.store.dispatch(BookingTicketActions.resetState());
   }
 
   removeCartItem(event: Event, id: string) {

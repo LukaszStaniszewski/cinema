@@ -16,12 +16,20 @@ export const selectTicketsWithTotalPrice = createSelector(
   (tickets, totalPrice) => ({ tickets, totalPrice })
 );
 
-export const selectShowingPartial = createSelector(selectBookingState, state => state.showing);
+export const selectShowingPartial = createSelector(
+  selectBookingState,
+  state => state.showingPartial
+);
 
 export const selectTicketsWithShowingPartial = createSelector(
   selectShowingPartial,
   selectTickets,
   (showingPartial, tickets) => ({ showingPartial, tickets })
+);
+
+export const selectTicketsWithShowingPartialAndUrl = createSelector(
+  selectBookingState,
+  ({ showingPartial, tickets, url }) => ({ showingPartial, tickets, url })
 );
 
 export const selectTicketsWithTotalPriceAndShowingPartial = createSelector(

@@ -74,36 +74,33 @@
         }
       ]
     },
-    "20612a": {
-      "userId": 2,
-      "tickets": []
-    },
-    "20617a": {
-      "tickets": [],
-      "showingPartial": {
-        "title": "Avatar: Istota Wody",
-        "day": "06-12-2022",
-        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-        "time": "17:00",
-        "reservationId": "06-17-a",
-        "type": "[tickets] get showing partial success"
-      },
-      "url": "",
-      "userId": 2
-    },
     "20615a": {
       "tickets": [
         {
           "seat": {
             "position": {
-              "row": "F",
-              "column": "5"
+              "row": "H",
+              "column": "3"
             },
             "taken": false,
             "reservation": true,
             "status": "standard"
           },
-          "id": "F5",
+          "id": "H3",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "G",
+              "column": "3"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "G3",
           "type": "normalny",
           "price": 20
         }
@@ -116,7 +113,49 @@
         "reservationId": "06-15-a",
         "type": "[tickets] get showing partial success"
       },
-      "url": "",
+      "url": "/booking/purchase/06-15-a",
+      "userId": 2
+    },
+    "20615b": {
+      "tickets": [
+        {
+          "seat": {
+            "position": {
+              "row": "H",
+              "column": "2"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "H2",
+          "type": "normalny",
+          "price": 20
+        },
+        {
+          "seat": {
+            "position": {
+              "row": "G",
+              "column": "2"
+            },
+            "taken": false,
+            "reservation": true,
+            "status": "standard"
+          },
+          "id": "G2",
+          "type": "normalny",
+          "price": 20
+        }
+      ],
+      "showingPartial": {
+        "title": "The Dark Knight",
+        "day": "06-12-2022",
+        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+        "time": "15:00",
+        "reservationId": "06-15-b",
+        "type": "[tickets] get showing partial success"
+      },
+      "url": "/booking/reservation/06-15-b",
       "userId": 2
     }
   },

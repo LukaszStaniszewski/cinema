@@ -38,6 +38,12 @@ export const bookingReducer = createReducer(
       ...initialBookingState,
     };
   }),
+  on(BookingTicketActions.getLatestReservationUrl, (state, action): BookingState => {
+    return {
+      ...state,
+      url: action.payload,
+    };
+  }),
   on(BookingApiAtions.getTicketsSuccess, (state, action): BookingState => {
     return {
       ...state,
@@ -47,7 +53,7 @@ export const bookingReducer = createReducer(
   on(BookingApiAtions.getShowingPartialSuccess, (state, action): BookingState => {
     return {
       ...state,
-      showing: action,
+      showingPartial: action,
     };
   })
 );

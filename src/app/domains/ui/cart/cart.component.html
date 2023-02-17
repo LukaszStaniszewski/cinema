@@ -29,7 +29,10 @@
                             <img src="assets/svg/trash-icon.svg" />
                         </button>
                     </div>
-                    <a class="btn btn--sm" [routerLink]="['/lastUrl']"
+                    <a
+                        class="btn btn--sm"
+                        (click)="redirect()"
+                        [routerLink]="[cartItem.url]"
                         >Dokończ zamówienie</a
                     >
                 </li>

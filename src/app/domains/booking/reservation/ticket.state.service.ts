@@ -8,6 +8,7 @@ import {
   selectBookingState,
   selectTickets,
   selectTicketsWithShowingPartial,
+  selectTicketsWithShowingPartialAndUrl,
   selectTicketsWithTotalPrice,
   Ticket,
   TicketDetails,
@@ -53,11 +54,12 @@ const defaultTicketInformation = {
 
 @Injectable()
 export class TicketStateService {
+  currentUrl = "";
   private ticketInformation$$ = new BehaviorSubject<TicketInformation>(defaultTicketInformation);
 
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private authService = inject(AuthService);
-  private location = inject(Location);
+
   // private cartService = inject(CartStateService);
 
   constructor(private http: HttpClient) {
@@ -117,17 +119,18 @@ export class TicketStateService {
 
   private saveToDB(reservationId: string) {
     console.log("hit");
+
     this.store
-      .select(selectTicketsWithShowingPartial)
+      .select(selectTicketsWithShowingPartialAndUrl)
       .pipe(
         takeWhile(state => !!state.showingPartial),
         debounceTime(700),
         distinctUntilChanged(),
-        concatMap(({ tickets, showingPartial }) => {
+        concatMap(({ tickets, showingPartial, url }) => {
           return this.http.patch(`${API.ORDERS}/${reservationId}`, {
             tickets,
             showingPartial,
-            url: "",
+            url,
           });
         }),
         catchError(error => of(error))
