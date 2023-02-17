@@ -1,3 +1,4 @@
+import { CdkMenuModule } from "@angular/cdk/menu";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
@@ -26,7 +27,7 @@ const test = [
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"],
-  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective],
+  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective, CdkMenuModule],
   standalone: true,
   providers: [CartStateService],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,11 +35,17 @@ const test = [
 export default class CartComponent {
   isOpen = false;
   @Input() ShowingsPartial = test;
-  private cartService = inject(CartStateService);
 
+  private cartService = inject(CartStateService);
   vm$ = this.cartService.selectCartItems$;
   ngOnInit() {
     this.cartService.fetchReservedOrders();
+  }
+
+  removeCartItem(event: Event, id: string) {
+    event.stopPropagation();
+
+    this.cartService.delete(id);
   }
 
   closeDropdown() {
@@ -46,6 +53,7 @@ export default class CartComponent {
   }
 
   toggleDropdown() {
+    // console.log("hit toggle");
     this.isOpen = !this.isOpen;
   }
 }

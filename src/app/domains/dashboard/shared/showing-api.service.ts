@@ -19,7 +19,7 @@ export type ShowingPartial = {
   day: string;
   image: string;
   time: string;
-  reservationId?: string;
+  reservationId: string;
 };
 
 type RoomId = "room-a" | "room-b" | "room-c";

@@ -4,15 +4,15 @@ import { AppStateWithBookingState, selectTicketsWithShowingPartial } from "@doma
 import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
-import { BehaviorSubject, catchError, map, of, skipWhile, take } from "rxjs";
-type CartDTO = {
+import { BehaviorSubject, catchError, EMPTY, map, of, skipWhile, take } from "rxjs";
+type CartItem = {
   showingPartial: ShowingPartial;
   url: string;
   orderId?: string;
 };
 
 type CartState = {
-  cartItems: CartDTO[];
+  cartItems: CartItem[];
 };
 
 @Injectable()
@@ -25,14 +25,23 @@ export class CartStateService {
     this.store
       .select(selectTicketsWithShowingPartial)
       .pipe(
-        skipWhile(state => state.tickets.length === 0),
-        catchError(error => of(error))
+        map(select => {
+          console.log("select in cart state", select);
+          if (select.tickets.length > 0) return select;
+          if (select.showingPartial) {
+            this.deleteLocaly(select.showingPartial.reservationId);
+          }
+          return;
+        })
       )
-      .subscribe(({ showingPartial }) => {
-        this.add(showingPartial);
+      .subscribe({
+        next: select => {
+          if (select?.showingPartial) this.add(select.showingPartial);
+        },
+        error: error => error,
       });
 
-    this.cartState$$.subscribe(console.log);
+    this.cartState$$.subscribe(value => console.log("ticke sub", value));
   }
 
   get selectCartItems$() {
@@ -52,9 +61,27 @@ export class CartStateService {
     });
   }
 
+  delete(reservationId: string) {
+    this.deleteLocaly(reservationId);
+    this.deleteInDB(reservationId);
+  }
+
+  private deleteLocaly(reservationId: string) {
+    // this.deleteInDB(itemId);
+    this.cartState$$.next({
+      cartItems: this.cartState$$.value.cartItems.filter(
+        item => item.showingPartial.reservationId !== reservationId
+      ),
+    });
+  }
+
+  private deleteInDB(reservationId: string) {
+    this.http.delete(`${API.ORDERS}/${reservationId}`).subscribe();
+  }
+
   fetchReservedOrders() {
     this.http
-      .get<CartDTO[]>(API.ORDERS)
+      .get<CartItem[]>(API.ORDERS)
       .pipe(take(1))
       .subscribe({
         next: cartItems => this.patchState(cartItems),
@@ -63,7 +90,7 @@ export class CartStateService {
       });
   }
 
-  private patchState(stateSlice: CartDTO[]) {
+  private patchState(stateSlice: CartItem[]) {
     // if (this.cartState$$.value.cartItems) {
     //   this.cartState$$.next({
     //     ...this.cartState$$.value,

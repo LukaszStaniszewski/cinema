@@ -82,3 +82,15 @@ export const findOrders = (userId: string) => {
   }
   return holder;
 };
+
+export const remove = (orderId: string) => {
+  const orders = db.orders;
+  if (doesExist(orderId)) {
+    delete orders[orderId];
+  }
+  db.orders = orders;
+  fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), err => {
+    // throw new Error(`file couldn't be overwritten: ${err}`);
+    return;
+  });
+};

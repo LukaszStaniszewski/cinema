@@ -1,9 +1,11 @@
+import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { AuthService, AuthType } from "@domains/auth";
 import {
   AppStateWithBookingState,
   BookingTicketActions,
+  selectBookingState,
   selectTickets,
   selectTicketsWithShowingPartial,
   selectTicketsWithTotalPrice,
@@ -55,9 +57,11 @@ export class TicketStateService {
 
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private authService = inject(AuthService);
+  private location = inject(Location);
   // private cartService = inject(CartStateService);
 
   constructor(private http: HttpClient) {
+    this.store.select(selectBookingState).subscribe(console.log);
     combineLatest([
       this.store.select(selectTicketsWithTotalPrice),
       this.fetchTicketDetails(),
@@ -71,6 +75,10 @@ export class TicketStateService {
       ...this.ticketInformation$$.value,
       ...stateSlice,
     });
+  }
+
+  get ticketInformation() {
+    return this.ticketInformation$$.value;
   }
 
   get ticketInformation$() {
@@ -90,6 +98,9 @@ export class TicketStateService {
         BookingTicketActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId })
       );
     }
+    // if(this.ticketInformation.tickets.length === 0) {
+    //   this.store.dispatch(BookingTicketActions.removeShowingPartial())
+    // }
   }
 
   detectChangesToUpdateDB(reservationId: string) {
@@ -109,7 +120,7 @@ export class TicketStateService {
     this.store
       .select(selectTicketsWithShowingPartial)
       .pipe(
-        takeWhile(state => state.tickets.length > 0),
+        takeWhile(state => !!state.showingPartial),
         debounceTime(700),
         distinctUntilChanged(),
         concatMap(({ tickets, showingPartial }) => {
