@@ -1,10 +1,6 @@
 <section *ngIf="reviewState$ | async as vm" class="purchase-page-container">
     <div class="movie-info">
-        <img
-            class="movie-info__image"
-            src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg"
-            alt=""
-            srcset="" />
+        <img class="movie-info__image" src="{{ vm.showing?.image }}" alt="" srcset="" />
         <div class="movie-info__details">
             <p class="text-gradient text-title">ZAKUP BILETÓW</p>
             <p>{{ vm.showing?.title }}</p>
