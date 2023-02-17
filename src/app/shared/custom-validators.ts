@@ -4,21 +4,27 @@ export class CustomValidators {
   static emailPatternValidator(control: AbstractControl): ValidationErrors | null {
     const regPattern = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
     const regex = new RegExp(regPattern);
+
     if (regex?.test(control.value)) {
       return null;
     }
-    return { emailValidation: "Nieodpowiednia nazwa" };
+    return { emailValidation: "Nieodpowiedni adres email" };
   }
 
   static phoneNumberValidator(control: AbstractControl): ValidationErrors | null {
-    const regPattern = /^\+?[1-9][0-9]{8,10}$/;
+    const regPattern = /^\+?[1-9][0-9]{8}$/;
     const regex = new RegExp(regPattern);
+    console.log("control", control);
+    if (!control.value) {
+      control.markAsPristine({ onlySelf: true });
+      return null;
+    }
+
     if (regex?.test(control.value)) {
       return null;
     }
     return {
-      phoneNumberValidation:
-        "Numer telefonu musi mieć między 9 a 11 znaków i składać się wyłącznie z cyfr.",
+      phoneNumberValidation: "Numer telefonu musi składać się z 9 cyrf",
     };
   }
 

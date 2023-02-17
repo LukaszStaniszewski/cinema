@@ -81,6 +81,9 @@ input::placeholder {
 .purchase-input > .ng-dirty.ng-invalid {
   border: 2px solid red;
 }
+.purchase-input > .ng-touched.ng-invalid {
+  border: 2px solid red;
+}
 
 .purchase-input > .ng-dirty.ng-valid {
   border: 2px solid green;
