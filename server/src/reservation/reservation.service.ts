@@ -23,10 +23,9 @@ export type Ticket = {
   price: number;
 };
 
-export const createOrder = (orderId: string) => {
+export const createOrder = (orderId: string, userId: string) => {
   if (orderId in db["orders"]) return;
-  console.log("hit new order");
-  const order = { ...db["orders"], [orderId]: { tickets: [] } };
+  const order = { ...db["orders"], [orderId]: { userId, tickets: [] } };
   db["orders"] = order;
   fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), async err => {
     throw new Error(`file couldn't be overwritten: ${err}`);
@@ -36,7 +35,7 @@ export const createOrder = (orderId: string) => {
 
 export const getTicketsReservedByCurrentUser = (orderId: string) => {
   if (doesExist(orderId)) {
-    const order = db["orders"][orderId];
+    const order = db["orders"][orderId].tickets;
     return order;
   }
   return;
@@ -50,35 +49,6 @@ export const findReservation = (reservationId: string) => {
   return reservation;
 };
 
-export const updateOrder = async (userId: string, reservationId: string, tickets: Ticket[]) => {
-  // const orderId = (userId + reservationId).replaceAll("-", "") as keyof typeof db.orders;
-
-  // if (orderId in db["orders"]) {
-  //   const updatedOrder = { [orderId]: { tickets: [...db.orders[orderId].tickets, ticket] } };
-  //   const order = { ...db["orders"], updatedOrder };
-  //   db["orders"] = order;
-  //   fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), async err => {
-  //     throw new Error(`file couldn't be overwritten: ${err}`);
-  //   });
-  // } else {
-  //   throw new Error("order doesn't exist");
-  // }
-  console.log("ticket", tickets);
-
-  const orderId = (userId + reservationId).replaceAll("-", "");
-
-  if (doesExist(orderId)) {
-    const updatedOrder = { [orderId]: { tickets: tickets } };
-    const order = { ...db["orders"], ...updatedOrder };
-    db["orders"] = order;
-    fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), err => {
-      // throw new Error(`file couldn't be overwritten: ${err}`);
-      return;
-    });
-  } else {
-    // throw new Error("order doesn't exist");
-  }
-};
-function doesExist(orderId: string): orderId is keyof typeof db.orders {
-  return orderId in db["orders"];
+function doesExist(id: string): id is keyof typeof db.orders {
+  return id in db["orders"];
 }

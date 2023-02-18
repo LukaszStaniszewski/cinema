@@ -86,7 +86,10 @@ export class MovieService {
     this.http
       .get<string[]>(`${API.WANNA_SEE}`)
       // .pipe(map(arg => arg.map(movie => movie.movieId).filter(Boolean)))
-      .subscribe(movies => this.movieServiceState$$.next(movies));
+      .subscribe({
+        next: ids => this.movieServiceState$$.next(ids),
+        error: error => error,
+      });
     // this.http.get<WannSee[]>(`${API.WANNA_SEE}/${userId}`).subscribe(console.log);
   }
 }

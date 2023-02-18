@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
-import { CanMatchCustomerSection } from "@core/guards/canMatchCustomerSection.guard";
 
+import { AppCustomPreloader, CanMatchCustomerSection } from "./core";
 import { CardListComponent } from "./domains/dashboard";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
@@ -29,6 +29,7 @@ const routes: Routes = [
           {
             path: "booking",
             loadChildren: () => import("./domains/booking/booking.module"),
+            data: { preload: true },
           },
           {
             path: "wanna-see",
@@ -49,10 +50,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   // imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: AppCustomPreloader })],
   // imports: [provideRouter(routes, with)],
   exports: [RouterModule],
-  providers: [CanMatchCustomerSection],
+  providers: [AppCustomPreloader],
   // providers: [provideRouter(routes, withPreloading(PreloadAllModules))],
 })
 export class AppRoutingModule {}

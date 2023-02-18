@@ -1,7 +1,10 @@
+import { CdkMenuModule } from "@angular/cdk/menu";
 import { AsyncPipe, NgFor, NgIf } from "@angular/common";
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, Input } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { ClickOutsideDirective } from "@shared/index";
+
+import { CartStateService } from "./cart-state.service";
 
 const test = [
   {
@@ -19,24 +22,38 @@ const test = [
     time: "14:00",
   },
 ];
+
 @Component({
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"],
-  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective],
+  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective, CdkMenuModule],
   standalone: true,
-
+  providers: [CartStateService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CartComponent {
   isOpen = false;
   @Input() ShowingsPartial = test;
 
+  private cartService = inject(CartStateService);
+  vm$ = this.cartService.selectCartItems$;
+  ngOnInit() {
+    this.cartService.fetchReservedOrders();
+  }
+
+  removeCartItem(event: Event, id: string) {
+    event.stopPropagation();
+
+    this.cartService.delete(id);
+  }
+
   closeDropdown() {
     this.isOpen = false;
   }
 
   toggleDropdown() {
+    // console.log("hit toggle");
     this.isOpen = !this.isOpen;
   }
 }

@@ -8,20 +8,77 @@
     </button>
 
     <menu *ngIf="isOpen" class="cart__dropdown">
-        <ul class="dropdown__list">
-            <li
-                class="dropdown__list-item"
-                *ngFor="let showingParital of ShowingsPartial">
-                <div class="list-item__content">
-                    <img src="{{ showingParital.image }}" />
-                    <div class="content__info">
-                        <div>{{ showingParital.title }}</div>
-                        <div>{{ showingParital.day }}</div>
-                        <div>{{ showingParital.time }}</div>
+        <ul *ngIf="vm$ | async as cartItems" class="dropdown__list">
+            <ng-container *ngIf="cartItems.length > 0; else EmptyCartInfo">
+                <li class="dropdown__list-item" *ngFor="let cartItem of cartItems">
+                    <div class="list-item__content">
+                        <img src="{{ cartItem.showingPartial.image }}" />
+                        <div class="content__info">
+                            <div>{{ cartItem.showingPartial.title }}</div>
+                            <div>{{ cartItem.showingPartial.day }}</div>
+                            <div>{{ cartItem.showingPartial.time }}</div>
+                        </div>
+                        <button
+                            class="content__delete-btn"
+                            (click)="
+                                removeCartItem(
+                                    $event,
+                                    cartItem.showingPartial.reservationId
+                                )
+                            ">
+                            <img src="assets/svg/trash-icon.svg" />
+                        </button>
                     </div>
+                    <a class="btn btn--sm" [routerLink]="['/lastUrl']"
+                        >Dokończ zamówienie</a
+                    >
+                </li>
+            </ng-container>
+            <ng-template #EmptyCartInfo>
+                <div class="empty-cart">
+                    <p class="text-h5 shadow-primary-text">Twój koszyk jest pusty</p>
+                    <p class="text-body-small">
+                        Zarezerwój bilety i kup je szybko i wygodnie.
+                    </p>
                 </div>
-                <a class="btn btn--sm" [routerLink]="['/lastUrl']">Dokończ zamówienie</a>
-            </li>
+            </ng-template>
         </ul>
     </menu>
 </div>
+<!-- 
+<button [cdkMenuTriggerFor]="menu" type="button" class="cart__toggle-btn">
+    <img
+        draggable="false"
+        class="toggle-btn__icon"
+        src="assets/svg/cart.svg"
+        alt="cart with reservations" />
+</button>
+
+<ng-template #menu>
+    <menu class="cart__dropdown" cdkMenu>
+        <ul *ngIf="vm$ | async as cartItems" class="dropdown__list">
+            <li class="dropdown__list-item" *ngFor="let cartItem of cartItems">
+                <div class="list-item__content">
+                    <img src="{{ cartItem.showingPartial.image }}" />
+                    <div class="content__info">
+                        <div>{{ cartItem.showingPartial.title }}</div>
+                        <div>{{ cartItem.showingPartial.day }}</div>
+                        <div>{{ cartItem.showingPartial.time }}</div>
+                    </div>
+                    <button
+                        type="button"
+                        class="content__delete-btn"
+                        (click)="
+                            removeCartItem($event, cartItem.showingPartial.reservationId)
+                        ">
+                        <img src="assets/svg/trash-icon.svg" />
+                    </button>
+                </div>
+
+                <a cdkMenuItem class="btn btn--sm" [routerLink]="['/lastUrl']"
+                    >Dokończ zamówienie</a
+                >
+            </li>
+        </ul>
+    </menu>
+</ng-template> -->

@@ -49,8 +49,12 @@ export class BookingEffects {
       ofType(BookingApiAtions.getShowingPartialStart),
       concatLatestFrom(() => this.store.select(selectShowingPartial)),
       takeWhile(([payload, showingParital]) => !showingParital),
-      switchMap(([{ payload }]) => this.showingService.getShowingPartial(payload)),
-      map(showingPartial => BookingApiAtions.getShowingPartialSuccess(showingPartial)),
+      switchMap(([{ payload }]) =>
+        combineLatest([this.showingService.getShowingPartial(payload), of(payload)])
+      ),
+      map(([showingPartial, reservationId]) =>
+        BookingApiAtions.getShowingPartialSuccess({ ...showingPartial, reservationId })
+      ),
       catchError(error => of(BookingApiAtions.getShowingPartialFailure({ payload: error })))
     );
   });

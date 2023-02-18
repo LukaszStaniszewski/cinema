@@ -13,6 +13,7 @@ export const BookingTicketActions = createActionGroup({
     "update ticket": props<{ id: string; valueToUpdate: TicketDetails }>(),
     "reset state": emptyProps(),
     "update total price": props<{ total: number }>(),
+    "remove showing partial": emptyProps(),
   },
 });
 

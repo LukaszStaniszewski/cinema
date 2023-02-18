@@ -5,6 +5,7 @@ dotenv.config();
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import orderRouter from "./order/order.route";
 import reservationRouter from "./reservation/reservation.route";
 import userRouter from "./routes/auth.route";
 import movieRouter from "./routes/movie.route";
@@ -30,6 +31,7 @@ app.use("/api/reservations", reservationRouter);
 app.use("/api/showings", showingRouter);
 app.use("/api/movies", movieRouter);
 app.use("/api/tickets", ticketRouter);
+app.use("/api/orders", orderRouter);
 
 const PORT = process.env.PORT || 3000;
 

@@ -2,12 +2,12 @@ export const API = {
   LOGIN: "/auth",
   LOGOUT: "/auth/logout",
   RESERVATIONS: "/reservations",
-  CINEMAROOMS: "/reservations/cinemaroom",
+  CINEMAROOM: "/reservations/cinemaroom",
   MOVIES: "/movies",
   WANNA_SEE: "/movies/wanna-see",
   TICKET_INFO: "/tickets",
   SHOWINGS: "/showings",
-  ORDER: "/",
+  ORDERS: "/orders",
 } as const;
 
 export const SET_UP = {

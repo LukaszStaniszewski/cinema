@@ -8,7 +8,7 @@ import {
   OnDestroy,
   Output,
 } from "@angular/core";
-import { filter, fromEvent, Subscription } from "rxjs";
+import { filter, fromEvent, Subscription, throttleTime } from "rxjs";
 
 @Directive({
   selector: "[appClickOutside]",
