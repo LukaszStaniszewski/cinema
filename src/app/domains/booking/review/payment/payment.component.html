@@ -4,7 +4,10 @@
             <img src="assets/svg/chevron-left.svg" alt="close modal dialog" />
         </button>
     </div>
-    <img class="dialog__blik-icon" src="assets/svg/blik/blik-logo.svg" alt="" />
+    <div class="dialog__header">
+        <img class="dialog__blik-icon" src="assets/svg/blik/blik-logo.svg" alt="" />
+        <p class="text-h3">ALE KINO</p>
+    </div>
 
     <div class="dialog__text">
         <h1 class="text-body-big">Wpisz kod BLIK</h1>
@@ -12,13 +15,15 @@
     </div>
     <div class="dialog__content" mat-dialog-content>
         <img src="assets/svg/blik/blik-logo.svg" alt="" />
-        <form [formGroup]="paymentForm">
-            <input formControlName="code" class="payment-input" type="number" />
-            <input class="payment-input" type="number" />
-        </form>
+
+        <input [formControl]="code" class="payment-input" type="number" />
     </div>
     <div mat-dialog-actions>
-        <button type="button" class="dialog__submit btn" [mat-dialog-close]="submit()">
+        <button
+            [disabled]="!code.valid"
+            type="button"
+            class="dialog__submit btn"
+            [mat-dialog-close]="submit()">
             Zapłać
         </button>
     </div>

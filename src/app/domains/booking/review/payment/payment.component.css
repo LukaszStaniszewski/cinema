@@ -7,6 +7,8 @@
 } */
 
 .payment-dialog {
+  color: var(--color-text-white-background);
+
   padding: 8px;
 }
 
@@ -27,21 +29,35 @@
   cursor: pointer;
 }
 
-.dialog__blik-icon {
+.dialog__header {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.dialog__header > p {
+  /* color: ; */
+}
+.dialog__header > img {
+  /* color: ; */
+  width: 60px;
+}
+/* .dialog__blik-icon {
   display: block;
   top: 0;
   margin: 0 auto;
   width: 60px;
-}
+} */
 
 .dialog__text {
   text-align: center;
-  margin: 50px 0 30px 0;
+  /* margin: 20px 0 30px 0; */
+  margin-bottom: 30px;
   /* font-family: "Barlow", sans-serif; */
 }
 
 .dialog__text > h1 {
-  color: var(--color-text-white-background);
   font-weight: 500;
   letter-spacing: 1px;
   font-size: 1.14rem;

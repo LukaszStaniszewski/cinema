@@ -1,5 +1,6 @@
 import { Component, Inject, inject } from "@angular/core";
-import { NonNullableFormBuilder } from "@angular/forms";
+import { NonNullableFormBuilder, Validators } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 type DialogData = {
@@ -14,19 +15,18 @@ type DialogData = {
 export class PaymentComponent {
   // dialogRef!: MatDialogRef<PaymentComponent>;
   // data = inject(MAT_DIALOG_DATA);
-  private builder = inject(NonNullableFormBuilder);
+  // private builder = inject(NonNullableFormBuilder);
+  code = new FormControl("", [Validators.required]);
 
   constructor(
     public dialogRef: MatDialogRef<PaymentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {}
 
-  paymentForm = this.builder.group({
-    code: "",
-  });
+  // paymentForm = this.builder.control();
 
   submit() {
-    return this.paymentForm.getRawValue();
+    return this.code.getRawValue();
   }
 
   onNoClick(): void {

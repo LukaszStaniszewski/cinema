@@ -51,6 +51,7 @@ export class TicketPurchasePageComponent implements OnInit {
   ngOnInit() {
     this.params = this.route.snapshot.params["id"];
     this.reviewService.getViewData();
+    this.dialog.open(PaymentComponent);
   }
 
   get controls() {
@@ -62,6 +63,7 @@ export class TicketPurchasePageComponent implements OnInit {
     if (this.userCredentialsForm.invalid) return;
     // this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
   }
+
   openDialog(): void {
     // this.dialog.open(PaymentComponent);
     const dialogRef = this.dialog.open(PaymentComponent, {
