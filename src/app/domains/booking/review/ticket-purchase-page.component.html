@@ -1,10 +1,6 @@
 <section *ngIf="reviewState$ | async as vm" class="purchase-page-container">
     <div class="movie-info">
-        <img
-            class="movie-info__image"
-            src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg"
-            alt=""
-            srcset="" />
+        <img class="movie-info__image" src="{{ vm.showing?.image }}" alt="" srcset="" />
         <div class="movie-info__details">
             <p class="text-gradient text-title">ZAKUP BILETÓW</p>
             <p>{{ vm.showing?.title }}</p>
@@ -12,7 +8,6 @@
             <span>{{ vm.showing?.time }}</span>
         </div>
     </div>
-    <!-- <label for="name">Name: </label> -->
     <div class="order-details">
         <div *ngFor="let ticket of vm.sortedTickets | keyvalue">
             <div>{{ ticket.value.amout }}x {{ ticket.key }}</div>
@@ -29,7 +24,11 @@
             <div class="purchase-input">
                 <input placeholder="Imię*" formControlName="name" type="text" />
                 <ng-container *ngIf="controls.name.errors as errors">
-                    <ng-container *ngIf="controls.name.touched && controls.name.pristine">
+                    <ng-container
+                        *ngIf="
+                            (controls.name.touched && controls.name.pristine) ||
+                            (controls.name.touched && controls.name.dirty)
+                        ">
                         <p *ngIf="errors['required']">Imię jest obowiązkowe</p>
                     </ng-container>
                     <ng-container *ngIf="controls.name.dirty && controls.name.invalid">
@@ -49,7 +48,10 @@
                 <input placeholder="Nazwisko*" formControlName="surname" type="text" />
                 <ng-container *ngIf="controls.surname.errors as errors">
                     <ng-container
-                        *ngIf="controls.surname.touched && controls.surname.pristine">
+                        *ngIf="
+                            (controls.surname.touched && controls.surname.pristine) ||
+                            (controls.surname.touched && controls.surname.dirty)
+                        ">
                         <p *ngIf="errors['required']">Nazwisko jest obowiązkowe</p>
                     </ng-container>
                     <ng-container

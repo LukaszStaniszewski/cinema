@@ -4,17 +4,7 @@ import { MESSAGE, SET_UP } from "@environments/constants";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import {
-  catchError,
-  combineLatest,
-  concatMap,
-  map,
-  of,
-  switchMap,
-  takeWhile,
-  tap,
-  throwError,
-} from "rxjs";
+import { catchError, map, of, switchMap, takeWhile, throwError } from "rxjs";
 
 import { TicketStateService } from "../reservation";
 import {
