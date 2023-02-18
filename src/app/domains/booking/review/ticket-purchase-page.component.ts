@@ -2,6 +2,9 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/cor
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
+import { MESSAGE } from "@environments/constants";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
+import { delay } from "rxjs";
 
 import { CustomValidators } from "../../../shared/custom-validators";
 import { PaymentComponent } from "./payment/payment.component";
@@ -18,6 +21,7 @@ export class TicketPurchasePageComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
   private route = inject(ActivatedRoute);
   private reviewService = inject(ReviewStateService);
+  private toast = inject(ToastStateService);
   private dialog = inject(MatDialog);
   userCredentialsForm = this.createForm();
 
@@ -28,10 +32,10 @@ export class TicketPurchasePageComponent implements OnInit {
   private createForm() {
     return this.builder.group(
       {
-        name: this.builder.control("", {
+        firstName: this.builder.control("", {
           validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
         }),
-        surname: this.builder.control("", {
+        secondName: this.builder.control("", {
           validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
         }),
         phoneNumber: this.builder.control("", {
@@ -61,6 +65,7 @@ export class TicketPurchasePageComponent implements OnInit {
   onSubmit() {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;
+    this.openDialog();
     // this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
   }
 
@@ -71,15 +76,25 @@ export class TicketPurchasePageComponent implements OnInit {
       // width: "250px",
       // position: { right: "0px", top: "0px" },
       // direction: "rtl",
+      data: { userCredentials: this.userCredentialsForm.getRawValue() },
+      ariaModal: true,
+      role: "dialog",
       disableClose: true,
       closeOnNavigation: true,
     });
     // const dialogRef = this.dialog.open(PaymentComponent, {
     //   // data: { name: this.name, animal: this.animal },
     // });
-
+    // dialogRef.beforeClosed().subscribe(value => {
+    //   this.reviewService.submitOrder(this.userCredentialsForm.getRawValue())
+    // });
+    dialogRef.afterOpened().subscribe(value => console.log("after opened", value));
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      console.log("result", result);
+      if (result) {
+        return alert("zakup udany");
+      }
+      this.toast.activateToast({ message: MESSAGE.ORDER_RESIGN, status: "info" });
     });
     // dialogRef.afterClosed().subscribe(result => {
     //   console.log("The dialog was closed");

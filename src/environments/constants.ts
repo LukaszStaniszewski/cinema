@@ -22,5 +22,6 @@ export const MESSAGE = {
   TICKET_LIMIT: "Aby zakupić więcej biletów skontaktuj się z obsługą klienta",
   AUTHENTICATION_FAILED: "Zły email lub hasło",
   CINEMA_ROOM_NOT_FOUND:
-    "Stało się coś nie oczekiwanego, powróc do wyboru repertuaru i spróbuj ponownie.",
+    "Stało się coś nie oczekiwanego, powróc do wyboru repertuaru i spróbuj ponownie.",
+  ORDER_RESIGN: "Mozesz wrócić do tego zamówienia poprzez koszyk i dokonczyć je w ciągu 15 minut",
 } as const;

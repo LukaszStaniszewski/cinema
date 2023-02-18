@@ -22,16 +22,17 @@
     <form class="purchase-form" [formGroup]="userCredentialsForm" (ngSubmit)="onSubmit()">
         <div class="name-surname-wrapper">
             <div class="purchase-input">
-                <input placeholder="Imię*" formControlName="name" type="text" />
-                <ng-container *ngIf="controls.name.errors as errors">
+                <input placeholder="Imię*" formControlName="firstName" type="text" />
+                <ng-container *ngIf="controls.firstName.errors as errors">
                     <ng-container
                         *ngIf="
-                            (controls.name.touched && controls.name.pristine) ||
-                            (controls.name.touched && controls.name.dirty)
+                            (controls.firstName.touched && controls.firstName.pristine) ||
+                            (controls.firstName.touched && controls.firstName.dirty)
                         ">
                         <p *ngIf="errors['required']">Imię jest obowiązkowe</p>
                     </ng-container>
-                    <ng-container *ngIf="controls.name.dirty && controls.name.invalid">
+                    <ng-container
+                        *ngIf="controls.firstName.dirty && controls.firstName.invalid">
                         <p *ngIf="errors['minlength'] as minLength">
                             Podałeś {{ minLength.actualLength }} znaki, minimum to
                             {{ minLength.requiredLength }}
@@ -45,17 +46,18 @@
             </div>
             <div class="hidden">w</div>
             <div class="purchase-input">
-                <input placeholder="Nazwisko*" formControlName="surname" type="text" />
-                <ng-container *ngIf="controls.surname.errors as errors">
+                <input placeholder="Nazwisko*" formControlName="secondName" type="text" />
+                <ng-container *ngIf="controls.secondName.errors as errors">
                     <ng-container
                         *ngIf="
-                            (controls.surname.touched && controls.surname.pristine) ||
-                            (controls.surname.touched && controls.surname.dirty)
+                            (controls.secondName.touched &&
+                                controls.secondName.pristine) ||
+                            (controls.secondName.touched && controls.secondName.dirty)
                         ">
                         <p *ngIf="errors['required']">Nazwisko jest obowiązkowe</p>
                     </ng-container>
                     <ng-container
-                        *ngIf="controls.surname.dirty && controls.surname.invalid">
+                        *ngIf="controls.secondName.dirty && controls.secondName.invalid">
                         <p *ngIf="errors['minlength'] as minLength">
                             Podałeś {{ minLength.actualLength }} znaki, minimum to
                             {{ minLength.requiredLength }}

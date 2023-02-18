@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { User } from "@domains/auth";
 import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
@@ -71,7 +72,7 @@ export class ReviewStateService {
     return this.reviewState$$.asObservable();
   }
 
-  submitOrder(payload: Order) {
-    this.http.post(API.ORDERS, payload).subscribe(console.log);
+  submitOrder(payload: User) {
+    return this.http.post(API.ORDERS, payload);
   }
 }
