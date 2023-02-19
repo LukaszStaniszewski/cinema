@@ -21,13 +21,12 @@
                 [formControl]="blikCode"
                 id="blik-blikCode-input"
                 class="payment-input input"
-                maxlength="999"
                 placeholder="6-cyrfowy kod"
                 type="number" />
         </div>
         <div class="dialog__error-wrapper">
             <ng-container *ngIf="blikCode.errors as errors">
-                <ng-container *ngIf="blikCode.touched && blikCode.invalid">
+                <ng-container *ngIf="blikCode.touched && blikCode.pristine">
                     <p *ngIf="errors['required']">
                         Pole nie może być puste. Wprowadź kod BLIK
                     </p>
@@ -47,7 +46,7 @@
             type="button"
             class="dialog__submit btn"
             (click)="submit()">
-            Zapłać {{ totalPrice }} zł
+            Zapłać {{ data.totalPrice }} zł
         </button>
     </div>
 </div>

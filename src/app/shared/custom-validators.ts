@@ -55,6 +55,7 @@ export class CustomValidators {
       if (length === requiredLength) {
         return null;
       }
+
       return {
         requiredLength: `Kod musi składać się z ${requiredLength} znaków`,
       };

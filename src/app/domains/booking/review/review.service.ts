@@ -5,15 +5,15 @@ import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
-import { BehaviorSubject, combineLatest } from "rxjs";
+import { BehaviorSubject, combineLatest, switchMap } from "rxjs";
 
 import { selectTicketsWithTotalPriceAndShowingPartial, Ticket, TicketTypes } from "../store";
 
 type Order = {
-  name: string;
-  surname: string;
-  email: string;
-  phoneNumber?: number;
+  userCredentials: User;
+  tickets: Ticket[];
+  showingPartial: ShowingPartial;
+  totalPrice: number;
 };
 
 export type ReviewState = {
@@ -51,6 +51,10 @@ export class ReviewStateService {
     );
   }
 
+  getTotalPrice() {
+    return this.reviewState$$.value.totalPrice;
+  }
+
   private sortTicketsByType(tickets: Ticket[]): TicketsSortedByType {
     let holder = {} as TicketsSortedByType;
 
@@ -73,6 +77,12 @@ export class ReviewStateService {
   }
 
   submitOrder(payload: User) {
-    return this.http.post(API.ORDERS, payload);
+    return this.store
+      .select(selectTicketsWithTotalPriceAndShowingPartial)
+      .pipe(
+        switchMap(value =>
+          this.http.post<Order>(API.ORDERS, { ...value, userCredentials: payload })
+        )
+      );
   }
 }

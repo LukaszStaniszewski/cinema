@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { ActivatedRoute } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MESSAGE } from "@environments/constants";
+import { useNavigate } from "@shared/inject-hooks";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { delay } from "rxjs";
 
 import { CustomValidators } from "../../../shared/custom-validators";
 import { PaymentComponent } from "./payment/payment.component";
@@ -18,11 +18,14 @@ import { ReviewStateService } from "./review.service";
 })
 export class TicketPurchasePageComponent implements OnInit {
   params = "";
+  hasQuitSubmitMessagBeenShown = false;
+
   private builder = inject(NonNullableFormBuilder);
   private route = inject(ActivatedRoute);
   private reviewService = inject(ReviewStateService);
   private toast = inject(ToastStateService);
   private dialog = inject(MatDialog);
+  private navigate = useNavigate();
   userCredentialsForm = this.createForm();
 
   get reviewState$() {
@@ -55,7 +58,7 @@ export class TicketPurchasePageComponent implements OnInit {
   ngOnInit() {
     this.params = this.route.snapshot.params["id"];
     this.reviewService.getViewData();
-    this.dialog.open(PaymentComponent);
+    // this.dialog.open(PaymentComponent);
   }
 
   get controls() {
@@ -66,39 +69,32 @@ export class TicketPurchasePageComponent implements OnInit {
     this.userCredentialsForm.markAllAsTouched();
     if (this.userCredentialsForm.invalid) return;
     this.openDialog();
-    // this.reviewService.submitOrder(this.userCredentialsForm.getRawValue);
   }
 
   openDialog(): void {
-    // this.dialog.open(PaymentComponent);
     const dialogRef = this.dialog.open(PaymentComponent, {
-      // height: "350px",
-      // width: "250px",
-      // position: { right: "0px", top: "0px" },
-      // direction: "rtl",
-      data: { userCredentials: this.userCredentialsForm.getRawValue() },
+      data: {
+        userCredentials: this.userCredentialsForm.getRawValue(),
+        totalPrice: this.reviewService.getTotalPrice(),
+      },
       ariaModal: true,
       role: "dialog",
       disableClose: true,
       closeOnNavigation: true,
     });
-    // const dialogRef = this.dialog.open(PaymentComponent, {
-    //   // data: { name: this.name, animal: this.animal },
-    // });
-    // dialogRef.beforeClosed().subscribe(value => {
-    //   this.reviewService.submitOrder(this.userCredentialsForm.getRawValue())
-    // });
-    dialogRef.afterOpened().subscribe(value => console.log("after opened", value));
+
     dialogRef.afterClosed().subscribe(result => {
       console.log("result", result);
       if (result) {
-        return alert("zakup udany");
+        this.navigate(`/booking/summary/${this.params}`);
       }
-      this.toast.activateToast({ message: MESSAGE.ORDER_RESIGN, status: "info" });
+      if (this.hasNotBeenShown()) {
+        this.hasQuitSubmitMessagBeenShown = true;
+        this.toast.activateToast({ message: MESSAGE.ORDER_RESIGN, status: "info" });
+      }
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log("The dialog was closed");
-    //   // this.animal = result;
-    // });
+  }
+  private hasNotBeenShown() {
+    return !this.hasQuitSubmitMessagBeenShown;
   }
 }

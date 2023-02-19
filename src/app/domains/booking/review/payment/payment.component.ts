@@ -9,6 +9,7 @@ import { ReviewStateService } from "../review.service";
 
 type DialogData = {
   userCredentials: User;
+  totalPrice: number;
 };
 
 @Component({
@@ -18,34 +19,14 @@ type DialogData = {
 })
 export class PaymentComponent {
   @Input() totalPrice = 0;
-  // dialogRef!: MatDialogRef<PaymentComponent>;
-  // data = inject(MAT_DIALOG_DATA);
-  private builder = inject(NonNullableFormBuilder);
-  private changeDetector = inject(ChangeDetectorRef);
+  private dialogRef!: MatDialogRef<PaymentComponent>;
   private reviewService = inject(ReviewStateService);
+  public data = inject<DialogData>(MAT_DIALOG_DATA);
 
-  blikCode = new FormControl(null, [Validators.required, CustomValidators.exactLength(6)]);
-
-  constructor(
-    public dialogRef: MatDialogRef<PaymentComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
-    // this.code.valueChanges.subscribe({
-    //   next: value => value,
-    //   error: error => console.log(error),
-    // });
-  }
-
-  // code = new FormControl("", [Validators.required, CustomValidators.exactLength(6)]);
-  // code = new FormControl(null, {
-  //   validators: [Validators.required, CustomValidators.exactLength(6)],
-  // });
-
-  // ngOnInit() {
-  //   this.code.
-  // }
-
-  // paymentForm = this.builder.control();
+  protected blikCode = new FormControl(null, [
+    Validators.required,
+    CustomValidators.exactLength(6),
+  ]);
 
   submit() {
     console.log("click submit");
