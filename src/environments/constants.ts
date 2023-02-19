@@ -8,6 +8,7 @@ export const API = {
   TICKET_INFO: "/tickets",
   SHOWINGS: "/showings",
   ORDERS: "/orders",
+  ORDER_PAYED: "/orders/payed",
 } as const;
 
 export const SET_UP = {

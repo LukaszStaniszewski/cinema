@@ -1,14 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { MESSAGE } from "@environments/constants";
 import { useNavigate } from "@shared/inject-hooks";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 
 import { CustomValidators } from "../../../shared/custom-validators";
-import { PaymentComponent } from "./payment/payment.component";
-import { ReviewStateService } from "./review.service";
+import { BlikDialogComponent, ReviewStateService } from ".";
 
 @Component({
   selector: "app-ticket-purchase-page",
@@ -72,7 +71,7 @@ export class TicketPurchasePageComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PaymentComponent, {
+    const dialogRef = this.dialog.open(BlikDialogComponent, {
       data: {
         userCredentials: this.userCredentialsForm.getRawValue(),
         totalPrice: this.reviewService.getTotalPrice(),

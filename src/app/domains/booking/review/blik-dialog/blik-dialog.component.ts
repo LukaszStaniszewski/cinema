@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, Inject, inject, Input } from "@angular/core";
-import { NonNullableFormBuilder, Validators } from "@angular/forms";
+import { Component, inject, Input } from "@angular/core";
+import { Validators } from "@angular/forms";
 import { FormControl } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { User } from "@domains/auth";
@@ -14,12 +14,12 @@ type DialogData = {
 
 @Component({
   selector: "app-payment",
-  templateUrl: "./payment.component.html",
-  styleUrls: ["./payment.component.css"],
+  templateUrl: "./blik-dialog.component.html",
+  styleUrls: ["./blik-dialog.component.css"],
 })
-export class PaymentComponent {
+export class BlikDialogComponent {
   @Input() totalPrice = 0;
-  private dialogRef!: MatDialogRef<PaymentComponent>;
+  private dialogRef!: MatDialogRef<BlikDialogComponent>;
   private reviewService = inject(ReviewStateService);
   public data = inject<DialogData>(MAT_DIALOG_DATA);
 

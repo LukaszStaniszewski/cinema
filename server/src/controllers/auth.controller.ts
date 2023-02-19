@@ -8,6 +8,13 @@ import getErrorMessage from "../utils/getErrorMessage";
 import { signJwt } from "../utils/jtw.utils";
 import logger from "../utils/logger";
 
+export type User = {
+  email: string;
+  firstName: string;
+  secondName: string;
+  phoneNumber?: number;
+};
+
 export const authenticate = async (
   req: Request<Record<string, unknown>, Record<string, unknown>, { password: string; email: string }>,
   res: Response

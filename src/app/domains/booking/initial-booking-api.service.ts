@@ -33,7 +33,8 @@ type Order = {
     name: string;
     surname: string;
     email: string;
-    phoneNumber?: number;
+    phoneNumber: number;
+    reservationId: string;
   };
 };
 interface Seat {

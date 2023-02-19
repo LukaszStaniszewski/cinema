@@ -4,7 +4,7 @@ import fs from "fs";
 import { ErrorMessage } from "../config/constants.config";
 import db from "../db.json";
 import getErrorMessage from "../utils/getErrorMessage";
-import { createOrder, findReservation, getTicketsReservedByCurrentUser, Ticket } from ".";
+import { createReservedOrder, findReservation, getTicketsReservedByCurrentUser, Ticket } from ".";
 
 export const sendReservation = async (req: Request<{ id: string }>, res: Response) => {
   try {
@@ -13,7 +13,7 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
     console.log("user", userId);
     if (userId) {
       const orderId = (userId + reservationId).replaceAll("-", "");
-      createOrder(orderId, userId);
+      createReservedOrder(orderId, userId);
 
       const reservation = findReservation(reservationId);
       const reservedTickets = getTicketsReservedByCurrentUser(orderId);

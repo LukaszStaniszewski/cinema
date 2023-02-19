@@ -81,7 +81,7 @@ export class ReviewStateService {
       .select(selectTicketsWithTotalPriceAndShowingPartial)
       .pipe(
         switchMap(value =>
-          this.http.post<Order>(API.ORDERS, { ...value, userCredentials: payload })
+          this.http.post<Order>(API.ORDER_PAYED, { ...value, userCredentials: payload })
         )
       );
   }
