@@ -113,33 +113,40 @@
                             controls.confirmEmail.dirty && controls.confirmEmail.invalid
                         ">
                         <p *ngIf="userCredentialsForm.errors as errors">
-                            {{ errors?.["matchValidation"]}}
+                            {{ errors["matchValidation"] }}
                         </p>
                     </ng-container>
                 </ng-container>
             </div>
         </div>
-        <div style="display: flex">
-            <div class="purchase-input">
-                <input
-                    placeholder="Numer telefonu"
-                    formControlName="phoneNumber"
-                    type="number" />
 
-                <ng-container *ngIf="controls.phoneNumber.errors as errors">
-                    <ng-container
-                        *ngIf="
-                            controls.phoneNumber.invalid && controls.phoneNumber.dirty
-                        ">
-                        <p
-                            style="width: 200%"
-                            *ngIf="errors['phoneNumberValidation'] as message">
-                            {{ message }}
-                        </p>
-                    </ng-container>
+        <div class="purchase-input">
+            <input
+                placeholder="Numer telefonu"
+                formControlName="phoneNumber"
+                type="number" />
+
+            <ng-container *ngIf="controls.phoneNumber.errors as errors">
+                <ng-container
+                    *ngIf="controls.phoneNumber.invalid && controls.phoneNumber.dirty">
+                    <p *ngIf="errors['phoneNumberValidation'] as message">
+                        {{ message }}
+                    </p>
                 </ng-container>
-            </div>
-            <div class="hidden">ww</div>
+            </ng-container>
+        </div>
+        <div class="purchase-input">
+            <input placeholder="kod zniżkowy" formControlName="couponCode" type="text" />
+
+            <ng-container *ngIf="controls.couponCode.errors as errors">
+                {{ errors["invalidCode"] }}
+                <!-- <ng-container
+                    *ngIf="controls.phoneNumber.invalid && controls.phoneNumber.dirty">
+                    <p *ngIf="errors['phoneNumberValidation'] as message">
+                        {{ message }}
+                    </p>
+                </ng-container> -->
+            </ng-container>
         </div>
         <!-- <button
             (click)="openDialog()"

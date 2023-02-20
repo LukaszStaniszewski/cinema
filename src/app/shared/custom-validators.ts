@@ -1,3 +1,5 @@
+import { HttpClient } from "@angular/common/http";
+import { inject } from "@angular/core";
 import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
 import { delay, Observable, of, timeout } from "rxjs";
 
@@ -77,8 +79,4 @@ export class CustomValidators {
   //   }
   //   return { emailValidation: "Nieodpowiedni adres email" };
   // }
-  static blikCode(control: AbstractControl): Observable<ValidationErrors | null> {
-    // return (control: AbstractControl) => {
-    return of(null).pipe(delay(1000));
-  }
 }

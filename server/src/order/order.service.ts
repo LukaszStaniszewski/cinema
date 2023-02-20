@@ -94,6 +94,10 @@ export const addPayed = (order: Order) => {
   return orderId;
 };
 
+export const validateCouponCode = (code: string) => {
+  return db.validCoupons.some(validCoupon => validCoupon === code);
+};
+
 export function doesPayedExist(orderId: string): orderId is keyof typeof payedOrdersDB {
   return orderId in payedOrdersDB;
 }

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { ErrorMessage } from "../config/constants.config";
-import db from "../db/db.json";
+import cinemaRoomDb from "../db/cinema-rooms.json";
 import getErrorMessage from "../utils/getErrorMessage";
 import { createReservedOrder, findReservation, getTicketsReservedByCurrentUser } from ".";
 
@@ -35,7 +35,7 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
 export const sendCinemaRoom = async (req: Request, res: Response) => {
   try {
     const cinemaRoomId = req.params.id;
-    const [cinemaRoom] = db["cinemarooms"].filter(cinemaroom => cinemaroom.id == cinemaRoomId);
+    const [cinemaRoom] = cinemaRoomDb.filter(cinemaroom => cinemaroom.id == cinemaRoomId);
     if (!cinemaRoom) {
       throw new Error(ErrorMessage.CINEMA_ROOM_NOT_FOUND);
     }

@@ -7,7 +7,7 @@ import { useNavigate } from "@shared/inject-hooks";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 
 import { CustomValidators } from "../../../shared/custom-validators";
-import { BlikDialogComponent, ReviewStateService } from ".";
+import { BlikDialogComponent, PaymentFormValidators, ReviewStateService } from ".";
 
 @Component({
   selector: "app-ticket-purchase-page",
@@ -48,6 +48,10 @@ export class TicketPurchasePageComponent implements OnInit {
         }),
         confirmEmail: this.builder.control("test@test.com", {
           validators: [Validators.required, CustomValidators.emailPatternValidator],
+        }),
+        couponCode: this.builder.control("", {
+          asyncValidators: [PaymentFormValidators.coupon()],
+          updateOn: "blur",
         }),
       },
       { validators: [CustomValidators.match("email", "confirmEmail")] }

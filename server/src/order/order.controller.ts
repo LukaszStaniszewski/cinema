@@ -4,7 +4,16 @@ import { ErrorMessage } from "../config/constants.config";
 import payedOrdersDB from "../db/paidOrders.json";
 import { Ticket } from "../reservation";
 import getErrorMessage from "../utils/getErrorMessage";
-import { addPayed, doesPayedExist, findReservedOrders, Order, removeReserved, simulateAwait, updateOrder } from ".";
+import {
+  addPayed,
+  doesPayedExist,
+  findReservedOrders,
+  Order,
+  removeReserved,
+  simulateAwait,
+  updateOrder,
+  validateCouponCode,
+} from ".";
 
 export const updateOrderController = (req: Request<{ id: string }, { ticket: Ticket[] }>, res: Response) => {
   try {
@@ -82,5 +91,21 @@ export const sendPayedOrderEmail = (req: Request<{ id: string }>, res: Response)
     }
   } catch (error) {
     res.status(400);
+  }
+};
+
+export const validateCouponCodeHandler = (req: Request<{ id: string }>, res: Response) => {
+  console.log("coupon ", req.params);
+  try {
+    const couponCode = req.params.id;
+    const isValid = validateCouponCode(couponCode);
+    if (isValid) {
+      res.status(200);
+      res.end();
+    } else {
+      throw new Error("Given coupon is not valid");
+    }
+  } catch (error) {
+    res.status(409).json(getErrorMessage(error));
   }
 };
