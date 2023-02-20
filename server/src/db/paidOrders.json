@@ -1,0 +1,113 @@
+{
+  "2a26669b-40ea-4132-be63-fd4635807e75": {
+    "tickets": [
+      {
+        "seat": {
+          "position": {
+            "row": "G",
+            "column": "3"
+          },
+          "taken": false,
+          "reservation": true,
+          "status": "standard"
+        },
+        "id": "G3",
+        "type": "normalny",
+        "price": 20
+      },
+      {
+        "seat": {
+          "position": {
+            "row": "H",
+            "column": "3"
+          },
+          "taken": false,
+          "reservation": true,
+          "status": "standard"
+        },
+        "id": "H3",
+        "type": "normalny",
+        "price": 20
+      }
+    ],
+    "totalPrice": 40,
+    "showingPartial": {
+      "title": "Avatar: Istota Wody",
+      "day": "06-12-2022",
+      "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+      "time": "15:00",
+      "reservationId": "06-15-a",
+      "type": "[tickets] get showing partial success"
+    },
+    "userCredentials": {
+      "firstName": "Jan",
+      "secondName": "Kowalski",
+      "phoneNumber": 123456789,
+      "email": "test@test.pl",
+      "confirmEmail": "test@test.pl"
+    },
+    "userId": 2
+  },
+  "40740387-6f1f-4ae3-803f-fce654f9430a": {
+    "tickets": [
+      {
+        "seat": {
+          "position": {
+            "row": "G",
+            "column": "3"
+          },
+          "taken": false,
+          "reservation": true,
+          "status": "standard"
+        },
+        "id": "G3",
+        "type": "normalny",
+        "price": 20
+      },
+      {
+        "seat": {
+          "position": {
+            "row": "H",
+            "column": "3"
+          },
+          "taken": false,
+          "reservation": true,
+          "status": "standard"
+        },
+        "id": "H3",
+        "type": "ulgowy",
+        "price": 12
+      },
+      {
+        "seat": {
+          "position": {
+            "row": "J",
+            "column": "3"
+          },
+          "taken": false,
+          "reservation": true,
+          "status": "standard"
+        },
+        "id": "J3",
+        "type": "normalny",
+        "price": 20
+      }
+    ],
+    "totalPrice": 52,
+    "showingPartial": {
+      "title": "Avatar: Istota Wody",
+      "day": "06-12-2022",
+      "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+      "time": "15:00",
+      "reservationId": "06-15-a"
+    },
+    "userCredentials": {
+      "firstName": "test",
+      "secondName": "test",
+      "phoneNumber": "",
+      "email": "test@test.com",
+      "confirmEmail": "test@test.com"
+    },
+    "userId": 2
+  }
+}

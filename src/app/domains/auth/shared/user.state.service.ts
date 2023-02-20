@@ -3,23 +3,25 @@ import { BehaviorSubject } from "rxjs";
 
 export type User = {
   email: string;
-  firstName?: string;
-  secondName?: string;
+  firstName: string;
+  secondName: string;
   phoneNumber?: number;
 };
+
+const initialState = { email: "", firstName: "", secondName: "" };
 
 @Injectable({
   providedIn: "root",
 })
 export class UserStateService {
-  private userState$$ = new BehaviorSubject<User>({ email: "" });
+  private userState$$ = new BehaviorSubject<User | null>(null);
 
   get user$() {
     return this.userState$$.asObservable();
   }
 
   remove() {
-    this.userState$$.next({ email: "" });
+    this.userState$$.next(null);
   }
 
   set(user: User) {

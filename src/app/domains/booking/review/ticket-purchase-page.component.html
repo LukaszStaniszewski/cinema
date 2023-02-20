@@ -8,7 +8,6 @@
             <span>{{ vm.showing?.time }}</span>
         </div>
     </div>
-    <!-- <label for="name">Name: </label> -->
     <div class="order-details">
         <div *ngFor="let ticket of vm.sortedTickets | keyvalue">
             <div>{{ ticket.value.amout }}x {{ ticket.key }}</div>
@@ -23,36 +22,42 @@
     <form class="purchase-form" [formGroup]="userCredentialsForm" (ngSubmit)="onSubmit()">
         <div class="name-surname-wrapper">
             <div class="purchase-input">
-                <input placeholder="Imię*" formControlName="name" type="text" />
-                <div>
-                    <ng-container *ngIf="controls.name.errors as errors">
-                        <ng-container *ngIf="controls.name.dirty">
-                            <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
-                            <p *ngIf="errors['minlength'] as minLength">
-                                Podałeś {{ minLength.actualLength }} znaki, minimum to
-                                {{ minLength.requiredLength }}
-                            </p>
-                            <p *ngIf="errors['maxLength'] as maxLength">
-                                Podałeś {{ maxLength.actualLength }} znaki, minimum to
-                                {{ maxLength.requiredLength }}
-                            </p>
-                        </ng-container>
+                <input placeholder="Imię*" formControlName="firstName" type="text" />
+                <ng-container *ngIf="controls.firstName.errors as errors">
+                    <ng-container
+                        *ngIf="
+                            (controls.firstName.touched && controls.firstName.pristine) ||
+                            (controls.firstName.touched && controls.firstName.dirty)
+                        ">
+                        <p *ngIf="errors['required']">Imię jest obowiązkowe</p>
                     </ng-container>
-                </div>
+                    <ng-container
+                        *ngIf="controls.firstName.dirty && controls.firstName.invalid">
+                        <p *ngIf="errors['minlength'] as minLength">
+                            Podałeś {{ minLength.actualLength }} znaki, minimum to
+                            {{ minLength.requiredLength }}
+                        </p>
+                        <p *ngIf="errors['maxLength'] as maxLength">
+                            Podałeś {{ maxLength.actualLength }} znaki, minimum to
+                            {{ maxLength.requiredLength }}
+                        </p>
+                    </ng-container>
+                </ng-container>
             </div>
             <div class="hidden">w</div>
             <div class="purchase-input">
-                <input placeholder="Nazwisko*" formControlName="surname" type="text" />
-                <!-- <p
-          [ngClass]="{
-            hidden: controls.surname.pristine || controls.surname.valid
-          }"
-        >
-          Nazwisko jest wymagane
-        </p> -->
-                <ng-container *ngIf="controls.surname.errors as errors">
-                    <ng-container *ngIf="controls.surname.dirty">
-                        <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+                <input placeholder="Nazwisko*" formControlName="secondName" type="text" />
+                <ng-container *ngIf="controls.secondName.errors as errors">
+                    <ng-container
+                        *ngIf="
+                            (controls.secondName.touched &&
+                                controls.secondName.pristine) ||
+                            (controls.secondName.touched && controls.secondName.dirty)
+                        ">
+                        <p *ngIf="errors['required']">Nazwisko jest obowiązkowe</p>
+                    </ng-container>
+                    <ng-container
+                        *ngIf="controls.secondName.dirty && controls.secondName.invalid">
                         <p *ngIf="errors['minlength'] as minLength">
                             Podałeś {{ minLength.actualLength }} znaki, minimum to
                             {{ minLength.requiredLength }}
@@ -72,16 +77,12 @@
                     placeholder="Adres e-mail*"
                     formControlName="email"
                     type="email" />
-                <!-- <p
-          [ngClass]="{
-            hidden: controls.email.pristine || controls.email.valid
-          }"
-        >
-          Wpisz prawidłowy adres email
-        </p> -->
                 <ng-container *ngIf="controls.email.errors as errors">
-                    <ng-container *ngIf="controls.email.dirty">
-                        <p *ngIf="errors['required']">Te pole jest obowiązkowe</p>
+                    <ng-container
+                        *ngIf="controls.email.touched && controls.email.pristine">
+                        <p *ngIf="errors['required']">Email jest obowiązkowy</p>
+                    </ng-container>
+                    <ng-container *ngIf="controls.email.dirty && controls.email.invalid">
                         <p *ngIf="errors['emailValidation'] as emailValidation">
                             {{ emailValidation }}
                         </p>
@@ -89,7 +90,7 @@
                 </ng-container>
             </div>
             <div class="hidden">w</div>
-            <!-- <p>Value: {{ userCredentials.status }}</p> -->
+
             <div class="purchase-input">
                 <input
                     class="purchase-input--conrifm-email"
@@ -97,30 +98,24 @@
                     formControlName="confirmEmail"
                     type="email" />
 
-                <!-- <p
-          [ngClass]="{
-            hidden:
-              userCredentials.controls.confirmEmail.pristine ||
-              userCredentials.controls.confirmEmail.valid
-          }"
-        >
-          {{ errorMessage ? errorMessage : "Wpisz prawidłowy adres email" }}
-        </p> -->
-                <!-- <p
-          [ngClass]="{
-            hidden:
-              controls.confirmEmail.pristine || controls.confirmEmail.valid
-          }"
-        >
-          {{ userCredentialsForm.errors?.["matchValidation"]}}
-        </p> -->
-                <ng-container *ngIf="controls.confirmEmail.touched">
-                    <p *ngIf="userCredentialsForm.errors as errors">
-                        {{ errors?.["matchValidation"]}}
-                    </p>
-                    <!-- <p *ngIf="controls.confirmEmail.errors["emailValidation"] as emailValidation">
-            {{ errors?.["matchValidation"]}}
-          </p> -->
+                <ng-container *ngIf="controls.confirmEmail.errors as errors">
+                    <ng-container
+                        *ngIf="
+                            controls.confirmEmail.touched &&
+                            controls.confirmEmail.pristine
+                        ">
+                        <p *ngIf="errors['required']">
+                            Potwierdzenie emila jest obowiązkowe
+                        </p>
+                    </ng-container>
+                    <ng-container
+                        *ngIf="
+                            controls.confirmEmail.dirty && controls.confirmEmail.invalid
+                        ">
+                        <p *ngIf="userCredentialsForm.errors as errors">
+                            {{ errors?.["matchValidation"]}}
+                        </p>
+                    </ng-container>
                 </ng-container>
             </div>
         </div>
@@ -130,15 +125,12 @@
                     placeholder="Numer telefonu"
                     formControlName="phoneNumber"
                     type="number" />
-                <!-- <p
-          [ngClass]="{
-            hidden: controls.phoneNumber.pristine || controls.phoneNumber.valid
-          }"
-        >
-          Numer telefonu musi składać się z 9 cyfr
-        </p> -->
+
                 <ng-container *ngIf="controls.phoneNumber.errors as errors">
-                    <ng-container *ngIf="controls.phoneNumber.dirty">
+                    <ng-container
+                        *ngIf="
+                            controls.phoneNumber.invalid && controls.phoneNumber.dirty
+                        ">
                         <p
                             style="width: 200%"
                             *ngIf="errors['phoneNumberValidation'] as message">
@@ -149,10 +141,14 @@
             </div>
             <div class="hidden">ww</div>
         </div>
-        <button
-            class="button button--purchase-form"
+        <!-- <button
+            (click)="openDialog()"
+            class="btn button--purchase-form"
             type="button"
             [disabled]="!userCredentialsForm.valid">
+            Zamawiam
+        </button> -->
+        <button (click)="openDialog()" class="btn button--purchase-form" type="button">
             Zamawiam
         </button>
     </form>

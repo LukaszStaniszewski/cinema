@@ -79,11 +79,14 @@ input::placeholder {
   padding-left: 0.5rem;
 }
 .purchase-input > .ng-dirty.ng-invalid {
-  border: 2px solid red;
+  border: 2px solid var(--accent-error);
+}
+.purchase-input > .ng-touched.ng-invalid {
+  border: 2px solid var(--accent-error);
 }
 
 .purchase-input > .ng-dirty.ng-valid {
-  border: 2px solid green;
+  border: 2px solid var(--accent-success);
 }
 
 .purchase-input > input {

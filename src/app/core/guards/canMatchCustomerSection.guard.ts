@@ -12,7 +12,6 @@ export class CanMatchCustomerSection implements CanMatch {
   canMatch(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.authState$.pipe(
       // skipWhile(({ authType }) => authType === null),
-
       map(({ authType }) => authType === "customer")
     );
   }

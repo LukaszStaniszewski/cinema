@@ -1,0 +1,162 @@
+/* .dialog {
+  position: absolute;
+} */
+
+/* p {
+  font-family: "Barlow", sans-serif;
+} */
+
+.payment-dialog {
+  color: var(--color-text-white-background);
+
+  padding: 8px;
+}
+
+.payment-dialog > div:first-child {
+  all: unset;
+}
+
+.dialog__return-button {
+  all: unset;
+}
+
+.dialog__return-button > img {
+  box-sizing: content-box;
+
+  width: 25px;
+  height: 25px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.dialog__header {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.dialog__header > p {
+  /* color: var(--color-primary); */
+}
+.dialog__header > img {
+  /* color: ; */
+  width: 70px;
+}
+/* .dialog__blik-icon {
+  display: block;
+  top: 0;
+  margin: 0 auto;
+  width: 60px;
+} */
+
+.dialog__text {
+  text-align: center;
+  /* margin: 20px 0 30px 0; */
+  margin-bottom: 20px;
+  /* font-family: "Barlow", sans-serif; */
+}
+
+.dialog__text > h1 {
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 1.14rem;
+  line-height: 1.5;
+}
+
+.dialog__text > p {
+  color: var(--color-text-secondary);
+}
+
+.dialog__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: var(--background-tertiary);
+  margin-bottom: 20px;
+  padding-top: 50px;
+  height: 150px;
+  width: max-content;
+  border-radius: 10px;
+}
+
+.dialog__error-wrapper {
+  height: 30px;
+  width: 100%;
+  color: var(--accent-error);
+  text-align: center;
+}
+
+.dialog__input-wrapper {
+  /* top: 0; */
+  /* margin: auto 0; */
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* .dialog__content > img {
+  top: 0;
+  margin: auto 0;
+
+  height: 35px;
+} */
+
+.dialog__input-wrapper > img {
+  /* top: 0; */
+  /* margin: auto 0; */
+
+  height: 35px;
+}
+
+.payment-input {
+  letter-spacing: 15px;
+  width: 300px;
+  /* all: unset; */
+  /* display: block;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+  padding: 1rem 1rem;
+  background-color: var(--color-text-primary); */
+}
+.payment-input ~ p {
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  font-size: 14px;
+  font-family: "Barlow", sans-serif;
+  /* position: absolute;
+  top: 30px; */
+  /* all: unset; */
+  /* display: block;
+  outline: none;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+  padding: 1rem 1rem;
+  background-color: var(--color-text-primary); */
+}
+
+.payment-input.ng-dirty.ng-invalid {
+  border: 2px solid var(--accent-error);
+}
+.payment-input.ng-touched.ng-invalid {
+  border: 2px solid var(--accent-error);
+}
+
+.payment-input.ng-dirty.ng-valid {
+  border: 2px solid var(--accent-success);
+}
+
+.dialog__submit {
+  top: 0;
+  margin: 0 auto;
+}

@@ -4,17 +4,7 @@ import { MESSAGE, SET_UP } from "@environments/constants";
 import { Actions, concatLatestFrom, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import {
-  catchError,
-  combineLatest,
-  concatMap,
-  map,
-  of,
-  switchMap,
-  takeWhile,
-  tap,
-  throwError,
-} from "rxjs";
+import { catchError, combineLatest, map, of, switchMap, takeWhile, throwError } from "rxjs";
 
 import { TicketStateService } from "../reservation";
 import {
@@ -32,6 +22,10 @@ export class BookingEffects {
   private ticketService = inject(TicketStateService);
   private toastService = inject(ToastStateService);
   private showingService = inject(ShowingApiService);
+
+  constructor() {
+    this.actions$.subscribe(console.log);
+  }
 
   createTicket$ = createEffect(() => {
     return this.actions$.pipe(
@@ -59,7 +53,7 @@ export class BookingEffects {
         combineLatest([this.showingService.getShowingPartial(payload), of(payload)])
       ),
       map(([showingPartial, reservationId]) =>
-        BookingApiAtions.getShowingPartialSuccess({ ...showingPartial, reservationId })
+        BookingApiAtions.getShowingPartialSuccess({ payload: { ...showingPartial, reservationId } })
       ),
       catchError(error => of(BookingApiAtions.getShowingPartialFailure({ payload: error })))
     );

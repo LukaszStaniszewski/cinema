@@ -1,23 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
+import { User } from "@domains/auth";
+import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
-import { BehaviorSubject, combineLatest } from "rxjs";
+import { BehaviorSubject, combineLatest, delay, switchMap } from "rxjs";
 
-import {
-  selectTicketsWithTotalPrice,
-  selectTicketsWithTotalPriceAndShowingPartial,
-  Ticket,
-  TicketTypes,
-} from "../store";
+import { selectTicketsWithTotalPriceAndShowingPartial, Ticket, TicketTypes } from "../store";
 
 type Order = {
-  name: string;
-  surname: string;
-  email: string;
-  phoneNumber?: number;
+  userCredentials: User;
+  tickets: Ticket[];
+  showingPartial: ShowingPartial;
+  totalPrice: number;
 };
 
 export type ReviewState = {
@@ -38,13 +34,9 @@ export class ReviewStateService {
     totalAmount: 0,
   });
 
-  constructor(
-    private http: HttpClient,
-    private store: Store,
-    private showingState: ShowingApiService
-  ) {}
+  constructor(private http: HttpClient, private store: Store) {}
 
-  getViewData(params: string) {
+  getViewData() {
     combineLatest([this.store.select(selectTicketsWithTotalPriceAndShowingPartial)]).subscribe(
       ([{ tickets, totalPrice, showingPartial }]) => {
         const sortedTickets = this.sortTicketsByType(tickets);
@@ -57,6 +49,10 @@ export class ReviewStateService {
         });
       }
     );
+  }
+
+  getTotalPrice() {
+    return this.reviewState$$.value.totalPrice;
   }
 
   private sortTicketsByType(tickets: Ticket[]): TicketsSortedByType {
@@ -80,7 +76,32 @@ export class ReviewStateService {
     return this.reviewState$$.asObservable();
   }
 
-  submitOrder(payload: Order) {
-    this.http.post(API.ORDERS, payload).subscribe(console.log);
+  submitOrder(payload: User, reservationId: string) {
+    return this.store.select(selectTicketsWithTotalPriceAndShowingPartial).pipe(
+      delay(300),
+      switchMap(value =>
+        combineLatest([
+          this.http.post<{ id: string }>(`${API.ORDER_PAYED}/${reservationId}`, {
+            ...value,
+            userCredentials: payload,
+          }),
+        ])
+      )
+    );
   }
 }
+
+// submitOrder(payload: User, reservationId: string) {
+//   return this.store.select(selectTicketsWithTotalPriceAndShowingPartial).pipe(
+//     switchMap(value =>
+//       combineLatest([
+//         this.http.post<Order>(`${API.ORDER_PAYED}/${reservationId}`, {
+//           ...value,
+//           userCredentials: payload,
+//         }),
+//         of(this.cartService.delete(reservationId))
+//       ])
+//     )
+//   );
+// }
+// }

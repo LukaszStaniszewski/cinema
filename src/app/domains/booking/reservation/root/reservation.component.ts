@@ -1,15 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import {
-  AppStateWithBookingState,
-  BookingApiAtions,
-  selectShowingPartial,
-} from "@domains/booking/store";
-import { ShowingApiService, ShowingPartial } from "@domains/dashboard";
+import { AppStateWithBookingState, selectShowingPartial } from "@domains/booking/store";
 import { Store } from "@ngrx/store";
-import { Observable, single, switchMap, takeWhile, tap } from "rxjs";
 
-import { CinemaRoomStateService, ReservationService, Seat, TicketStateService } from "..";
+import { CinemaRoomStateService, Seat, TicketStateService } from "..";
 
 @Component({
   selector: "app-reservation",
@@ -19,15 +13,13 @@ import { CinemaRoomStateService, ReservationService, Seat, TicketStateService } 
 })
 export class ReservationComponent implements OnInit {
   params = "";
-  // showingInfo$ = new Observable<ShowingPartial>();
+
   private store = inject<Store<AppStateWithBookingState>>(Store);
 
   constructor(
     private route: ActivatedRoute,
     private cinemaRoom: CinemaRoomStateService,
-    private ticket: TicketStateService,
-    private showing: ShowingApiService,
-    private reservationService: ReservationService
+    private ticket: TicketStateService
   ) {}
 
   get cinemaRoomSeats$() {
@@ -37,7 +29,6 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.params = this.route.snapshot.params["id"];
-    this.reservationService.getReservationData(this.params);
   }
 
   updateCinemaRoom(seat: Seat) {

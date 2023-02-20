@@ -1,0 +1,52 @@
+<div class="payment-dialog">
+    <div mat-dialog-actions>
+        <button class="dialog__return-button" [mat-dialog-close]>
+            <img src="assets/svg/chevron-left.svg" alt="close modal dialog" />
+        </button>
+    </div>
+    <div class="dialog__header">
+        <img class="dialog__blik-icon" src="assets/svg/blik/blik-logo.svg" alt="" />
+        <p class="text-h2">ALE KINO</p>
+    </div>
+
+    <div class="dialog__text">
+        <h1 class="text-body-big">Wpisz kod BLIK</h1>
+        <p class="text-body-small">Wygenerowany przez aplikację Twojego banku</p>
+    </div>
+    <div class="dialog__content" mat-dialog-content>
+        <div class="dialog__input-wrapper">
+            <img src="assets/svg/blik/blik-logo.svg" alt="" />
+
+            <input
+                [formControl]="blikCode"
+                id="blik-blikCode-input"
+                class="payment-input input"
+                placeholder="6-cyrfowy kod"
+                type="number" />
+        </div>
+        <div class="dialog__error-wrapper">
+            <ng-container *ngIf="blikCode.errors as errors">
+                <ng-container *ngIf="blikCode.touched && blikCode.pristine">
+                    <p *ngIf="errors['required']">
+                        Pole nie może być puste. Wprowadź kod BLIK
+                    </p>
+                </ng-container>
+                <ng-container *ngIf="blikCode.dirty && blikCode.invalid">
+                    <p *ngIf="errors['requiredLength'] as exactLength">
+                        {{ exactLength }}
+                    </p>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <ng-container *ngIf="blikCode.pending">pending </ng-container>
+        <button
+            [disabled]="!blikCode.valid"
+            type="button"
+            class="dialog__submit btn"
+            (click)="submit()">
+            Zapłać {{ data.totalPrice }} zł
+        </button>
+    </div>
+</div>

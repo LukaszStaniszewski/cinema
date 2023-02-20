@@ -1,9 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
+import {} from "@angular/material/";
+import { MatDialogModule } from "@angular/material/dialog";
 import { RouterModule, Routes } from "@angular/router";
 
-import { TicketPurchasePageComponent } from "./ticket-purchase-page.component";
+import { BlikDialogComponent, TicketPurchasePageComponent } from ".";
 
 const routes: Routes = [
   {
@@ -14,8 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [TicketPurchasePageComponent],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
-  providers: [],
+  declarations: [TicketPurchasePageComponent, BlikDialogComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes), MatDialogModule],
 })
 export default class ReviewModule {}
