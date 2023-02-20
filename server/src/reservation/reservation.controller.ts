@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import fs from "fs";
 
 import { ErrorMessage } from "../config/constants.config";
-import db from "../db.json";
+import db from "../db/db.json";
 import getErrorMessage from "../utils/getErrorMessage";
 import { createReservedOrder, findReservation, getTicketsReservedByCurrentUser, Ticket } from ".";
 
@@ -10,7 +9,8 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
   try {
     const userId = res.locals.user?.id as string;
     const reservationId = req.params?.id;
-    console.log("user", userId);
+    if (reservationId) throw Error("Reservation was not found");
+
     if (userId) {
       const orderId = (userId + reservationId).replaceAll("-", "");
       createReservedOrder(orderId, userId);

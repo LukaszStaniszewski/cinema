@@ -47,7 +47,7 @@ export const bookingReducer = createReducer(
   on(BookingApiAtions.getShowingPartialSuccess, (state, action): BookingState => {
     return {
       ...state,
-      showing: action,
+      showing: action.payload,
     };
   })
 );

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 
 import { ErrorMessage } from "../config/constants.config";
-import db from "../db.json";
+import db from "../db/db.json";
 import getErrorMessage from "../utils/getErrorMessage";
 
 export const sendTicketDetails = async (req: Request, res: Response) => {

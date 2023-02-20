@@ -5,7 +5,7 @@ import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { Maybe } from "@shared/utility-types";
-import { BehaviorSubject, combineLatest, switchMap } from "rxjs";
+import { BehaviorSubject, combineLatest, delay, switchMap } from "rxjs";
 
 import { selectTicketsWithTotalPriceAndShowingPartial, Ticket, TicketTypes } from "../store";
 
@@ -76,13 +76,32 @@ export class ReviewStateService {
     return this.reviewState$$.asObservable();
   }
 
-  submitOrder(payload: User) {
-    return this.store
-      .select(selectTicketsWithTotalPriceAndShowingPartial)
-      .pipe(
-        switchMap(value =>
-          this.http.post<Order>(API.ORDER_PAYED, { ...value, userCredentials: payload })
-        )
-      );
+  submitOrder(payload: User, reservationId: string) {
+    return this.store.select(selectTicketsWithTotalPriceAndShowingPartial).pipe(
+      delay(300),
+      switchMap(value =>
+        combineLatest([
+          this.http.post<{ id: string }>(`${API.ORDER_PAYED}/${reservationId}`, {
+            ...value,
+            userCredentials: payload,
+          }),
+        ])
+      )
+    );
   }
 }
+
+// submitOrder(payload: User, reservationId: string) {
+//   return this.store.select(selectTicketsWithTotalPriceAndShowingPartial).pipe(
+//     switchMap(value =>
+//       combineLatest([
+//         this.http.post<Order>(`${API.ORDER_PAYED}/${reservationId}`, {
+//           ...value,
+//           userCredentials: payload,
+//         }),
+//         of(this.cartService.delete(reservationId))
+//       ])
+//     )
+//   );
+// }
+// }

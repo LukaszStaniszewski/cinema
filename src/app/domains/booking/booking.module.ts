@@ -21,7 +21,7 @@ const routes: Routes = [
     loadChildren: () => import("./reservation/reservation.module"),
   },
   {
-    path: "summary",
+    path: "summary/:id",
     loadComponent: () => import("./payment-summary/payment-summary.component"),
   },
 ];

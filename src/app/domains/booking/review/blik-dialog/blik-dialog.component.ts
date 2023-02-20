@@ -10,6 +10,7 @@ import { ReviewStateService } from "../review.service";
 type DialogData = {
   userCredentials: User;
   totalPrice: number;
+  reservationId: string;
 };
 
 @Component({
@@ -19,7 +20,7 @@ type DialogData = {
 })
 export class BlikDialogComponent {
   @Input() totalPrice = 0;
-  private dialogRef!: MatDialogRef<BlikDialogComponent>;
+  // dialogRef!: MatDialogRef<BlikDialogComponent>;
   private reviewService = inject(ReviewStateService);
   public data = inject<DialogData>(MAT_DIALOG_DATA);
 
@@ -28,12 +29,14 @@ export class BlikDialogComponent {
     CustomValidators.exactLength(6),
   ]);
 
+  constructor(public dialogRef: MatDialogRef<BlikDialogComponent>) {}
+
   submit() {
-    console.log("click submit");
     this.blikCode.markAsPending();
-    console.log("data submit", this.data);
-    this.reviewService.submitOrder(this.data.userCredentials).subscribe({
-      next: () => this.dialogRef.close(this.blikCode.getRawValue()),
+
+    this.reviewService.submitOrder(this.data.userCredentials, this.data.reservationId).subscribe({
+      next: ([response]) => this.dialogRef.close(response),
+
       error: () => this.dialogRef.close(),
     });
     setTimeout(() => {

@@ -7,7 +7,7 @@ import {
   UrlTree,
 } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { map, Observable, timeout, timestamp } from "rxjs";
+import { map, Observable } from "rxjs";
 
 import { AppStateWithBookingState, selectTickets } from "./store";
 

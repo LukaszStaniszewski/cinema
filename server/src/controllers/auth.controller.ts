@@ -3,7 +3,7 @@ import { omit } from "lodash";
 
 import { ErrorMessage } from "../config/constants.config";
 import * as key from "../config/keys";
-import db from "../db.json";
+import db from "../db/db.json";
 import getErrorMessage from "../utils/getErrorMessage";
 import { signJwt } from "../utils/jtw.utils";
 import logger from "../utils/logger";

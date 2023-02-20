@@ -7,7 +7,7 @@ import { addPayedOrder, deleteOrder, sendGivenUserOrders, updateOrderController 
 const orderRouter = Router();
 orderRouter.patch("/:id", [deserialaizeUser, requireUser], updateOrderController);
 orderRouter.get("/", [deserialaizeUser, requireUser], sendGivenUserOrders);
-orderRouter.post("/payed", deserialaizeUser, addPayedOrder);
+orderRouter.post("/payed/:id", deserialaizeUser, addPayedOrder);
 orderRouter.delete("/:id", [deserialaizeUser, requireUser], deleteOrder);
 
 export default orderRouter;

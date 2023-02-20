@@ -3,11 +3,11 @@ import { Request, Response } from "express";
 import { ErrorMessage } from "../config/constants.config";
 import { Ticket } from "../reservation";
 import getErrorMessage from "../utils/getErrorMessage";
-import { addPayed, findReservedOrders, Order, removeReserved, updateOrder } from ".";
+import { addPayed, findReservedOrders, Order, removeReserved, simulateAwait, updateOrder } from ".";
 
 export const updateOrderController = (req: Request<{ id: string }, { ticket: Ticket[] }>, res: Response) => {
   try {
-    const userId = res.locals.user?.id as string;
+    const userId = res.locals.user?.id;
     const reservationId = req.params?.id;
     updateOrder(userId, reservationId, req.body);
 
@@ -20,8 +20,8 @@ export const updateOrderController = (req: Request<{ id: string }, { ticket: Tic
 
 export const sendGivenUserOrders = (req: Request<{ id: string }>, res: Response) => {
   try {
-    const userId = res.locals.user?.id as string;
-    const orders = findReservedOrders(userId);
+    const userId = res.locals.user?.id;
+    const orders = findReservedOrders(Number(userId));
 
     res.json(orders);
   } catch (error) {
@@ -44,19 +44,27 @@ export const deleteOrder = (req: Request, res: Response) => {
 };
 
 export const addPayedOrder = (
-  req: Request<Record<string, unknown>, Record<string, unknown>, Omit<Order, "userId">>,
+  req: Request<{ id: string }, Record<string, unknown>, Omit<Order, "userId">>,
   res: Response
 ) => {
-  const userId = res.locals.user?.id as string;
+  const userId = res.locals.user?.id;
   const order = req.body;
+  const reservationId = req.params.id;
+  const reservedOrderId = (userId + reservationId).replaceAll("-", "");
+  console.log("userId", userId, reservedOrderId);
 
+  let payedOrderId = null;
   try {
     if (userId) {
-      addPayed({ ...order, userId: userId });
+      payedOrderId = addPayed({ ...order, userId: userId });
+      removeReserved(reservedOrderId);
     } else {
-      addPayed(order);
+      payedOrderId = addPayed(order);
     }
-    res.status(200);
+
+    res.json({ id: payedOrderId });
+
+    // res.end();
   } catch (error) {
     res.status(400);
   }

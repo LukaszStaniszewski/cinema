@@ -25,7 +25,7 @@ export const BookingApiAtions = createActionGroup({
     "get tickets failure": props<{ payload: string }>(),
     // "get showing partial start": props<ShowingPartial>(),
     "get showing partial start": props<{ payload: string }>(),
-    "get showing partial success": props<ShowingPartial>(),
+    "get showing partial success": props<{ payload: ShowingPartial }>(),
     "get showing partial failure": props<{ payload: string }>(),
   },
 });

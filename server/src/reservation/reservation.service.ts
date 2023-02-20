@@ -1,7 +1,7 @@
 import fs from "fs";
 
 import { ErrorMessage } from "../config/constants.config";
-import db from "../db.json";
+import db from "../db/db.json";
 export type Seat = {
   position: { column: string; row: string };
   reservation: boolean;
@@ -27,7 +27,7 @@ export const createReservedOrder = (orderId: string, userId: string) => {
   if (orderId in db.orders.reserved) return;
   const order = { ...db.orders.reserved, [orderId]: { userId, tickets: [] } };
   db.orders.reserved = order;
-  fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), async err => {
+  fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), async err => {
     throw new Error(`file couldn't be overwritten: ${err}`);
   });
   return order;

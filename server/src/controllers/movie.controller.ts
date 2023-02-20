@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import fs from "fs";
 
 import { ErrorMessage, SuccessMessage } from "../config/constants.config";
-import db from "../db.json";
+import db from "../db/db.json";
 import getErrorMessage from "../utils/getErrorMessage";
 
 type WannaSee = {
@@ -66,7 +66,7 @@ export const deleteMovieFromWannaSeeList = (req: Request<{ id: string }>, res: R
       throw new Error("Movie couldn't be found");
     }
     db["wanna-see"] = withoutUnwantedMovie;
-    fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), err => {
+    fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
       throw new Error(`file couldn't be overwritten: ${err}`);
     });
     res.json(SuccessMessage.WANNA_SEE_DELETED);
@@ -93,7 +93,7 @@ export const addMovieToWannaSeeList = (
       throw new Error(ErrorMessage.MOVIE_NOT_ADDED);
     }
     db["wanna-see"] = wannaSeeDb;
-    fs.writeFile("./src/db.json", JSON.stringify(db, null, 2), err => {
+    fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
       throw new Error(`file couldn't be overwritten: ${err}`);
     });
     res.json(SuccessMessage.MOVIE_ADDED);

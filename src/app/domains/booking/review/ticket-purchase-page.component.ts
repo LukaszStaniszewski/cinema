@@ -34,19 +34,19 @@ export class TicketPurchasePageComponent implements OnInit {
   private createForm() {
     return this.builder.group(
       {
-        firstName: this.builder.control("", {
+        firstName: this.builder.control("test", {
           validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
         }),
-        secondName: this.builder.control("", {
+        secondName: this.builder.control("test", {
           validators: [Validators.required, Validators.minLength(2), Validators.maxLength(30)],
         }),
         phoneNumber: this.builder.control("", {
           validators: [CustomValidators.phoneNumberValidator],
         }),
-        email: this.builder.control("", {
+        email: this.builder.control("test@test.com", {
           validators: [Validators.required, CustomValidators.emailPatternValidator],
         }),
-        confirmEmail: this.builder.control("", {
+        confirmEmail: this.builder.control("test@test.com", {
           validators: [Validators.required, CustomValidators.emailPatternValidator],
         }),
       },
@@ -75,6 +75,7 @@ export class TicketPurchasePageComponent implements OnInit {
       data: {
         userCredentials: this.userCredentialsForm.getRawValue(),
         totalPrice: this.reviewService.getTotalPrice(),
+        reservationId: this.params,
       },
       ariaModal: true,
       role: "dialog",
@@ -82,15 +83,16 @@ export class TicketPurchasePageComponent implements OnInit {
       closeOnNavigation: true,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: { id: string }) => {
       console.log("result", result);
-      if (result) {
-        this.navigate(`/booking/summary/${this.params}`);
+      const orderId = result.id;
+      if (orderId) {
+        this.navigate(`/booking/summary/${orderId}`);
       }
-      if (this.hasNotBeenShown()) {
-        this.hasQuitSubmitMessagBeenShown = true;
-        this.toast.activateToast({ message: MESSAGE.ORDER_RESIGN, status: "info" });
-      }
+      // if (this.hasNotBeenShown()) {
+      //   this.hasQuitSubmitMessagBeenShown = true;
+      //   this.toast.activateToast({ message: MESSAGE.ORDER_RESIGN, status: "info" });
+      // }
     });
   }
   private hasNotBeenShown() {

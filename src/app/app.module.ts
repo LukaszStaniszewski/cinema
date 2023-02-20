@@ -38,14 +38,6 @@ function initFactory(initService: AuthService) {
       useClass: CustomHttpInterceptor,
       multi: true,
     },
-    // {
-    //   provide: [APP_INITIALIZER, AuthenticationService],
-    //   useValue: (userService: AuthenticationService) => {
-    //     userService.autoLogin();
-    //   },
-    //   deps: [AuthenticationService],
-    //   multi: true,
-    // },
     {
       provide: APP_INITIALIZER,
       useFactory: initFactory,

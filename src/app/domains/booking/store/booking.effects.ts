@@ -53,7 +53,7 @@ export class BookingEffects {
         combineLatest([this.showingService.getShowingPartial(payload), of(payload)])
       ),
       map(([showingPartial, reservationId]) =>
-        BookingApiAtions.getShowingPartialSuccess({ ...showingPartial, reservationId })
+        BookingApiAtions.getShowingPartialSuccess({ payload: { ...showingPartial, reservationId } })
       ),
       catchError(error => of(BookingApiAtions.getShowingPartialFailure({ payload: error })))
     );
