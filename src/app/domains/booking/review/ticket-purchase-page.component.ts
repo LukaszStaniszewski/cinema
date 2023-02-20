@@ -85,7 +85,7 @@ export class TicketPurchasePageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: { id: string }) => {
       console.log("result", result);
-      const orderId = result.id;
+      const orderId = result?.id;
       if (orderId) {
         this.navigate(`/booking/summary/${orderId}`);
       }

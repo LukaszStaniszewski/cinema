@@ -4,7 +4,7 @@
             draggable="false"
             class="toggle-btn__icon"
             src="assets/svg/cart.svg"
-            alt="cart with reservations" />
+            alt="toggle reservation cart" />
     </button>
 
     <menu *ngIf="isOpen" class="cart__dropdown">
@@ -26,13 +26,12 @@
                                     cartItem.showingPartial.reservationId
                                 )
                             ">
-                            <img src="assets/svg/trash-icon.svg" />
+                            <img
+                                src="assets/svg/trash-icon.svg"
+                                alt="delete reservation" />
                         </button>
                     </div>
-                    <a
-                        class="btn btn--sm"
-                        (click)="redirect()"
-                        [routerLink]="[cartItem.url]"
+                    <a class="btn btn--sm" (click)="redirect(cartItem.url)"
                         >Dokończ zamówienie</a
                     >
                 </li>
@@ -48,40 +47,3 @@
         </ul>
     </menu>
 </div>
-<!-- 
-<button [cdkMenuTriggerFor]="menu" type="button" class="cart__toggle-btn">
-    <img
-        draggable="false"
-        class="toggle-btn__icon"
-        src="assets/svg/cart.svg"
-        alt="cart with reservations" />
-</button>
-
-<ng-template #menu>
-    <menu class="cart__dropdown" cdkMenu>
-        <ul *ngIf="vm$ | async as cartItems" class="dropdown__list">
-            <li class="dropdown__list-item" *ngFor="let cartItem of cartItems">
-                <div class="list-item__content">
-                    <img src="{{ cartItem.showingPartial.image }}" />
-                    <div class="content__info">
-                        <div>{{ cartItem.showingPartial.title }}</div>
-                        <div>{{ cartItem.showingPartial.day }}</div>
-                        <div>{{ cartItem.showingPartial.time }}</div>
-                    </div>
-                    <button
-                        type="button"
-                        class="content__delete-btn"
-                        (click)="
-                            removeCartItem($event, cartItem.showingPartial.reservationId)
-                        ">
-                        <img src="assets/svg/trash-icon.svg" />
-                    </button>
-                </div>
-
-                <a cdkMenuItem class="btn btn--sm" [routerLink]="['/lastUrl']"
-                    >Dokończ zamówienie</a
-                >
-            </li>
-        </ul>
-    </menu>
-</ng-template> -->

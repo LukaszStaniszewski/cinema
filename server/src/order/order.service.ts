@@ -35,7 +35,7 @@ export const updateOrder = (userId: number, reservationId: string, order: Reserv
   if (doesExist(orderId)) {
     const updated = { ...order, userId };
     // const updatedOrder = { [orderId]: updated };
-    db.orders.reserved[orderId] = updated;
+    db.orders[orderId] = updated;
     fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
       // throw new Error(`file couldn't be overwritten: ${err}`);
       return;
@@ -46,12 +46,12 @@ export const updateOrder = (userId: number, reservationId: string, order: Reserv
   }
 };
 
-function doesExist(orderId: string): orderId is keyof typeof db.orders.reserved {
-  return orderId in db["orders"].reserved;
+function doesExist(orderId: string): orderId is keyof typeof db.orders {
+  return orderId in db["orders"];
 }
 
 export const findReservedOrders = (userId: number) => {
-  const reservedOrders = db.orders.reserved;
+  const reservedOrders = db.orders;
   let holder: Pick<ReservedOrder, "showingPartial" | "url">[] & { orderId: string }[] = [];
 
   for (const orderId in reservedOrders) {
@@ -70,12 +70,12 @@ export const findReservedOrders = (userId: number) => {
 
 export const removeReserved = (orderId: string) => {
   console.log("hit remove");
-  const reservedOrders = db.orders.reserved;
+  const reservedOrders = db.orders;
 
   if (doesExist(orderId)) {
     delete reservedOrders[orderId];
   }
-  db.orders.reserved = reservedOrders;
+  db.orders = reservedOrders;
   fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
     // throw new Error(`file couldn't be overwritten: ${err}`);
     // return;

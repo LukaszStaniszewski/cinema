@@ -5,10 +5,12 @@ import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import {
+  bindCallback,
   combineLatest,
   distinctUntilChanged,
   map,
   of,
+  Subject,
   switchMap,
   takeUntil,
   takeWhile,
@@ -50,17 +52,18 @@ export class InitialBookingApiService {
     private http: HttpClient,
     private toastService: ToastStateService
   ) {}
-
   load() {
-    // const regex = new RegExp(/booking[^/summary]/gi);
     this.location.onUrlChange(url => {
       const splitedUrl = url.split("/");
       const reservationId = splitedUrl[splitedUrl.length - 1];
+
       if (splitedUrl.includes("booking") && !splitedUrl.includes("summary")) {
         this.getShowingPartial(url);
         this.getReservationData(reservationId);
+        this.store.dispatch(BookingTicketActions.getLatestReservationUrl({ payload: url }));
       }
       if (!splitedUrl.includes("booking") && !splitedUrl.includes("summary")) {
+        console.log(splitedUrl);
         this.resetStateOnLeaveCuzNgOnDestoryIsNotWorking();
       }
     });
@@ -119,5 +122,9 @@ export class InitialBookingApiService {
       .subscribe(params => {
         this.store.dispatch(BookingApiAtions.getShowingPartialStart({ payload: params }));
       });
+  }
+
+  ngOnDestory() {
+    console.log("ng destory");
   }
 }

@@ -20,11 +20,9 @@ export class CanActivateReview implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    console.log(state.url);
     // console.log();
     return this.store.select(selectTickets).pipe(
       map(tickets => {
-        console.log(tickets);
         if (tickets.length > 0) {
           return true;
         }

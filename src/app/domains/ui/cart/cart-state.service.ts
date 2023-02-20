@@ -1,14 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import {
-  AppStateWithBookingState,
-  selectTicketsWithShowingPartial,
-  selectTicketsWithShowingPartialAndUrl,
-} from "@domains/booking/store";
+import { AppStateWithBookingState, selectTicketsWithShowingPartialAndUrl } from "@domains/booking/store";
 import { ShowingPartial } from "@domains/dashboard";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
-import { BehaviorSubject, catchError, EMPTY, map, of, skipWhile, take } from "rxjs";
+import { BehaviorSubject, map, take } from "rxjs";
+
 type CartItem = {
   showingPartial: ShowingPartial;
   url: string;
@@ -30,23 +27,19 @@ export class CartStateService {
       .select(selectTicketsWithShowingPartialAndUrl)
       .pipe(
         map(select => {
-          console.log("select in cart state", select);
           if (select.tickets.length > 0) return select;
-          if (select.showingPartial) {
-            this.deleteLocaly(select.showingPartial.reservationId);
-          }
+          if (select.showingPartial) this.deleteLocaly(select.showingPartial.reservationId);
           return;
         })
       )
       .subscribe({
         next: item => {
-          if (item?.showingPartial)
+          if (item?.showingPartial) {
             this.add({ showingPartial: item.showingPartial, url: item.url });
+          }
         },
         error: error => error,
       });
-
-    this.cartState$$.subscribe(value => console.log("ticke sub", value));
   }
 
   get selectCartItems$() {
@@ -72,7 +65,6 @@ export class CartStateService {
   }
 
   private deleteLocaly(reservationId: string) {
-    // this.deleteInDB(itemId);
     this.cartState$$.next({
       cartItems: this.cartState$$.value.cartItems.filter(
         item => item.showingPartial.reservationId !== reservationId
@@ -89,23 +81,9 @@ export class CartStateService {
       .get<CartItem[]>(API.ORDERS)
       .pipe(take(1))
       .subscribe({
-        next: cartItems => this.patchState(cartItems),
-        // next: cartItems => this.cartState$$.next({ cartItems: cartItems, text: "" }),
+        next: cartItems => this.cartState$$.next({ cartItems }),
+
         error: error => error,
       });
-  }
-
-  private patchState(stateSlice: CartItem[]) {
-    // if (this.cartState$$.value.cartItems) {
-    //   this.cartState$$.next({
-    //     ...this.cartState$$.value,
-    //     cartItems: [...this.cartState$$.value.cartItems, ...stateSlice],
-    //   });
-    // } else {
-    this.cartState$$.next({
-      ...this.cartState$$.value,
-      cartItems: stateSlice,
-    });
-    // }
   }
 }

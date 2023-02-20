@@ -1,8 +1,8 @@
 import { AsyncPipe, JsonPipe, NgIf } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { Component, inject } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { API, MESSAGE } from "@environments/constants";
+import { API } from "@environments/constants";
 import { QRCodeModule } from "angularx-qrcode";
 import { Observable } from "rxjs";
 @Component({
@@ -12,7 +12,7 @@ import { Observable } from "rxjs";
   standalone: true,
   imports: [QRCodeModule, NgIf, AsyncPipe, JsonPipe],
 })
-export default class PaymentSummaryComponent {
+export default class PaymentSummaryComponent implements OnInit {
   vm$ = new Observable<{ email: string }>();
 
   private http = inject(HttpClient);

@@ -24,9 +24,9 @@ export type Ticket = {
 };
 
 export const createReservedOrder = (orderId: string, userId: string) => {
-  if (orderId in db.orders.reserved) return;
-  const order = { ...db.orders.reserved, [orderId]: { userId, tickets: [] } };
-  db.orders.reserved = order;
+  if (orderId in db.orders) return;
+  const order = { ...db.orders, [orderId]: { userId, tickets: [] } };
+  db.orders = order;
   fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), async err => {
     throw new Error(`file couldn't be overwritten: ${err}`);
   });
@@ -35,7 +35,7 @@ export const createReservedOrder = (orderId: string, userId: string) => {
 
 export const getTicketsReservedByCurrentUser = (orderId: string) => {
   if (doesExist(orderId)) {
-    const order = db.orders.reserved[orderId].tickets;
+    const order = db.orders[orderId].tickets;
     return order;
   }
   return;
@@ -49,6 +49,6 @@ export const findReservation = (reservationId: string) => {
   return reservation;
 };
 
-function doesExist(id: string): id is keyof typeof db.orders.reserved {
-  return id in db.orders.reserved;
+function doesExist(id: string): id is keyof typeof db.orders {
+  return id in db.orders;
 }

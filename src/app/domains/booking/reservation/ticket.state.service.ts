@@ -1,4 +1,3 @@
-import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { AuthService, AuthType } from "@domains/auth";
@@ -6,14 +5,11 @@ import {
   AppStateWithBookingState,
   BookingTicketActions,
   selectBookingState,
-  selectTickets,
-  selectTicketsWithShowingPartial,
   selectTicketsWithShowingPartialAndUrl,
   selectTicketsWithTotalPrice,
   Ticket,
   TicketDetails,
 } from "@domains/booking/store";
-import { CartStateService } from "@domains/ui/cart/cart-state.service";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import {
@@ -24,13 +20,9 @@ import {
   debounceTime,
   distinctUntilChanged,
   map,
-  Observable,
   of,
-  skip,
-  skipUntil,
   takeUntil,
   takeWhile,
-  tap,
 } from "rxjs";
 
 import { Seat } from ".";
@@ -60,16 +52,13 @@ export class TicketStateService {
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private authService = inject(AuthService);
 
-  // private cartService = inject(CartStateService);
-
   constructor(private http: HttpClient) {
     this.store.select(selectBookingState).subscribe(console.log);
-    combineLatest([
-      this.store.select(selectTicketsWithTotalPrice),
-      this.fetchTicketDetails(),
-    ]).subscribe(([{ tickets, totalPrice }, ticketDetails]) => {
-      this.patchState({ tickets, totalPrice, ticketDetails });
-    });
+    combineLatest([this.store.select(selectTicketsWithTotalPrice), this.fetchTicketDetails()]).subscribe(
+      ([{ tickets, totalPrice }, ticketDetails]) => {
+        this.patchState({ tickets, totalPrice, ticketDetails });
+      }
+    );
   }
 
   private patchState(stateSlice: Partial<TicketInformation>) {
@@ -96,9 +85,7 @@ export class TicketStateService {
     if (seatToUpdate.reservation === true) {
       this.store.dispatch(BookingTicketActions.removeTicket({ id: seatToUpdateId }));
     } else {
-      this.store.dispatch(
-        BookingTicketActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId })
-      );
+      this.store.dispatch(BookingTicketActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId }));
     }
     // if(this.ticketInformation.tickets.length === 0) {
     //   this.store.dispatch(BookingTicketActions.removeShowingPartial())
@@ -118,8 +105,6 @@ export class TicketStateService {
   }
 
   private saveToDB(reservationId: string) {
-    console.log("hit");
-
     this.store
       .select(selectTicketsWithShowingPartialAndUrl)
       .pipe(
