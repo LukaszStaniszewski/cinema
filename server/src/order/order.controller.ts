@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 
 import { ErrorMessage } from "../config/constants.config";
+import payedOrdersDB from "../db/paidOrders.json";
 import { Ticket } from "../reservation";
 import getErrorMessage from "../utils/getErrorMessage";
-import { addPayed, findReservedOrders, Order, removeReserved, simulateAwait, updateOrder } from ".";
+import { addPayed, doesPayedExist, findReservedOrders, Order, removeReserved, simulateAwait, updateOrder } from ".";
 
 export const updateOrderController = (req: Request<{ id: string }, { ticket: Ticket[] }>, res: Response) => {
   try {
@@ -65,6 +66,20 @@ export const addPayedOrder = (
     res.json({ id: payedOrderId });
 
     // res.end();
+  } catch (error) {
+    res.status(400);
+  }
+};
+
+export const sendPayedOrderEmail = (req: Request<{ id: string }>, res: Response) => {
+  try {
+    const orderId = req.params.id;
+    if (doesPayedExist(orderId)) {
+      const email = payedOrdersDB[orderId].userCredentials.email;
+      res.json({ email: email });
+    } else {
+      throw new Error("this payed order doesn't exist");
+    }
   } catch (error) {
     res.status(400);
   }

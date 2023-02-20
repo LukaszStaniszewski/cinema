@@ -1,11 +1,9 @@
 import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ShowingPartial } from "@domains/dashboard";
 import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { Maybe } from "@shared/utility-types";
 import {
   combineLatest,
   distinctUntilChanged,
@@ -26,17 +24,6 @@ import {
   Ticket,
 } from "./store";
 
-type Order = {
-  tickets: Ticket[];
-  showing: Maybe<ShowingPartial>;
-  credentials?: {
-    name: string;
-    surname: string;
-    email: string;
-    phoneNumber: number;
-    reservationId: string;
-  };
-};
 interface Seat {
   position: { column: string; row: string };
   reservation: boolean;
@@ -62,17 +49,23 @@ export class InitialBookingApiService {
     private store: Store,
     private http: HttpClient,
     private toastService: ToastStateService
-  ) {
-    const regex = new RegExp(/booking/i);
+  ) {}
+
+  load() {
+    // const regex = new RegExp(/booking[^/summary]/gi);
     this.location.onUrlChange(url => {
-      if (regex.test(url)) {
+      const splitedUrl = url.split("/");
+      const reservationId = splitedUrl[splitedUrl.length - 1];
+      if (splitedUrl.includes("booking") && !splitedUrl.includes("summary")) {
         this.getShowingPartial(url);
+        this.getReservationData(reservationId);
       }
-      if (!regex.test(url)) {
+      if (!splitedUrl.includes("booking") && !splitedUrl.includes("summary")) {
         this.resetStateOnLeaveCuzNgOnDestoryIsNotWorking();
       }
     });
   }
+
   getReservationData(id: string) {
     this.store.dispatch(BookingApiAtions.getTicketsStart());
 
@@ -100,7 +93,6 @@ export class InitialBookingApiService {
             this.store.dispatch(BookingApiAtions.getTicketsSuccess({ payload: reservedTickets }));
           }
           this.cinemaRoomService.mapSeats(cinemaRoom, takenSeats, reservedTickets);
-          // this.hasLoaded = true;
         },
         error: () =>
           this.toastService.activateToast({

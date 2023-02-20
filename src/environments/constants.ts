@@ -9,6 +9,7 @@ export const API = {
   SHOWINGS: "/showings",
   ORDERS: "/orders",
   ORDER_PAYED: "/orders/payed",
+  ORDER_EMAIL: "/orders/email",
 } as const;
 
 export const SET_UP = {

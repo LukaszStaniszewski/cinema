@@ -94,6 +94,9 @@ export const addPayed = (order: Order) => {
   return orderId;
 };
 
+export function doesPayedExist(orderId: string): orderId is keyof typeof payedOrdersDB {
+  return orderId in payedOrdersDB;
+}
 export const simulateAwait = async (time: number, id: string) => {
   return await new Promise(resolve => {
     setTimeout(() => {

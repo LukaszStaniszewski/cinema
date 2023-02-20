@@ -1,1 +1,19 @@
-<p>payment-summary works!</p>
+<section class="payment-summary">
+    <h1 class="text-h3 shadow-primary-text">Dziękujemy za zamówienie</h1>
+    <ng-container *ngIf="vm$ | async as vm">
+        <p class="text-body-big">
+            Twoje bilety zostały wysłane na adres email:
+            <span class="payment-summary__email">{{ vm.email }}</span>
+        </p>
+        <div class="qr-code__wrapper">
+            <qrcode
+                [qrdata]="'https://google.com'"
+                [width]="256"
+                [errorCorrectionLevel]="'M'"
+                [cssClass]="'center'"
+                [colorLight]="'#00000000'"
+                [colorDark]="'#ffffffff'">
+            </qrcode>
+        </div>
+    </ng-container>
+</section>

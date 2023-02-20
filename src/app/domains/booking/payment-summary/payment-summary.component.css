@@ -1,0 +1,22 @@
+.payment-summary {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.payment-summary > h1 {
+  color: var(--color-primary);
+}
+
+.payment-summary > p {
+  margin: 1.25rem 0 0 0;
+}
+
+.payment-summary__email {
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.qr-code__wrapper {
+  display: flex;
+  justify-content: center;
+}
