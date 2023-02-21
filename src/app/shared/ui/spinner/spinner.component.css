@@ -1,0 +1,107 @@
+@keyframes spinner-inner {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.spinner-inner div {
+  box-sizing: border-box !important;
+}
+.spinner-inner > div {
+  position: absolute;
+  width: 152px;
+  height: 152px;
+  top: 24px;
+  left: 24px;
+  border-radius: 50%;
+  border: 12px solid #000;
+  border-color: #253554 transparent #253554 transparent;
+  animation: spinner-inner 1s linear infinite;
+}
+
+.spinner-inner > div:nth-child(2),
+.spinner-inner > div:nth-child(4) {
+  width: 124px;
+  height: 124px;
+  top: 38px;
+  left: 38px;
+  animation: spinner-inner 1s linear infinite reverse;
+}
+.spinner-inner > div:nth-child(2) {
+  border-color: transparent #00f3f3 transparent #00f3f3;
+}
+.spinner-inner > div:nth-child(3) {
+  border-color: transparent;
+}
+.spinner-inner > div:nth-child(3) div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+}
+.spinner-inner > div:nth-child(3) div:before,
+.spinner-inner > div:nth-child(3) div:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: -12px;
+  left: 58px;
+  background: #253554;
+  border-radius: 50%;
+  box-shadow: 0 140px 0 0 #253554;
+}
+.spinner-inner > div:nth-child(3) div:after {
+  left: -12px;
+  top: 58px;
+  box-shadow: 140px 0 0 0 #253554;
+}
+
+.spinner-inner > div:nth-child(4) {
+  border-color: transparent;
+}
+.spinner-inner > div:nth-child(4) div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotate(45deg);
+}
+.spinner-inner > div:nth-child(4) div:before,
+.spinner-inner > div:nth-child(4) div:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: -12px;
+  left: 44px;
+  background: #00f3f3;
+  border-radius: 50%;
+  box-shadow: 0 112px 0 0 #00f3f3;
+}
+.spinner-inner > div:nth-child(4) div:after {
+  left: -12px;
+  top: 44px;
+  box-shadow: 112px 0 0 0 #00f3f3;
+}
+.spinner {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  overflow: hidden;
+  background: #111620;
+}
+.spinner-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+.spinner-inner div {
+  box-sizing: content-box;
+}

@@ -1,11 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from "@angular/core";
-import { Movie } from "@core/movie/movie.service";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
+import { Movie } from "@core/movie/watch-list.service";
 
 @Component({
   selector: "app-wanna-see-card[movie]",

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MovieService } from "@core/movie/movie.service";
+import { WatchListService } from "@core/movie/watch-list.service";
 
 import { ShowingApiService } from "..";
 
@@ -14,7 +14,7 @@ export class CardListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private showingService: ShowingApiService,
-    private movieService: MovieService
+    private watchList: WatchListService
   ) {}
 
   vm = this.showDefaultPage();
@@ -25,7 +25,7 @@ export class CardListComponent implements OnInit {
       this.vm = this.showingService.getShowings(adjustedDate);
     });
 
-    this.movieService.getFavoriteId();
+    this.watchList.getFavoriteId();
   }
 
   private showDefaultPage() {
