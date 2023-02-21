@@ -2,10 +2,10 @@
     <div class="movie-info">
         <img class="movie-info__image" src="{{ vm.showing?.image }}" alt="" srcset="" />
         <div class="movie-info__details">
-            <p class="text-gradient text-title">ZAKUP BILETÓW</p>
-            <p>{{ vm.showing?.title }}</p>
-            <span>{{ vm.showing?.day }}</span>
-            <span>{{ vm.showing?.time }}</span>
+            <p class="text-h4">ZAKUP BILETÓW</p>
+            <p class="text-body-big">{{ vm.showing?.title }}</p>
+            <p>{{ vm.showing?.day }}</p>
+            <p>{{ vm.showing?.time }}</p>
         </div>
     </div>
     <div class="order-details">
@@ -13,14 +13,14 @@
             <div>{{ ticket.value.amout }}x {{ ticket.key }}</div>
             <div>{{ ticket.value.price }}zł</div>
         </div>
-        <div class="total text-gradient">
+        <div class="total text-body-big">
             <div>{{ vm.totalAmount }} bilety</div>
             <div>{{ vm.totalPrice }}zł</div>
         </div>
     </div>
 
     <form class="purchase-form" [formGroup]="userCredentialsForm" (ngSubmit)="onSubmit()">
-        <div class="name-surname-wrapper">
+        <div class="input-wrapper">
             <div class="purchase-input">
                 <input placeholder="Imię*" formControlName="firstName" type="text" />
                 <ng-container *ngIf="controls.firstName.errors as errors">
@@ -44,7 +44,7 @@
                     </ng-container>
                 </ng-container>
             </div>
-            <div class="hidden">w</div>
+
             <div class="purchase-input">
                 <input placeholder="Nazwisko*" formControlName="secondName" type="text" />
                 <ng-container *ngIf="controls.secondName.errors as errors">
@@ -70,7 +70,7 @@
                 </ng-container>
             </div>
         </div>
-        <div class="email-wrapper">
+        <div class="input-wrapper">
             <div class="purchase-input">
                 <input
                     class="purchase-input--email"
@@ -89,7 +89,6 @@
                     </ng-container>
                 </ng-container>
             </div>
-            <div class="hidden">w</div>
 
             <div class="purchase-input">
                 <input
@@ -119,43 +118,40 @@
                 </ng-container>
             </div>
         </div>
+        <div class="input-wrapper">
+            <div class="purchase-input">
+                <input
+                    placeholder="Numer telefonu"
+                    formControlName="phoneNumber"
+                    type="number" />
 
-        <div class="purchase-input">
-            <input
-                placeholder="Numer telefonu"
-                formControlName="phoneNumber"
-                type="number" />
-
-            <ng-container *ngIf="controls.phoneNumber.errors as errors">
-                <ng-container
-                    *ngIf="controls.phoneNumber.invalid && controls.phoneNumber.dirty">
-                    <p *ngIf="errors['phoneNumberValidation'] as message">
-                        {{ message }}
-                    </p>
+                <ng-container *ngIf="controls.phoneNumber.errors as errors">
+                    <ng-container
+                        *ngIf="
+                            controls.phoneNumber.invalid && controls.phoneNumber.dirty
+                        ">
+                        <p *ngIf="errors['phoneNumberValidation'] as message">
+                            {{ message }}
+                        </p>
+                    </ng-container>
                 </ng-container>
-            </ng-container>
-        </div>
-        <div class="purchase-input">
-            <input placeholder="kod zniżkowy" formControlName="couponCode" type="text" />
+            </div>
+            <div class="purchase-input">
+                <input
+                    placeholder="kod zniżkowy"
+                    formControlName="couponCode"
+                    type="text" />
 
-            <ng-container *ngIf="controls.couponCode.errors as errors">
-                {{ errors["invalidCode"] }}
-                <!-- <ng-container
-                    *ngIf="controls.phoneNumber.invalid && controls.phoneNumber.dirty">
-                    <p *ngIf="errors['phoneNumberValidation'] as message">
-                        {{ message }}
-                    </p>
-                </ng-container> -->
-            </ng-container>
+                <ng-container *ngIf="controls.couponCode.errors as errors">
+                    {{ errors["invalidCode"] }}
+                </ng-container>
+            </div>
         </div>
-        <!-- <button
+        <button
             (click)="openDialog()"
             class="btn button--purchase-form"
             type="button"
             [disabled]="!userCredentialsForm.valid">
-            Zamawiam
-        </button> -->
-        <button (click)="openDialog()" class="btn button--purchase-form" type="button">
             Zamawiam
         </button>
     </form>

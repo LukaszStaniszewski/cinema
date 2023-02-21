@@ -61,7 +61,6 @@ export const addPayedOrder = (
   const order = req.body;
   const reservationId = req.params.id;
   const reservedOrderId = (userId + reservationId).replaceAll("-", "");
-  console.log("userId", userId, reservedOrderId);
 
   let payedOrderId = null;
   try {
