@@ -1,9 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { Movie } from "@core/movie/watch-list.service";
+import { ComponentStore } from "@ngrx/component-store";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MovieService {
+export type MoveState = {
+  movies: Movie[];
+};
 
-  constructor() { }
+@Injectable()
+export class MovieService extends ComponentStore<MoveState> {
+  constructor() {
+    super({ movies: [] });
+  }
 }

@@ -36,6 +36,10 @@ const routes: Routes = [
             loadChildren: () => import("./domains/customer/customer.module"),
             canMatch: [CanMatchCustomerSection],
           },
+          {
+            path: "admin",
+            loadChildren: () => import("./domains/admin/admin.module"),
+          },
         ],
       },
       {

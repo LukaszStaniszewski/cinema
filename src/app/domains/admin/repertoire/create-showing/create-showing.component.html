@@ -1,0 +1,38 @@
+<section class="create-showing">
+    <form class="create-showing__form" [formGroup]="addShowingForm">
+        <div formGroupName="movie">
+            <fieldset>
+                <div>
+                    <input class="input" formControlName="imageLink" />
+                    <input class="input" formControlName="movieTitle" />
+                </div>
+                <div>
+                    <input class="input" formControlName="runTime" />
+                    <input class="input" formControlName="pg" />
+                </div>
+                <div>
+                    <input class="input" formControlName="genre" />
+                    <input class="input" formControlName="description" />
+                </div>
+            </fieldset>
+        </div>
+        <fieldset>
+            <input class="input" formControlName="cinemaRoom" />
+
+            <div>
+                <input class="input" matInput [matDatepicker]="picker" />
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div>
+                <input class="input" matInput [matDatepicker]="hour" />
+                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                <mat-datepicker-toggle matIconSuffix [for]="hour"></mat-datepicker-toggle>
+                <mat-datepicker #hour></mat-datepicker>
+            </div>
+        </fieldset>
+    </form>
+</section>
