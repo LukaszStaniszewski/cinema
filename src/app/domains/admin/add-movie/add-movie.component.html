@@ -1,74 +1,160 @@
 <section class="add-movie grid-container">
-    <form class="add-movie__form" [formGroup]="addMovieForm">
-        <fieldset>
-            <legend class="text-h2 shadow-primary-text">Dodaj film</legend>
-            <div class="form__inputs-wrapper">
-                <div class="input-wrapper__form-field">
-                    <input
-                        class="input"
-                        placeholder="tytuł"
-                        formControlName="movieTitle" />
-                </div>
-                <div class="input-wrapper__form-field">
-                    <input
-                        class="input"
-                        placeholder="link do plakatu"
-                        formControlName="imageLink" />
-                </div>
-            </div>
-            <div class="form__inputs-wrapper">
-                <div class="input-wrapper__form-field">
-                    <input
-                        class="input"
-                        placeholder="czas trwania"
-                        formControlName="runTime" />
-                </div>
-                <div class="input-wrapper__form-field">
-                    <input
-                        class="input"
-                        placeholder="organiczenie wiekowe"
-                        formControlName="pg" />
-                </div>
-            </div>
-            <div class="form__inputs-wrapper">
-                <div class="input-wrapper__form-field">
-                    <input
-                        class="input"
-                        placeholder="reżyser"
-                        formControlName="director" />
-                </div>
-                <mat-form-field class="input-wrapper__form-field" appearance="outline">
-                    <mat-chip-grid #chipGrid aria-label="actors selection">
-                        <mat-chip-row
-                            *ngFor="let actor of actors"
-                            (removed)="remove(actor)">
-                            {{ actor }}
-                            <button matChipRemove [attr.aria-label]="'remove ' + actor">
-                                <mat-icon>cancel</mat-icon>
-                            </button>
-                        </mat-chip-row>
-                    </mat-chip-grid>
-                    <input
-                        placeholder="dodaj aktora"
-                        #fruitInput
-                        formControlName="actors"
-                        [matChipInputFor]="chipGrid"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        (matChipInputTokenEnd)="add($event)" />
-                </mat-form-field>
-            </div>
-            <div class="form__inputs-wrapper">
-                <div class="input-wrapper__form-field">
-                    <input class="input" placeholder="gatunek" formControlName="genre" />
-                </div>
-                <div class="input-wrapper__form-field">
-                    <mat-checkbox formControlName="premiere" class="example-margin"
-                        >Check me!</mat-checkbox
-                    >
-                </div>
-            </div>
-            <!-- <textarea class="input" placeholder="opis" /> -->
-            <textarea formControlName="description" placeholder="opis"></textarea>
-        </fieldset>
-    </form>
+     <form [formGroup]="addMovieForm" class="add-movie__form" [formGroup]="addMovieForm">
+          <fieldset>
+               <legend class="text-h2 shadow-primary-text">Dodaj film</legend>
+               <div class="form__left-side">
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="tytuł"
+                              formControlName="title" />
+                         <ng-container *ngIf="controls.title.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.title.touched && controls.title.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="gatunek"
+                              formControlName="genre" />
+
+                         <ng-container *ngIf="controls.genre.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.genre.touched && controls.genre.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="reżyser"
+                              formControlName="director" />
+                         <ng-container *ngIf="controls.director.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.director.touched &&
+                                        controls.director.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+
+                    <mat-form-field class="movie-form__chips-field" appearance="outline">
+                         <mat-chip-grid #chipGrid aria-label="actors selection">
+                              <mat-chip-row
+                                   *ngFor="let actor of actors"
+                                   (removed)="remove(actor)">
+                                   {{ actor }}
+                                   <button
+                                        matChipRemove
+                                        [attr.aria-label]="'remove ' + actor">
+                                        <mat-icon>cancel</mat-icon>
+                                   </button>
+                              </mat-chip-row>
+                         </mat-chip-grid>
+                         <input
+                              placeholder="dodaj aktorów"
+                              #fruitInput
+                              formControlName="actors"
+                              [matChipInputFor]="chipGrid"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              (matChipInputTokenEnd)="add($event)" />
+                         <ng-container *ngIf="controls.actors.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.actors.touched &&
+                                        controls.actors.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </mat-form-field>
+               </div>
+               <div class="form__right-side">
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="link do plakatu"
+                              formControlName="image" />
+                         <ng-container *ngIf="controls.image.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.image.touched && controls.image.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="organiczenie wiekowe (PG)"
+                              formControlName="pg" />
+                         <ng-container *ngIf="controls.pg.errors as errors">
+                              <ng-container
+                                   *ngIf="controls.pg.touched && controls.pg.pristine">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              type="number"
+                              placeholder="czas trwania w minutach"
+                              formControlName="runTime" />
+                         <ng-container *ngIf="controls.runTime.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.runTime.touched &&
+                                        controls.runTime.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź kod BLIK
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <textarea
+                         class="form-field__text-area text-body"
+                         formControlName="description"
+                         placeholder="opis">
+                    </textarea>
+                    <div class="input-wrapper__checkbox-wrapper">
+                         <span class="checkbox__info">Premiera?</span>
+                         <div class="input-wrapper__checkbox">
+                              <mat-checkbox
+                                   [aria-label]="'Czy ten film jest premierą'"
+                                   formControlName="premiere"
+                                   class="example-margin">
+                              </mat-checkbox>
+                         </div>
+                    </div>
+               </div>
+
+               <!-- <textarea class="input" placeholder="opis" /> -->
+          </fieldset>
+          <button class="btn form__button" (click)="submit()">Zatwierdź</button>
+     </form>
 </section>

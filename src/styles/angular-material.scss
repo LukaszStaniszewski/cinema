@@ -87,6 +87,14 @@
   padding-right: 0 !important;
 }
 
-// .mdc-text-field--outlined:focus {
-//   outline: none !important;
-// }
+.mat-focused {
+  outline: none;
+}
+.mat-mdc-form-field-infix:focus {
+  box-shadow: 0px 0px 16px rgba(0, 243, 243, 0.5) !important;
+  outline: none;
+}
+
+.mat-mdc-standard-chip {
+  background-color: var(--color-primary) !important;
+}
