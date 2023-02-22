@@ -9,18 +9,11 @@ import { NonNullableFormBuilder } from "@angular/forms";
 export class CreateShowingComponent {
   private builder = inject(NonNullableFormBuilder);
 
-  addShowingForm = this.createForm();
+  createShowingForm = this.createForm();
 
   createForm() {
     return this.builder.group({
-      movie: this.builder.group({
-        imageLink: this.builder.control(""),
-        movieTitle: this.builder.control(""),
-        runTime: this.builder.control(""),
-        description: this.builder.control(""),
-        pg: this.builder.control(""),
-        genre: this.builder.control(""),
-      }),
+      movie: this.builder.control(""),
       day: this.builder.control(""),
       hour: this.builder.control(""),
       cinemaRoom: this.builder.control(""),

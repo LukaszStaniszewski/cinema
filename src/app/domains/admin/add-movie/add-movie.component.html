@@ -1,0 +1,74 @@
+<section class="add-movie grid-container">
+    <form class="add-movie__form" [formGroup]="addMovieForm">
+        <fieldset>
+            <legend class="text-h2 shadow-primary-text">Dodaj film</legend>
+            <div class="form__inputs-wrapper">
+                <div class="input-wrapper__form-field">
+                    <input
+                        class="input"
+                        placeholder="tytuł"
+                        formControlName="movieTitle" />
+                </div>
+                <div class="input-wrapper__form-field">
+                    <input
+                        class="input"
+                        placeholder="link do plakatu"
+                        formControlName="imageLink" />
+                </div>
+            </div>
+            <div class="form__inputs-wrapper">
+                <div class="input-wrapper__form-field">
+                    <input
+                        class="input"
+                        placeholder="czas trwania"
+                        formControlName="runTime" />
+                </div>
+                <div class="input-wrapper__form-field">
+                    <input
+                        class="input"
+                        placeholder="organiczenie wiekowe"
+                        formControlName="pg" />
+                </div>
+            </div>
+            <div class="form__inputs-wrapper">
+                <div class="input-wrapper__form-field">
+                    <input
+                        class="input"
+                        placeholder="reżyser"
+                        formControlName="director" />
+                </div>
+                <mat-form-field class="input-wrapper__form-field" appearance="outline">
+                    <mat-chip-grid #chipGrid aria-label="actors selection">
+                        <mat-chip-row
+                            *ngFor="let actor of actors"
+                            (removed)="remove(actor)">
+                            {{ actor }}
+                            <button matChipRemove [attr.aria-label]="'remove ' + actor">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-grid>
+                    <input
+                        placeholder="dodaj aktora"
+                        #fruitInput
+                        formControlName="actors"
+                        [matChipInputFor]="chipGrid"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)" />
+                </mat-form-field>
+            </div>
+            <div class="form__inputs-wrapper">
+                <div class="input-wrapper__form-field">
+                    <input class="input" placeholder="gatunek" formControlName="genre" />
+                </div>
+                <div class="input-wrapper__form-field">
+                    <mat-checkbox formControlName="premiere" class="example-margin"
+                        >Check me!</mat-checkbox
+                    >
+                </div>
+            </div>
+            <!-- <textarea class="input" placeholder="opis" /> -->
+            <textarea formControlName="description" placeholder="opis"></textarea>
+        </fieldset>
+    </form>
+</section>

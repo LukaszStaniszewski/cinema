@@ -1,0 +1,92 @@
+// @use "@angular/material" as mat;
+
+// $my-typography: mat.define-typography-config(
+//   $font-family: "Barlow",
+// );
+
+// $gold-palette: (
+//   100: #00f3f3,
+//   200: #00f3f3,
+//   300: #00f3f3,
+//   500: #00f3f3,
+//   600: #00f3f3,
+//   700: #00f3f3,
+//   800: #00f3f3,
+//   900: #00f3f3,
+//   contrast: (
+//     50: #000000,
+//     100: #000000,
+//     200: #000000,
+//     300: #000000,
+//     400: #000000,
+//     500: #000000,
+//     600: #000000,
+//     700: #000000,
+//     800: #000000,
+//     900: #000000,
+//   ),
+// );
+
+// $app-name-primary: mat.define-palette($gold-palette, 600, 300, 800, 600);
+// $app-name-accent: mat.define-palette(mat.$green-palette);
+// $app-name-warn: mat.define-palette(mat.$red-palette);
+
+// $app-name-theme: mat.define-light-theme(
+//   (
+//     color: (
+//       primary: $app-name-primary,
+//       accent: $app-name-accent,
+//       warn: $app-name-warn,
+//     ),
+//     typography: $my-typography,
+//   )
+// );
+
+// @include mat.input-color($app-name-theme);
+// @include mat.form-field-color($app-name-theme);
+// @include mat.select-color($app-name-theme);
+// @include mat.chips-color($app-name-theme);
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+  font-family: "Allerta Stencil", "sans-serif";
+  font-size: 1.125rem;
+  color: var(--color-primary) !important;
+  text-shadow: 0px 0px 16px rgba(0, 243, 243, 0.5);
+}
+.mdc-tab__ripple::before {
+  background-color: var(--color-primary) !important;
+}
+.mdc-tab__ripple {
+  background-color: var(--color-primary) !important;
+}
+
+.mdc-tab__text-label {
+  color: var(--color-text-primary) !important;
+  font-family: "Allerta Stencil", "sans-serif";
+  font-size: 1rem;
+}
+.mdc-tab-indicator__content--underline {
+  border-color: var(--color-text-primary) !important;
+}
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+  border-color: var(--color-primary) !important;
+}
+.mat-mdc-text-field-wrapper {
+}
+.mat-mdc-form-field-infix {
+  background-color: var(--color-text-primary) !important;
+  border-radius: 10px;
+  // width: 1000px;
+  padding: 0.5rem 1rem;
+}
+
+// @supports (top: max(0%))
+.mdc-text-field--outlined {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+// .mdc-text-field--outlined:focus {
+//   outline: none !important;
+// }

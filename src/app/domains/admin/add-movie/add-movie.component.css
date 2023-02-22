@@ -1,0 +1,37 @@
+.add-movie {
+  /* display: flex;
+  justify-content: center; */
+  margin: 3rem 0;
+}
+
+.add-movie > form {
+  grid-column: 3/11;
+}
+
+legend {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.add-movie__form > fieldset {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  row-gap: 2rem;
+}
+
+.form__inputs-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-wrapper__form-field {
+  width: 40%;
+}
+.input-wrapper__form-field > input {
+  color: black;
+  width: 100%;
+  padding: 10px;
+}
