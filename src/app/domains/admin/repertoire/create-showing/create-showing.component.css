@@ -1,7 +1,19 @@
-.form__movie {
-}
-
 .create-showing {
+  margin: 3rem 0;
 }
 .create-showing__form {
+  grid-column: 4/10;
+}
+
+legend {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.create-showing__form > fieldset {
+  all: unset;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  row-gap: 2rem;
 }

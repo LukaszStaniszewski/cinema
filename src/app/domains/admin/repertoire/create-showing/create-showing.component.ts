@@ -7,6 +7,8 @@ import { NonNullableFormBuilder } from "@angular/forms";
   styleUrls: ["./create-showing.component.css"],
 })
 export class CreateShowingComponent {
+  movies = ["avatar", "batman"];
+  // selectedMovie = ""
   private builder = inject(NonNullableFormBuilder);
 
   createShowingForm = this.createForm();
@@ -18,5 +20,16 @@ export class CreateShowingComponent {
       hour: this.builder.control(""),
       cinemaRoom: this.builder.control(""),
     });
+  }
+  get controls() {
+    return this.createShowingForm.controls;
+  }
+
+  submit() {
+    console.log();
+  }
+
+  selectedMovie($event: Event) {
+    console.log();
   }
 }

@@ -54,26 +54,28 @@
                          </ng-container>
                     </div>
 
-                    <mat-form-field class="movie-form__chips-field" appearance="outline">
-                         <mat-chip-grid #chipGrid aria-label="actors selection">
-                              <mat-chip-row
-                                   *ngFor="let actor of actors"
-                                   (removed)="remove(actor)">
-                                   {{ actor }}
-                                   <button
-                                        matChipRemove
-                                        [attr.aria-label]="'remove ' + actor">
-                                        <mat-icon>cancel</mat-icon>
-                                   </button>
-                              </mat-chip-row>
-                         </mat-chip-grid>
-                         <input
-                              placeholder="dodaj aktorów"
-                              #fruitInput
-                              formControlName="actors"
-                              [matChipInputFor]="chipGrid"
-                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                              (matChipInputTokenEnd)="add($event)" />
+                    <mat-form-field class="test2" appearance="outline">
+                         <div class="test">
+                              <mat-chip-grid #chipGrid aria-label="actors selection">
+                                   <mat-chip-row
+                                        *ngFor="let actor of actors"
+                                        (removed)="remove(actor)">
+                                        {{ actor }}
+                                        <button
+                                             matChipRemove
+                                             [attr.aria-label]="'remove ' + actor">
+                                             <mat-icon>cancel</mat-icon>
+                                        </button>
+                                   </mat-chip-row>
+                              </mat-chip-grid>
+                              <input
+                                   placeholder="dodaj aktorów"
+                                   #fruitInput
+                                   formControlName="actors"
+                                   [matChipInputFor]="chipGrid"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                   (matChipInputTokenEnd)="add($event)" />
+                         </div>
                          <ng-container *ngIf="controls.actors.errors as errors">
                               <ng-container
                                    *ngIf="

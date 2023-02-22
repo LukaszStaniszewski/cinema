@@ -7,6 +7,7 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
+import { MatSelectModule } from "@angular/material/select";
 import { MatTabsModule } from "@angular/material/tabs";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -40,6 +41,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatCheckboxModule,
+    MatSelectModule,
   ],
   providers: [ShowingService],
 })

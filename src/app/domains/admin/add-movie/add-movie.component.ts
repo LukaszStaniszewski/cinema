@@ -22,7 +22,7 @@ export class AddMovieComponent {
       title: this.builder.control("", [Validators.required]),
       runTime: this.builder.control(0, [Validators.required]),
       premiere: this.builder.control(false, [Validators.requiredTrue]),
-      actors: this.builder.control(null, [Validators.required]),
+      actors: this.builder.control([], [Validators.required]),
       genre: this.builder.control("", [Validators.required]),
       director: this.builder.control("", [Validators.required]),
       pg: this.builder.control("", [Validators.required]),
@@ -39,7 +39,7 @@ export class AddMovieComponent {
       this.actors.push(value);
     }
     event.chipInput.clear();
-    // this.addMovieForm.controls.actors.setValue([]);
+    this.addMovieForm.controls.actors.setValue([]);
   }
   remove(actor: string) {
     const index = this.actors.indexOf(actor);
@@ -51,6 +51,6 @@ export class AddMovieComponent {
   submit() {
     this.addMovieForm.markAllAsTouched();
     if (this.addMovieForm.invalid) return;
-    // this.movieApiService.addToDB(this.addMovieForm.getRawValue());
+    this.movieApiService.addToDB(this.addMovieForm.getRawValue());
   }
 }

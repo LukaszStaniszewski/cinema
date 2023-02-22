@@ -75,10 +75,14 @@
 .mat-mdc-text-field-wrapper {
 }
 .mat-mdc-form-field-infix {
-  background-color: var(--color-text-primary) !important;
+  background-color: transparent !important;
   border-radius: 10px;
   // width: 1000px;
-  padding: 0.5rem 1rem;
+  // padding: 0.5rem 1rem;
+  // padding: 0 !important 0 1rem 0;
+  padding-top: 0rem !important;
+  padding-bottom: 1rem;
+  margin: 0;
 }
 
 // @supports (top: max(0%))
@@ -97,4 +101,9 @@
 
 .mat-mdc-standard-chip {
   background-color: var(--color-primary) !important;
+}
+
+.ng-star-inserted {
+  color: white;
+  // background-color: transparent;
 }

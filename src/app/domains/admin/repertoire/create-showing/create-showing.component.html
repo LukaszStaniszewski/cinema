@@ -1,53 +1,81 @@
-<section class="create-showing">
-    <form class="create-showing__form" [formGroup]="createShowingForm">
-        <fieldset formGroupName="form__movie">
-            <legend>Film</legend>
-            <div>
-                <div class="input-wrapper__form-field">
-                    <input class="input" formControlName="imageLink" />
-                </div>
-                <div class="input-wrapper__form-field">
-                    <input class="input" formControlName="movieTitle" />
-                </div>
-            </div>
-            <div>
-                <div class="input-wrapper__form-field">
-                    <input class="input" formControlName="runTime" />
-                </div>
-                <div class="input-wrapper__form-field">
-                    <input class="input" formControlName="pg" />
-                </div>
-            </div>
-            <div>
-                <div class="input-wrapper__form-field">
-                    <input class="input" formControlName="genre" />
-                </div>
-                <div class="input-wrapper__form-field">
-                    <input class="input" formControlName="description" />
-                </div>
-            </div>
-        </fieldset>
+<section class="create-showing grid-container">
+     <form [formGroup]="createShowingForm" class="create-showing__form">
+          <fieldset>
+               <legend class="text-h2 shadow-primary-text">Stwórz repertuar</legend>
 
-        <fieldset form_>
-            <legend>Termin</legend>
-            <div class="input-wrapper__form-field">
-                <input class="input" formControlName="cinemaRoom" />
-            </div>
+               <div class="movie-form__form-field">
+                    <!-- <input
+                         class="input"
+                         placeholder="wybierz film"
+                         formControlName="movie" />
+                    <ng-container *ngIf="controls.movie.errors as errors">
+                         <ng-container
+                              *ngIf="controls.movie.touched && controls.movie.pristine">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Wprowadź kod BLIK
+                              </p>
+                         </ng-container>
+                    </ng-container> -->
+                    <mat-form-field appearance="outline">
+                         <mat-label>Wybierz film</mat-label>
+                         <mat-select formControlName="day" name="movie">
+                              <mat-option *ngFor="let movie of movies" [value]="movie">
+                                   {{ movie }}
+                              </mat-option>
+                         </mat-select>
+                    </mat-form-field>
+               </div>
+               <div class="movie-form__form-field">
+                    <input
+                         formControlName="day"
+                         class="input"
+                         matInput
+                         [matDatepicker]="picker" />
+                    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+                    <mat-datepicker-toggle matIconSuffix [for]="picker">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker> </mat-datepicker>
 
-            <div>
-                <input class="input" matInput [matDatepicker]="picker" />
-                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                <mat-datepicker-toggle
-                    matIconSuffix
-                    [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </div>
-            <div>
-                <input class="input" matInput [matDatepicker]="hour" />
-                <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                <mat-datepicker-toggle matIconSuffix [for]="hour"></mat-datepicker-toggle>
-                <mat-datepicker #hour></mat-datepicker>
-            </div>
-        </fieldset>
-    </form>
+                    <ng-container *ngIf="controls.day.errors as errors">
+                         <ng-container
+                              *ngIf="controls.day.touched && controls.day.pristine">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Wprowadź kod BLIK
+                              </p>
+                         </ng-container>
+                    </ng-container>
+               </div>
+               <div class="movie-form__form-field">
+                    <input class="input" placeholder="godzina" formControlName="hour" />
+                    <ng-container *ngIf="controls.hour.errors as errors">
+                         <ng-container
+                              *ngIf="controls.hour.touched && controls.hour.pristine">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Wprowadź kod BLIK
+                              </p>
+                         </ng-container>
+                    </ng-container>
+               </div>
+               <div class="movie-form__form-field">
+                    <input
+                         class="input"
+                         placeholder="wybierz salę kinową"
+                         formControlName="cinemaRoom" />
+                    <ng-container *ngIf="controls.cinemaRoom.errors as errors">
+                         <ng-container
+                              *ngIf="
+                                   controls.cinemaRoom.touched &&
+                                   controls.cinemaRoom.pristine
+                              ">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Wprowadź kod BLIK
+                              </p>
+                         </ng-container>
+                    </ng-container>
+               </div>
+
+               <!-- <textarea class="input" placeholder="opis" /> -->
+          </fieldset>
+          <button class="btn form__button" (click)="submit()">Zatwierdź</button>
+     </form>
 </section>
