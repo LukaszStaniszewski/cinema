@@ -13,4 +13,8 @@ export class RepertuireApiService {
   getByDay(day: string) {
     return this.http.get<ShowRepertuireVM>(`${API.REPERTUIRE}/${day}`);
   }
+
+  getDays() {
+    return this.http.get<string[]>(``);
+  }
 }

@@ -16,7 +16,13 @@
       "id": 2
     }
   ],
-  "validCoupons": ["11111", "22222", "33333", "44444", "55555"],
+  "validCoupons": [
+    "11111",
+    "22222",
+    "33333",
+    "44444",
+    "55555"
+  ],
   "ticketInfo": [
     {
       "type": "normalny",
@@ -189,6 +195,22 @@
       "userId": 2
     },
     "2names": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20612b": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20614b": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20620c": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20610b": {
       "userId": 2,
       "tickets": []
     }

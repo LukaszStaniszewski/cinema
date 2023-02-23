@@ -1,26 +1,19 @@
 <section>
      <div class="select-date__wrapper">
           <input
-               placeholder="wybierz dzień*"
+               placeholder="wybierz datę*"
                formControlName="day"
                class="input"
                matInput
+               [matDatepickerFilter]="myFilter"
                [matDatepicker]="picker" />
+          <mat-hint>Dostępne są tylko dni do których dodany został repertuar</mat-hint>
           <div class="date-picker__wrapper">
                <mat-datepicker-toggle class="date-icon" matIconSuffix [for]="picker">
                </mat-datepicker-toggle>
                <mat-datepicker #picker> </mat-datepicker>
           </div>
      </div>
-     div
-     <!-- <ng-container *ngIf="controls.day.errors as errors">
-    <ng-container
-         *ngIf="controls.day.touched && controls.day.pristine">
-         <p *ngIf="errors['required']">
-              Pole nie może być puste. Wprowadź datę
-         </p>
-    </ng-container>
-</ng-container> -->
 
      <ng-container *ngIf="vm$ | async as repertuire">
           <div *ngFor="let room of repertuire | keyvalue">
