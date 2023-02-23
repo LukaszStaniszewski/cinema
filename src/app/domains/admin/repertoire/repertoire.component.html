@@ -1,11 +1,15 @@
 <section class="wrapper">
-    <mat-tab-group animationDuration="0ms" mat-align-tabs="center">
-        <mat-tab class="tab" label="Dodaj repertuar">
-            <ng-template matTabContent> <app-add-showing></app-add-showing> </ng-template>
-        </mat-tab>
+     <mat-tab-group animationDuration="0ms" mat-align-tabs="center">
+          <!-- <mat-tab class="tab" label="Dodaj repertuar">
+               <ng-template matTabContent>
+                    <app-add-showing></app-add-showing>
+               </ng-template>
+          </mat-tab> -->
 
-        <mat-tab class="tab" label="Obecny repertuar">
-            <ng-template matTabContent> Content 2 - Loaded: {{ "medium" }} </ng-template>
-        </mat-tab>
-    </mat-tab-group>
+          <mat-tab class="tab" label="Obecny repertuar">
+               <ng-template matTabContent>
+                    <app-show-repertuire></app-show-repertuire>
+               </ng-template>
+          </mat-tab>
+     </mat-tab-group>
 </section>

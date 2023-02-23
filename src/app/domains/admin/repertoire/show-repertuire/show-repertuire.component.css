@@ -1,0 +1,28 @@
+mat-list {
+}
+
+.mat-mdc-list-item-title.mdc-list-item__primary-text {
+  color: white;
+}
+.mat-mdc-list-item-line.mdc-list-item__secondary-text {
+  color: var(--color-text-secondary);
+}
+.mat-icon {
+  color: var(--color-text-secondary);
+}
+
+.select-date__wrapper {
+  position: relative;
+}
+
+.select-date__wrapper > input {
+  padding: 1rem 1rem;
+  font-size: 16px;
+  position: relative;
+}
+
+.date-picker__wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

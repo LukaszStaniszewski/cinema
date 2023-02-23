@@ -1,0 +1,25 @@
+{
+  "06-12-2022": {
+    "room-a": [
+      { "hour": "10:00", "movieTitle": "Rick and Morty" },
+      { "hour": "12:00", "movieTitle": "Diune" },
+      { "hour": "14:00", "movieTitle": "Diune" },
+      { "hour": "17:00", "movieTitle": "Dark Knight" },
+      { "hour": "20:00", "movieTitle": "Dark Knight" }
+    ],
+    "room-b": [
+      { "hour": "10:00", "movieTitle": "Dark Knight" },
+      { "hour": "12:00", "movieTitle": "Avatar" },
+      { "hour": "14:00", "movieTitle": "Avatar" },
+      { "hour": "17:00", "movieTitle": "Władca Pierścieni: Powrót Króla" },
+      { "hour": "20:00", "movieTitle": "Władca Pierścieni: Powrót Króla" }
+    ],
+    "room-c": [
+      { "hour": "10:00", "movieTitle": "Diune" },
+      { "hour": "12:00", "movieTitle": "Rick and Morty" },
+      { "hour": "14:00", "movieTitle": "Rick and Morty" },
+      { "hour": "17:00", "movieTitle": "Diune" },
+      { "hour": "20:00", "movieTitle": "Avatar" }
+    ]
+  }
+}

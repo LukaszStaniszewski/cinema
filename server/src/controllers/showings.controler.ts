@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import { ErrorMessage } from "../config/constants.config";
 import db from "../db/db.json";
+import repertuireDB from "../db/repertuire.json";
 import getErrorMessage from "../utils/getErrorMessage";
 
 export const sendShowings = async (req: Request, res: Response) => {
@@ -40,3 +41,29 @@ export const sendShowingBasis = async (req: Request<{ id: string }>, res: Respon
     res.status(404).json(getErrorMessage(error));
   }
 };
+
+// type ShowRepertuireVM = {
+//  [key: string]:  {cinemaRoomName: string;
+//   hour: number;
+//   movieTitle: string};
+// };
+type ShowRepertuireVM = {
+  [key: string]: [{ [key: string]: string }];
+};
+export const sendRepertuireBasis = async (req: Request<{ day: string }>, res: Response) => {
+  try {
+    const repertuireDay = req.params.day;
+
+    if (doesExist(repertuireDay)) {
+      const repertoire = repertuireDB[repertuireDay];
+      res.json(repertoire);
+    }
+    // res.end();
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};
+
+function doesExist(id: string): id is keyof typeof repertuireDB {
+  return id in repertuireDB;
+}

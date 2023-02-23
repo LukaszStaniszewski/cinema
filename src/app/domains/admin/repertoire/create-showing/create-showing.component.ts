@@ -9,8 +9,6 @@ import { CinemaRoomApiService } from "@shared/services/cinema-room.api.service";
   styleUrls: ["./create-showing.component.css"],
 })
 export class CreateShowingComponent {
-  // movies = ["avatar", "batman"];
-  // selectedMovie = ""
   private builder = inject(NonNullableFormBuilder);
   private movieApiService = inject(MovieApiService);
   private cinemaRoomApiServie = inject(CinemaRoomApiService);
@@ -18,6 +16,7 @@ export class CreateShowingComponent {
 
   movies$ = this.movieApiService.getTitles();
   cinemaRooms$ = this.cinemaRoomApiServie.getNames();
+
   createForm() {
     return this.builder.group({
       movie: this.builder.control("", { validators: [Validators.required] }),

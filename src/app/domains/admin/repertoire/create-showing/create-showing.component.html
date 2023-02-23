@@ -6,7 +6,7 @@
                <div class="showing-form__form-field">
                     <mat-form-field>
                          <mat-label>Wybierz film</mat-label>
-                         <mat-select formControlName="day" name="movie">
+                         <mat-select formControlName="movie" name="movie">
                               <ng-container *ngIf="movies$ | async as movies">
                                    <mat-option
                                         *ngFor="let movie of movies"

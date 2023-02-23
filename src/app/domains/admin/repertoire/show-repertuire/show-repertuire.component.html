@@ -1,0 +1,37 @@
+<section>
+     <div class="select-date__wrapper">
+          <input
+               placeholder="wybierz dzień*"
+               formControlName="day"
+               class="input"
+               matInput
+               [matDatepicker]="picker" />
+          <div class="date-picker__wrapper">
+               <mat-datepicker-toggle class="date-icon" matIconSuffix [for]="picker">
+               </mat-datepicker-toggle>
+               <mat-datepicker #picker> </mat-datepicker>
+          </div>
+     </div>
+     div
+     <!-- <ng-container *ngIf="controls.day.errors as errors">
+    <ng-container
+         *ngIf="controls.day.touched && controls.day.pristine">
+         <p *ngIf="errors['required']">
+              Pole nie może być puste. Wprowadź datę
+         </p>
+    </ng-container>
+</ng-container> -->
+
+     <ng-container *ngIf="vm$ | async as repertuire">
+          <div *ngFor="let room of repertuire | keyvalue">
+               <h3>{{ room.key }}</h3>
+               <mat-list *ngFor="let data of room.value">
+                    <mat-list-item>
+                         <span matListItemTitle>{{ data.movieTitle }}</span>
+                         <span matListItemLine>{{ data.hour }}</span>
+                         <mat-icon matListItemIcon>movie</mat-icon>
+                    </mat-list-item>
+               </mat-list>
+          </div>
+     </ng-container>
+</section>

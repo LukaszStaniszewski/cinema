@@ -54,7 +54,7 @@ const repertoire = {
   },
   apperances: {
     darkKnight: 3,
-    diune: 5,
+    diune: 4,
     rickMorty: 3,
     avatar: 3,
     lotr: 2,

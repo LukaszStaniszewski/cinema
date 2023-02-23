@@ -9,6 +9,7 @@ export const API = {
   WANNA_SEE: "/movies/wanna-see",
   TICKET_INFO: "/tickets",
   SHOWINGS: "/showings",
+  REPERTUIRE: "/showings/repertuire",
   ORDERS: "/orders",
   ORDER_PAYED: "/orders/payed",
   ORDER_EMAIL: "/orders/email",
