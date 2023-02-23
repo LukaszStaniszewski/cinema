@@ -3,78 +3,82 @@
           <fieldset>
                <legend class="text-h2 shadow-primary-text">Stwórz repertuar</legend>
 
-               <div class="movie-form__form-field">
-                    <!-- <input
-                         class="input"
-                         placeholder="wybierz film"
-                         formControlName="movie" />
-                    <ng-container *ngIf="controls.movie.errors as errors">
-                         <ng-container
-                              *ngIf="controls.movie.touched && controls.movie.pristine">
-                              <p *ngIf="errors['required']">
-                                   Pole nie może być puste. Wprowadź kod BLIK
-                              </p>
-                         </ng-container>
-                    </ng-container> -->
-                    <mat-form-field appearance="outline">
+               <div class="showing-form__form-field">
+                    <mat-form-field>
                          <mat-label>Wybierz film</mat-label>
                          <mat-select formControlName="day" name="movie">
-                              <mat-option *ngFor="let movie of movies" [value]="movie">
-                                   {{ movie }}
-                              </mat-option>
+                              <ng-container *ngIf="movies$ | async as movies">
+                                   <mat-option
+                                        *ngFor="let movie of movies"
+                                        [value]="movie">
+                                        {{ movie }}
+                                   </mat-option>
+                              </ng-container>
                          </mat-select>
+                         <mat-error *ngIf="controls.movie.invalid">
+                              Pole nie może być puste. Wybierz film.
+                         </mat-error>
                     </mat-form-field>
                </div>
-               <div class="movie-form__form-field">
+               <div class="date-input__wrapper">
                     <input
+                         placeholder="wybierz datę*"
+                         [matDatepickerFilter]="myFilter"
                          formControlName="day"
                          class="input"
                          matInput
                          [matDatepicker]="picker" />
-                    <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
-                    <mat-datepicker-toggle matIconSuffix [for]="picker">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #picker> </mat-datepicker>
+                    <div class="date-picker__wrapper">
+                         <mat-datepicker-toggle
+                              class="date-icon"
+                              matIconSuffix
+                              [for]="picker">
+                         </mat-datepicker-toggle>
+                         <mat-datepicker #picker> </mat-datepicker>
+                    </div>
 
                     <ng-container *ngIf="controls.day.errors as errors">
                          <ng-container
                               *ngIf="controls.day.touched && controls.day.pristine">
                               <p *ngIf="errors['required']">
-                                   Pole nie może być puste. Wprowadź kod BLIK
+                                   Pole nie może być puste. Wprowadź datę
                               </p>
                          </ng-container>
                     </ng-container>
                </div>
-               <div class="movie-form__form-field">
-                    <input class="input" placeholder="godzina" formControlName="hour" />
+               <div class="showing-form__form-field">
+                    <input
+                         class="input"
+                         type="time"
+                         placeholder="godzina"
+                         formControlName="hour" />
                     <ng-container *ngIf="controls.hour.errors as errors">
                          <ng-container
                               *ngIf="controls.hour.touched && controls.hour.pristine">
                               <p *ngIf="errors['required']">
-                                   Pole nie może być puste. Wprowadź kod BLIK
+                                   Pole nie może być puste. Wybierz datę
                               </p>
                          </ng-container>
                     </ng-container>
                </div>
-               <div class="movie-form__form-field">
-                    <input
-                         class="input"
-                         placeholder="wybierz salę kinową"
-                         formControlName="cinemaRoom" />
-                    <ng-container *ngIf="controls.cinemaRoom.errors as errors">
-                         <ng-container
-                              *ngIf="
-                                   controls.cinemaRoom.touched &&
-                                   controls.cinemaRoom.pristine
-                              ">
-                              <p *ngIf="errors['required']">
-                                   Pole nie może być puste. Wprowadź kod BLIK
-                              </p>
-                         </ng-container>
-                    </ng-container>
+               <div class="showing-form__form-field">
+                    <mat-form-field>
+                         <mat-label>Wybierz salę kinową</mat-label>
+                         <mat-select formControlName="cinemaRoom" name="cinemaRoom">
+                              <ng-container
+                                   *ngIf="cinemaRooms$ | async as cinemaRoomsNames">
+                                   <mat-option
+                                        *ngFor="let name of cinemaRoomsNames"
+                                        [value]="name">
+                                        {{ name }}
+                                   </mat-option>
+                              </ng-container>
+                         </mat-select>
+                         <mat-error *ngIf="controls.cinemaRoom.invalid">
+                              Pole nie może być puste. Wybierz salę.
+                         </mat-error>
+                    </mat-form-field>
                </div>
-
-               <!-- <textarea class="input" placeholder="opis" /> -->
           </fieldset>
           <button class="btn form__button" (click)="submit()">Zatwierdź</button>
      </form>

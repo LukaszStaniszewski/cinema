@@ -101,3 +101,13 @@ export const addMovieToWannaSeeList = (
     res.status(404).json(getErrorMessage(error));
   }
 };
+
+export const sendTitlesController = (req: Request, res: Response) => {
+  try {
+    const movies = db.movies;
+    const titles = movies.map(movie => movie.title);
+    res.json(titles);
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};

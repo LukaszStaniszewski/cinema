@@ -101,3 +101,12 @@ legend {
 .movie-form__form-field > .ng-dirty.ng-valid {
   border: 2px solid var(--accent-success);
 }
+
+/* .mat-mdc-form-field-infix.ng-tns-c81-0 {
+  background-color: transparent !important;
+  border-radius: 10px;
+
+  padding-top: 0rem !important;
+  padding-bottom: 1rem;
+  margin: 0;
+} */

@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, catchError, of } from "rxjs";
 import { API, MESSAGE } from "src/environments/constants";
 
 type Actors = {
@@ -38,5 +38,9 @@ export class MovieApiService {
 
   addToDB(movie: Movie) {
     return this.http.post(API.MOVIES, movie);
+  }
+
+  getTitles() {
+    return this.http.get<string[]>(API.MOVIES_TITLE).pipe(catchError(() => of([])));
   }
 }

@@ -44,3 +44,15 @@ export const sendCinemaRoom = async (req: Request, res: Response) => {
     res.status(404).json(getErrorMessage(error));
   }
 };
+
+export const sendCinemasRoomNames = (req: Request, res: Response) => {
+  try {
+    const cinemaRoom = cinemaRoomDb.map(cinemaroom => cinemaroom.id);
+    if (!cinemaRoom) {
+      throw new Error(ErrorMessage.CINEMA_ROOM_NOT_FOUND);
+    }
+    res.json(cinemaRoom);
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};

@@ -17,3 +17,32 @@ legend {
   flex-direction: column;
   row-gap: 2rem;
 }
+.showing-form__form-field > mat-form-field {
+  width: 100%;
+}
+
+.date-input__wrapper {
+  position: relative;
+}
+.date-input__wrapper > input {
+  padding: 1rem 1rem;
+  font-size: 16px;
+  position: relative;
+}
+
+.date-picker__wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.form__button {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+}
+
+.showing-form__form-field > input {
+  padding: 1rem 1rem;
+  font-size: 16px;
+}
