@@ -16,13 +16,7 @@
       "id": 2
     }
   ],
-  "validCoupons": [
-    "11111",
-    "22222",
-    "33333",
-    "44444",
-    "55555"
-  ],
+  "validCoupons": ["11111", "22222", "33333", "44444", "55555"],
   "ticketInfo": [
     {
       "type": "normalny",
@@ -319,7 +313,7 @@
       "description": "Ekscentryczny naukowiec Rick udaje się ze swoim wnukiem Mortym do najdziwniejszych miejsc w galaktyce i alternatywnych rzeczywistości.",
       "rating": 8.6,
       "votesNumber": 400,
-      "runTime": 360,
+      "runTime": 240,
       "pg": 18,
       "genre": "Komedia, Przygodowy",
       "director": " Justin Roiland",

@@ -12,10 +12,9 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatTabsModule } from "@angular/material/tabs";
 import { RouterModule, Routes } from "@angular/router";
 
-import { CreateShowingComponent, RepertoireComponent, ShowingService } from ".";
+import { AddScreeningComponent, RepertoireComponent, ShowingService } from ".";
 import { AddMovieComponent } from "./add-movie/add-movie.component";
-import { DisplayRepertoireComponent } from "./repertoire/display-repertoire/display-repertoire.component";
-import { ShowRepertuireComponent } from "./repertoire/show-repertuire/show-repertuire.component";
+import { DisplaywRepertuireComponent } from "./repertoire/display-repertuire/display-repertuire.component";
 
 const routes: Routes = [
   {
@@ -29,13 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    RepertoireComponent,
-    CreateShowingComponent,
-    DisplayRepertoireComponent,
-    AddMovieComponent,
-    ShowRepertuireComponent,
-  ],
+  declarations: [RepertoireComponent, AddScreeningComponent, AddMovieComponent, DisplaywRepertuireComponent],
   imports: [
     NgIf,
     NgFor,

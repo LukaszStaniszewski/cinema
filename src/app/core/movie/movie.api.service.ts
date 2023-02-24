@@ -30,6 +30,8 @@ export interface MovieDto extends Movie {
   runTime: number;
 }
 
+type TitlesAndRunTimeDTO = { title: string; runTime: number }[];
+
 @Injectable({
   providedIn: "root",
 })
@@ -40,7 +42,7 @@ export class MovieApiService {
     return this.http.post(API.MOVIES, movie);
   }
 
-  getTitles() {
-    return this.http.get<string[]>(API.MOVIES_TITLE).pipe(catchError(() => of([])));
+  getTitlesAndRunTime() {
+    return this.http.get<TitlesAndRunTimeDTO>(API.MOVIES_TITLE).pipe(catchError(() => of([])));
   }
 }

@@ -1,30 +1,35 @@
 <section class="create-showing grid-container">
      <form [formGroup]="createShowingForm" class="create-showing__form">
           <fieldset>
-               <legend class="text-h2 shadow-primary-text">Stwórz repertuar</legend>
+               <legend class="text-h2 shadow-primary-text">Dodaj do repertuaru</legend>
 
                <div class="showing-form__form-field">
                     <mat-form-field>
                          <mat-label>Wybierz film</mat-label>
-                         <mat-select formControlName="movie" name="movie">
+                         <mat-select #select formControlName="movie" name="movie">
                               <ng-container *ngIf="movies$ | async as movies">
                                    <mat-option
                                         *ngFor="let movie of movies"
                                         [value]="movie">
-                                        {{ movie }}
+                                        {{ movie.title }}
                                    </mat-option>
                               </ng-container>
                          </mat-select>
-                         <mat-error *ngIf="controls.movie.invalid">
+                         <mat-hint class="text-body-small" *ngIf="controls.movie.value">
+                              Długość filmu: {{ select.value["runTime"] }} minut
+                         </mat-hint>
+
+                         <mat-error
+                              class="text-body-small"
+                              *ngIf="controls.movie.invalid">
                               Pole nie może być puste. Wybierz film.
                          </mat-error>
                     </mat-form-field>
                </div>
                <div class="date-input__wrapper">
-                    sh
                     <input
                          placeholder="wybierz datę*"
-                         [matDatepickerFilter]="myFilter"
+                         [matDatepickerFilter]="filterOutPastDates"
                          formControlName="day"
                          class="input"
                          matInput
@@ -57,7 +62,7 @@
                          <ng-container
                               *ngIf="controls.hour.touched && controls.hour.pristine">
                               <p *ngIf="errors['required']">
-                                   Pole nie może być puste. Wybierz datę
+                                   Pole nie może być puste. Wybierz godzinę
                               </p>
                          </ng-container>
                     </ng-container>
@@ -75,11 +80,22 @@
                                    </mat-option>
                               </ng-container>
                          </mat-select>
-                         <mat-error *ngIf="controls.cinemaRoom.invalid">
+                         <mat-error
+                              class="text-body-small"
+                              *ngIf="controls.cinemaRoom.invalid">
                               Pole nie może być puste. Wybierz salę.
                          </mat-error>
                     </mat-form-field>
                </div>
+               <ng-container *ngIf="createShowingForm.errors as errors">
+                    <p>
+                         {{ errors["takenHours"] }}
+                    </p>
+               </ng-container>
+               <ng-container *ngIf="takenTerms$ | async as takenTerms">
+                    <!-- <span *ngFor="let taken of takenTerms">{{ taken }}</span> -->
+                    <p>Zajęte godziny w wybranym dniu i sali kinowej: {{ takenTerms }}</p>
+               </ng-container>
           </fieldset>
           <button class="btn form__button" (click)="submit()">Zatwierdź</button>
      </form>

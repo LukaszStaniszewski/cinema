@@ -46,3 +46,7 @@ legend {
   padding: 1rem 1rem;
   font-size: 16px;
 }
+
+.mat-mdc-hint-0 {
+  font-size: 14px;
+}

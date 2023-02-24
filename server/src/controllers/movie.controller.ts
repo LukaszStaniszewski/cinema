@@ -104,9 +104,11 @@ export const addMovieToWannaSeeList = (
 
 export const sendTitlesController = (req: Request, res: Response) => {
   try {
-    console.log("hit");
     const movies = db.movies;
-    const titles = movies.map(movie => movie.title);
+    const titles: { title: string; runTime: number }[] = movies.map(movie => ({
+      title: movie.title,
+      runTime: movie.runTime,
+    }));
     res.json(titles);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));

@@ -47,9 +47,6 @@ export const sendShowingBasis = async (req: Request<{ id: string }>, res: Respon
 //   hour: number;
 //   movieTitle: string};
 // };
-type ShowRepertuireVM = {
-  [key: string]: [{ [key: string]: string }];
-};
 export const sendRepertuireBasis = async (req: Request<{ day: string }>, res: Response) => {
   try {
     const repertuireDay = req.params.day;
@@ -58,6 +55,45 @@ export const sendRepertuireBasis = async (req: Request<{ day: string }>, res: Re
       const repertoire = repertuireDB[repertuireDay];
       res.json(repertoire);
     }
+    // res.end();
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};
+
+export const sendTaken = async (req: Request<{ day: string }>, res: Response) => {
+  try {
+    const repertuireDay = req.params.day;
+
+    if (doesExist(repertuireDay)) {
+      const repertoire = repertuireDB[repertuireDay];
+      res.json(repertoire);
+    }
+    // res.end();
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};
+
+export const isGivenTermFree = async (
+  req: Request<Record<string, unknown>, Record<string, unknown>, { day: string; cinemaRoom: string }>,
+  res: Response
+) => {
+  try {
+    const resQuery = req.query as { day: string; cinemaRoom: string };
+    const cinemaRoom = resQuery.cinemaRoom;
+    const repertuireDay = resQuery.day.replaceAll(".", "-");
+
+    if (doesExist(repertuireDay)) {
+      const repertoire = repertuireDB[repertuireDay];
+
+      if (cinemaRoom in repertoire) {
+        const takenHours = repertoire[cinemaRoom].map(screening => screening.hour) as sting[];
+        res.status(200).json(takenHours);
+        return;
+      }
+    }
+    res.json(null);
     // res.end();
   } catch (error) {
     res.status(404).json(getErrorMessage(error));

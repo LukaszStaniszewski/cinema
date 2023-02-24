@@ -10,6 +10,7 @@ export const API = {
   TICKET_INFO: "/tickets",
   SHOWINGS: "/showings",
   REPERTUIRE: "/showings/repertuire",
+  CHECK_REPERTUIRE_AVAILABILITY: "/showings/availability",
   ORDERS: "/orders",
   ORDER_PAYED: "/orders/payed",
   ORDER_EMAIL: "/orders/email",

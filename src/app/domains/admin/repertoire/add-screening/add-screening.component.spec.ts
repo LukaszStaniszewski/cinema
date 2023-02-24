@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CreateShowingComponent } from "./create-showing.component";
+import { AddScreeningComponent } from "./add-screening.component";
 
 describe("CreateShowingComponent", () => {
-  let component: CreateShowingComponent;
-  let fixture: ComponentFixture<CreateShowingComponent>;
+  let component: AddScreeningComponent;
+  let fixture: ComponentFixture<AddScreeningComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CreateShowingComponent],
+      declarations: [AddScreeningComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CreateShowingComponent);
+    fixture = TestBed.createComponent(AddScreeningComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
