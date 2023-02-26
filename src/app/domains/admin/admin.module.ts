@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
-import { MatNativeDateModule } from "@angular/material/core";
+import { MAT_DATE_LOCALE, MatNativeDateModule } from "@angular/material/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
@@ -12,7 +12,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatTabsModule } from "@angular/material/tabs";
 import { RouterModule, Routes } from "@angular/router";
 
-import { AddScreeningComponent, RepertoireComponent, ShowingService } from ".";
+import { AddScreeningComponent, RepertoireComponent, RepertuireStore } from ".";
 import { AddMovieComponent } from "./add-movie/add-movie.component";
 import { DisplaywRepertuireComponent } from "./repertoire/display-repertuire/display-repertuire.component";
 
@@ -47,6 +47,6 @@ const routes: Routes = [
     MatCheckboxModule,
     MatSelectModule,
   ],
-  providers: [ShowingService],
+  providers: [RepertuireStore, { provide: MAT_DATE_LOCALE, useValue: "en-GB" }],
 })
 export default class AdminModule {}

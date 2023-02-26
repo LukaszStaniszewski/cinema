@@ -15,6 +15,6 @@ const showingRouter = Router();
 showingRouter.get("/availability*", [deserialaizeUser, requireUser], isGivenTermFree);
 showingRouter.get("/:id", sendShowingBasis);
 showingRouter.get("/", sendShowings);
-showingRouter.get("/repertuire/set", [deserialaizeUser, requireUser], sendDaysThatHaveAddedRepertuire);
+showingRouter.get("/repertuire/dates", [deserialaizeUser, requireUser], sendDaysThatHaveAddedRepertuire);
 showingRouter.get("/repertuire/:day", [deserialaizeUser, requireUser], sendRepertuireBasis);
 export default showingRouter;

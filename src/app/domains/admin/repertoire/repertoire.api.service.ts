@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API } from "@environments/constants";
 import { BehaviorSubject, catchError, of } from "rxjs";
-type ShowRepertuireVM = {
+export type ShowRepertuire = {
   [key: string]: [{ hour: number; movieTitle: string }];
 };
 @Injectable({
@@ -17,7 +17,8 @@ export class RepertuireApiService {
   }
 
   getByDay(day: string) {
-    return this.http.get<ShowRepertuireVM>(`${API.REPERTUIRE}/${day}`);
+    const adjustedDate = day.replaceAll("/", "-");
+    return this.http.get<ShowRepertuire>(`${API.REPERTUIRE}/${adjustedDate}`);
   }
 
   getDaysThatHaveAddedRepertuire() {

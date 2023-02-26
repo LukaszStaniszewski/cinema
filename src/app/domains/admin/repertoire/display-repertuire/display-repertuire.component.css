@@ -48,7 +48,9 @@
   color: var(--color-text-secondary);
 }
 
-mat-list {
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
 /* .list-title {

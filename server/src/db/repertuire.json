@@ -34,13 +34,6 @@
       { "hour": "12:35", "movieTitle": "Avatar", "runTime": 192 },
       { "hour": "16:00", "movieTitle": "Avatar", "runTime": 192 },
       { "hour": "19:25", "movieTitle": "Władca Pierścieni: Powrót Króla", "runTime": 201 }
-    ],
-    "room-c": [
-      { "hour": "10:00", "movieTitle": "Dune", "runTime": 155 },
-      { "hour": "12:45", "movieTitle": "Rick and Morty", "runTime": 240 },
-      { "hour": "17:00", "movieTitle": "Władca Pierścieni: Powrót Króla", "runTime": 201 },
-      { "hour": "20:35", "movieTitle": "Diune", "runTime": 155 },
-      { "hour": "22:00", "movieTitle": "Avatar", "runTime": 192 }
     ]
   }
 }

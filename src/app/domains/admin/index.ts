@@ -1,4 +1,4 @@
 export * from "./movie.service";
 export * from "./repertoire/add-screening/add-screening.component";
 export * from "./repertoire/repertoire.component";
-export * from "./showing.service";
+export * from "./repertuire.store";

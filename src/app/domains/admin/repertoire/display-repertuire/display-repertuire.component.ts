@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
-
-import { RepertuireApiService } from "../repertoire.api.service";
+import { MatDatepickerInputEvent } from "@angular/material/datepicker";
+import { RepertuireStore } from "@domains/admin/repertuire.store";
+import { formatDate } from "@shared/index";
 
 @Component({
   selector: "app-display-repertuire",
@@ -9,18 +9,28 @@ import { RepertuireApiService } from "../repertoire.api.service";
   styleUrls: ["./display-repertuire.component.css"],
 })
 export class DisplaywRepertuireComponent implements OnInit {
-  private repertuireApiService = inject(RepertuireApiService);
-  startDate = new Date("12/5/2022");
-  dates = ["06-12-2022", "07-12-2022"];
-  vm$ = this.repertuireApiService.getByDay("06-12-2022");
+  private repertuireStore = inject(RepertuireStore);
+  startDate = new Date("12/1/2022");
+  dates: string[] = [];
+
+  vm$ = this.repertuireStore.repertuire$;
 
   ngOnInit() {
-    this.repertuireApiService.getDaysThatHaveAddedRepertuire;
+    this.repertuireStore.getDaysThatHaveRepertuire();
+
+    this.repertuireStore.daysThatHaveRepertuire$.subscribe(dates => (this.dates = dates));
   }
 
-  myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+  getRepertuire(event: MatDatepickerInputEvent<Date>) {
+    if (!event.value) return;
+    const formatedDate = formatDate(event.value);
+    this.repertuireStore.getByDay(formatedDate);
+  }
+
+  filterDatesWithRepertuire = (inputDate: Date | null): boolean => {
+    if (this.dates.length === 0) return false;
+    const formatedDate = inputDate ? formatDate(inputDate) : formatDate(new Date());
+
+    return this.dates.includes(formatedDate);
   };
 }

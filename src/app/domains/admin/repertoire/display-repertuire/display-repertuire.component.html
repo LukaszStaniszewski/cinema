@@ -1,11 +1,15 @@
 <section class="display-repertuire">
      <div class="select-date__wrapper">
           <input
+               #dateInput
                placeholder="wybierz datę*"
-               formControlName="day"
-               class="input"
+               type="text"
+               onfocus="(this.type='date')"
+               onblur="if(!this.value)this.type='text'"
+               class="input date-input"
                matInput
-               [matDatepickerFilter]="myFilter"
+               (dateInput)="getRepertuire($event)"
+               [matDatepickerFilter]="filterDatesWithRepertuire"
                [matDatepicker]="picker" />
           <mat-hint>Dostępne są tylko dni do których dodany został repertuar</mat-hint>
           <div class="date-picker__wrapper">

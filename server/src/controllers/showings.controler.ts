@@ -49,6 +49,7 @@ export const sendShowingBasis = async (req: Request<{ id: string }>, res: Respon
 // };
 export const sendRepertuireBasis = async (req: Request<{ day: string }>, res: Response) => {
   try {
+    console.log("hit");
     const repertuireDay = req.params.day;
 
     if (doesExist(repertuireDay)) {
@@ -82,7 +83,7 @@ export const isGivenTermFree = async (
   try {
     const resQuery = req.query as { day: string; cinemaRoom: string };
     const cinemaRoom = resQuery.cinemaRoom;
-    const repertuireDay = resQuery.day.replaceAll(".", "-");
+    const repertuireDay = resQuery.day.replaceAll("/", "-");
 
     if (doesExist(repertuireDay)) {
       const repertoire = repertuireDB[repertuireDay];
@@ -107,8 +108,11 @@ function doesExist(id: string): id is keyof typeof repertuireDB {
 export const sendDaysThatHaveAddedRepertuire = (req: Request, res: Response) => {
   try {
     const repertoire = repertuireDB;
-    const dates = Object.keys(repertoire);
 
+    let dates = Object.keys(repertoire);
+    if (dates) {
+      dates = dates.map(date => date.replaceAll("-", "/"));
+    }
     res.json(dates);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));
