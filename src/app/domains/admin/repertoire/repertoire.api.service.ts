@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API } from "@environments/constants";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, catchError, of } from "rxjs";
 type ShowRepertuireVM = {
   [key: string]: [{ hour: number; movieTitle: string }];
 };
@@ -20,12 +20,12 @@ export class RepertuireApiService {
     return this.http.get<ShowRepertuireVM>(`${API.REPERTUIRE}/${day}`);
   }
 
-  getDays() {
-    return this.http.get<string[]>(``);
+  getDaysThatHaveAddedRepertuire() {
+    return this.http.get<string[]>(`${API.DAYS_WITH_SET_REPERTUIRE}`).pipe(catchError(() => of([])));
   }
   checkTermAvailability(date: string, roomName: string) {
     return this.http.get<string[] | null>(
-      `${API.CHECK_REPERTUIRE_AVAILABILITY}?day=${"06.12.2022"}&cinemaRoom=${roomName}`
+      `${API.CHECK_REPERTUIRE_AVAILABILITY}?day=${"06-12-2022"}&cinemaRoom=${roomName}`
     );
   }
 

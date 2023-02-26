@@ -103,3 +103,14 @@ export const isGivenTermFree = async (
 function doesExist(id: string): id is keyof typeof repertuireDB {
   return id in repertuireDB;
 }
+
+export const sendDaysThatHaveAddedRepertuire = (req: Request, res: Response) => {
+  try {
+    const repertoire = repertuireDB;
+    const dates = Object.keys(repertoire);
+
+    res.json(dates);
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};

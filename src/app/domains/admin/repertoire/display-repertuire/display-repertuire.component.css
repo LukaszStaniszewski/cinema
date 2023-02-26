@@ -1,18 +1,14 @@
-mat-list {
-}
-
-.mat-mdc-list-item-title.mdc-list-item__primary-text {
-  color: white;
-}
-.mat-mdc-list-item-line.mdc-list-item__secondary-text {
-  color: var(--color-text-secondary);
-}
-.mat-icon {
-  color: var(--color-text-secondary);
+.display-repertuire {
+  margin: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(min-content, 1fr));
 }
 
 .select-date__wrapper {
+  grid-column: 2/12;
   position: relative;
+
+  justify-self: center;
 }
 
 .select-date__wrapper > input {
@@ -26,3 +22,37 @@ mat-list {
   top: 0;
   right: 0;
 }
+
+.repertuire {
+  grid-column: 2/12;
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  column-gap: 1rem;
+  /* justify-content: space-between; */
+
+  justify-items: center;
+}
+.repertuire-item {
+  /* display: block;
+  margin: 0 auto; */
+}
+
+.mat-mdc-list-item-title.mdc-list-item__primary-text {
+  color: white;
+}
+.mat-mdc-list-item-line.mdc-list-item__secondary-text {
+  color: var(--color-text-secondary);
+}
+.mat-icon {
+  color: var(--color-text-secondary);
+}
+
+mat-list {
+}
+
+/* .list-title {
+  text-overflow: initial;
+  white-space: normal;
+  height: max-content;
+} */

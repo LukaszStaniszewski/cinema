@@ -1,4 +1,4 @@
-<section>
+<section class="display-repertuire">
      <div class="select-date__wrapper">
           <input
                placeholder="wybierz datę*"
@@ -11,20 +11,22 @@
           <div class="date-picker__wrapper">
                <mat-datepicker-toggle class="date-icon" matIconSuffix [for]="picker">
                </mat-datepicker-toggle>
-               <mat-datepicker #picker> </mat-datepicker>
+               <mat-datepicker [startAt]="startDate" #picker> </mat-datepicker>
           </div>
      </div>
 
-     <ng-container *ngIf="vm$ | async as repertuire">
-          <div *ngFor="let room of repertuire | keyvalue">
+     <div class="repertuire" *ngIf="vm$ | async as repertuire">
+          <div class="repertuire-item" *ngFor="let room of repertuire | keyvalue">
                <h3>{{ room.key }}</h3>
                <mat-list *ngFor="let data of room.value">
                     <mat-list-item>
-                         <span matListItemTitle>{{ data.movieTitle }}</span>
+                         <span class="list-title" matListItemTitle>{{
+                              data.movieTitle
+                         }}</span>
                          <span matListItemLine>{{ data.hour }}</span>
                          <mat-icon matListItemIcon>movie</mat-icon>
                     </mat-list-item>
                </mat-list>
           </div>
-     </ng-container>
+     </div>
 </section>

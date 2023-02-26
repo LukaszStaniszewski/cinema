@@ -11,6 +11,7 @@ export const API = {
   SHOWINGS: "/showings",
   REPERTUIRE: "/showings/repertuire",
   CHECK_REPERTUIRE_AVAILABILITY: "/showings/availability",
+  DAYS_WITH_SET_REPERTUIRE: "/showings/repertuire/set",
   ORDERS: "/orders",
   ORDER_PAYED: "/orders/payed",
   ORDER_EMAIL: "/orders/email",
