@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MovieService } from "@core/movie/movie.service";
+import { AuthService } from "@domains/auth";
 
 import { ShowingApiService } from "..";
 
@@ -14,7 +15,8 @@ export class CardListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private showingService: ShowingApiService,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private authService: AuthService
   ) {}
 
   vm = this.showDefaultPage();
@@ -25,7 +27,9 @@ export class CardListComponent implements OnInit {
       this.vm = this.showingService.getShowings(adjustedDate);
     });
 
-    this.movieService.getFavoriteId();
+    if (this.authService.authState.authType === "customer") {
+      this.movieService.getFavoriteId();
+    }
   }
 
   private showDefaultPage() {

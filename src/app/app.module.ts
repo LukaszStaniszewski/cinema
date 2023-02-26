@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthService } from "@domains/auth";
-import { DashboardModule } from "@domains/dashboard/dashboard.modules";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
 import { ToastComponent } from "@shared/ui/toast/toast.component";
@@ -26,7 +25,6 @@ function initFactory(initService: AuthService) {
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    DashboardModule,
     ToastComponent,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

@@ -3,31 +3,41 @@
   justify-content: space-between;
   align-items: center;
 } */
+
 .card-wrapper {
-  display: grid;
-  grid-template-columns: repeat(13, minmax(min-content, 1fr));
+  --height: 300px;
+  /* display: grid;
+  grid-template-columns: repeat(13, minmax(min-content, 1fr)); */
+  /* display: flex;
+  column-gap: 1rem; */
+  display: flex;
   column-gap: 1rem;
 
   margin: 2rem 0;
 }
 
 .card-image {
-  display: flex;
-  justify-content: center;
-  grid-column: 4 / 6;
 }
 
 .card-image > img {
-  height: 235px;
+  height: var(--height);
 }
 .card-main {
-  grid-column: 6 / 10;
+  min-height: var(--height);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  /* column-gap: 1rem; */
+  height: 100%;
 }
 
-.card-main .card-details {
+.card-details {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  /* justify-content: flex-end;
+  align-self: flex-end; */
+  /* position: relative; */
 }
 
 .card-details > a {
@@ -35,10 +45,9 @@
 }
 
 .card-rating {
-  grid-column: 10/11;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .button--card {
@@ -47,18 +56,29 @@
   padding: 0.4rem 0.8rem;
 }
 
-.card-rating > p {
-  margin: 0;
-  font-size: 1.5rem;
+.card-rating > p:nth-child(2) {
+  color: var(--color-text-secondary);
+  padding: 0.3rem 0 0.4rem 0;
+
+  /* font-size: 1.5rem; */
 }
 
-.card-main .card-hours {
+.card-rating > p:first-child {
+  font-size: 1.25rem;
+}
+.card-hours {
   display: flex;
+  /* align-self: flex-end; */
+  /* justify-content: flex-end; */
   flex-wrap: wrap;
 }
 
 .card-hours > a {
-  width: 8rem;
+  width: 7rem;
+}
+
+.card-info {
+  max-width: 500px;
 }
 
 .card-description {
@@ -75,3 +95,6 @@
   padding: 0.8rem 1rem;
   text-align: center;
 }
+
+/* RATING */
+/*  */

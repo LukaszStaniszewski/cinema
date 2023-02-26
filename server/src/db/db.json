@@ -35,7 +35,8 @@
     {
       "userId": "1",
       "movieId": "movie-avatar-way-of-water-123",
-      "id": "I8Et9T2"
+      "id": "I8Et9T2",
+      "rate": "7"
     },
     {
       "userId": "2",
@@ -45,7 +46,25 @@
     {
       "userId": "2",
       "movieId": "movie-darkKnight-123",
-      "id": "movie-darkKnight-1232"
+      "id": "movie-darkKnight-1232",
+      "rate": "8"
+    }
+  ],
+  "ratings": [
+    {
+      "userId": "1",
+      "movieId": "movie-avatar-way-of-water-123",
+      "rate": "7"
+    },
+    {
+      "userId": "2",
+      "movieId": "movie-avatar-way-of-water-123",
+      "rate": "8"
+    },
+    {
+      "userId": "2",
+      "movieId": "movie-darkKnight-123",
+      "rate": "8"
     }
   ],
   "orders": {

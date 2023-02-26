@@ -41,11 +41,12 @@ export class MovieService {
     return this.movieServiceState$$.asObservable();
   }
 
-  addToFavorites(userId: string, movieId: string) {
+  addToFavorites(movieId: string) {
     this.http.post(API.WANNA_SEE, { movieId }).subscribe({
       next: () => MESSAGE.WANNA_SEE_SUCCESS,
       error: error => error,
     });
+
     // this.http
     //   .get<WannaSeeDTO[] | []>(`${API.WANNA_SEE}?userId=${userId}&movieId=${movieId}`)
     //   .pipe(
@@ -65,7 +66,12 @@ export class MovieService {
     //     error: error => error,
     //   });
   }
-
+  addRate(rating: number, movieId: string) {
+    this.http.post(API.WANNA_SEE, { movieId, rating }).subscribe({
+      next: () => MESSAGE.WANNA_SEE_SUCCESS,
+      error: error => error,
+    });
+  }
   getFavorites() {
     // return this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE_LIST}/${2}`).pipe(
     //   switchMap(wannaSeeDTO => {

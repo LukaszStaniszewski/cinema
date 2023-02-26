@@ -3,27 +3,25 @@
         <img src="{{ movie.image }}" alt="movie" />
     </div>
     <main class="card-main">
-        <div>
-            <div class="card-title text-h3">
-                {{ movie.title | titlecase }}
+        <div class="card-info">
+            <div>
+                <div class="card-title text-h3">
+                    {{ movie.title | titlecase }}
+                </div>
+                <div class="text-body-big">
+                    {{ movie.genre | titlecase }} | {{ movie.runTime }} minut | PG-{{
+                        movie.pg
+                    }}
+                </div>
+                <span class="card-description text-body-big">{{
+                    movie.description
+                }}</span>
             </div>
-            <div class="text-body-big">
-                {{ movie.genre | titlecase }} | {{ movie.runTime }} minut | PG-{{
-                    movie.pg
-                }}
+            <div class="card-details">
+                <a routerLink="/">Więcej</a>
             </div>
-            <span class="card-description text-body-big">{{ movie.description }}</span>
-        </div>
-        <div class="card-details">
-            <a routerLink="/">Więcej</a>
         </div>
         <div class="card-hours text-body-big">
-            <!-- <a
-                class="time-details"
-                *ngFor="let hour of hours"
-                routerLink="/booking/reservation/{{ hour.reservationId }}"
-                >{{ hour.time }}</a
-            > -->
             <a
                 class="time-details"
                 *ngFor="let hour of hours"
@@ -32,11 +30,12 @@
             >
         </div>
     </main>
+
     <div class="card-rating">
         <p>{{ movie.rating }}/ 10</p>
-        <a class="button--card" [routerLink]="['/']">Oceń ten film!</a>
-        <button #addToWannaSee class="btn" (click)="addToFavorites()">
-            Chcę zobaczyć
-        </button>
+        <p class="text-body">450 ocen</p>
+
+        <router-outlet name="cardCustomerSection" (activate)="onActivate($event)">
+        </router-outlet>
     </div>
 </section>

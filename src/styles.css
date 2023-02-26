@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
 @import "@angular/cdk/overlay-prebuilt.css";
+@import url("https://kit.fontawesome.com/386ffefd94.js");
 
 :root {
   --color-primary: #00f3f3;
@@ -110,39 +111,6 @@ input[type="number"] {
   grid-template-columns: repeat(12, minmax(max-content, 1fr));
 }
 
-.button {
-  display: block;
-  background-color: var(--background-secondary);
-  border: none;
-  text-align: center;
-  line-height: 100%;
-  white-space: nowrap;
-  letter-spacing: 0.15em;
-  margin: 1rem auto;
-  min-width: max-content;
-  width: 80%;
-  position: relative;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button::after {
-  content: "";
-  background: var(--gradient-blue);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  margin: -3px;
-  border-radius: 5px;
-}
-
-.button:hover::after {
-  filter: blur(3px);
-}
-
 .seat {
   width: 42px;
   height: 42px;
@@ -219,13 +187,18 @@ input[type="number"] {
 }
 
 .btn--sm {
-  /* line-height: 1.5; */
   font-size: 0.875rem;
   padding: 0.3rem 0.6rem;
+}
+
+.btn--disabled {
+  opacity: 0.6;
+  cursor: initial;
 }
 html,
 body {
   height: 100%;
+  width: 100%;
 }
 
 .shadow-primary-text {

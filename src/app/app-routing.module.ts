@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 import { AppCustomPreloader, CanMatchCustomerSection } from "./core";
-import { CardListComponent } from "./domains/dashboard";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
 
@@ -23,8 +22,9 @@ const routes: Routes = [
           },
           {
             path: "showings/:day",
-            component: CardListComponent,
+            loadChildren: () => import("./domains/dashboard/dashboard.module"),
             title: "Dashboard",
+            data: { preload: true },
           },
           {
             path: "booking",

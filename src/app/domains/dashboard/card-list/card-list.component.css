@@ -1,6 +1,14 @@
 .card-list {
   scroll-behavior: smooth;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(min-content, 1fr));
+  justify-items: center;
+}
+
+.dates-component {
+  grid-column: 3/11;
+}
+
+.card-component {
+  grid-column: 3/11;
 }
