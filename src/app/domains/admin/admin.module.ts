@@ -14,7 +14,7 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { AddScreeningComponent, RepertoireComponent, RepertuireStore } from ".";
 import { AddMovieComponent } from "./add-movie/add-movie.component";
-import { DisplaywRepertuireComponent } from "./repertoire/display-repertuire/display-repertuire.component";
+import { DisplaywRepertuireComponent } from "./repertoire/display-repertoire/display-repertuire.component";
 
 const routes: Routes = [
   {

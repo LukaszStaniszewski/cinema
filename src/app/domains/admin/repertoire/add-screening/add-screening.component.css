@@ -65,9 +65,6 @@ input.ng-touched.ng-pristine ~ p {
   font-size: 14px;
   padding-left: 1rem;
 }
-.mat-mdc-form-field-error {
-  color: var(--accent-error);
-}
 
 .taken-hour {
   color: var(--accent-error);

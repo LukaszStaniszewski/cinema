@@ -11,7 +11,8 @@ import { MovieApiService } from "@core/movie/movie.api.service";
 })
 export class AddMovieComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  actors = ["jeden", "dwa"];
+  actors = ["G", "PG", "PG-13", "R", "NC-17"];
+  pgCategories = ["G", "PG", "PG-13", "R", "NC-17"];
   private builder = inject(NonNullableFormBuilder);
   private movieApiService = inject(MovieApiService);
   addMovieForm = this.createForm();
@@ -20,8 +21,8 @@ export class AddMovieComponent {
     return this.builder.group({
       image: this.builder.control("", [Validators.required]),
       title: this.builder.control("", [Validators.required]),
-      runTime: this.builder.control(0, [Validators.required]),
-      premiere: this.builder.control(false, [Validators.requiredTrue]),
+      runTime: this.builder.control(NaN, [Validators.required]),
+      premiere: this.builder.control("", [Validators.required]),
       actors: this.builder.control([], [Validators.required]),
       genre: this.builder.control("", [Validators.required]),
       director: this.builder.control("", [Validators.required]),
@@ -51,6 +52,6 @@ export class AddMovieComponent {
   submit() {
     this.addMovieForm.markAllAsTouched();
     if (this.addMovieForm.invalid) return;
-    this.movieApiService.addToDB(this.addMovieForm.getRawValue());
+    // this.movieApiService.addToDB(this.addMovieForm.getRawValue());
   }
 }

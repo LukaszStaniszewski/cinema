@@ -1,34 +1,37 @@
-<nav
-    class="navbar-wrapper grid-container"
-    appClickOutside
-    (appClickOutside)="clickedOutside()">
-    <div>
-        <div class="cinema-name__wrapper">
-            <a class="navbar__cinema-name text-h2" [routerLink]="['/']">Ale Kino</a>
-        </div>
-        <div class="navbar-buttons__wrapper">
-            <div>
-                <router-outlet name="cart"></router-outlet>
-                <!-- <app-cart></app-cart> -->
-            </div>
+<nav class="navbar-wrapper" appClickOutside (appClickOutside)="clickedOutside()">
+     <div>
+          <div class="cinema-name__wrapper">
+               <a class="navbar__cinema-name text-h2" [routerLink]="['/']">Ale Kino</a>
+          </div>
+          <div class="navbar-buttons__wrapper">
+               <div>
+                    <router-outlet name="cart"></router-outlet>
+               </div>
 
-            <div class="navbar__login">
-                <div
-                    *ngIf="(currentUser$ | async)?.firstName as name; else signin"
-                    class="text-body-big"
-                    (click)="toggleDropdown()">
-                    {{ name | titlecase }}
-                </div>
-                <ng-template #signin>
-                    <div class="login__text" (click)="login()">Zaloguj się</div>
-                </ng-template>
-            </div>
-            <div *ngIf="!hide" class="dropdown dropdown--navbar">
-                <div>Moje bilety</div>
-                <a [routerLink]="['/wanna-see']">Chcę obejrzeć</a>
-                <div>Ustawienia</div>
-                <button (click)="logout()">Wyloguj</button>
-            </div>
-        </div>
-    </div>
+               <div class="navbar__login">
+                    <div
+                         *ngIf="(currentUser$ | async)?.firstName as name; else signin"
+                         class="text-body-big"
+                         (click)="toggleDropdown()">
+                         {{ name | titlecase }}
+                    </div>
+                    <ng-template #signin>
+                         <div (click)="login()">Zaloguj się</div>
+                    </ng-template>
+
+                    <div
+                         *ngIf="!hide && (authState$ | async) as auth"
+                         class="dropdown dropdown--navbar">
+                         <a>Moje bilety</a>
+                         <a [routerLink]="['/wanna-see']">Chcę obejrzeć</a>
+                         <ng-container *ngIf="auth.authType === 'admin'">
+                              <a [routerLink]="['/admin/movie']">Dodaj film</a>
+                              <a [routerLink]="['/admin/repertoire']">Dodaj seans</a>
+                         </ng-container>
+                         <a>Ustawienia</a>
+                         <button (click)="logout()">Wyloguj</button>
+                    </div>
+               </div>
+          </div>
+     </div>
 </nav>

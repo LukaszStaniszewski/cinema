@@ -1,16 +1,10 @@
 .add-movie {
-  /* display: flex;
-  justify-content: center; */
   margin: 3rem 0;
 }
 
 .add-movie > form {
   grid-column: 4/10;
 }
-/* form > button {
-  align-self: center;
-  justify-self: center;
-} */
 
 legend {
   color: var(--color-primary);
@@ -40,11 +34,12 @@ legend {
   width: 100%;
 }
 .test2 {
+  margin-top: 1rem;
   font-size: 16px;
 }
 .test {
   padding: 1rem 1rem;
-  /* padding: 10px; */
+
   background-color: white;
   border-radius: 10px;
 }
@@ -54,7 +49,11 @@ legend {
   display: flex;
   flex-direction: column;
   width: 50%;
-  row-gap: 2rem;
+}
+
+.genere,
+.runTime {
+  margin: 2rem 0;
 }
 
 .input-wrapper__checkbox {
@@ -102,11 +101,32 @@ legend {
   border: 2px solid var(--accent-success);
 }
 
-/* .mat-mdc-form-field-infix.ng-tns-c81-0 {
-  background-color: transparent !important;
-  border-radius: 10px;
+input.ng-touched.ng-pristine::placeholder {
+  color: var(--accent-error);
+}
 
-  padding-top: 0rem !important;
-  padding-bottom: 1rem;
-  margin: 0;
-} */
+input.ng-touched.ng-pristine ~ p {
+  color: var(--accent-error);
+  font-size: 14px;
+  padding-left: 1rem;
+}
+
+.movie-form__pg-field {
+  border-radius: 10px !important;
+  margin: 2rem 0 1rem 0;
+}
+
+.date-input__wrapper {
+  position: relative;
+}
+.date-input__wrapper > input {
+  padding: 1rem 1rem;
+  font-size: 16px;
+  position: relative;
+}
+
+.date-picker__wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

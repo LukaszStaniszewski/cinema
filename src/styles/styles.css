@@ -191,6 +191,3 @@ body {
 .shadow-primary-text {
   text-shadow: 0px 0px 16px rgba(0, 243, 243, 0.5);
 }
-/* :host ::ng-deep span {
-  font-family: "Barlow", sans-serif;
-} */
