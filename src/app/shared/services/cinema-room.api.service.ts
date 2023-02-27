@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject, catchError, of } from "rxjs";
-import { API, MESSAGE } from "src/environments/constants";
+import { catchError, of } from "rxjs";
+import { API } from "src/environments/constants";
 
+export type CinemaRoomName = "room-a" | "room-b" | "room-c";
 @Injectable({
   providedIn: "root",
 })

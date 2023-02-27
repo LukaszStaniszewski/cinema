@@ -44,19 +44,19 @@
   color: var(--accent-green);
 }
 .toast--success .toast__icon--color {
-  filter: brightness(0) saturate(100%) invert(22%) sepia(96%) saturate(3321%)
-    hue-rotate(143deg) brightness(88%) contrast(84%);
+  filter: brightness(0) saturate(100%) invert(22%) sepia(96%) saturate(3321%) hue-rotate(143deg)
+    brightness(88%) contrast(84%);
 }
 
 .toast--info.toast {
-  background-color: var(--accent-sky-300);
+  background-color: var(--color-primary);
 }
 .toast--info > .toast-message {
-  color: var(--accent-sky-800);
+  color: black;
 }
 .toast--info .toast__icon--color {
-  filter: brightness(0) saturate(100%) invert(24%) sepia(90%) saturate(772%)
-    hue-rotate(165deg) brightness(96%) contrast(97%);
+  filter: brightness(0) saturate(100%) invert(24%) sepia(90%) saturate(772%) hue-rotate(165deg)
+    brightness(96%) contrast(97%);
 }
 
 .toast--warning.toast {
@@ -66,17 +66,17 @@
   color: var(--accent-orange-800);
 }
 .toast--warning .toast__icon--color {
-  filter: brightness(0) saturate(100%) invert(19%) sepia(94%) saturate(2854%)
-    hue-rotate(20deg) brightness(101%) contrast(91%);
+  filter: brightness(0) saturate(100%) invert(19%) sepia(94%) saturate(2854%) hue-rotate(20deg)
+    brightness(101%) contrast(91%);
 }
 
 .toast--error.toast {
   background-color: var(--accent-error);
 }
 .toast--error > .toast-message {
-  color: var(--neutral-100);
+  color: white;
 }
 .toast--error .toast__icon--color {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(21%)
-    hue-rotate(50deg) brightness(105%) contrast(100%);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(21%) hue-rotate(50deg)
+    brightness(105%) contrast(100%);
 }

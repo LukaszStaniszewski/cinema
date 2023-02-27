@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { RepertuireStore } from "@domains/admin/repertuire.store";
+import { RepertuireStore } from "@domains/admin/repertoire/repertuire.store";
 import { formatDate } from "@shared/index";
 
 @Component({

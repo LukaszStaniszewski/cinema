@@ -38,7 +38,7 @@ legend {
 
 .form__button {
   display: block;
-  margin: 0 auto;
+  margin: 1rem auto;
   width: 150px;
 }
 
@@ -49,4 +49,26 @@ legend {
 
 .mat-mdc-hint-0 {
   font-size: 14px;
+}
+
+.taken-hours {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+input.ng-touched.ng-pristine::placeholder {
+  color: var(--accent-error);
+}
+
+input.ng-touched.ng-pristine ~ p {
+  color: var(--accent-error);
+  font-size: 14px;
+  padding-left: 1rem;
+}
+.mat-mdc-form-field-error {
+  color: var(--accent-error);
+}
+
+.taken-hour {
+  color: var(--accent-error);
 }

@@ -3,6 +3,6 @@ import { Component } from "@angular/core";
 @Component({
   selector: "app-showing",
   templateUrl: "./repertoire.component.html",
-  styleUrls: ["./repertoire.component.css"],
+  styles: [".wrapper {  margin: 1.25rem 0;}"],
 })
 export class RepertoireComponent {}

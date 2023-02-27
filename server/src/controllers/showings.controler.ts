@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import fs from "fs";
 
 import { ErrorMessage } from "../config/constants.config";
 import db from "../db/db.json";
@@ -114,6 +115,53 @@ export const sendDaysThatHaveAddedRepertuire = (req: Request, res: Response) => 
       dates = dates.map(date => date.replaceAll("-", "/"));
     }
     res.json(dates);
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};
+export type CinemaRoomName = "room-a" | "room-b" | "room-c";
+
+// export type Screening = {
+//   [key in CinemaRoomName]: { hour: number; movieTitle: string };
+// } & { date: string };
+export type Screening = {
+  hour: number;
+  movieTitle: string;
+  date: string;
+  cinemaRoom: string;
+  runTime: number;
+};
+
+export const addShowingToRepertuire = (
+  req: Request<Record<string, unknown>, Record<string, unknown>, Screening>,
+  res: Response
+) => {
+  try {
+    const { date, ...screening } = req.body;
+    const repertuireDay = date.replaceAll("/", "-");
+    let repertoire = null;
+    if (doesExist(repertuireDay)) {
+      // const cinemaRoom = repertuireDB[repertuireDay][screening.cinemaRoom]
+      repertoire = {
+        [screening.cinemaRoom]: [
+          ...repertuireDB[repertuireDay][screening.cinemaRoom],
+          { hour: screening.hour, movieTitle: screening.movieTitle, runTime: screening.runTime },
+        ],
+      };
+    } else {
+      repertoire = {
+        [screening.cinemaRoom]: [
+          { hour: screening.hour, movieTitle: screening.movieTitle, runTime: screening.runTime },
+        ],
+      };
+    }
+
+    repertuireDB[repertuireDay] = repertoire;
+    fs.writeFile("./src/db/repertuire.json", JSON.stringify(repertuireDB, null, 2), err => {
+      // throw new Error(`file couldn't be overwritten: ${err}`);
+      return;
+    });
+    res.end();
   } catch (error) {
     res.status(404).json(getErrorMessage(error));
   }
