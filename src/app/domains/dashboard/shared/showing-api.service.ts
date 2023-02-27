@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Movie } from "@core/movie/movie.service";
+import { Movie } from "@core/movie/watch-list.service";
 import { API } from "src/environments/constants";
 
 export type Availability = {

@@ -11,7 +11,7 @@
     {
       "files": "*.html",
       "options": {
-        "tabWidth": 4,
+        "tabWidth": 5,
         "bracketSameLine": true,
         "printWidth": 90,
         "bracketSpacing": true

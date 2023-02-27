@@ -1,0 +1,106 @@
+<section class="create-showing grid-container">
+     <form [formGroup]="addScreeningForm" class="create-showing__form">
+          <fieldset>
+               <legend class="text-h2 shadow-primary-text">Dodaj do repertuaru</legend>
+
+               <div class="showing-form__form-field">
+                    <mat-form-field>
+                         <mat-label>Wybierz film</mat-label>
+                         <mat-select #select formControlName="movie" name="movie">
+                              <ng-container *ngIf="movies$ | async as movies">
+                                   <mat-option
+                                        *ngFor="let movie of movies"
+                                        [value]="movie">
+                                        {{ movie.title }}
+                                   </mat-option>
+                              </ng-container>
+                         </mat-select>
+                         <mat-hint
+                              class="text-body-small"
+                              *ngIf="controls.movie.value.runTime">
+                              Długość filmu: {{ select.value["runTime"] }} minut
+                         </mat-hint>
+
+                         <mat-error
+                              class="text-body-small"
+                              *ngIf="controls.movie.invalid">
+                              Pole nie może być puste. Wybierz film.
+                         </mat-error>
+                    </mat-form-field>
+               </div>
+               <div class="date-input__wrapper">
+                    <input
+                         placeholder="wybierz datę*"
+                         [matDatepickerFilter]="filterOutPastDates"
+                         formControlName="date"
+                         class="input"
+                         matInput
+                         [matDatepicker]="picker" />
+                    <div class="date-picker__wrapper">
+                         <mat-datepicker-toggle
+                              class="date-icon"
+                              matIconSuffix
+                              [for]="picker">
+                         </mat-datepicker-toggle>
+                         <mat-datepicker [startAt]="startDate" #picker> </mat-datepicker>
+                    </div>
+
+                    <ng-container *ngIf="controls.date.errors as errors">
+                         <ng-container
+                              *ngIf="controls.date.touched && controls.date.pristine">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Wprowadź datę
+                              </p>
+                         </ng-container>
+                    </ng-container>
+               </div>
+               <div class="showing-form__form-field">
+                    <input
+                         class="input"
+                         type="time"
+                         placeholder="godzina"
+                         formControlName="hour" />
+                    <ng-container *ngIf="controls.hour.errors as errors">
+                         <ng-container
+                              *ngIf="controls.hour.touched && controls.hour.pristine">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Wybierz godzinę
+                              </p>
+                         </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="addScreeningForm.errors as errors">
+                         <p class="taken-hour">
+                              {{ errors["takenHours"] }}
+                         </p>
+                    </ng-container>
+               </div>
+               <div class="showing-form__form-field">
+                    <mat-form-field>
+                         <mat-label>Wybierz salę kinową</mat-label>
+                         <mat-select formControlName="cinemaRoom" name="cinemaRoom">
+                              <ng-container
+                                   *ngIf="cinemaRooms$ | async as cinemaRoomsNames">
+                                   <mat-option
+                                        *ngFor="let name of cinemaRoomsNames"
+                                        [value]="name">
+                                        {{ name }}
+                                   </mat-option>
+                              </ng-container>
+                         </mat-select>
+                         <mat-error
+                              class="text-body-small"
+                              *ngIf="controls.cinemaRoom.invalid">
+                              Pole nie może być puste. Wybierz salę.
+                         </mat-error>
+                    </mat-form-field>
+               </div>
+          </fieldset>
+          <ng-container *ngIf="takenTerms$ | async as takenTerms">
+               <p>
+                    Zajęte godziny w wybranym dniu i sali kinowej:
+                    <span class="taken-hours"> {{ takenTerms.join(", ") }}</span>
+               </p>
+          </ng-container>
+          <button class="btn form__button" (click)="submit()">Zatwierdź</button>
+     </form>
+</section>

@@ -206,6 +206,26 @@
       },
       "url": "/booking/purchase/06-15-a",
       "userId": 2
+    },
+    "2names": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20612b": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20614b": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20620c": {
+      "userId": 2,
+      "tickets": []
+    },
+    "20610b": {
+      "userId": 2,
+      "tickets": []
     }
   },
   "movies": [
@@ -304,6 +324,102 @@
           }
         ]
       }
+    },
+    {
+      "id": "movie-rick-and-morty-123",
+      "title": "Rick and Morty",
+      "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+      "description": "Ekscentryczny naukowiec Rick udaje się ze swoim wnukiem Mortym do najdziwniejszych miejsc w galaktyce i alternatywnych rzeczywistości.",
+      "rating": 8.6,
+      "votesNumber": 400,
+      "runTime": 240,
+      "pg": 18,
+      "genre": "Komedia, Przygodowy",
+      "director": " Justin Roiland",
+      "premiere": "26:07:2015 21:00:00",
+      "descriptionExtra": {
+        "cast": [
+          {
+            "name": "Justin Roiland"
+          },
+          {
+            "name": "Chris Parnell"
+          },
+          {
+            "name": "Spencer Grammer"
+          },
+          {
+            "name": "Stephen Lang"
+          },
+          {
+            "name": "Kari Wahlgren"
+          }
+        ]
+      }
+    },
+    {
+      "id": "movie-oppenheimer-123",
+      "title": "OPPENHEIMER",
+      "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+      "description": "Historia amerykańskiego naukowca J. Roberta Oppenheimera i jego roli w stworzeniu bomby atomowej.",
+      "rating": 8,
+      "votesNumber": 60,
+      "runTime": 180,
+      "pg": 13,
+      "genre": "Biograficzny",
+      "director": "Christopher Nolan",
+      "premiere": "28:02:2023 12:00:00",
+      "descriptionExtra": {
+        "cast": [
+          {
+            "name": "Cillian Murphy"
+          },
+          {
+            "name": "Robert Downey Jr."
+          },
+          {
+            "name": "Florence Pugh"
+          },
+          {
+            "name": "Jack Quaid"
+          },
+          {
+            "name": "Matt Damon"
+          }
+        ]
+      }
+    },
+    {
+      "id": "movie-wt-powrót-króla-123",
+      "title": "Władca Pierścieni: Powrót Króla",
+      "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+      "description": "Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów.",
+      "rating": 8.4,
+      "votesNumber": 1240,
+      "runTime": 201,
+      "pg": 13,
+      "genre": "Fantasy",
+      "director": "Peter Jackson",
+      "premiere": "1:12:2003 19:00",
+      "descriptionExtra": {
+        "cast": [
+          {
+            "name": "Viggo Mortensen"
+          },
+          {
+            "name": "Orlando Bloom"
+          },
+          {
+            "name": "Elijah Wood"
+          },
+          {
+            "name": "Ian McKellen"
+          },
+          {
+            "name": "Sean Bean"
+          }
+        ]
+      }
     }
   ],
   "showings": [
@@ -323,19 +439,19 @@
       "day": "06-12-2022",
       "available": [
         {
-          "time": "15:00",
-          "cinemaRoomId": "room-a",
-          "reservationId": "06-15-a"
+          "time": "12:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-12-b"
         },
         {
-          "time": "17:00",
-          "cinemaRoomId": "room-a",
-          "reservationId": "06-17-a"
+          "time": "14:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-14-b"
         },
         {
           "time": "20:00",
-          "cinemaRoomId": "room-b",
-          "reservationId": "06-20-b"
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-20-c"
         }
       ]
     },
@@ -355,14 +471,14 @@
       "day": "06-12-2022",
       "available": [
         {
-          "time": "15:00",
+          "time": "10:00",
           "cinemaRoomId": "room-b",
-          "reservationId": "06-15-b"
+          "reservationId": "06-10-b"
         },
         {
           "time": "17:00",
-          "cinemaRoomId": "room-c",
-          "reservationId": "06-17-c"
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-17-a"
         },
         {
           "time": "20:00",
@@ -387,24 +503,86 @@
       "day": "06-12-2022",
       "available": [
         {
+          "time": "10:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-12-c"
+        },
+        {
           "time": "12:00",
           "cinemaRoomId": "room-a",
           "reservationId": "06-12-a"
         },
         {
           "time": "14:00",
-          "cinemaRoomId": "room-c",
-          "reservationId": "06-14-c"
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-14-a"
         },
         {
           "time": "17:00",
-          "cinemaRoomId": "room-b",
-          "reservationId": "06-17-b"
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-17-c"
         },
         {
           "time": "20:00",
           "cinemaRoomId": "room-c",
           "reservationId": "06-20-c"
+        }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-rick-and-morty-123",
+        "title": "Rick and Morty",
+        "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+        "description": "Ekscentryczny naukowiec Rick udaje się ze swoim wnukiem Mortym do najdziwniejszych miejsc w galaktyce i alternatywnych rzeczywistości.",
+        "rating": 8.6,
+        "votesNumber": 400,
+        "runTime": 360,
+        "pg": 18,
+        "genre": "Komedia, Przygodowy"
+      },
+      "day": "06-12-2022",
+      "available": [
+        {
+          "time": "10:00",
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-12-a"
+        },
+        {
+          "time": "12:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-12-c"
+        },
+        {
+          "time": "14:00",
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-14-c"
+        }
+      ]
+    },
+    {
+      "movie": {
+        "id": "movie-wt-powrót-króla-123",
+        "title": "Władca Pierścieni: Powrót Króla",
+        "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+        "description": "Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów.",
+        "rating": 8.4,
+        "votesNumber": 1240,
+        "runTime": 201,
+        "pg": 13,
+        "genre": "Fantasy"
+      },
+      "day": "06-12-2022",
+      "available": [
+        {
+          "time": "17:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-12-b"
+        },
+        {
+          "time": "20:00",
+          "cinemaRoomId": "room-b",
+          "reservationId": "06-12-b"
         }
       ]
     },

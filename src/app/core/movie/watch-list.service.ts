@@ -33,7 +33,7 @@ type WannaSeeDTO = {
 @Injectable({
   providedIn: "root",
 })
-export class MovieService {
+export class WatchListService {
   private movieServiceState$$ = new BehaviorSubject<string[]>([]);
   private http = inject(HttpClient);
 

@@ -1,0 +1,71 @@
+.create-showing {
+  margin: 3rem 0;
+}
+.create-showing__form {
+  grid-column: 4/10;
+}
+
+legend {
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.create-showing__form > fieldset {
+  all: unset;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  row-gap: 2rem;
+}
+.showing-form__form-field > mat-form-field {
+  width: 100%;
+}
+
+.date-input__wrapper {
+  position: relative;
+}
+.date-input__wrapper > input {
+  padding: 1rem 1rem;
+  font-size: 16px;
+  position: relative;
+}
+
+.date-picker__wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.form__button {
+  display: block;
+  margin: 1rem auto;
+  width: 150px;
+}
+
+.showing-form__form-field > input {
+  padding: 1rem 1rem;
+  font-size: 16px;
+}
+
+.mat-mdc-hint-0 {
+  font-size: 14px;
+}
+
+.taken-hours {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+input.ng-touched.ng-pristine::placeholder {
+  color: var(--accent-error);
+}
+
+input.ng-touched.ng-pristine ~ p {
+  color: var(--accent-error);
+  font-size: 14px;
+  padding-left: 1rem;
+}
+
+.taken-hour {
+  color: var(--accent-error);
+}

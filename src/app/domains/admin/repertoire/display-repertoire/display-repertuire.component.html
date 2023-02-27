@@ -1,0 +1,36 @@
+<section class="display-repertuire">
+     <div class="select-date__wrapper">
+          <input
+               #dateInput
+               placeholder="wybierz datę*"
+               type="text"
+               onfocus="(this.type='date')"
+               onblur="if(!this.value)this.type='text'"
+               class="input date-input"
+               matInput
+               (dateInput)="getRepertuire($event)"
+               [matDatepickerFilter]="filterDatesWithRepertuire"
+               [matDatepicker]="picker" />
+          <mat-hint>Dostępne są tylko dni do których dodany został repertuar</mat-hint>
+          <div class="date-picker__wrapper">
+               <mat-datepicker-toggle class="date-icon" matIconSuffix [for]="picker">
+               </mat-datepicker-toggle>
+               <mat-datepicker [startAt]="startDate" #picker> </mat-datepicker>
+          </div>
+     </div>
+
+     <div class="repertuire" *ngIf="vm$ | async as repertuire">
+          <div class="repertuire-item" *ngFor="let room of repertuire | keyvalue">
+               <h3>{{ room.key }}</h3>
+               <mat-list *ngFor="let data of room.value">
+                    <mat-list-item>
+                         <span class="list-title" matListItemTitle>{{
+                              data.movieTitle
+                         }}</span>
+                         <span matListItemLine>{{ data.hour }}</span>
+                         <mat-icon matListItemIcon>movie</mat-icon>
+                    </mat-list-item>
+               </mat-list>
+          </div>
+     </div>
+</section>

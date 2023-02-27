@@ -1,0 +1,206 @@
+<section class="add-movie grid-container">
+     <form [formGroup]="addMovieForm" class="add-movie__form" [formGroup]="addMovieForm">
+          <fieldset>
+               <legend class="text-h2 shadow-primary-text">Dodaj film</legend>
+               <div class="form__left-side">
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="tytuł*"
+                              formControlName="title" />
+                         <ng-container *ngIf="controls.title.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.title.touched && controls.title.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wpisz tytuł filmu
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <div class="movie-form__form-field genere">
+                         <input
+                              class="input"
+                              placeholder="gatunek*"
+                              formControlName="genre" />
+
+                         <ng-container *ngIf="controls.genre.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.genre.touched && controls.genre.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Podaj gatunek filmu.
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <div class="movie-form__form-field">
+                         <input
+                              class="input"
+                              placeholder="reżyser*"
+                              formControlName="director" />
+                         <ng-container *ngIf="controls.director.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.director.touched &&
+                                        controls.director.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Dodaj rezysera
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+
+                    <mat-form-field class="test2" appearance="outline">
+                         <div class="test">
+                              <mat-chip-grid #chipGrid aria-label="actors selection">
+                                   <mat-chip-row
+                                        *ngFor="let actor of actors"
+                                        (removed)="remove(actor)">
+                                        {{ actor }}
+                                        <button
+                                             matChipRemove
+                                             [attr.aria-label]="'remove ' + actor">
+                                             <mat-icon>cancel</mat-icon>
+                                        </button>
+                                   </mat-chip-row>
+                              </mat-chip-grid>
+                              <input
+                                   placeholder="dodaj aktorów"
+                                   #fruitInput
+                                   formControlName="actors"
+                                   [matChipInputFor]="chipGrid"
+                                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                   (matChipInputTokenEnd)="add($event)" />
+                         </div>
+                         <ng-container *ngIf="controls.actors.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.actors.touched &&
+                                        controls.actors.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Dodaj aktorów
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </mat-form-field>
+               </div>
+               <div class="form__right-side">
+                    <div class="movie-form__form-field poster">
+                         <input
+                              class="input"
+                              placeholder="link do plakatu*"
+                              formControlName="image" />
+                         <ng-container *ngIf="controls.image.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.image.touched && controls.image.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Dodaj link
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+
+                    <mat-form-field class="movie-form__pg-field">
+                         <mat-label>Wybierz kategorię wiekową</mat-label>
+                         <mat-select #select formControlName="pg" name="pgCategories">
+                              <ng-container *ngIf="pgCategories">
+                                   <mat-option
+                                        *ngFor="let pgCategory of pgCategories"
+                                        [value]="pgCategory">
+                                        {{ pgCategory }}
+                                   </mat-option>
+                              </ng-container>
+                         </mat-select>
+
+                         <mat-error
+                              class="text-body-small"
+                              *ngIf="controls.pg.errors as errors">
+                              <ng-container *ngIf="errors['required']">
+                                   <ng-container
+                                        *ngIf="
+                                             controls.pg.touched && controls.pg.pristine
+                                        ">
+                                        Pole nie może być puste. Wybierz Katergorię.
+                                   </ng-container>
+                              </ng-container>
+                         </mat-error>
+                    </mat-form-field>
+                    <div class="date-input__wrapper">
+                         <input
+                              placeholder="data premiery*"
+                              formControlName="premiere"
+                              class="input"
+                              matInput
+                              [matDatepicker]="picker" />
+                         <div class="date-picker__wrapper">
+                              <mat-datepicker-toggle
+                                   class="date-icon"
+                                   matIconSuffix
+                                   [for]="picker">
+                              </mat-datepicker-toggle>
+                              <mat-datepicker #picker> </mat-datepicker>
+                         </div>
+
+                         <ng-container *ngIf="controls.premiere.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.premiere.touched &&
+                                        controls.premiere.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź datę
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+
+                    <div class="movie-form__form-field runTime">
+                         <input
+                              class="input"
+                              type="number"
+                              placeholder="czas trwania w minutach*"
+                              formControlName="runTime" />
+                         <ng-container *ngIf="controls.runTime.errors as errors">
+                              <ng-container
+                                   *ngIf="
+                                        controls.runTime.touched &&
+                                        controls.runTime.pristine
+                                   ">
+                                   <p *ngIf="errors['required']">
+                                        Pole nie może być puste. Wprowadź czas trwania
+                                        filmu
+                                   </p>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+
+                    <textarea
+                         class="form-field__text-area text-body"
+                         formControlName="description"
+                         placeholder="opis*">
+                    </textarea>
+                    <ng-container *ngIf="controls.description.errors as errors">
+                         <ng-container
+                              *ngIf="
+                                   controls.description.touched &&
+                                   controls.description.pristine
+                              ">
+                              <p *ngIf="errors['required']">
+                                   Pole nie może być puste. Dodaj opis
+                              </p>
+                         </ng-container>
+                    </ng-container>
+               </div>
+
+               <!-- <textarea class="input" placeholder="opis" /> -->
+          </fieldset>
+          <button class="btn form__button" (click)="submit()">Zatwierdź</button>
+     </form>
+</section>

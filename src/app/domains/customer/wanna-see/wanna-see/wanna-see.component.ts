@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
-import { MovieService } from "@core/movie/movie.service";
+import { WatchListService } from "@core/movie/watch-list.service";
 
 @Component({
   selector: "app-wanna-see",
@@ -8,10 +8,10 @@ import { MovieService } from "@core/movie/movie.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WannaSeeComponent {
-  private movieService = inject(MovieService);
-  vm$ = this.movieService.getFavorites();
+  private watchListService = inject(WatchListService);
+  vm$ = this.watchListService.getFavorites();
 
   protected removeFromWannaSee(moveId: string) {
-    this.movieService.deleteFavorite(moveId);
+    this.watchListService.deleteFavorite(moveId);
   }
 }

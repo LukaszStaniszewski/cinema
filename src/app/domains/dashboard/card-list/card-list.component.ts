@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { MovieService } from "@core/movie/movie.service";
+import { WatchListService } from "@core/movie/watch-list.service";
 import { AuthService } from "@domains/auth";
 
 import { ShowingApiService } from "..";
@@ -15,7 +15,7 @@ export class CardListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private showingService: ShowingApiService,
-    private movieService: MovieService,
+    private watchListService: WatchListService,
     private authService: AuthService
   ) {}
 
@@ -28,7 +28,7 @@ export class CardListComponent implements OnInit {
     });
 
     if (this.authService.authState.authType === "customer") {
-      this.movieService.getFavoriteId();
+      this.watchListService.getFavoriteId();
     }
   }
 

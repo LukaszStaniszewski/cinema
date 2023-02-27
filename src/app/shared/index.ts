@@ -2,3 +2,4 @@ export * from "../domains/booking/reservation/summary/dropdown/dropdown.componen
 export * from "./custom-validators";
 export * from "./directives/clickOutside.directive";
 export * from "./inject-hooks";
+export * from "./utility-functions/format.date";
