@@ -22,6 +22,7 @@ export type Movie = {
   votesNumber: number;
   premiere: Date;
   runTime: number;
+  userRate?: string;
 };
 
 type WannaSeeDTO = {
@@ -41,61 +42,34 @@ export class WatchListService {
     return this.movieServiceState$$.asObservable();
   }
 
-  addToFavorites(movieId: string) {
+  add(movieId: string) {
     this.http.post(API.WANNA_SEE, { movieId }).subscribe({
       next: () => MESSAGE.WANNA_SEE_SUCCESS,
       error: error => error,
     });
-
-    // this.http
-    //   .get<WannaSeeDTO[] | []>(`${API.WANNA_SEE}?userId=${userId}&movieId=${movieId}`)
-    //   .pipe(
-    //     switchMap(([likedMovie]) => {
-    //       if (likedMovie) {
-    //         return throwError(() => MESSAGE.WANNA_SEE_FAILURE);
-    //       }
-    //       return this.http.post(
-    //         API.WANNA_SEE,
-    //         { userId, movieId },
-    //         { withCredentials: true }
-    //       );
-    //     })
-    //   )
-    //   .subscribe({
-    //     next: () => MESSAGE.WANNA_SEE_SUCCESS,
-    //     error: error => error,
-    //   });
   }
+
   addRate(rating: number, movieId: string) {
     this.http.post(API.WANNA_SEE, { movieId, rating }).subscribe({
       next: () => MESSAGE.WANNA_SEE_SUCCESS,
       error: error => error,
     });
   }
+
   getFavorites() {
-    // return this.http.get<WannaSeeDTO[]>(`${API.WANNA_SEE_LIST}/${2}`).pipe(
-    //   switchMap(wannaSeeDTO => {
-    //     const query = wannaSeeDTO
-    //       .map(wannaSee => wannaSee.movieId)
-    //       .filter(Boolean)
-    //       .join("&id=");
-    //     return this.http.get<Movie[]>(`${API.MOVIES}?id=${query}`);
-    //   })
-    // );
     return this.http.get<Movie[]>(`${API.MOVIES}`);
   }
 
-  deleteFavorite(movieId: string) {
+  delete(movieId: string) {
     this.http.delete(`${API.WANNA_SEE}/${movieId}`).subscribe(console.log);
   }
   getFavoriteId() {
     this.http
       .get<string[]>(`${API.WANNA_SEE}`)
-      // .pipe(map(arg => arg.map(movie => movie.movieId).filter(Boolean)))
+
       .subscribe({
         next: ids => this.movieServiceState$$.next(ids),
         error: error => error,
       });
-    // this.http.get<WannSee[]>(`${API.WANNA_SEE}/${userId}`).subscribe(console.log);
   }
 }

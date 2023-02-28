@@ -46,8 +46,7 @@
     {
       "userId": "2",
       "movieId": "movie-darkKnight-123",
-      "id": "movie-darkKnight-1232",
-      "rate": "8"
+      "id": "movie-darkKnight-1232"
     }
   ],
   "ratings": [
@@ -64,7 +63,7 @@
     {
       "userId": "2",
       "movieId": "movie-darkKnight-123",
-      "rate": "8"
+      "rate": "9"
     }
   ],
   "orders": {

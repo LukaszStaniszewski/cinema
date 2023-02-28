@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { of } from "rxjs";
 
 import { CardCustomerSectionComponent } from "../customer-section";
 import type { Showing } from "../shared/showing-api.service";
@@ -23,5 +24,11 @@ export class CardComponent {
 
   onActivate(component: CardCustomerSectionComponent) {
     component.movieId = this.showing.movie.id;
+    const userRate = this.showing.movie.userRate;
+    if (userRate) {
+      console.log("on Activate rating", userRate);
+      // component.rate = of(Number(userRate));
+      component.rate = Number(userRate);
+    }
   }
 }

@@ -1,24 +1,41 @@
-import { AfterContentInit, Component, ElementRef, inject, Input, ViewChild } from "@angular/core";
-import { MovieService } from "@core/movie/movie.service";
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  Input,
+  ViewChild,
+} from "@angular/core";
+import { WatchListService } from "@core/movie/watch-list.service";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-card-customer",
   template: `
-    <app-rating [max]="10" [rate]="rate" (rateChange)="rateMovie($event)"></app-rating>
+    <app-rating [max]="10" [rate]="rate" [id]="movieId" (rateChange)="rateMovie($event)"></app-rating>
 
     <button #addToWannaSee class="card-btn btn" (click)="addToFavorites()">Chcę zobaczyć</button>
   `,
   styleUrls: ["./card-section.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardCustomerSectionComponent implements AfterContentInit {
   @ViewChild("addToWannaSee", { static: true })
   buttonElement!: ElementRef<HTMLButtonElement>;
   @Input() movieId!: string;
+  // @Input() rate: Observable<number> = new Observable();
   @Input() rate!: number;
-  private movieService = inject(MovieService);
+  // constructor() {
+  // }
+
+  private watchListService = inject(WatchListService);
 
   ngAfterContentInit() {
-    this.movieService.movieService$.subscribe(watchListIds => {
+    // console.log("card Customer", , this.movieId);
+    // this.rate.subscribe(value => console.log("in card-section", value));
+
+    this.watchListService.movieService$.subscribe(watchListIds => {
       if (watchListIds.includes(this.movieId)) {
         this.buttonElement.nativeElement.disabled = true;
         this.buttonElement.nativeElement.textContent = "Juz dodany!";
@@ -28,10 +45,10 @@ export class CardCustomerSectionComponent implements AfterContentInit {
   }
 
   rateMovie(rating: number) {
-    this.movieService.addRate(rating, this.movieId);
+    this.watchListService.addRate(rating, this.movieId);
   }
 
   addToFavorites() {
-    this.movieService.addToFavorites(this.movieId);
+    this.watchListService.add(this.movieId);
   }
 }

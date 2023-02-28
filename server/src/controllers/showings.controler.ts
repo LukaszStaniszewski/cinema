@@ -6,14 +6,38 @@ import db from "../db/db.json";
 import repertuireDB from "../db/repertuire.json";
 import getErrorMessage from "../utils/getErrorMessage";
 
-export const sendShowings = async (req: Request, res: Response) => {
+export const sendShowings = (req: Request, res: Response) => {
   const day = req.query["day"];
+  const currentUserId = res?.locals?.user?.id;
+
   try {
-    const showings = db.showings.filter(showing => showing.day === day);
-    if (!showings.length) {
-      throw new Error(ErrorMessage.SHOWINGS_NOT_FOUND);
+    if (currentUserId) {
+      const currentUserRatings = db.ratings.filter(rate => rate.userId == currentUserId);
+      const showings = db.showings.filter(showing => showing.day === day);
+
+      if (currentUserRatings) {
+        if (!showings.length) {
+          throw new Error(ErrorMessage.SHOWINGS_NOT_FOUND);
+        }
+        const showingsWithCurrentUserRatings = showings.map(showing => {
+          const rate = currentUserRatings.find(rate => rate.movieId === showing.movie.id);
+
+          if (rate) {
+            return { ...showing, movie: { ...showing.movie, userRate: rate.rate } };
+          }
+          return showing;
+        });
+        res.json(showingsWithCurrentUserRatings);
+      } else {
+        res.json(showings);
+      }
+    } else {
+      const showings = db.showings.filter(showing => showing.day === day);
+      if (!showings.length) {
+        throw new Error(ErrorMessage.SHOWINGS_NOT_FOUND);
+      }
+      res.json(showings);
     }
-    res.json(showings);
   } catch (error) {
     res.status(404).json(getErrorMessage(error));
   }

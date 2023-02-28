@@ -81,7 +81,10 @@ export const addMovieToWannaSeeList = (
 ) => {
   const movieId = req.body.movieId;
   const currentUserId = res.locals.user.id.toString();
+  const wannaSeeId = movieId + currentUserId;
   try {
+    const doesExist = db["wanna-see"].some(value => value.id == wannaSeeId);
+    if (doesExist) throw new Error("Movie is already on the list");
     const wannaSeeDb = db["wanna-see"];
     wannaSeeDb.push({
       userId: currentUserId,

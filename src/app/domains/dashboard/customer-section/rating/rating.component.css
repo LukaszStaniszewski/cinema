@@ -7,6 +7,9 @@
 input {
   all: unset;
 }
+.star-wrapper .test {
+  filter: invert(76%) sepia(93%) saturate(1407%) hue-rotate(358deg) brightness(102%) contrast(102%);
+}
 .star-wrapper input {
   background-image: url("src/assets/svg/star.svg");
   background-position: center;
@@ -15,11 +18,11 @@ input {
   width: 20px;
   height: 20px;
   display: inline-block;
-  /* transition: all 0.5s; */
+
   margin: 2px;
 }
+
 .star-wrapper input:hover {
-  /* color: gold; */
   filter: invert(76%) sepia(93%) saturate(1407%) hue-rotate(358deg) brightness(102%) contrast(102%);
   transform: scale(1.3);
 }

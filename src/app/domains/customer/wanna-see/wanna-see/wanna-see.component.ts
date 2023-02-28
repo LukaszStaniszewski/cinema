@@ -12,6 +12,6 @@ export class WannaSeeComponent {
   vm$ = this.watchListService.getFavorites();
 
   protected removeFromWannaSee(moveId: string) {
-    this.watchListService.deleteFavorite(moveId);
+    this.watchListService.delete(moveId);
   }
 }
