@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { API, MESSAGE } from "src/environments/constants";
+
+import { API, MESSAGE } from "../../../../environments/constants";
 
 type Cast = {
   name: string;
@@ -23,12 +24,6 @@ export type Movie = {
   premiere: Date;
   runTime: number;
   userRate?: string;
-};
-
-type WannaSeeDTO = {
-  userId: string;
-  movieId: string;
-  id: string;
 };
 
 @Injectable({

@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { useNavigate } from "@shared/inject-hooks";
 import { BehaviorSubject } from "rxjs";
-import { API } from "src/environments/constants";
 
+import { API } from "../../../environments/constants";
+import { useNavigate } from "../../shared/inject-hooks";
 import { User, UserStateService } from ".";
 
 export type LoginCredentials = {

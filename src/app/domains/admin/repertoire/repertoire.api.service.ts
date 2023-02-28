@@ -3,11 +3,8 @@ import { inject, Injectable } from "@angular/core";
 import { API } from "@environments/constants";
 import { CinemaRoomName } from "@shared/services/cinema-room.api.service";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import { BehaviorSubject, catchError, of } from "rxjs";
+import { catchError, of } from "rxjs";
 
-// export type ShowRepertuire = {
-//   [key in CinemaRoomName]: { hour: number; movieTitle: string }[];
-// };
 export type ShowRepertuire = {
   [key in CinemaRoomName]: { hour: number; movieTitle: string }[];
 };
