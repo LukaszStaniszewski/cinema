@@ -117,3 +117,28 @@ export const sendTitlesController = (req: Request, res: Response) => {
     res.status(404).json(getErrorMessage(error));
   }
 };
+
+export const addUserMovieRating = (
+  req: Request<Record<string, unknown>, Record<string, unknown>, { movieId: string; rate: string }>,
+  res: Response
+) => {
+  try {
+    const { rate, movieId } = req.body;
+    const currentUserId = res.locals.user.id.toString();
+    let ratings = db.ratings;
+    const isExisting = ratings.some(rate => rate.movieId == movieId && rate.userId == currentUserId);
+    if (isExisting) {
+      ratings = ratings.filter(rate => rate.movieId != movieId);
+    }
+    ratings.push({ rate: rate.toString(), movieId, userId: currentUserId });
+
+    db.ratings = ratings;
+    fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
+      // throw new Error(`file couldn't be overwritten: ${err}`);
+    });
+
+    res.status(200).json("Rate was added");
+  } catch (error) {
+    res.status(404).json(getErrorMessage(error));
+  }
+};

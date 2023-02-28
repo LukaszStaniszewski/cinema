@@ -8,7 +8,6 @@ import {
   ViewChild,
 } from "@angular/core";
 import { WatchListService } from "@core/movie/watch-list.service";
-import { Observable } from "rxjs";
 
 @Component({
   selector: "app-card-customer",
@@ -21,20 +20,13 @@ import { Observable } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardCustomerSectionComponent implements AfterContentInit {
-  @ViewChild("addToWannaSee", { static: true })
-  buttonElement!: ElementRef<HTMLButtonElement>;
+  @ViewChild("addToWannaSee", { static: true }) buttonElement!: ElementRef<HTMLButtonElement>;
   @Input() movieId!: string;
-  // @Input() rate: Observable<number> = new Observable();
   @Input() rate!: number;
-  // constructor() {
-  // }
 
   private watchListService = inject(WatchListService);
 
   ngAfterContentInit() {
-    // console.log("card Customer", , this.movieId);
-    // this.rate.subscribe(value => console.log("in card-section", value));
-
     this.watchListService.movieService$.subscribe(watchListIds => {
       if (watchListIds.includes(this.movieId)) {
         this.buttonElement.nativeElement.disabled = true;
