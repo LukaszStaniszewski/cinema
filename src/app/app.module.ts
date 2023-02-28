@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthService } from "@domains/auth";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreModule } from "@ngrx/store";
+import { SpinnerComponent } from "@shared/ui/spinner/spinner.component";
 import { ToastComponent } from "@shared/ui/toast/toast.component";
 
 import { AppComponent } from "./app.component";
@@ -26,6 +27,7 @@ function initFactory(initService: AuthService) {
     AppRoutingModule,
     HttpClientModule,
     ToastComponent,
+    SpinnerComponent,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     BrowserAnimationsModule,

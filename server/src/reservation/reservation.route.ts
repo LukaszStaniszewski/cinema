@@ -7,6 +7,6 @@ import { sendCinemaRoom, sendCinemasRoomNames, sendReservation } from ".";
 const reservationRouter = Router();
 reservationRouter.get("/:id", deserialaizeUser, sendReservation);
 // reservationRouter.patch("/:id", deserialaizeUser, [deserialaizeUser, requireUser], updateOrderController);
-reservationRouter.get("/cinemaroom/names", [deserialaizeUser, requireUser], sendCinemasRoomNames);
+// reservationRouter.get("/cinemaroom/test/names", [deserialaizeUser, requireUser], sendCinemasRoomNames);
 reservationRouter.get("/cinemaroom/:id", sendCinemaRoom);
 export default reservationRouter;

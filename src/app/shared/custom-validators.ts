@@ -1,7 +1,4 @@
-import { HttpClient } from "@angular/common/http";
-import { inject } from "@angular/core";
-import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { delay, Observable, of, timeout } from "rxjs";
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export class CustomValidators {
   static emailPatternValidator(control: AbstractControl): ValidationErrors | null {
@@ -59,24 +56,8 @@ export class CustomValidators {
       }
 
       return {
-        requiredLength: `Kod musi składać się z ${requiredLength} znaków`,
+        requiredLength: `Kod musi składać się z ${requiredLength} liczb`,
       };
     };
   }
-
-  // static blikCode(control: AbstractControl): ValidationErrors | null {
-  //   const regPattern = /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
-  //   const regex = new RegExp(regPattern);
-  //   const value = control.value;
-  //   if (!value) {
-  //     control.markAsPristine({ onlySelf: true });
-
-  //     return null;
-  //   }
-
-  //   if (regex?.test(value)) {
-  //     return null;
-  //   }
-  //   return { emailValidation: "Nieodpowiedni adres email" };
-  // }
 }

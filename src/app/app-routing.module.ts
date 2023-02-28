@@ -1,7 +1,12 @@
 import { NgModule } from "@angular/core";
-import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from "@angular/router";
 
-import { AppCustomPreloader, CanMatchCustomerSection } from "./core";
+import {
+  AppCustomPreloader,
+  CanMatchAdminSection,
+  CanMatchCustomerSection,
+  CanMatchNonAuthSection,
+} from "./core";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
 
@@ -34,17 +39,19 @@ const routes: Routes = [
           {
             path: "customer",
             loadChildren: () => import("./domains/customer/customer.module"),
-            // canMatch: [CanMatchCustomerSection],
+            canMatch: [CanMatchCustomerSection],
           },
           {
             path: "admin",
             loadChildren: () => import("./domains/admin/admin.module"),
+            canMatch: [CanMatchAdminSection],
           },
         ],
       },
       {
         path: "login",
         loadChildren: () => import("./domains/auth/auth.module"),
+        canActivate: [CanMatchNonAuthSection],
       },
     ],
   },
@@ -52,12 +59,8 @@ const routes: Routes = [
   { path: "**", component: PageNotFoundComponent, title: "Page Not Found" },
 ];
 @NgModule({
-  declarations: [],
-  // imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: AppCustomPreloader })],
-  // imports: [provideRouter(routes, with)],
   exports: [RouterModule],
   providers: [AppCustomPreloader],
-  // providers: [provideRouter(routes, withPreloading(PreloadAllModules))],
 })
 export class AppRoutingModule {}

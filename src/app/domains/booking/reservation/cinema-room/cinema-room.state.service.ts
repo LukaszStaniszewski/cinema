@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Ticket } from "@domains/booking/store";
 import { API, SET_UP } from "@environments/constants";
-import { BehaviorSubject, map, Observable, retry } from "rxjs";
+import { BehaviorSubject, map, Observable } from "rxjs";
 
 export interface ReservationDto {
   id: string;
@@ -56,39 +56,9 @@ export class CinemaRoomStateService {
       ...stateSlice,
     });
   }
-  // getSeatingData(id: string) {
-  //   this.http
-  //     .get<ReservationDto>(`${API.RESERVATIONS}/${id}`)
-  //     .pipe(
-  //       takeUntil(this.cinemaRoomState$$.value.seats),
-  //       switchMap(({ cinemaRoomId, takenSeats, order }) => {
-  //         return combineLatest([
-  //           of(takenSeats),
-  //           of(order),
-  //           this.http.get<CinemaRoom>(`${API.CINEMAROOMS}/${cinemaRoomId}`),
-  //         ]);
-  //       })
-  //     )
-  //     .pipe(
-  //       map(([takenSeats, order, cinemaRoom]) =>
-  //         this.mapCinemaRoomSeats(cinemaRoom, takenSeats, order)
-  //       )
-  //     )
-  //     .subscribe({
-  //       next: seatings => {
-  //         this.patchState({
-  //           ...seatings,
-  //         });
-  //       },
-  //       error: () =>
-  //         this.toastService.activateToast({
-  //           message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
-  //           status: "info",
-  //         }),
-  //     });
-  // }
+
   fetchCinemaRoom(cinemaRoomId: string) {
-    return this.http.get<CinemaRoom>(`${API.CINEMAROOM}/${cinemaRoomId}`).pipe(retry(2));
+    return this.http.get<CinemaRoom>(`${API.CINEMAROOM}/${cinemaRoomId}`);
   }
 
   reset() {
@@ -135,21 +105,17 @@ export class CinemaRoomStateService {
           )
         ) {
           array[rowIndex] = takenSeats.find(
-            seat =>
-              seat.position?.column === row.position?.column &&
-              seat.position?.row === row.position?.row
+            seat => seat.position?.column === row.position?.column && seat.position?.row === row.position?.row
           ) as Seat;
         } else if (
           ticketsReservedInCurrentSession?.find(
             ({ seat }) =>
-              seat.position?.column == row.position?.column &&
-              seat.position?.row == row.position?.row
+              seat.position?.column == row.position?.column && seat.position?.row == row.position?.row
           )
         ) {
           array[rowIndex] = ticketsReservedInCurrentSession?.find(
             ({ seat }) =>
-              seat.position?.column == row.position?.column &&
-              seat.position?.row == row.position?.row
+              seat.position?.column == row.position?.column && seat.position?.row == row.position?.row
           )?.seat as Seat;
         } else {
           array[rowIndex] = { ...array[rowIndex], reservation: false };

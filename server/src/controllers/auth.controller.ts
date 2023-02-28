@@ -47,21 +47,19 @@ export const authenticate = async (
 export const autoLogin = async (req: Request, res: Response) => {
   try {
     const user = res.locals?.user;
-    if (!user) {
-      throw new Error("User not found");
-    }
+    if (!user) throw new Error("User not found");
+
     res.json(user);
-    // console.log("auth hit");
-    // res.status(401);
     res.end();
   } catch (error) {
-    res.status(418);
+    res.sendStatus(418);
   }
 };
 
 export const logout = async (req: Request, res: Response) => {
   try {
     res.clearCookie("accessToken", { path: "/" });
+    res.end();
   } catch (error) {
     res.status(418);
   }

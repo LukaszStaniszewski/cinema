@@ -1,10 +1,10 @@
 <section class="card-list">
-    <app-dates class="dates-component"></app-dates>
-    <ng-container *ngIf="this.vm | async as showings; else spinner">
-        <app-card
-            class="card-component"
-            *ngFor="let showing of showings"
-            [showing]="showing"></app-card>
-    </ng-container>
-    <ng-template #spinner><h1>...Loading</h1></ng-template>
+     <app-dates class="dates-component"></app-dates>
+     <ng-container *ngIf="this.vm | async as showings; else spinner">
+          <app-card
+               class="card-component"
+               *ngFor="let showing of showings"
+               [showing]="showing"></app-card>
+     </ng-container>
+     <ng-template #spinner> <app-spinner></app-spinner></ng-template>
 </section>

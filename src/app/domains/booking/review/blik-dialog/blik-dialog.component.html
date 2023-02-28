@@ -18,11 +18,13 @@
                <img src="assets/svg/blik/blik-logo.svg" alt="" />
 
                <input
+                    appFilterOutStrings
                     [formControl]="blikCode"
                     id="blik-blikCode-input"
                     class="payment-input input"
                     placeholder="6-cyrfowy kod"
-                    type="number" />
+                    maxlength="6"
+                    type="text" />
           </div>
           <div class="dialog__error-wrapper">
                <ng-container *ngIf="blikCode.errors as errors">

@@ -5,7 +5,7 @@ import {} from "@angular/material/";
 import { MatDialogModule } from "@angular/material/dialog";
 import { RouterModule, Routes } from "@angular/router";
 
-import { BlikDialogComponent, TicketPurchasePageComponent } from ".";
+import { BlikDialogComponent, FilterOutStringsDirective, TicketPurchasePageComponent } from ".";
 
 const routes: Routes = [
   {
@@ -17,6 +17,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [TicketPurchasePageComponent, BlikDialogComponent],
-  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes), MatDialogModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    MatDialogModule,
+    FilterOutStringsDirective,
+  ],
 })
 export default class ReviewModule {}

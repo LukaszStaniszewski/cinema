@@ -1,7 +1,14 @@
-<router-outlet name="navbar"></router-outlet>
-<router-outlet></router-outlet>
-<app-toast
-    *ngIf="toastState$ | async as toast"
-    (closeToastEvent)="closeToast()"
-    [toast]="toast">
-</app-toast>
+<ng-container *ngIf="authState$ | async as auth">
+     <ng-container *ngIf="auth.authType; else Spinner">
+          <router-outlet name="navbar"></router-outlet>
+          <router-outlet></router-outlet>
+          <app-toast
+               *ngIf="toastState$ | async as toast"
+               (closeToastEvent)="closeToast()"
+               [toast]="toast">
+          </app-toast>
+     </ng-container>
+</ng-container>
+<ng-template #Spinner>
+     <app-spinner></app-spinner>
+</ng-template>

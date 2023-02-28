@@ -6,13 +6,13 @@ import { map, Observable, skipWhile } from "rxjs";
 @Injectable({
   providedIn: "root",
 })
-export class CanMatchCustomerSection implements CanMatch {
+export class CanMatchAdminSection implements CanMatch {
   private authService = inject(AuthService);
 
   canMatch(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.authState$.pipe(
       skipWhile(({ authType }) => authType === null),
-      map(({ authType }) => authType === "customer")
+      map(({ authType }) => authType === "admin")
     );
   }
 }

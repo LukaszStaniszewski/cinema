@@ -28,7 +28,7 @@ export const createReservedOrder = (orderId: string, userId: string) => {
   const order = { ...db.orders, [orderId]: { userId, tickets: [] } };
   db.orders = order;
   fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), async err => {
-    throw new Error(`file couldn't be overwritten: ${err}`);
+    // throw new Error(`file couldn't be overwritten: ${err}`);
   });
   return order;
 };

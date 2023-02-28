@@ -19,8 +19,10 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
       const reservedTickets = getTicketsReservedByCurrentUser(orderId);
       if (reservedTickets) {
         res.json({ ...reservation, reservedTickets: [...reservedTickets] });
+        res.end();
       } else {
         res.json(reservation);
+        res.end();
       }
     } else {
       const reservation = findReservation(reservationId);
@@ -33,9 +35,12 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
 };
 
 export const sendCinemaRoom = async (req: Request, res: Response) => {
+  console.log("hit");
   try {
     const cinemaRoomId = req.params.id;
-    const [cinemaRoom] = cinemaRoomDb.filter(cinemaroom => cinemaroom.id == cinemaRoomId);
+    console.log("cinemeromom id", cinemaRoomId);
+    const holder = cinemaRoomDb;
+    const [cinemaRoom] = holder.filter(cinemaroom => cinemaroom.id == cinemaRoomId);
     if (!cinemaRoom) {
       throw new Error(ErrorMessage.CINEMA_ROOM_NOT_FOUND);
     }
@@ -47,7 +52,8 @@ export const sendCinemaRoom = async (req: Request, res: Response) => {
 
 export const sendCinemasRoomNames = (req: Request, res: Response) => {
   try {
-    const cinemaRoom = cinemaRoomDb.map(cinemaroom => cinemaroom.id);
+    const holder = cinemaRoomDb;
+    const cinemaRoom = holder.map(cinemaroom => cinemaroom.id);
     if (!cinemaRoom) {
       throw new Error(ErrorMessage.CINEMA_ROOM_NOT_FOUND);
     }

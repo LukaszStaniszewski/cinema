@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: "purchase",
     loadChildren: () => import("./review/review.module"),
-    // canActivate: [CanActivateReview],
+    canActivate: [CanActivateReview],
   },
   {
     path: "reservation",

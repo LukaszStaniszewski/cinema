@@ -93,11 +93,11 @@ export class InitialBookingApiService {
           }
           this.cinemaRoomService.mapSeats(cinemaRoom, takenSeats, reservedTickets);
         },
-        error: () =>
-          this.toastService.activateToast({
-            message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
-            status: "error",
-          }),
+        error: error => console.log("error", error),
+        // this.toastService.activateToast({
+        //   message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
+        //   status: "error",
+        // }),
       });
   }
 

@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
 @import "@angular/cdk/overlay-prebuilt.css";
-@import url("https://kit.fontawesome.com/386ffefd94.js");
 
 :root {
   --color-primary: #00f3f3;
@@ -13,7 +12,6 @@
 
   --background-primary: #111620;
   --background-secondary: #1a2232;
-  /* --background-secondary: #1a2232; */
   --background-secondary-v2: #151c29;
   --background-tertiary: #253554;
   --background-glass: #1b2435;
@@ -41,6 +39,7 @@ body {
   color: var(--color-text-primary);
   text-rendering: optimizeLegibility;
   letter-spacing: 0.4px;
+  position: relative;
 }
 
 *,
