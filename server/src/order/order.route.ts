@@ -15,7 +15,7 @@ const orderRouter = Router();
 orderRouter.patch("/:id", [deserialaizeUser, requireUser], updateOrderController);
 orderRouter.get("/", [deserialaizeUser, requireUser], sendGivenUserOrders);
 orderRouter.post("/payed/:id", deserialaizeUser, addPayedOrder);
-orderRouter.get("/email/:id", sendPayedOrderEmail);
+orderRouter.get("/email/:id", deserialaizeUser, sendPayedOrderEmail);
 orderRouter.delete("/:id", [deserialaizeUser, requireUser], deleteOrder);
 orderRouter.get("/coupon/:id", validateCouponCodeHandler);
 

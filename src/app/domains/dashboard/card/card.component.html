@@ -1,41 +1,41 @@
 <section class="card-wrapper">
-    <div class="card-image">
-        <img src="{{ movie.image }}" alt="movie" />
-    </div>
-    <main class="card-main">
-        <div class="card-info">
-            <div>
-                <div class="card-title text-h3">
-                    {{ movie.title | titlecase }}
-                </div>
-                <div class="text-body-big">
-                    {{ movie.genre | titlecase }} | {{ movie.runTime }} minut | PG-{{
-                        movie.pg
-                    }}
-                </div>
-                <span class="card-description text-body-big">{{
-                    movie.description
-                }}</span>
-            </div>
-            <div class="card-details">
-                <a routerLink="/">Więcej</a>
-            </div>
-        </div>
-        <div class="card-hours text-body-big">
-            <a
-                class="time-details"
-                *ngFor="let hour of hours"
-                [routerLink]="['/booking/reservation', hour.reservationId]"
-                >{{ hour.time }}</a
-            >
-        </div>
-    </main>
+     <div class="card-image">
+          <img src="{{ movie.image }}" alt="movie" />
+     </div>
+     <main class="card-main">
+          <div class="card-info">
+               <div>
+                    <div class="card-title text-h3">
+                         {{ movie.title | titlecase }}
+                    </div>
+                    <div class="text-body-big">
+                         {{ movie.genre | titlecase }} | {{ movie.runTime }} minut | PG-{{
+                              movie.pg
+                         }}
+                    </div>
+                    <span class="card-description text-body-big">{{
+                         movie.description
+                    }}</span>
+               </div>
+               <div class="card-details">
+                    <a routerLink="/">Więcej</a>
+               </div>
+          </div>
+          <div class="card-hours text-body-big">
+               <a
+                    class="time-details"
+                    *ngFor="let hour of hours"
+                    [routerLink]="['/booking/reservation', hour.reservationId]"
+                    >{{ hour.time }}</a
+               >
+          </div>
+     </main>
 
-    <div class="card-rating">
-        <p>{{ movie.rating }}/ 10</p>
-        <p class="text-body">450 ocen</p>
+     <div class="card-rating">
+          <p>{{ movie.rating }}/ 10</p>
+          <p class="text-body">450 ocen</p>
 
-        <router-outlet name="cardCustomerSection" (activate)="onActivate($event)">
-        </router-outlet>
-    </div>
+          <router-outlet name="cardCustomerSection" (activate)="onActivate($event)">
+          </router-outlet>
+     </div>
 </section>

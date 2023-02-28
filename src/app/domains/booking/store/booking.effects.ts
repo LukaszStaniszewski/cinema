@@ -24,7 +24,7 @@ export class BookingEffects {
   private showingService = inject(ShowingApiService);
 
   constructor() {
-    this.actions$.subscribe(console.log);
+    // this.actions$.subscribe(console.log);
   }
 
   createTicket$ = createEffect(() => {

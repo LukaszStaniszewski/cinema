@@ -63,7 +63,6 @@ export class InitialBookingApiService {
         this.store.dispatch(BookingTicketActions.getLatestReservationUrl({ payload: url }));
       }
       if (!splitedUrl.includes("booking") && !splitedUrl.includes("summary")) {
-        console.log(splitedUrl);
         this.resetStateOnLeaveCuzNgOnDestoryIsNotWorking();
       }
     });
@@ -77,10 +76,7 @@ export class InitialBookingApiService {
       .pipe(
         takeUntil(this.hasLoaded.pipe(takeWhile(tickets => !!tickets))),
         switchMap(({ cinemaRoomId, ...reservation }) => {
-          return combineLatest([
-            of(reservation),
-            this.cinemaRoomService.fetchCinemaRoom(cinemaRoomId),
-          ]);
+          return combineLatest([of(reservation), this.cinemaRoomService.fetchCinemaRoom(cinemaRoomId)]);
         })
       )
       .pipe(

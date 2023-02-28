@@ -6,7 +6,6 @@ import { catchError, delay, distinctUntilChanged, map, Observable, of } from "rx
 
 export class PaymentFormValidators {
   static blikCode(control: AbstractControl): Observable<ValidationErrors | null> {
-    // return (control: AbstractControl) => {
     return of(null).pipe(delay(1000));
   }
 

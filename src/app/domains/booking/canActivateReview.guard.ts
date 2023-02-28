@@ -23,12 +23,7 @@ export class CanActivateReview implements CanActivate {
     // console.log();
     return this.store.select(selectTickets).pipe(
       map(tickets => {
-        if (tickets.length > 0) {
-          return true;
-        }
-        // else if(route.url.some(value => value.path === "purchase")) {
-
-        // }
+        if (tickets.length > 0) return true;
         return false;
       })
     );

@@ -16,7 +16,7 @@ const routes: Routes = [
         path: "",
         loadChildren: () => import("./customer-section/customer-section.module"),
         // outlet: "cardAuthUser",
-        // canMatch: [CanMatchCustomerSection],
+        canMatch: [CanMatchCustomerSection],
       },
     ],
   },

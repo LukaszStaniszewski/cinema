@@ -53,7 +53,7 @@ export const autoLogin = async (req: Request, res: Response) => {
     res.json(user);
     // console.log("auth hit");
     // res.status(401);
-    // res.end();
+    res.end();
   } catch (error) {
     res.status(418);
   }

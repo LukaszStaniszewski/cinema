@@ -20,14 +20,10 @@ type DialogData = {
 })
 export class BlikDialogComponent {
   @Input() totalPrice = 0;
-  // dialogRef!: MatDialogRef<BlikDialogComponent>;
   private reviewService = inject(ReviewStateService);
   public data = inject<DialogData>(MAT_DIALOG_DATA);
 
-  protected blikCode = new FormControl(null, [
-    Validators.required,
-    CustomValidators.exactLength(6),
-  ]);
+  protected blikCode = new FormControl(null, [Validators.required, CustomValidators.exactLength(6)]);
 
   constructor(public dialogRef: MatDialogRef<BlikDialogComponent>) {}
 
@@ -39,15 +35,6 @@ export class BlikDialogComponent {
 
       error: () => this.dialogRef.close(),
     });
-    setTimeout(() => {
-      console.log("hit");
-      // this.dialogRef.close(this.blikCode.getRawValue());
-    }, 1000);
-
-    // this.changeDetector.detectChanges();
-    // this.blikCode.updateValueAndValidity();
-    // this.blikCode.markAsTouched();
-    // console.log("errors", this.code.errors);
   }
 
   onNoClick(): void {

@@ -86,7 +86,8 @@ export class ReviewStateService {
             userCredentials: payload,
           }),
         ])
-      )
+      ),
+      delay(300)
     );
   }
 }

@@ -80,10 +80,14 @@ export const addPayedOrder = (
 };
 
 export const sendPayedOrderEmail = (req: Request<{ id: string }>, res: Response) => {
+  console.log("hit send payed email");
   try {
     const orderId = req.params.id;
+    console.log("ORDERID", orderId);
     if (doesPayedExist(orderId)) {
       const email = payedOrdersDB[orderId].userCredentials.email;
+      console.log("email ORDER", email);
+
       res.json({ email: email });
     } else {
       throw new Error("this payed order doesn't exist");

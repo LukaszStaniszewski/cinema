@@ -51,19 +51,14 @@
   ],
   "ratings": [
     {
-      "userId": "1",
-      "movieId": "movie-avatar-way-of-water-123",
-      "rate": "7"
-    },
-    {
-      "userId": "2",
-      "movieId": "movie-avatar-way-of-water-123",
-      "rate": "8"
-    },
-    {
       "userId": "2",
       "movieId": "movie-darkKnight-123",
       "rate": "9"
+    },
+    {
+      "rate": "7",
+      "movieId": "movie-avatar-way-of-water-123",
+      "userId": "2"
     }
   ],
   "orders": {
@@ -225,6 +220,14 @@
     "20610b": {
       "userId": 2,
       "tickets": []
+    },
+    "2061415a": {
+      "userId": 2,
+      "tickets": []
+    },
+    "2062035c": {
+      "userId": 2,
+      "tickets": []
     }
   },
   "movies": [
@@ -327,7 +330,7 @@
     {
       "id": "movie-rick-and-morty-123",
       "title": "Rick and Morty",
-      "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+      "image": "./assets/posters/rickt-and-morty.webp",
       "description": "Ekscentryczny naukowiec Rick udaje się ze swoim wnukiem Mortym do najdziwniejszych miejsc w galaktyce i alternatywnych rzeczywistości.",
       "rating": 8.6,
       "votesNumber": 400,
@@ -391,7 +394,7 @@
     {
       "id": "movie-wt-powrót-króla-123",
       "title": "Władca Pierścieni: Powrót Króla",
-      "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+      "image": "./assets/posters/lotr.webp",
       "description": "Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów.",
       "rating": 8.4,
       "votesNumber": 1240,
@@ -438,19 +441,19 @@
       "day": "06-12-2022",
       "available": [
         {
-          "time": "12:00",
+          "time": "12:35",
           "cinemaRoomId": "room-b",
-          "reservationId": "06-12-b"
+          "reservationId": "06-1235-b"
         },
         {
-          "time": "14:00",
+          "time": "16:00",
           "cinemaRoomId": "room-b",
-          "reservationId": "06-14-b"
+          "reservationId": "06-16-b"
         },
         {
-          "time": "20:00",
+          "time": "22:00",
           "cinemaRoomId": "room-c",
-          "reservationId": "06-20-c"
+          "reservationId": "06-22-c"
         }
       ]
     },
@@ -475,14 +478,14 @@
           "reservationId": "06-10-b"
         },
         {
-          "time": "17:00",
+          "time": "19:45",
           "cinemaRoomId": "room-a",
-          "reservationId": "06-17-a"
+          "reservationId": "06-1945-a"
         },
         {
-          "time": "20:00",
+          "time": "22:30",
           "cinemaRoomId": "room-a",
-          "reservationId": "06-20-a"
+          "reservationId": "06-2230-a"
         }
       ]
     },
@@ -504,27 +507,22 @@
         {
           "time": "10:00",
           "cinemaRoomId": "room-c",
-          "reservationId": "06-12-c"
+          "reservationId": "06-10-c"
         },
         {
-          "time": "12:00",
+          "time": "14:15",
           "cinemaRoomId": "room-a",
-          "reservationId": "06-12-a"
-        },
-        {
-          "time": "14:00",
-          "cinemaRoomId": "room-a",
-          "reservationId": "06-14-a"
+          "reservationId": "06-1415-a"
         },
         {
           "time": "17:00",
-          "cinemaRoomId": "room-c",
-          "reservationId": "06-17-c"
+          "cinemaRoomId": "room-a",
+          "reservationId": "06-17-a"
         },
         {
-          "time": "20:00",
+          "time": "20:35",
           "cinemaRoomId": "room-c",
-          "reservationId": "06-20-c"
+          "reservationId": "06-2035-c"
         }
       ]
     },
@@ -532,7 +530,7 @@
       "movie": {
         "id": "movie-rick-and-morty-123",
         "title": "Rick and Morty",
-        "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+        "image": "./assets/posters/rick-and-morty.webp",
         "description": "Ekscentryczny naukowiec Rick udaje się ze swoim wnukiem Mortym do najdziwniejszych miejsc w galaktyce i alternatywnych rzeczywistości.",
         "rating": 8.6,
         "votesNumber": 400,
@@ -545,17 +543,12 @@
         {
           "time": "10:00",
           "cinemaRoomId": "room-a",
-          "reservationId": "06-12-a"
+          "reservationId": "06-10-a"
         },
         {
-          "time": "12:00",
+          "time": "12:45",
           "cinemaRoomId": "room-c",
-          "reservationId": "06-12-c"
-        },
-        {
-          "time": "14:00",
-          "cinemaRoomId": "room-c",
-          "reservationId": "06-14-c"
+          "reservationId": "06-1245-c"
         }
       ]
     },
@@ -563,7 +556,7 @@
       "movie": {
         "id": "movie-wt-powrót-króla-123",
         "title": "Władca Pierścieni: Powrót Króla",
-        "image": "https://www.imdb.com/title/tt2861424/mediaviewer/rm209331968/?ref_=tt_ov_i",
+        "image": "./assets/posters/lotr.webp",
         "description": "Zwieńczenie filmowej trylogii wg powieści Tolkiena. Aragorn jednoczy siły Śródziemia, szykując się do bitwy, która ma odwrócić uwagę Saurona od podążających w kierunku Góry Przeznaczenia hobbitów.",
         "rating": 8.4,
         "votesNumber": 1240,
@@ -575,13 +568,13 @@
       "available": [
         {
           "time": "17:00",
-          "cinemaRoomId": "room-b",
-          "reservationId": "06-12-b"
+          "cinemaRoomId": "room-c",
+          "reservationId": "06-17-c"
         },
         {
-          "time": "20:00",
+          "time": "19:25",
           "cinemaRoomId": "room-b",
-          "reservationId": "06-12-b"
+          "reservationId": "06-1925-b"
         }
       ]
     },
@@ -689,9 +682,9 @@
   ],
   "reservations": [
     {
-      "id": "06-15-a",
-      "movieId": "movie-avatar-way-of-water-123",
-      "cinemaRoomId": "room-a",
+      "id": "06-10-c",
+      "movieId": "movie-Dune-134",
+      "cinemaRoomId": "room-c",
       "takenSeats": [
         {
           "position": {
@@ -746,7 +739,63 @@
     },
     {
       "id": "06-17-a",
-      "movieId": "movie-avatar-way-of-water-123",
+      "movieId": "movie-Dune-134",
+      "cinemaRoomId": "room-a",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "D",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "H",
+            "column": "9"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-1415-a",
+      "movieId": "movie-Dune-134",
       "cinemaRoomId": "room-a",
       "takenSeats": [
         {
@@ -818,25 +867,116 @@
             "column": "10"
           },
           "taken": true
-        },
+        }
+      ]
+    },
+    {
+      "id": "06-2035-c",
+      "movieId": "movie-Dune-134",
+      "cinemaRoomId": "room-c",
+      "takenSeats": [
         {
           "position": {
-            "row": "D",
-            "column": "11"
+            "row": "E",
+            "column": "6"
           },
           "taken": true
         },
         {
           "position": {
-            "row": "H",
-            "column": "9"
+            "row": "E",
+            "column": "7"
           },
           "taken": true
         }
       ]
     },
     {
-      "id": "06-15-b",
+      "id": "06-10-b",
+      "movieId": "movie-darkKnight-123",
+      "cinemaRoomId": "room-b",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "7"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-1945-a",
+      "movieId": "movie-darkKnight-123",
+      "cinemaRoomId": "room-a",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "9"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "10"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "11"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-2230-a",
       "movieId": "movie-darkKnight-123",
       "cinemaRoomId": "room-a",
       "takenSeats": [
@@ -886,6 +1026,342 @@
           "position": {
             "row": "G",
             "column": "9"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-1235-b",
+      "movieId": "movie-avatar-way-of-water-123",
+      "cinemaRoomId": "room-b",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-16-b",
+      "movieId": "movie-avatar-way-of-water-123",
+      "cinemaRoomId": "room-b",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "a",
+            "column": "2"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "a",
+            "column": "3"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-22-c",
+      "movieId": "movie-avatar-way-of-water-123",
+      "cinemaRoomId": "room-c",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "a",
+            "column": "2"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "a",
+            "column": "3"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-10-a",
+      "movieId": "movie-rick-and-morty-123",
+      "cinemaRoomId": "room-a",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "I",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "I",
+            "column": "7"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-1245-c",
+      "movieId": "movie-rick-and-morty-123",
+      "cinemaRoomId": "room-c",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "I",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "I",
+            "column": "10"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-17-c",
+      "movieId": "movie-wt-powrót-króla-123",
+      "cinemaRoomId": "room-c",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "I",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "I",
+            "column": "10"
+          },
+          "taken": true
+        }
+      ]
+    },
+    {
+      "id": "06-1925-b",
+      "movieId": "movie-wt-powrót-króla-123",
+      "cinemaRoomId": "room-b",
+      "takenSeats": [
+        {
+          "position": {
+            "row": "A",
+            "column": "4"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "B",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "B",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "6"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "7"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "C",
+            "column": "8"
+          },
+          "taken": true
+        },
+        {
+          "position": {
+            "row": "E",
+            "column": "6"
           },
           "taken": true
         }

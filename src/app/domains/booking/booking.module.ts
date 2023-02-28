@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
 import { Store, StoreModule } from "@ngrx/store";
+import { SpinnerComponent } from "@shared/ui/spinner/spinner.component";
 
 import { CanActivateReview } from "./canActivateReview.guard";
 import { InitialBookingApiService } from "./initial-booking-api.service";
@@ -23,7 +24,6 @@ const routes: Routes = [
   {
     path: "summary/:id",
     loadComponent: () => import("./payment-summary/payment-summary.component"),
-    canActivate: [CanActivateReview],
   },
 ];
 // /// czy dodanie typu AppState do app module sprawi ze booking module zostanie załadowany od razu (zamiast być lazy), bo aplikacja bedzie chciała zaimportować typ BookingState
@@ -37,6 +37,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     StoreModule.forFeature(bookingFeatureKey, bookingReducer),
     EffectsModule.forFeature(BookingEffects),
+    SpinnerComponent,
   ],
   providers: [
     CinemaRoomStateService,
