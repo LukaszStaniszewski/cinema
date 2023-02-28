@@ -6,9 +6,14 @@ import { WannaSeeCardComponent, WannaSeeComponent } from ".";
 
 const routes: Routes = [
   {
-    path: "",
+    path: "wanna-see",
     component: WannaSeeComponent,
     title: "Want to see page",
+  },
+  {
+    path: "orders",
+    loadComponent: () => import("./orders/orders.component"),
+    title: "My orders",
   },
 ];
 

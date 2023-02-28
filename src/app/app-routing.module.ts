@@ -32,9 +32,9 @@ const routes: Routes = [
             data: { preload: true },
           },
           {
-            path: "wanna-see",
+            path: "customer",
             loadChildren: () => import("./domains/customer/customer.module"),
-            canMatch: [CanMatchCustomerSection],
+            // canMatch: [CanMatchCustomerSection],
           },
           {
             path: "admin",

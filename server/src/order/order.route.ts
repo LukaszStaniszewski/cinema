@@ -6,6 +6,7 @@ import {
   addPayedOrder,
   deleteOrder,
   sendGivenUserOrders,
+  sendGivenUserPayedOrders,
   sendPayedOrderEmail,
   updateOrderController,
   validateCouponCodeHandler,
@@ -14,6 +15,7 @@ import {
 const orderRouter = Router();
 orderRouter.patch("/:id", [deserialaizeUser, requireUser], updateOrderController);
 orderRouter.get("/", [deserialaizeUser, requireUser], sendGivenUserOrders);
+orderRouter.get("/payed", [deserialaizeUser, requireUser], sendGivenUserPayedOrders);
 orderRouter.post("/payed/:id", deserialaizeUser, addPayedOrder);
 orderRouter.get("/email/:id", deserialaizeUser, sendPayedOrderEmail);
 orderRouter.delete("/:id", [deserialaizeUser, requireUser], deleteOrder);

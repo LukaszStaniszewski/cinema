@@ -98,7 +98,6 @@ export const sendPayedOrderEmail = (req: Request<{ id: string }>, res: Response)
 };
 
 export const validateCouponCodeHandler = (req: Request<{ id: string }>, res: Response) => {
-  console.log("coupon ", req.params);
   try {
     const couponCode = req.params.id;
     const isValid = validateCouponCode(couponCode);
@@ -108,6 +107,23 @@ export const validateCouponCodeHandler = (req: Request<{ id: string }>, res: Res
     } else {
       throw new Error("Given coupon is not valid");
     }
+  } catch (error) {
+    res.status(409).json(getErrorMessage(error));
+  }
+};
+
+export const sendGivenUserPayedOrders = (req: Request, res: Response) => {
+  try {
+    const userId = res.locals.user?.id;
+    const holder = [];
+    const userOrders = payedOrdersDB;
+    for (const order in userOrders) {
+      if (userOrders[order].userId == userId) {
+        holder.push(userOrders[order]);
+      }
+    }
+
+    res.json(holder);
   } catch (error) {
     res.status(409).json(getErrorMessage(error));
   }

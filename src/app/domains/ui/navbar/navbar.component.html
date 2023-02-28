@@ -23,7 +23,8 @@
                          *ngIf="!hide && (authState$ | async) as auth"
                          class="dropdown dropdown--navbar">
                          <a>Moje bilety</a>
-                         <a [routerLink]="['/wanna-see']">Chcę obejrzeć</a>
+                         <a [routerLink]="['/customer/wanna-see']">Chcę obejrzeć</a>
+                         <a [routerLink]="['/customer/orders']">Moje zamówienia</a>
                          <ng-container *ngIf="auth.authType === 'admin'">
                               <a [routerLink]="['/admin/movie']">Dodaj film</a>
                               <a [routerLink]="['/admin/repertoire']">Dodaj seans</a>

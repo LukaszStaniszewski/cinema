@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Movie } from "@core/movie/watch-list.service";
+import { Movie } from "@domains/customer/watch-list/watch-list.service";
 import { ComponentStore } from "@ngrx/component-store";
 
 export type MoveState = {

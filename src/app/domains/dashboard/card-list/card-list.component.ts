@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { WatchListService } from "@core/movie/watch-list.service";
+import { WatchListService } from "@domains/customer/watch-list/watch-list.service";
 import { AuthService } from "@domains/auth";
 
 import { ShowingApiService } from "..";

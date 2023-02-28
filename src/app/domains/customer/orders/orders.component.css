@@ -1,0 +1,60 @@
+.typography {
+  font-size: 16px !important;
+  font-family: "Barlow", sans-serif;
+}
+
+.typography--title {
+  font-size: 16px !important;
+  font-family: "Barlow", sans-serif;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background-color: var(--color-primary);
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background-color: var(--color-primary);
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.table__order-details {
+  overflow: hidden;
+  display: flex;
+  width: 60%;
+  flex-direction: column;
+  row-gap: 1rem;
+  padding: 1rem 0;
+}
+
+.order-details__ticket-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-details__ticket-details > div > span {
+  font-weight: 700;
+}
+
+.order-details__total {
+  align-self: flex-end;
+}
+.order-details__total > span {
+  font-weight: 600;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

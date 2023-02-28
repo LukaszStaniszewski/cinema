@@ -7,7 +7,7 @@ import {
   Input,
   ViewChild,
 } from "@angular/core";
-import { WatchListService } from "@core/movie/watch-list.service";
+import { WatchListService } from "@domains/customer/watch-list/watch-list.service";
 
 @Component({
   selector: "app-card-customer",
