@@ -1,20 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Ticket } from "@domains/booking/store";
 import { API, SET_UP } from "@environments/constants";
 import { BehaviorSubject, map, Observable } from "rxjs";
 
-export interface ReservationDto {
-  id: string;
-  cinemaRoomId: string;
-  takenSeats: Seat[];
-  order?: Order;
-}
-
-export type Order = {
-  tickets: Ticket[];
-};
 export interface Seat {
   position: { column: string; row: string };
   reservation: boolean;
@@ -88,7 +77,6 @@ export class CinemaRoomStateService {
   }
 
   mapSeats(cinemaRoom: CinemaRoom, taken?: Seat[], reservedByCurrentUser?: Ticket[]) {
-    // if (!taken) return cinemaRoom;
     if (!taken) return this.patchState({ ...cinemaRoom });
 
     const takenSeats = taken;
@@ -123,18 +111,9 @@ export class CinemaRoomStateService {
       });
     });
 
-    // return updatedCinemaRoom;
-
     this.patchState({ ...updatedCinemaRoom });
   }
 
-  // private mapTakenSeats(array: Seat[], rowIndex: number, takenSeats: Seat[]) {
-  //   array[rowIndex] = takenSeats.find(
-  //     seat =>
-  //       seat.position?.column === row.position?.column &&
-  //       seat.position?.row === row.position?.row
-  //   ) as Seat;
-  // }
   ngOnDestory() {
     console.log("cinema room service destroeyd");
   }

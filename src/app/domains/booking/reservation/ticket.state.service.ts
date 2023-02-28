@@ -4,7 +4,6 @@ import { AuthService, AuthType } from "@domains/auth";
 import {
   AppStateWithBookingState,
   BookingTicketActions,
-  selectBookingState,
   selectTicketsWithShowingPartialAndUrl,
   selectTicketsWithTotalPrice,
   Ticket,
@@ -46,14 +45,12 @@ const defaultTicketInformation = {
 
 @Injectable()
 export class TicketStateService {
-  currentUrl = "";
   private ticketInformation$$ = new BehaviorSubject<TicketInformation>(defaultTicketInformation);
 
   private store = inject<Store<AppStateWithBookingState>>(Store);
   private authService = inject(AuthService);
 
   constructor(private http: HttpClient) {
-    this.store.select(selectBookingState).subscribe(console.log);
     combineLatest([this.store.select(selectTicketsWithTotalPrice), this.fetchTicketDetails()]).subscribe(
       ([{ tickets, totalPrice }, ticketDetails]) => {
         this.patchState({ tickets, totalPrice, ticketDetails });
