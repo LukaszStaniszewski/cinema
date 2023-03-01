@@ -4,7 +4,7 @@ import { Component, inject } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
 
-import { OrderVM, UserApiOrderService } from "./user-api-order.service";
+import { OrderVM, UserApiOrderService } from "./user-order-api.service";
 @Component({
   selector: "app-orders",
   templateUrl: "./orders.component.html",

@@ -2,8 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Ticket } from "@domains/booking/store";
 import { ShowingPartial } from "@domains/dashboard";
-import { API } from "@environments/constants";
 import { catchError, map, of } from "rxjs";
+
+import { API } from "../../../../environments/constants";
 
 export type OrderVM = {
   tytuł: string;
@@ -33,7 +34,7 @@ export class UserApiOrderService {
             tytuł: order.showingPartial.title,
             dzień: order.showingPartial.day,
             godzina: order.showingPartial.time,
-            sala: "room-a",
+            sala: "A",
             totalPrice: order.totalPrice,
             additional: order.tickets,
           };
