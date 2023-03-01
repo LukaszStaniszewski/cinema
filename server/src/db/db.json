@@ -16,13 +16,7 @@
       "id": 2
     }
   ],
-  "validCoupons": [
-    "11111",
-    "22222",
-    "33333",
-    "44444",
-    "55555"
-  ],
+  "validCoupons": ["11111", "22222", "33333", "44444", "55555"],
   "ticketInfo": [
     {
       "type": "normalny",
@@ -68,31 +62,32 @@
     }
   ],
   "orders": {
-    "test": {
-      "userId": "1",
-      "showingPartial": {
-        "title": "The Dark Knight",
-        "day": "06-12-2022",
-        "image": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
-        "time": "14:00"
-      },
-      "url": "",
+    "2061235b": {
       "tickets": [
         {
           "seat": {
             "position": {
-              "row": "H",
-              "column": "4"
+              "row": "E",
+              "column": "3"
             },
             "taken": false,
             "reservation": true,
             "status": "standard"
           },
-          "id": "H4",
+          "id": "E3",
           "type": "normalny",
           "price": 20
         }
-      ]
+      ],
+      "showingPartial": {
+        "title": "Avatar: Istota Wody",
+        "day": "06-12-2022",
+        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
+        "time": "12:35",
+        "reservationId": "06-1235-b"
+      },
+      "url": "/booking/reservation/06-1235-b",
+      "userId": 2
     }
   },
   "movies": [

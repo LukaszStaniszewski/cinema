@@ -9,6 +9,7 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
   try {
     const userId = res.locals.user?.id as string;
     const reservationId = req.params?.id;
+    console.log("userid", userId);
     if (!reservationId) throw Error("Reservation was not found");
 
     if (userId) {
@@ -19,10 +20,10 @@ export const sendReservation = async (req: Request<{ id: string }>, res: Respons
       const reservedTickets = getTicketsReservedByCurrentUser(orderId);
       if (reservedTickets) {
         res.json({ ...reservation, reservedTickets: [...reservedTickets] });
-        res.end();
+        // res.end();
       } else {
         res.json(reservation);
-        res.end();
+        // res.end();
       }
     } else {
       const reservation = findReservation(reservationId);

@@ -30,15 +30,16 @@ export type Order = {
 
 export const updateOrder = (userId: number, reservationId: string, order: ReservedOrder) => {
   const orderId = (userId + reservationId).replaceAll("-", "");
-  console.log("Update order hit");
+  console.log("reservationid", reservationId);
+  console.log("orderId", orderId, order);
+  // console.log("db", order);
 
   if (doesExist(orderId)) {
-    const updated = { ...order, userId };
+    const updated = { [orderId]: { ...order, userId } };
     // const updatedOrder = { [orderId]: updated };
-    db.orders[orderId] = updated;
+    db.orders = updated;
     fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
       // throw new Error(`file couldn't be overwritten: ${err}`);
-      return;
     });
     return;
   } else {
