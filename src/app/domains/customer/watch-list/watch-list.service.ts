@@ -30,11 +30,11 @@ export type Movie = {
   providedIn: "root",
 })
 export class WatchListService {
-  private movieServiceState$$ = new BehaviorSubject<string[]>([]);
+  private watchListState$$ = new BehaviorSubject<string[]>([]);
   private http = inject(HttpClient);
 
   get movieService$() {
-    return this.movieServiceState$$.asObservable();
+    return this.watchListState$$.asObservable();
   }
 
   add(movieId: string) {
@@ -56,14 +56,14 @@ export class WatchListService {
   }
 
   delete(movieId: string) {
-    this.http.delete(`${API.WANNA_SEE}/${movieId}`).subscribe(console.log);
+    this.http.delete(`${API.WANNA_SEE}/${movieId}`).subscribe();
   }
   getFavoriteId() {
     this.http
       .get<string[]>(`${API.WANNA_SEE}`)
 
       .subscribe({
-        next: ids => this.movieServiceState$$.next(ids),
+        next: ids => this.watchListState$$.next(ids),
         error: error => error,
       });
   }

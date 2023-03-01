@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
-import { MESSAGE } from "@environments/constants";
 
+// import { MESSAGE } from "@environments/constants";
+import { MESSAGE } from "../../../../environments/constants";
 import { AuthService } from "..";
 
 @Component({

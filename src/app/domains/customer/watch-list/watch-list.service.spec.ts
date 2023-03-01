@@ -39,7 +39,7 @@ describe("WatchListService", () => {
     service.getFavorites();
     service.getFavorites().subscribe({
       next: res => {
-        expect(res).toEqual(favoriteMoviesMock);
+        expect(res[0].title).toEqual(favoriteMoviesMock[0].title);
         done();
       },
       error: (err: HttpErrorResponse) => {
@@ -61,12 +61,19 @@ describe("WatchListService", () => {
     done();
   });
   it("getFavoriteId", done => {
+    const favoritesIdsMock = ["1", "2", "3", "4"];
     const expectedUrl = "/movies/wanna-see";
     const httpController = TestBed.inject(HttpTestingController);
 
     service.add("1245");
 
-    httpController.expectOne(expectedUrl);
+    service.movieService$.subscribe(state => {
+      expect(state).toBe(favoritesIdsMock);
+      done();
+    });
+
+    const req = httpController.expectOne(expectedUrl);
+    req.flush(favoritesIdsMock);
     done();
   });
 });

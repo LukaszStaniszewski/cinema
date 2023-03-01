@@ -38,8 +38,8 @@ describe("AuthService", () => {
     expect(service).toBeTruthy();
   });
 
-  it("login function should send request to correct url", done => {
-    const expectedUrl = "http://localhost:3000/api/auth";
+  it("login", done => {
+    const expectedUrl = "/auth";
     const httpController = TestBed.inject(HttpTestingController);
 
     service.login(loginCredentialsMock).subscribe({
@@ -51,6 +51,30 @@ describe("AuthService", () => {
         expect(err.statusText).toEqual("Error");
         done();
       },
+    });
+
+    const req = httpController.expectOne(expectedUrl);
+    req.flush(loginDtoMock);
+  });
+
+  it("setGlobalUserState", done => {
+    service.setGlobalUserState(loginDtoMock);
+
+    service.authState$.subscribe(state => {
+      expect(state).toEqual({ authType: "customer" });
+      done();
+    });
+  });
+
+  it("autoLogin", done => {
+    const expectedUrl = "/auth";
+    const httpController = TestBed.inject(HttpTestingController);
+
+    service.autoLogin();
+
+    service.authState$.subscribe(state => {
+      expect(state).toEqual({ authType: "customer" });
+      done();
     });
 
     const req = httpController.expectOne(expectedUrl);

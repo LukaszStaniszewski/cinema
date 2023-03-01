@@ -8,8 +8,6 @@ export type User = {
   phoneNumber?: number;
 };
 
-const initialState = { email: "", firstName: "", secondName: "" };
-
 @Injectable({
   providedIn: "root",
 })
