@@ -1,14 +1,14 @@
 <div class="dropdown" (appClickOutside)="hideDropdown()">
-    <div class="dropwdown__display-selected" (click)="toggleDropdown()">
-        <div>
-            {{ currentSelectedValue }}
-        </div>
-        <img class="arrow-icon" src="assets/svg/chevron-down-mini.svg" alt="" />
-    </div>
+     <div class="dropwdown__display-selected" (click)="toggleDropdown()">
+          <div>
+               {{ currentSelectedValue }}
+          </div>
+          <img class="arrow-icon" src="assets/svg/chevron-down-mini.svg" alt="" />
+     </div>
 
-    <div [class.hidden]="hide" class="dropdown__options">
-        <div (click)="setSelectedTicket(ticketTech)" *ngFor="let ticketTech of options">
-            <span>{{ ticketTech.type }}</span>
-        </div>
-    </div>
+     <div [class.hidden]="hide" class="dropdown__options">
+          <div (click)="setSelectedTicket(ticketTech)" *ngFor="let ticketTech of options">
+               <p>{{ ticketTech.type }}</p>
+          </div>
+     </div>
 </div>

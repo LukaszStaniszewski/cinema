@@ -51,7 +51,7 @@ const routes: Routes = [
       {
         path: "login",
         loadChildren: () => import("./domains/auth/auth.module"),
-        canActivate: [CanMatchNonAuthSection],
+        // canActivate: [CanMatchNonAuthSection],
       },
     ],
   },

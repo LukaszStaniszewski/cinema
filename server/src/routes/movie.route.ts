@@ -14,7 +14,7 @@ import requireUser from "../middleware/requireUser";
 const movieRouter = Router();
 
 movieRouter.get("/wanna-see", [deserialaizeUser, requireUser], sendFavoriteMoviesIdList);
-movieRouter.post("/wanna-see", [deserialaizeUser, requireUser], addUserMovieRating);
+movieRouter.post("/rate", [deserialaizeUser, requireUser], addUserMovieRating);
 movieRouter.get("/", [deserialaizeUser, requireUser], sendFavoriteMovies);
 movieRouter.get("/titles", [deserialaizeUser, requireUser], sendTitlesController);
 movieRouter.delete("/wanna-see/:id", [deserialaizeUser, requireUser], deleteMovieFromWannaSeeList);

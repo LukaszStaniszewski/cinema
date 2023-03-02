@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   inject,
@@ -23,15 +24,14 @@ export class CardCustomerSectionComponent implements AfterContentInit {
   @ViewChild("addToWannaSee", { static: true }) buttonElement!: ElementRef<HTMLButtonElement>;
   @Input() movieId!: string;
   @Input() rate!: number;
+  private changeDetector = inject(ChangeDetectorRef);
 
   private watchListService = inject(WatchListService);
 
   ngAfterContentInit() {
     this.watchListService.movieService$.subscribe(watchListIds => {
       if (watchListIds.includes(this.movieId)) {
-        this.buttonElement.nativeElement.disabled = true;
-        this.buttonElement.nativeElement.textContent = "Juz dodany!";
-        this.buttonElement.nativeElement.classList.add("btn--disabled");
+        this.updateAddToFavoritesButton();
       }
     });
   }
@@ -42,5 +42,13 @@ export class CardCustomerSectionComponent implements AfterContentInit {
 
   addToFavorites() {
     this.watchListService.add(this.movieId);
+
+    this.updateAddToFavoritesButton();
+  }
+
+  private updateAddToFavoritesButton() {
+    this.buttonElement.nativeElement.classList.add("btn--disabled");
+    this.buttonElement.nativeElement.textContent = "Juz dodany!";
+    this.buttonElement.nativeElement.disabled = true;
   }
 }

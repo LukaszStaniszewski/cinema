@@ -38,6 +38,7 @@ export class WatchListService {
   }
 
   add(movieId: string) {
+    console.log(movieId);
     this.http.post(API.WANNA_SEE, { movieId }).subscribe({
       next: () => MESSAGE.WANNA_SEE_SUCCESS,
       error: error => error,
@@ -45,7 +46,7 @@ export class WatchListService {
   }
 
   addRate(rate: number, movieId: string) {
-    this.http.post(API.WANNA_SEE, { movieId, rate }).subscribe({
+    this.http.post(API.ADD_MOVIE_RATE, { movieId, rate }).subscribe({
       next: () => MESSAGE.WANNA_SEE_SUCCESS,
       error: error => error,
     });

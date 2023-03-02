@@ -79,8 +79,9 @@ export const addMovieToWannaSeeList = (
   req: Request<Record<string, unknown>, Record<string, unknown>, { movieId: string }>,
   res: Response
 ) => {
+  console.log("hit");
   const movieId = req.body.movieId;
-  const currentUserId = res.locals.user.id.toString();
+  const currentUserId = res.locals.user.id;
   const wannaSeeId = movieId + currentUserId;
   try {
     const doesExist = db["wanna-see"].some(value => value.id == wannaSeeId);

@@ -7,6 +7,7 @@ export const API = {
   MOVIES: "/movies",
   MOVIES_TITLE: "/movies/titles",
   WANNA_SEE: "/movies/wanna-see",
+  ADD_MOVIE_RATE: "/movies/rate",
   TICKET_INFO: "/tickets",
   SHOWINGS: "/showings",
   REPERTUIRE: "/showings/repertuire",

@@ -14,9 +14,23 @@
       "firstName": "lukasz",
       "secondName": "staniszewski",
       "id": 2
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "test2",
+      "role": "admin",
+      "firstName": "lukasz",
+      "secondName": "staniszewski",
+      "id": 2
     }
   ],
-  "validCoupons": ["11111", "22222", "33333", "44444", "55555"],
+  "validCoupons": [
+    "11111",
+    "22222",
+    "33333",
+    "44444",
+    "55555"
+  ],
   "ticketInfo": [
     {
       "type": "normalny",
@@ -44,9 +58,14 @@
       "id": "movie-avatar-way-of-water-1232"
     },
     {
-      "userId": "2",
+      "userId": 2,
       "movieId": "movie-darkKnight-123",
       "id": "movie-darkKnight-1232"
+    },
+    {
+      "userId": 2,
+      "movieId": "movie-wt-powrót-króla-123",
+      "id": "movie-wt-powrót-króla-1232"
     }
   ],
   "ratings": [
@@ -59,35 +78,21 @@
       "rate": "7",
       "movieId": "movie-avatar-way-of-water-123",
       "userId": "2"
+    },
+    {
+      "rate": "9",
+      "movieId": "movie-Dune-134",
+      "userId": "2"
     }
   ],
   "orders": {
     "2061235b": {
-      "tickets": [
-        {
-          "seat": {
-            "position": {
-              "row": "E",
-              "column": "3"
-            },
-            "taken": false,
-            "reservation": true,
-            "status": "standard"
-          },
-          "id": "E3",
-          "type": "normalny",
-          "price": 20
-        }
-      ],
-      "showingPartial": {
-        "title": "Avatar: Istota Wody",
-        "day": "06-12-2022",
-        "image": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg",
-        "time": "12:35",
-        "reservationId": "06-1235-b"
-      },
-      "url": "/booking/reservation/06-1235-b",
-      "userId": 2
+      "userId": 2,
+      "tickets": []
+    },
+    "20617a": {
+      "userId": 2,
+      "tickets": []
     }
   },
   "movies": [
