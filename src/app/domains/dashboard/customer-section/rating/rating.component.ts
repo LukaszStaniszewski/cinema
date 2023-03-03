@@ -11,18 +11,23 @@ import {
 
 @Component({
   selector: "app-rating",
-  template: ` <div class="star-wrapper">
-    <input #star10 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(10)" />
-    <input #star9 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(9)" />
-    <input #star8 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(8)" />
-    <input #star7 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(7)" />
-    <input #star6 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(6)" />
-    <input #star5 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(5)" />
-    <input #star4 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(4)" />
-    <input #star3 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(3)" />
-    <input #star2 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(2)" />
-    <input #star1 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(1)" />
-  </div>`,
+  template: `
+    <div class="rating">
+      <div class="star-wrapper">
+        <input #star10 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(10)" />
+        <input #star9 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(9)" />
+        <input #star8 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(8)" />
+        <input #star7 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(7)" />
+        <input #star6 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(6)" />
+        <input #star5 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(5)" />
+        <input #star4 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(4)" />
+        <input #star3 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(3)" />
+        <input #star2 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(2)" />
+        <input #star1 name="{{ 'star' + id }}" type="radio" class="s1" (click)="setRate(1)" />
+      </div>
+      <p class="rating__titles" *ngIf="rate">{{ titles.at(rate - 1) }}</p>
+    </div>
+  `,
   styleUrls: ["./rating.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -41,10 +46,23 @@ export class RatingComponent implements AfterContentInit {
   @Input() rate!: number;
   @Input() id = "";
   @Output() rateChange = new EventEmitter<number>();
+  titles = [
+    "Nieporozumienie",
+    "Bardzo zły",
+    "Słaby",
+    "Ujdzie",
+    "Średni",
+    "Niezły",
+    "Dobry",
+    "Bardzo dobry",
+    "Rewelacyjny",
+    "Arcydzieło",
+  ];
 
   stars = Array(this.max).fill(4);
 
   setRate(rate: number) {
+    this.rate = rate;
     this.rateChange.emit(rate);
   }
 

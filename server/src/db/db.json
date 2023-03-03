@@ -75,13 +75,13 @@
       "rate": "9"
     },
     {
-      "rate": "7",
-      "movieId": "movie-avatar-way-of-water-123",
+      "rate": "8",
+      "movieId": "movie-Dune-134",
       "userId": "2"
     },
     {
-      "rate": "9",
-      "movieId": "movie-Dune-134",
+      "rate": "8",
+      "movieId": "movie-avatar-way-of-water-123",
       "userId": "2"
     }
   ],

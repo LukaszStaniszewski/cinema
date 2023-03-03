@@ -1,8 +1,16 @@
+.rating {
+  margin-bottom: 15px;
+}
+
+.rating__titles {
+  margin-top: 5px;
+  text-align: center;
+}
+
 .star-wrapper {
   width: max-content;
   display: flex;
   flex-direction: row-reverse;
-  margin-bottom: 20px;
 }
 input {
   all: unset;

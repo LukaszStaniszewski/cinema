@@ -1,7 +1,6 @@
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   inject,
@@ -24,8 +23,6 @@ export class CardCustomerSectionComponent implements AfterContentInit {
   @ViewChild("addToWannaSee", { static: true }) buttonElement!: ElementRef<HTMLButtonElement>;
   @Input() movieId!: string;
   @Input() rate!: number;
-  private changeDetector = inject(ChangeDetectorRef);
-
   private watchListService = inject(WatchListService);
 
   ngAfterContentInit() {

@@ -49,7 +49,11 @@
                                         Typ biletu: <span>{{ additional.type }}</span>
                                    </div>
                                    <div>
-                                        Miejce: <span>{{ additional.position }}</span>
+                                        Miejce:
+                                        <span
+                                             >{{ additional.seat.position.row
+                                             }}{{ additional.seat.position.column }}</span
+                                        >
                                    </div>
                                    <div>
                                         Cena: <span>{{ additional.price }}</span>
