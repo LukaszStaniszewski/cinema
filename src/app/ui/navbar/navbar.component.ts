@@ -1,7 +1,6 @@
 import { Component, inject } from "@angular/core";
+import { AuthService, UserStateService } from "@domains/auth";
 import { useNavigate } from "@shared/inject-hooks";
-
-import { AuthService, UserStateService } from "../../auth";
 
 @Component({
   selector: "app-navbar",

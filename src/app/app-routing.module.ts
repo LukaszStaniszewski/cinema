@@ -22,7 +22,7 @@ const routes: Routes = [
         children: [
           {
             path: "",
-            loadChildren: () => import("./domains/ui/ui.module"),
+            loadChildren: () => import("./ui/ui.module"),
             outlet: "navbar",
           },
           {
