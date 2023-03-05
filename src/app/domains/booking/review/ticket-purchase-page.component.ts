@@ -3,7 +3,7 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
 import { MESSAGE } from "@environments/constants";
-import { useNavigate } from "@shared/inject-hooks";
+import { useNavigate } from "@shared/inject-hooks/use-navigate.hook";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 
 import { CustomValidators } from "../../../shared/custom-validators";

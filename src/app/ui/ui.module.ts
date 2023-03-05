@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { CanMatchCustomerSection } from "@core/guards/canMatchCustomerSection.guard";
+import CartComponent from "@domains/customer/cart/cart.component";
 import { ClickOutsideDirective } from "@shared/index";
 
 import { NavbarComponent } from "./navbar/navbar.component";
@@ -13,7 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        loadComponent: () => import("./cart/cart.component"),
+        loadComponent: () => import("../domains/customer/cart/cart.component"),
         outlet: "cart",
         canMatch: [CanMatchCustomerSection],
       },
@@ -22,7 +23,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [NavbarComponent],
-  imports: [ClickOutsideDirective, RouterModule.forChild(routes), CommonModule],
+  imports: [ClickOutsideDirective, RouterModule.forChild(routes), CommonModule, CartComponent],
   exports: [NavbarComponent],
 })
 export default class UiModule {}

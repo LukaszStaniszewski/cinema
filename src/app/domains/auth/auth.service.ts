@@ -3,7 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 
 import { API } from "../../../environments/constants";
-import { useNavigate } from "../../shared/inject-hooks";
+import { useNavigate } from "../../shared/inject-hooks/use-navigate.hook";
 import { User, UserStateService } from ".";
 
 export type LoginCredentials = {

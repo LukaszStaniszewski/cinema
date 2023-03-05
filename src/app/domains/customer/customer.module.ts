@@ -1,13 +1,11 @@
-import { AsyncPipe, DatePipe, NgFor, NgIf } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-
-import { WannaSeeCardComponent, WannaSeeComponent } from ".";
 
 const routes: Routes = [
   {
     path: "wanna-see",
-    component: WannaSeeComponent,
+
+    loadChildren: () => import("./watch-list/wanna-see/wanna-see.component"),
     title: "Want to see page",
   },
   {
@@ -18,12 +16,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [WannaSeeComponent, WannaSeeCardComponent],
-  imports: [NgFor, NgIf, AsyncPipe, DatePipe, RouterModule.forChild(routes)],
-  exports: [WannaSeeComponent],
+  declarations: [],
+  imports: [RouterModule.forChild(routes)],
 })
-export default class CustomerModule {
-  constructor() {
-    console.log("customer module");
-  }
-}
+export default class CustomerModule {}
