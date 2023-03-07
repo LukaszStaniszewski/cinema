@@ -11,7 +11,7 @@ import { MovieApiService } from "@core/movie/movie.api.service";
 })
 export class AddMovieComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  actors = ["G", "PG", "PG-13", "R", "NC-17"];
+  actors: string[] = [];
   pgCategories = ["G", "PG", "PG-13", "R", "NC-17"];
   private builder = inject(NonNullableFormBuilder);
   private movieApiService = inject(MovieApiService);

@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from "@angular/common/
 import { EnvironmentInjector } from "@angular/core";
 import { TestBed } from "@angular/core/testing";
 
-import { AuthService, LoginCredentials, LoginDTO, User, UserStateService } from ".";
+import { AuthService, LoginCredentials, LoginDTO, UserStateService } from ".";
 
 const loginDtoMock: LoginDTO = {
   email: "test@test.pl",
@@ -25,7 +25,7 @@ describe("AuthService", () => {
           provide: UserStateService,
           useValue: {
             remove: () => undefined,
-            set: (user: User) => undefined,
+            set: () => undefined,
           },
         },
       ],

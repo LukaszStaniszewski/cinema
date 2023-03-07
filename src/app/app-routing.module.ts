@@ -1,12 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import {
-  AppCustomPreloader,
-  CanMatchAdminSection,
-  CanMatchCustomerSection,
-  CanMatchNonAuthSection,
-} from "./core";
+import { AppCustomPreloader, CanMatchAdminSection, CanMatchCustomerSection } from "./core";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { ShellComponent } from "./shell/shell.component";
 
@@ -51,7 +46,6 @@ const routes: Routes = [
       {
         path: "login",
         loadChildren: () => import("./domains/auth/auth.module"),
-        // canActivate: [CanMatchNonAuthSection],
       },
     ],
   },

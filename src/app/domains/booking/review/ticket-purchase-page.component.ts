@@ -2,9 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/cor
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { ActivatedRoute } from "@angular/router";
-import { MESSAGE } from "@environments/constants";
 import { useNavigate } from "@shared/inject-hooks/use-navigate.hook";
-import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 
 import { CustomValidators } from "../../../shared/custom-validators";
 import { BlikDialogComponent, PaymentFormValidators, ReviewStateService } from ".";
@@ -22,7 +20,7 @@ export class TicketPurchasePageComponent implements OnInit {
   private builder = inject(NonNullableFormBuilder);
   private route = inject(ActivatedRoute);
   private reviewService = inject(ReviewStateService);
-  private toast = inject(ToastStateService);
+
   private dialog = inject(MatDialog);
   private navigate = useNavigate();
   userCredentialsForm = this.createForm();
@@ -61,7 +59,6 @@ export class TicketPurchasePageComponent implements OnInit {
   ngOnInit() {
     this.params = this.route.snapshot.params["id"];
     this.reviewService.getViewData();
-    // this.dialog.open(PaymentComponent);
   }
 
   get controls() {
@@ -92,13 +89,6 @@ export class TicketPurchasePageComponent implements OnInit {
       if (orderId) {
         this.navigate(`/booking/summary/${orderId}`);
       }
-      // if (this.hasNotBeenShown()) {
-      //   this.hasQuitSubmitMessagBeenShown = true;
-      //   this.toast.activateToast({ message: MESSAGE.ORDER_RESIGN, status: "info" });
-      // }
     });
-  }
-  private hasNotBeenShown() {
-    return !this.hasQuitSubmitMessagBeenShown;
   }
 }

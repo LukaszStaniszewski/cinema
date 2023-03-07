@@ -27,8 +27,6 @@ export class RepertuireStore extends ComponentStore<RepertuireState> {
       repertuire: null,
       theDateOfRepertuireCurrentlyBeingDisplayed: null,
     });
-
-    this.select(store => store).subscribe(console.log);
   }
 
   readonly getByDay = this.effect((date$: Observable<string>) =>
@@ -98,8 +96,4 @@ export class RepertuireStore extends ComponentStore<RepertuireState> {
   readonly repertuire$ = this.select(state => state.repertuire);
 
   readonly selectTakenTerms$ = this.select(state => state.takenTerms);
-
-  // selectMovie(movieId: string) {
-  //   return this.select((state) => state.movies.find(m => m.id === movieId));
-  // }
 }

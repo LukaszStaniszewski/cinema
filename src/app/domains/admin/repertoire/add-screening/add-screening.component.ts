@@ -46,9 +46,6 @@ export class AddScreeningComponent {
     );
   }
 
-  constructor() {
-    // this.addScreeningForm.valueChanges.subscribe(console.log);
-  }
   get controls() {
     return this.addScreeningForm.controls;
   }
@@ -68,7 +65,7 @@ export class AddScreeningComponent {
       [cinemaRoom]: { hour: hour, movieTitle: movie.title },
       date: formatedDate,
     } as Screening;
-    console.log("hit", screening);
+
     this.repertuireStore.add(screening);
     this.repertuireApiService.saveToDB({
       cinemaRoom,

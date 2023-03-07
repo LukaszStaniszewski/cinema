@@ -2,7 +2,7 @@ import { PreloadingStrategy, Route } from "@angular/router";
 import { Observable, of } from "rxjs";
 
 export class AppCustomPreloader implements PreloadingStrategy {
-  preload(route: Route, load: () => Observable<any>): Observable<any> {
+  preload(route: Route, load: () => Observable<unknown>): Observable<unknown> {
     return route.data && route.data["preload"] ? load() : of(null);
   }
 }

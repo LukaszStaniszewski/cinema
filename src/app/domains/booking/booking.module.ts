@@ -2,14 +2,14 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { EffectsModule } from "@ngrx/effects";
-import { Store, StoreModule } from "@ngrx/store";
+import { StoreModule } from "@ngrx/store";
 import { SpinnerComponent } from "@shared/ui/spinner/spinner.component";
 
 import { CanActivateReview } from "./canActivateReview.guard";
 import { InitialBookingApiService } from "./initial-booking-api.service";
 import { CinemaRoomStateService, TicketStateService } from "./reservation";
 import { ReviewStateService } from "./review";
-import { BookingEffects, bookingFeatureKey, bookingReducer, selectTickets } from "./store";
+import { BookingEffects, bookingFeatureKey, bookingReducer } from "./store";
 
 const routes: Routes = [
   {
@@ -48,11 +48,7 @@ const routes: Routes = [
   ],
 })
 export default class BookingModule {
-  reservationId = "";
-
-  constructor(private store: Store, private initialApiService: InitialBookingApiService) {
-    this.store.select(selectTickets).subscribe(console.log);
-
+  constructor(private initialApiService: InitialBookingApiService) {
     this.initialApiService.load();
   }
 }

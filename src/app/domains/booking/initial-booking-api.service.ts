@@ -1,20 +1,10 @@
 import { Location } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { API, MESSAGE } from "@environments/constants";
+import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
 import { ToastStateService } from "@shared/ui/toast/toast.state.service";
-import {
-  bindCallback,
-  combineLatest,
-  distinctUntilChanged,
-  map,
-  of,
-  Subject,
-  switchMap,
-  takeUntil,
-  takeWhile,
-} from "rxjs";
+import { combineLatest, distinctUntilChanged, map, of, switchMap, takeUntil, takeWhile } from "rxjs";
 
 import { CinemaRoomStateService } from "./reservation/cinema-room/cinema-room.state.service";
 import { TicketStateService } from "./reservation/ticket.state.service";
@@ -49,8 +39,7 @@ export class InitialBookingApiService {
     private ticketService: TicketStateService,
     private location: Location,
     private store: Store,
-    private http: HttpClient,
-    private toastService: ToastStateService
+    private http: HttpClient
   ) {}
   load() {
     this.location.onUrlChange(url => {
@@ -93,11 +82,7 @@ export class InitialBookingApiService {
           }
           this.cinemaRoomService.mapSeats(cinemaRoom, takenSeats, reservedTickets);
         },
-        error: error => console.log("error", error),
-        // this.toastService.activateToast({
-        //   message: MESSAGE.CINEMA_ROOM_NOT_FOUND,
-        //   status: "error",
-        // }),
+        error: error => error,
       });
   }
 

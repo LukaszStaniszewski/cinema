@@ -13,7 +13,7 @@ legend {
 .create-showing__form > fieldset {
   all: unset;
   display: flex;
-  /* align-items: center; */
+
   flex-direction: column;
   row-gap: 2rem;
 }

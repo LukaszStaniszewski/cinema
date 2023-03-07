@@ -1,10 +1,10 @@
 import { AsyncPipe, JsonPipe, NgIf } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { API } from "@environments/constants";
 import { QRCodeModule } from "angularx-qrcode";
-import { Observable } from "rxjs";
+
 @Component({
   selector: "app-payment-summary",
   templateUrl: "./payment-summary.component.html",
@@ -12,8 +12,7 @@ import { Observable } from "rxjs";
   standalone: true,
   imports: [QRCodeModule, NgIf, AsyncPipe, JsonPipe],
 })
-export default class PaymentSummaryComponent implements OnInit {
-  // vm$ = new Observable<{ email: string }>();
+export default class PaymentSummaryComponent {
   isLoading = true;
   params = "";
 
@@ -21,18 +20,7 @@ export default class PaymentSummaryComponent implements OnInit {
   private route = inject(ActivatedRoute);
   vm$ = this.getEmail(this.route.snapshot.params["id"]);
 
-  ngOnInit(): void {
-    const params = this.route.snapshot.params["id"];
-    console.log("PARAMS", params);
-    // this.vm$ = this.getEmail(params);
-    // this.getEmail(params);
-  }
-
   getEmail(orderId: string) {
     return this.http.get<{ email: string }>(`${API.ORDER_EMAIL}/${orderId}`, { withCredentials: true });
-    // .subscribe({
-    //   next: res => console.log("success", res),
-    //   error: error => console.log("error", error),
-    // });
   }
 }

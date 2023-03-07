@@ -84,9 +84,6 @@ export class TicketStateService {
     } else {
       this.store.dispatch(BookingTicketActions.addTicketStart({ seat: seatToUpdate, id: seatToUpdateId }));
     }
-    // if(this.ticketInformation.tickets.length === 0) {
-    //   this.store.dispatch(BookingTicketActions.removeShowingPartial())
-    // }
   }
 
   detectChangesToUpdateDB(reservationId: string) {
