@@ -37,7 +37,7 @@ export const updateOrder = (userId: number, reservationId: string, order: Reserv
   if (doesExist(orderId)) {
     const updated = { [orderId]: { ...order, userId } };
     // const updatedOrder = { [orderId]: updated };
-    db.orders = updated;
+    db.orders = { ...db.orders, ...updated };
     fs.writeFile("./src/db/db.json", JSON.stringify(db, null, 2), err => {
       // throw new Error(`file couldn't be overwritten: ${err}`);
     });
