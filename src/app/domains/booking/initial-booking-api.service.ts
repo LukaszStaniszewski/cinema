@@ -3,7 +3,6 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { API } from "@environments/constants";
 import { Store } from "@ngrx/store";
-import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { combineLatest, distinctUntilChanged, map, of, switchMap, takeUntil, takeWhile } from "rxjs";
 
 import { CinemaRoomStateService } from "./reservation/cinema-room/cinema-room.state.service";

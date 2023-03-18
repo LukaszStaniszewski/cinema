@@ -17,13 +17,17 @@ export const bookingReducer = createReducer(
       tickets: state.tickets.filter(ticket => ticket.id !== action.id),
     };
   }),
+  on(BookingTicketActions.removeTickets, (state): BookingState => {
+    return {
+      ...state,
+      tickets: [],
+    };
+  }),
   on(BookingTicketActions.updateTicket, (state, { id, valueToUpdate }) => {
     return {
       ...state,
       tickets: state.tickets.map(ticket =>
-        ticket.id === id
-          ? { ...ticket, type: valueToUpdate.type, price: valueToUpdate.price }
-          : ticket
+        ticket.id === id ? { ...ticket, type: valueToUpdate.type, price: valueToUpdate.price } : ticket
       ),
     };
   }),

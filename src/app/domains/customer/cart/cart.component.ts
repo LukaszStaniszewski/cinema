@@ -1,7 +1,7 @@
 import { CdkMenuModule } from "@angular/cdk/menu";
-import { AsyncPipe, NgFor, NgIf } from "@angular/common";
+import { AsyncPipe, KeyValuePipe, NgFor, NgIf } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { AppStateWithBookingState, BookingTicketActions } from "@domains/booking/store";
 import { Store } from "@ngrx/store";
 import { ClickOutsideDirective, useNavigate } from "@shared/index";
@@ -12,7 +12,7 @@ import { CartStateService } from "./cart-state.service";
   selector: "app-cart",
   templateUrl: "./cart.component.html",
   styleUrls: ["./cart.component.css"],
-  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective, CdkMenuModule],
+  imports: [NgIf, NgFor, AsyncPipe, RouterLink, ClickOutsideDirective, CdkMenuModule, KeyValuePipe],
   standalone: true,
   providers: [CartStateService],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,6 +23,7 @@ export default class CartComponent implements OnInit {
 
   private cartService = inject(CartStateService);
   private store = inject<Store<AppStateWithBookingState>>(Store);
+  private router = inject(Router);
   private navigate = useNavigate();
 
   vm$ = this.cartService.selectCartItems$;
@@ -39,7 +40,7 @@ export default class CartComponent implements OnInit {
   removeCartItem(event: Event, id: string) {
     event.stopPropagation();
 
-    this.cartService.delete(id);
+    this.cartService.delete(id, this.router.url);
   }
 
   closeDropdown() {
