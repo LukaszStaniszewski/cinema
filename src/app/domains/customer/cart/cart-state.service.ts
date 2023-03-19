@@ -6,8 +6,9 @@ import {
   selectTicketsWithShowingPartialAndUrl,
 } from "@domains/booking/store";
 import { ShowingPartial } from "@domains/dashboard";
-import { API } from "@environments/constants";
+import { API, MESSAGE } from "@environments/constants";
 import { Store } from "@ngrx/store";
+import { ToastStateService } from "@shared/ui/toast/toast.state.service";
 import { BehaviorSubject, map, take } from "rxjs";
 
 type CartItem = {
@@ -24,25 +25,24 @@ export class CartStateService {
   private cartState$$ = new BehaviorSubject<CartState>({ cartItems: new Map() });
   private http = inject(HttpClient);
   private store = inject<Store<AppStateWithBookingState>>(Store);
+  private toast = inject(ToastStateService);
 
   constructor() {
     this.store
       .select(selectTicketsWithShowingPartialAndUrl)
       .pipe(
-        map(select => {
-          if (select.tickets.length > 0) return select;
-          if (select.showingPartial && select.tickets.length === 0)
-            this.deleteLocaly(select.showingPartial.reservationId);
-          return;
+        map(({ tickets, ...item }) => {
+          if (!item.showingPartial) throw new Error();
+          if (tickets.length > 0) {
+            this.add({ showingPartial: item.showingPartial, url: item.url });
+          } else {
+            this.deleteLocaly(item.showingPartial.reservationId);
+          }
         })
       )
       .subscribe({
-        next: item => {
-          if (item?.showingPartial) {
-            this.add({ showingPartial: item.showingPartial, url: item.url });
-          }
-        },
-        error: error => error,
+        next: () => this.toast.activate({ message: MESSAGE.CART_ADD_SUCCESS, status: "success" }),
+        error: () => this.toast.activate({ message: MESSAGE.CART_ADD_FAILURE, status: "warning" }),
       });
   }
 
